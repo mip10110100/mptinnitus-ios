@@ -1,0 +1,154 @@
+[
+  {
+    "path": "00_README/01_PROJECT_BRIEF.md",
+    "bytes": 2168
+  },
+  {
+    "path": "00_README/02_HANDOFF_SUMMARY.md",
+    "bytes": 1635
+  },
+  {
+    "path": "00_README/README.md",
+    "bytes": 2224
+  },
+  {
+    "path": "01_SOURCE_OF_TRUTH/01_v10_asset_locked_source.xlsx",
+    "bytes": 108025
+  },
+  {
+    "path": "01_SOURCE_OF_TRUTH/02_mvp_screen_spec_pack.xlsx",
+    "bytes": 85685
+  },
+  {
+    "path": "01_SOURCE_OF_TRUTH/03_mvp_audio_manifest_recording_queue.xlsx",
+    "bytes": 94448
+  },
+  {
+    "path": "01_SOURCE_OF_TRUTH/04_tts_recording_queue.csv",
+    "bytes": 58248
+  },
+  {
+    "path": "01_SOURCE_OF_TRUTH/05_full_audio_manifest.csv",
+    "bytes": 92556
+  },
+  {
+    "path": "01_SOURCE_OF_TRUTH/06_sound_sample_placeholders.csv",
+    "bytes": 1878
+  },
+  {
+    "path": "01_SOURCE_OF_TRUTH/07_visual_interaction_manifest.xlsx",
+    "bytes": 40954
+  },
+  {
+    "path": "01_SOURCE_OF_TRUTH/08_local_data_schema.xlsx",
+    "bytes": 63758
+  },
+  {
+    "path": "01_SOURCE_OF_TRUTH/09_local_data_schema.json",
+    "bytes": 144440
+  },
+  {
+    "path": "01_SOURCE_OF_TRUTH/10_build_stack_decision.md",
+    "bytes": 2925
+  },
+  {
+    "path": "02_TECHNICAL_CONTRACTS/01_BUILD_STACK_LOCK.md",
+    "bytes": 1495
+  },
+  {
+    "path": "02_TECHNICAL_CONTRACTS/02_APP_ARCHITECTURE_CONTRACT.md",
+    "bytes": 2166
+  },
+  {
+    "path": "02_TECHNICAL_CONTRACTS/03_MANIFEST_CONTRACTS.md",
+    "bytes": 2382
+  },
+  {
+    "path": "02_TECHNICAL_CONTRACTS/app_config_v1.json",
+    "bytes": 1486
+  },
+  {
+    "path": "02_TECHNICAL_CONTRACTS/asset_placeholders_v1.json",
+    "bytes": 1915
+  },
+  {
+    "path": "02_TECHNICAL_CONTRACTS/route_manifest_seed_v1.csv",
+    "bytes": 5411
+  },
+  {
+    "path": "02_TECHNICAL_CONTRACTS/route_manifest_seed_v1.json",
+    "bytes": 12495
+  },
+  {
+    "path": "03_CODEX_STAGE_PROMPTS/stage_01_project_scaffold_and_repository_foundation.md",
+    "bytes": 1563
+  },
+  {
+    "path": "03_CODEX_STAGE_PROMPTS/stage_02_content_and_manifest_loader.md",
+    "bytes": 1480
+  },
+  {
+    "path": "03_CODEX_STAGE_PROMPTS/stage_03_persistent_app_shell_and_navigation.md",
+    "bytes": 1591
+  },
+  {
+    "path": "03_CODEX_STAGE_PROMPTS/stage_04_static_screen_renderer_and_module_library.md",
+    "bytes": 1476
+  },
+  {
+    "path": "03_CODEX_STAGE_PROMPTS/stage_05_audio_system_and_transcript_binding.md",
+    "bytes": 1564
+  },
+  {
+    "path": "03_CODEX_STAGE_PROMPTS/stage_06_swiftdata_local_storage_and_my_plan.md",
+    "bytes": 1486
+  },
+  {
+    "path": "03_CODEX_STAGE_PROMPTS/stage_07_core_exercise_components.md",
+    "bytes": 1573
+  },
+  {
+    "path": "03_CODEX_STAGE_PROMPTS/stage_08_sound_therapy_annex_and_sound_samples.md",
+    "bytes": 1494
+  },
+  {
+    "path": "03_CODEX_STAGE_PROMPTS/stage_09_mindfulness_annex_and_guided_practices.md",
+    "bytes": 1359
+  },
+  {
+    "path": "03_CODEX_STAGE_PROMPTS/stage_10_settings,_reminders,_safety,_and_privacy.md",
+    "bytes": 1504
+  },
+  {
+    "path": "03_CODEX_STAGE_PROMPTS/stage_11_visual_polish_and_placeholder_replacement_hooks.md",
+    "bytes": 1453
+  },
+  {
+    "path": "03_CODEX_STAGE_PROMPTS/stage_12_qa,_testflight_prep,_and_build_review.md",
+    "bytes": 1278
+  },
+  {
+    "path": "03_CODEX_STAGE_PROMPTS/stage_sequence_summary.csv",
+    "bytes": 3355
+  },
+  {
+    "path": "04_IMPLEMENTATION_NOTES/01_REPOSITORY_STRUCTURE.md",
+    "bytes": 2252
+  },
+  {
+    "path": "04_IMPLEMENTATION_NOTES/02_SWIFT_MODEL_SKETCHES.md",
+    "bytes": 1863
+  },
+  {
+    "path": "04_IMPLEMENTATION_NOTES/03_AUDIO_IMPLEMENTATION_NOTES.md",
+    "bytes": 1254
+  },
+  {
+    "path": "04_IMPLEMENTATION_NOTES/04_SAFETY_SCOPE_PRIVACY_GUARDRAILS.md",
+    "bytes": 1778
+  },
+  {
+    "path": "05_QA_AND_REVIEW/01_QA_CHECKLIST.md",
+    "bytes": 1481
+  }
+]

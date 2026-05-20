@@ -1,0 +1,481 @@
+{
+  "schemaVersion": "1.0.0",
+  "routes": [
+    {
+      "screenId": "SYS-001",
+      "route": "first_launch_modal",
+      "module": "System",
+      "title": "First Launch Prompt",
+      "role": "modal"
+    },
+    {
+      "screenId": "HOME-001",
+      "route": "/library",
+      "module": "Global",
+      "title": "Library / Main Module Hub",
+      "role": "navigation_hub"
+    },
+    {
+      "screenId": "SAFE-001",
+      "route": "/safety",
+      "module": "Global",
+      "title": "Safety Information",
+      "role": "safety_scope"
+    },
+    {
+      "screenId": "SET-001",
+      "route": "/settings",
+      "module": "Global",
+      "title": "Settings",
+      "role": "settings"
+    },
+    {
+      "screenId": "AT-001",
+      "route": "/about/overview",
+      "module": "About Tinnitus",
+      "title": "What This App Is",
+      "role": "education"
+    },
+    {
+      "screenId": "AT-002",
+      "route": "/about/scope-privacy",
+      "module": "About Tinnitus",
+      "title": "Scope, Safety, and Local Privacy",
+      "role": "education_scope"
+    },
+    {
+      "screenId": "AT-003",
+      "route": "/about/body-mind-life",
+      "module": "About Tinnitus",
+      "title": "Body / Mind / Life Model",
+      "role": "education_visual"
+    },
+    {
+      "screenId": "AT-004",
+      "route": "/about/body-mind-life-exercise",
+      "module": "About Tinnitus",
+      "title": "My Tinnitus Picture",
+      "role": "exercise"
+    },
+    {
+      "screenId": "AT-005",
+      "route": "/about/module-overview",
+      "module": "About Tinnitus",
+      "title": "Choose What Seems Useful",
+      "role": "interest_selection"
+    },
+    {
+      "screenId": "ST-001",
+      "route": "/sound/overview",
+      "module": "Sound Therapy",
+      "title": "Sound Therapy Basics",
+      "role": "education"
+    },
+    {
+      "screenId": "ST-002",
+      "route": "/sound/masking-habituation",
+      "module": "Sound Therapy",
+      "title": "Sound Therapy vs Masking",
+      "role": "education_bridge"
+    },
+    {
+      "screenId": "ST-003",
+      "route": "/sound/thermometer",
+      "module": "Sound Therapy",
+      "title": "Finding the Sweet Spot",
+      "role": "interactive_exercise"
+    },
+    {
+      "screenId": "ST-004",
+      "route": "/sound/preferences",
+      "module": "Sound Therapy",
+      "title": "Choose Sound Preferences",
+      "role": "interactive_selection"
+    },
+    {
+      "screenId": "ST-005",
+      "route": "/sound/plan",
+      "module": "Sound Therapy",
+      "title": "Sound Therapy Plan",
+      "role": "exercise"
+    },
+    {
+      "screenId": "ST-SS-001",
+      "route": "/sound/sensitivity",
+      "module": "Sound Therapy",
+      "title": "Sound Therapy and Sound Sensitivity",
+      "role": "education_scope"
+    },
+    {
+      "screenId": "ST-SS-002",
+      "route": "/sound/sensitivity/music-exercise",
+      "module": "Sound Therapy",
+      "title": "Enjoyable Music Speaker Exercise",
+      "role": "step_exercise"
+    },
+    {
+      "screenId": "ST-HH-001",
+      "route": "/sound/hearing-care",
+      "module": "Sound Therapy",
+      "title": "Hearing Care and Amplification",
+      "role": "education_scope"
+    },
+    {
+      "screenId": "AC-001",
+      "route": "/acceptance/overview",
+      "module": "Acceptance and Change",
+      "title": "Acceptance and Change",
+      "role": "education"
+    },
+    {
+      "screenId": "AC-002",
+      "route": "/acceptance/avoidance",
+      "module": "Acceptance and Change",
+      "title": "Acceptance vs Avoidance",
+      "role": "education"
+    },
+    {
+      "screenId": "AC-003",
+      "route": "/acceptance/sound-bridge",
+      "module": "Acceptance and Change",
+      "title": "Sound Therapy Bridge",
+      "role": "bridge"
+    },
+    {
+      "screenId": "AC-004",
+      "route": "/acceptance/tug-of-war",
+      "module": "Acceptance and Change",
+      "title": "Tug-of-War",
+      "role": "interactive_exercise"
+    },
+    {
+      "screenId": "AC-005",
+      "route": "/acceptance/yes-and",
+      "module": "Acceptance and Change",
+      "title": "Yes AND",
+      "role": "interactive_exercise"
+    },
+    {
+      "screenId": "AC-006",
+      "route": "/acceptance/values-action",
+      "module": "Acceptance and Change",
+      "title": "Reconnection with What Matters",
+      "role": "exercise"
+    },
+    {
+      "screenId": "MF-001",
+      "route": "/mindfulness/overview",
+      "module": "Mindfulness",
+      "title": "Mindfulness Basics",
+      "role": "education"
+    },
+    {
+      "screenId": "MF-002",
+      "route": "/mindfulness/what-it-is-not",
+      "module": "Mindfulness",
+      "title": "What Mindfulness Is and Is Not",
+      "role": "education"
+    },
+    {
+      "screenId": "MF-003",
+      "route": "/mindfulness/deep-breath",
+      "module": "Mindfulness",
+      "title": "Deep Breath Check-In",
+      "role": "guided_practice"
+    },
+    {
+      "screenId": "MF-004",
+      "route": "/mindfulness/3-2-1",
+      "module": "Mindfulness",
+      "title": "3-2-1 Senses",
+      "role": "guided_practice"
+    },
+    {
+      "screenId": "MF-005",
+      "route": "/mindfulness/mindful-listening",
+      "module": "Mindfulness",
+      "title": "Mindful Listening",
+      "role": "guided_practice"
+    },
+    {
+      "screenId": "MF-006",
+      "route": "/mindfulness/sound-shifting",
+      "module": "Mindfulness",
+      "title": "Sound Shifting",
+      "role": "guided_practice"
+    },
+    {
+      "screenId": "MF-007",
+      "route": "/mindfulness/plan",
+      "module": "Mindfulness",
+      "title": "Build Your Mindfulness Plan",
+      "role": "exercise"
+    },
+    {
+      "screenId": "MF-008",
+      "route": "/mindfulness/when-hard",
+      "module": "Mindfulness",
+      "title": "When Mindfulness Feels Hard",
+      "role": "safety_scope"
+    },
+    {
+      "screenId": "DT-001",
+      "route": "/distress/overview",
+      "module": "Distress Tolerance",
+      "title": "Distress Tolerance",
+      "role": "education"
+    },
+    {
+      "screenId": "DT-002",
+      "route": "/distress/safety",
+      "module": "Distress Tolerance",
+      "title": "Distress Is Not Danger",
+      "role": "safety_scope"
+    },
+    {
+      "screenId": "DT-003",
+      "route": "/distress/fluctuations",
+      "module": "Distress Tolerance",
+      "title": "Fluctuations",
+      "role": "education"
+    },
+    {
+      "screenId": "DT-004",
+      "route": "/distress/stop",
+      "module": "Distress Tolerance",
+      "title": "STOP",
+      "role": "interactive_exercise"
+    },
+    {
+      "screenId": "DT-005",
+      "route": "/distress/tipp",
+      "module": "Distress Tolerance",
+      "title": "TIPP",
+      "role": "interactive_exercise"
+    },
+    {
+      "screenId": "DT-006",
+      "route": "/distress/ice-cube",
+      "module": "Distress Tolerance",
+      "title": "Ice Cube Reset",
+      "role": "mini_exercise"
+    },
+    {
+      "screenId": "DT-007",
+      "route": "/distress/frozen-orange",
+      "module": "Distress Tolerance",
+      "title": "Frozen Orange Grounding",
+      "role": "mini_exercise"
+    },
+    {
+      "screenId": "DT-008",
+      "route": "/distress/response-sheet",
+      "module": "Distress Tolerance",
+      "title": "Skill Response Sheet",
+      "role": "exercise"
+    },
+    {
+      "screenId": "CR-001",
+      "route": "/cognitive/overview",
+      "module": "Cognitive Reframing",
+      "title": "Cognitive Reframing",
+      "role": "education"
+    },
+    {
+      "screenId": "CR-002",
+      "route": "/cognitive/cbt-loop",
+      "module": "Cognitive Reframing",
+      "title": "Thoughts / Feelings / Behaviors",
+      "role": "education_visual"
+    },
+    {
+      "screenId": "CR-003",
+      "route": "/cognitive/distortions",
+      "module": "Cognitive Reframing",
+      "title": "Distortion Library",
+      "role": "education_cards"
+    },
+    {
+      "screenId": "CR-004",
+      "route": "/cognitive/loud-morning",
+      "module": "Cognitive Reframing",
+      "title": "Loud Morning Example",
+      "role": "example"
+    },
+    {
+      "screenId": "CR-005",
+      "route": "/cognitive/distortion-detective",
+      "module": "Cognitive Reframing",
+      "title": "Distortion Detective",
+      "role": "interactive_exercise"
+    },
+    {
+      "screenId": "CR-006",
+      "route": "/cognitive/evidence",
+      "module": "Cognitive Reframing",
+      "title": "Evidence For-and-Against",
+      "role": "interactive_exercise"
+    },
+    {
+      "screenId": "CR-007",
+      "route": "/cognitive/reframe",
+      "module": "Cognitive Reframing",
+      "title": "Balanced Reframe",
+      "role": "interactive_exercise"
+    },
+    {
+      "screenId": "CC-001",
+      "route": "/confidence/overview",
+      "module": "Confidence and Communication",
+      "title": "Support and Communication",
+      "role": "education"
+    },
+    {
+      "screenId": "CC-002",
+      "route": "/confidence/self-compassion",
+      "module": "Confidence and Communication",
+      "title": "Self-Compassion Basics",
+      "role": "education"
+    },
+    {
+      "screenId": "CC-003",
+      "route": "/confidence/validation",
+      "module": "Confidence and Communication",
+      "title": "Validation Basics",
+      "role": "education"
+    },
+    {
+      "screenId": "CC-004",
+      "route": "/confidence/rescripting",
+      "module": "Confidence and Communication",
+      "title": "Re-Scripting Self-Critical Thought",
+      "role": "interactive_exercise"
+    },
+    {
+      "screenId": "CC-005",
+      "route": "/confidence/dear-man",
+      "module": "Confidence and Communication",
+      "title": "DEAR MAN",
+      "role": "interactive_exercise"
+    },
+    {
+      "screenId": "CC-006",
+      "route": "/confidence/waiting-room-example",
+      "module": "Confidence and Communication",
+      "title": "Waiting Room Example",
+      "role": "example"
+    },
+    {
+      "screenId": "SL-001",
+      "route": "/sleep/overview",
+      "module": "Sleep",
+      "title": "Sleep and Tinnitus",
+      "role": "education"
+    },
+    {
+      "screenId": "SL-002",
+      "route": "/sleep/scope",
+      "module": "Sleep",
+      "title": "Sleep Scope and Support",
+      "role": "safety_scope"
+    },
+    {
+      "screenId": "SL-003",
+      "route": "/sleep/loop",
+      "module": "Sleep",
+      "title": "Sleep-Tinnitus Loop",
+      "role": "education_visual"
+    },
+    {
+      "screenId": "SL-004",
+      "route": "/sleep/cbti-bbti",
+      "module": "Sleep",
+      "title": "CBT-I / BBTI Overview",
+      "role": "education"
+    },
+    {
+      "screenId": "SL-005",
+      "route": "/sleep/sound-at-night",
+      "module": "Sleep",
+      "title": "Bedtime Sound Plan",
+      "role": "exercise"
+    },
+    {
+      "screenId": "SL-006",
+      "route": "/sleep/thoughts",
+      "module": "Sleep",
+      "title": "Challenging Negative Sleep Thoughts",
+      "role": "interactive_exercise"
+    },
+    {
+      "screenId": "SL-007",
+      "route": "/sleep/stimulus-control",
+      "module": "Sleep",
+      "title": "Stimulus Control Education",
+      "role": "education_scope"
+    },
+    {
+      "screenId": "SL-008",
+      "route": "/sleep/wind-down",
+      "module": "Sleep",
+      "title": "Wind-Down Practice",
+      "role": "guided_practice"
+    },
+    {
+      "screenId": "SL-009",
+      "route": "/sleep/seek-help",
+      "module": "Sleep",
+      "title": "When to Seek Sleep Help",
+      "role": "safety_scope"
+    },
+    {
+      "screenId": "MP-001",
+      "route": "/my-plan",
+      "module": "My Plan",
+      "title": "My Plan Dashboard",
+      "role": "hub"
+    },
+    {
+      "screenId": "MP-002",
+      "route": "/my-plan/three-lines",
+      "module": "My Plan",
+      "title": "Three Lines Journal",
+      "role": "journal"
+    },
+    {
+      "screenId": "MP-003",
+      "route": "/my-plan/past-entries",
+      "module": "My Plan",
+      "title": "Past Entries",
+      "role": "review"
+    },
+    {
+      "screenId": "MP-004",
+      "route": "/my-plan/reminders",
+      "module": "My Plan",
+      "title": "Reminder Settings",
+      "role": "settings"
+    },
+    {
+      "screenId": "MP-005",
+      "route": "/my-plan/delete-reset",
+      "module": "My Plan",
+      "title": "Delete / Reset Local Data",
+      "role": "settings_safety"
+    },
+    {
+      "screenId": "ANN-SOUND-001",
+      "route": "/annex/sound",
+      "module": "Sound Therapy Annex",
+      "title": "Sound Therapy Annex",
+      "role": "annex"
+    },
+    {
+      "screenId": "ANN-MIND-001",
+      "route": "/annex/mindfulness",
+      "module": "Mindfulness Annex",
+      "title": "Mindfulness Annex",
+      "role": "annex"
+    }
+  ]
+}
