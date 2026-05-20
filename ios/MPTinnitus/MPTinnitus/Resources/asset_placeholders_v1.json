@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "1.0.0",
+  "soundSamples": [
+    {
+      "id": "SS-001",
+      "title": "White / steady broadband noise",
+      "assetPath": "audio/sound_samples/ss_001_white_noise_loop.m4a",
+      "status": "placeholder"
+    },
+    {
+      "id": "SS-002",
+      "title": "Pink / soft broadband noise",
+      "assetPath": "audio/sound_samples/ss_002_pink_noise_loop.m4a",
+      "status": "placeholder"
+    },
+    {
+      "id": "SS-003",
+      "title": "Soft rain",
+      "assetPath": "audio/sound_samples/ss_003_soft_rain_loop.m4a",
+      "status": "placeholder"
+    },
+    {
+      "id": "SS-004",
+      "title": "Running water / stream",
+      "assetPath": "audio/sound_samples/ss_004_stream_loop.m4a",
+      "status": "placeholder"
+    },
+    {
+      "id": "SS-005",
+      "title": "Fan / steady air",
+      "assetPath": "audio/sound_samples/ss_005_fan_loop.m4a",
+      "status": "placeholder"
+    },
+    {
+      "id": "SS-006",
+      "title": "Crickets / night insects",
+      "assetPath": "audio/sound_samples/ss_006_crickets_loop.m4a",
+      "status": "placeholder"
+    }
+  ],
+  "visualPlaceholders": [
+    {
+      "id": "VIS-BML-001",
+      "title": "Body / Mind / Life Model",
+      "status": "placeholder_or_supplied_later"
+    },
+    {
+      "id": "VIS-ST-THERMOMETER",
+      "title": "Sound Therapy Thermometer",
+      "status": "build_component"
+    },
+    {
+      "id": "VIS-AC-TUG",
+      "title": "Tug-of-War",
+      "status": "user_supplied_static_image"
+    },
+    {
+      "id": "VIS-MF-BREATHING",
+      "title": "Breathing Pacer",
+      "status": "build_lightweight_component"
+    },
+    {
+      "id": "VIS-CR-TFB",
+      "title": "Thoughts / Feelings / Behaviors Cycle",
+      "status": "user_supplied_book_asset"
+    },
+    {
+      "id": "VIS-SL-LOOP",
+      "title": "Sleep-Tinnitus Loop",
+      "status": "build_in_book_style"
+    }
+  ]
+}

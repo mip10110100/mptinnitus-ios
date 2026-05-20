@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "1.0.0",
+  "appName": "MPTinnitus",
+  "platformTarget": "iOS",
+  "minimumIOSVersion": "17.0",
+  "framework": "SwiftUI",
+  "persistence": "SwiftData",
+  "audioFramework": "AVFoundation",
+  "storagePolicy": "local_only",
+  "accountRequired": false,
+  "remoteAnalyticsAllowed": false,
+  "cloudSyncAllowedForMVP": false,
+  "audioExtension": ".m4a",
+  "audioCodec": "AAC",
+  "bottomNavigation": [
+    {
+      "id": "library",
+      "title": "Library",
+      "route": "/library"
+    },
+    {
+      "id": "sound_annex",
+      "title": "Sound",
+      "route": "/annex/sound"
+    },
+    {
+      "id": "mindfulness_annex",
+      "title": "Mindfulness",
+      "route": "/annex/mindfulness"
+    },
+    {
+      "id": "my_plan",
+      "title": "My Plan",
+      "route": "/my-plan"
+    }
+  ],
+  "persistentMiniPlayer": {
+    "enabled": true,
+    "controls": [
+      "play_pause",
+      "rewind_15",
+      "forward_15",
+      "current_audio_label"
+    ],
+    "contexts": [
+      "narration",
+      "guided_practice",
+      "sound_sample",
+      "background_sound"
+    ]
+  },
+  "transcripts": {
+    "requiredForAllAudio": true,
+    "defaultState": "collapsed",
+    "controls": [
+      "Play",
+      "Transcript"
+    ]
+  },
+  "completionTracking": false,
+  "myPlanCheckbox": true,
+  "threeLinesJournal": {
+    "location": "my_plan",
+    "availableImmediately": true,
+    "labels": {
+      "ST": "Sound Therapy",
+      "E": "Emotional Regulation",
+      "M": "Mindfulness"
+    }
+  }
+}

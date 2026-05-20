@@ -1,0 +1,1349 @@
+{
+  "schemaVersion": "1.0.0",
+  "sourceFiles": [
+    "02_mvp_screen_spec_pack.xlsx",
+    "08_local_data_schema.xlsx",
+    "09_local_data_schema.json"
+  ],
+  "definitions": [
+    {
+      "exerciseId": "I-002",
+      "screenId": "AT-004",
+      "moduleId": "about_tinnitus",
+      "title": "Body / Mind / Life Exploration",
+      "purpose": "Identify body, mind, and life factors shaping the user's tinnitus experience.",
+      "instructions": "Use a few words or longer notes. The goal is to see the whole picture, not to diagnose yourself.",
+      "entryTitleFieldIds": [
+        "takeaway",
+        "body_note",
+        "mind_note",
+        "life_note"
+      ],
+      "saveRule": {
+        "mode": "anyOf",
+        "fieldIds": [
+          "body_note",
+          "mind_note",
+          "life_note",
+          "takeaway"
+        ]
+      },
+      "fields": [
+        {
+          "fieldId": "scope_note",
+          "type": "staticInfo",
+          "label": "Before you write",
+          "prompt": "",
+          "helperText": "Body can include hearing, sound sensitivity, stress physiology, fatigue, or other physical factors. Mind can include attention, emotion, worry, or meaning. Life can include sleep, routines, work, relationships, and places tinnitus gets in the way.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "body_note",
+          "type": "longText",
+          "label": "Body",
+          "prompt": "What body or hearing factors seem relevant today?",
+          "helperText": "A short note is enough.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "mind_note",
+          "type": "longText",
+          "label": "Mind",
+          "prompt": "What attention, thoughts, or emotions are involved?",
+          "helperText": "Use nonjudgmental wording.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "life_note",
+          "type": "longText",
+          "label": "Life",
+          "prompt": "Where is tinnitus showing up in daily life?",
+          "helperText": "Think routines, sleep, relationships, work, or activities.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "takeaway",
+          "type": "optionalText",
+          "label": "Optional takeaway",
+          "prompt": "One useful thing you noticed",
+          "helperText": "This can stay blank.",
+          "isRequired": false
+        }
+      ]
+    },
+    {
+      "exerciseId": "I-005",
+      "screenId": "ST-004",
+      "moduleId": "sound_therapy",
+      "title": "Sound Therapy Sweet Spot Reflection",
+      "purpose": "Reflect on the middle range where sound therapy is audible and useful without fully covering tinnitus.",
+      "instructions": "Use words rather than exact volume numbers. Avoid unsafe loudness; sound therapy should stay comfortable.",
+      "entryTitleFieldIds": [
+        "sweet_spot_note",
+        "sound_used",
+        "setting_context"
+      ],
+      "saveRule": {
+        "mode": "allOf",
+        "fieldIds": [
+          "sound_used",
+          "setting_context",
+          "sweet_spot_note"
+        ]
+      },
+      "fields": [
+        {
+          "fieldId": "scope_note",
+          "type": "staticInfo",
+          "label": "Comfort boundary",
+          "prompt": "",
+          "helperText": "The sweet spot is not a test of toughness. If sound feels painful, unsafe, or sharply uncomfortable, lower it or stop and consider hearing-care guidance.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "sound_used",
+          "type": "shortText",
+          "label": "Sound used",
+          "prompt": "Example: rain, fan, music, broadband sound",
+          "helperText": "Name the sound or sound category you tried.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "setting_context",
+          "type": "shortText",
+          "label": "Setting or context",
+          "prompt": "Where or when did you try it?",
+          "helperText": "A short setting note is enough.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "too_quiet_note",
+          "type": "optionalText",
+          "label": "Too quiet note",
+          "prompt": "What did too quiet feel like, if you noticed?",
+          "helperText": "Optional.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "sweet_spot_note",
+          "type": "longText",
+          "label": "Sweet spot note",
+          "prompt": "What felt audible, comfortable, and useful?",
+          "helperText": "Describe the middle range in practical words.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "too_loud_note",
+          "type": "optionalText",
+          "label": "Too loud or overmasking note",
+          "prompt": "What told you the sound was too much?",
+          "helperText": "Optional. This is about comfort, not pushing through.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "plan_adjustment",
+          "type": "optionalText",
+          "label": "Plan adjustment",
+          "prompt": "What might you adjust next time?",
+          "helperText": "Optional.",
+          "isRequired": false
+        }
+      ]
+    },
+    {
+      "exerciseId": "I-006",
+      "screenId": "ST-007",
+      "moduleId": "sound_therapy",
+      "title": "Enjoyable Music Speaker Exercise",
+      "purpose": "Create a controlled, comfortable sound-tolerance practice using enjoyable music on speakers.",
+      "instructions": "This is not about pushing through pain. Keep sound comfortable, controlled, and below the sensitivity point.",
+      "entryTitleFieldIds": [
+        "music_choice",
+        "what_i_noticed"
+      ],
+      "saveRule": {
+        "mode": "allOf",
+        "fieldIds": [
+          "music_choice",
+          "comfortable_below_sensitivity_level",
+          "what_i_noticed"
+        ]
+      },
+      "fields": [
+        {
+          "fieldId": "scope_note",
+          "type": "staticInfo",
+          "label": "Comfort-first practice",
+          "prompt": "",
+          "helperText": "Start low, increase gradually only while comfortable, then back down below the point of sensitivity. Stop if sound becomes painful or unsafe.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "music_choice",
+          "type": "longText",
+          "label": "Music choice",
+          "prompt": "What enjoyable music did you choose?",
+          "helperText": "Choose something pleasant or neutral.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "starting_volume_note",
+          "type": "optionalText",
+          "label": "Starting volume note",
+          "prompt": "How did you begin?",
+          "helperText": "Optional. Starting all the way down is fine.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "comfortable_below_sensitivity_level",
+          "type": "longText",
+          "label": "Comfortable below sensitivity level",
+          "prompt": "How did you know the level stayed comfortable?",
+          "helperText": "Use practical body or attention cues, not a number.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "listening_duration_note",
+          "type": "optionalText",
+          "label": "Listening duration note",
+          "prompt": "How long did you listen?",
+          "helperText": "Optional. A short practice can count.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "what_i_noticed",
+          "type": "longText",
+          "label": "What I noticed",
+          "prompt": "What did you notice during or after listening?",
+          "helperText": "Keep this nonjudgmental.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "nonjudgmental_takeaway",
+          "type": "optionalText",
+          "label": "Nonjudgmental takeaway",
+          "prompt": "What is one gentle takeaway?",
+          "helperText": "Optional.",
+          "isRequired": false
+        }
+      ]
+    },
+    {
+      "exerciseId": "I-007",
+      "screenId": "ST-008",
+      "moduleId": "sound_therapy",
+      "title": "Personalized Sound Therapy Plan",
+      "purpose": "Choose sounds, devices, times, and contexts for a practical sound therapy plan.",
+      "instructions": "Keep the plan small and realistic. This is educational planning, not a treatment prescription.",
+      "entryTitleFieldIds": [
+        "daily_plan",
+        "preferred_sound",
+        "easy_time_or_place"
+      ],
+      "saveRule": {
+        "mode": "allOf",
+        "fieldIds": [
+          "preferred_sound",
+          "device_or_source",
+          "easy_time_or_place",
+          "daily_plan"
+        ]
+      },
+      "fields": [
+        {
+          "fieldId": "preferred_sound",
+          "type": "longText",
+          "label": "Preferred sound",
+          "prompt": "What sound or sound category do you want to try?",
+          "helperText": "Examples: fan, rain, water, nature, music, broadband sound.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "device_or_source",
+          "type": "shortText",
+          "label": "Device or source",
+          "prompt": "Phone speaker, bedside speaker, sound machine, hearing aids, other",
+          "helperText": "Name the source you can realistically use.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "easy_time_or_place",
+          "type": "longText",
+          "label": "Easy time or place",
+          "prompt": "Where would sound therapy be easiest to use?",
+          "helperText": "Start where the setup is simple.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "difficult_time_or_place",
+          "type": "optionalText",
+          "label": "Difficult time or place",
+          "prompt": "Where might it be harder to use sound?",
+          "helperText": "Optional.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "daily_plan",
+          "type": "longText",
+          "label": "Daily plan",
+          "prompt": "What is your simple plan for trying sound therapy?",
+          "helperText": "Include when, where, and how you will keep the sound comfortable.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "reflection_after_practice",
+          "type": "optionalText",
+          "label": "Reflection after practice",
+          "prompt": "What did you notice after trying the plan?",
+          "helperText": "Optional. You can edit this later.",
+          "isRequired": false
+        }
+      ]
+    },
+    {
+      "exerciseId": "I-008",
+      "screenId": "AC-005",
+      "moduleId": "acceptance_and_change",
+      "title": "Tug-of-War Reflection",
+      "purpose": "Identify what pulling the rope looks like and what dropping the rope could mean.",
+      "instructions": "Acceptance does not mean liking tinnitus or giving up. This reflection looks for a different relationship to the struggle.",
+      "entryTitleFieldIds": [
+        "one_useful_action",
+        "what_i_am_fighting"
+      ],
+      "saveRule": {
+        "mode": "allOf",
+        "fieldIds": [
+          "what_i_am_fighting",
+          "pulling_the_rope_looks_like",
+          "dropping_the_rope_could_look_like",
+          "one_useful_action"
+        ]
+      },
+      "fields": [
+        {
+          "fieldId": "what_i_am_fighting",
+          "type": "longText",
+          "label": "What I am fighting",
+          "prompt": "What part of the tinnitus experience are you fighting with?",
+          "helperText": "Name the struggle in plain words.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "pulling_the_rope_looks_like",
+          "type": "longText",
+          "label": "Pulling the rope looks like",
+          "prompt": "What do you do when the struggle takes over?",
+          "helperText": "Examples might include overchecking, arguing with the sound, or avoiding life.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "dropping_the_rope_could_look_like",
+          "type": "longText",
+          "label": "Dropping the rope could look like",
+          "prompt": "What would stepping out of the struggle look like?",
+          "helperText": "This can be small and imperfect.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "one_useful_action",
+          "type": "longText",
+          "label": "One useful action",
+          "prompt": "What is one useful next action?",
+          "helperText": "Choose something workable today.",
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "exerciseId": "I-009",
+      "screenId": "AC-006",
+      "moduleId": "acceptance_and_change",
+      "title": "Yes AND Builder",
+      "purpose": "Hold a real frustration and one useful next action together.",
+      "instructions": "Write an honest difficulty, then add one workable action. This is not forced positivity.",
+      "entryTitleFieldIds": [
+        "yes_and_preview",
+        "yes_statement",
+        "and_action"
+      ],
+      "saveRule": {
+        "mode": "anyOf",
+        "fieldIds": [
+          "yes_statement",
+          "and_action",
+          "reflection"
+        ]
+      },
+      "fields": [
+        {
+          "fieldId": "yes_statement",
+          "type": "longText",
+          "label": "YES / honest frustration",
+          "prompt": "Yes, this is hard because...",
+          "helperText": "Name the difficulty plainly.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "and_action",
+          "type": "longText",
+          "label": "AND / useful action",
+          "prompt": "And I can...",
+          "helperText": "Choose one small next step.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "yes_and_preview",
+          "type": "computedText",
+          "label": "Full statement preview",
+          "prompt": "",
+          "helperText": "{yes_statement} AND {and_action}",
+          "isRequired": false
+        },
+        {
+          "fieldId": "reflection",
+          "type": "optionalText",
+          "label": "Optional reflection",
+          "prompt": "What did this help you notice?",
+          "helperText": "This can stay blank.",
+          "isRequired": false
+        }
+      ]
+    },
+    {
+      "exerciseId": "I-010",
+      "screenId": "AC-007",
+      "moduleId": "acceptance_and_change",
+      "title": "Reconnection with What Matters",
+      "purpose": "Identify a valued activity affected by tinnitus and one small step toward re-engagement.",
+      "instructions": "Look for low-hanging fruit: a step small enough to try without needing the whole problem solved.",
+      "entryTitleFieldIds": [
+        "low_hanging_fruit_step",
+        "valued_activity"
+      ],
+      "saveRule": {
+        "mode": "allOf",
+        "fieldIds": [
+          "valued_activity",
+          "how_tinnitus_gets_in_the_way",
+          "possible_steps",
+          "low_hanging_fruit_step"
+        ]
+      },
+      "fields": [
+        {
+          "fieldId": "valued_activity",
+          "type": "longText",
+          "label": "Valued activity",
+          "prompt": "What activity or role matters to you?",
+          "helperText": "Think of something tinnitus has crowded out or complicated.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "how_tinnitus_gets_in_the_way",
+          "type": "longText",
+          "label": "How tinnitus gets in the way",
+          "prompt": "How does tinnitus interfere?",
+          "helperText": "Keep the wording factual and kind.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "possible_steps",
+          "type": "longText",
+          "label": "Possible steps",
+          "prompt": "What are a few possible small steps?",
+          "helperText": "List options without judging them yet.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "low_hanging_fruit_step",
+          "type": "longText",
+          "label": "Low-hanging fruit step",
+          "prompt": "Which step feels easiest to try first?",
+          "helperText": "Small counts.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "when_i_will_try_it",
+          "type": "optionalText",
+          "label": "When I will try it",
+          "prompt": "When might you try this?",
+          "helperText": "Optional.",
+          "isRequired": false
+        }
+      ]
+    },
+    {
+      "exerciseId": "I-011",
+      "screenId": "MF-002",
+      "moduleId": "mindfulness",
+      "title": "Deep Breath Check-In Reflection",
+      "purpose": "Use one breath as a brief present-moment reset.",
+      "instructions": "This is a short check-in, not a test of relaxation or silence. If it increases distress, switch to a grounding or distress-tolerance tool.",
+      "entryTitleFieldIds": [
+        "takeaway",
+        "what_i_noticed_after"
+      ],
+      "saveRule": {
+        "mode": "allOf",
+        "fieldIds": [
+          "what_i_noticed_before",
+          "what_i_noticed_after"
+        ]
+      },
+      "fields": [
+        {
+          "fieldId": "situation",
+          "type": "optionalText",
+          "label": "Situation",
+          "prompt": "Where were you or what was happening?",
+          "helperText": "Optional.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "what_i_noticed_before",
+          "type": "longText",
+          "label": "What I noticed before",
+          "prompt": "What did you notice before the breath?",
+          "helperText": "Body, mind, sound, or emotion can all count.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "what_i_noticed_after",
+          "type": "longText",
+          "label": "What I noticed after",
+          "prompt": "What did you notice after one breath?",
+          "helperText": "No change is also useful information.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "takeaway",
+          "type": "optionalText",
+          "label": "Takeaway",
+          "prompt": "What is one takeaway?",
+          "helperText": "Optional.",
+          "isRequired": false
+        }
+      ]
+    },
+    {
+      "exerciseId": "I-012",
+      "screenId": "MF-003",
+      "moduleId": "mindfulness",
+      "title": "3-2-1 Senses",
+      "purpose": "Widen attention beyond tinnitus using simple sensory noticing.",
+      "instructions": "Notice what is present without trying to force tinnitus away.",
+      "entryTitleFieldIds": [
+        "one_sound_outside_tinnitus",
+        "what_shifted"
+      ],
+      "saveRule": {
+        "mode": "allOf",
+        "fieldIds": [
+          "three_things_seen",
+          "two_things_felt_or_heard",
+          "one_sound_outside_tinnitus"
+        ]
+      },
+      "fields": [
+        {
+          "fieldId": "three_things_seen",
+          "type": "longText",
+          "label": "Three things seen",
+          "prompt": "Name three things you can see.",
+          "helperText": "Simple objects are enough.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "two_things_felt_or_heard",
+          "type": "longText",
+          "label": "Two things felt or heard",
+          "prompt": "Name two sensations or sounds.",
+          "helperText": "Include non-tinnitus sensations or sounds if possible.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "one_sound_outside_tinnitus",
+          "type": "longText",
+          "label": "One sound outside tinnitus",
+          "prompt": "Name one sound outside tinnitus.",
+          "helperText": "If the room is quiet, choose a subtle sound or body sensation.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "what_shifted",
+          "type": "optionalText",
+          "label": "What shifted",
+          "prompt": "What changed in attention, if anything?",
+          "helperText": "Optional. No shift is acceptable.",
+          "isRequired": false
+        }
+      ]
+    },
+    {
+      "exerciseId": "I-013",
+      "screenId": "MF-004",
+      "moduleId": "mindfulness",
+      "title": "Mindful Listening",
+      "purpose": "Practice broad listening during an everyday activity.",
+      "instructions": "Let tinnitus be one sound among many rather than the only sound that matters.",
+      "entryTitleFieldIds": [
+        "activity",
+        "reflection"
+      ],
+      "saveRule": {
+        "mode": "allOf",
+        "fieldIds": [
+          "activity",
+          "environmental_sounds",
+          "reflection"
+        ]
+      },
+      "fields": [
+        {
+          "fieldId": "activity",
+          "type": "shortText",
+          "label": "Activity",
+          "prompt": "What everyday activity did you choose?",
+          "helperText": "Example: making tea, walking, sitting outside.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "environmental_sounds",
+          "type": "longText",
+          "label": "Environmental sounds",
+          "prompt": "What sounds did you notice around you?",
+          "helperText": "List ordinary sounds without ranking them.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "body_sounds_or_sensations",
+          "type": "optionalText",
+          "label": "Body sounds or sensations",
+          "prompt": "What body sensations or body sounds did you notice?",
+          "helperText": "Optional.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "tinnitus_label",
+          "type": "optionalText",
+          "label": "Tinnitus label",
+          "prompt": "How could you label tinnitus neutrally?",
+          "helperText": "Example: \u201cringing is here.\u201d Optional.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "reflection",
+          "type": "longText",
+          "label": "Reflection",
+          "prompt": "What did you notice about broad listening?",
+          "helperText": "Keep it brief and nonjudgmental.",
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "exerciseId": "I-014",
+      "screenId": "MF-005",
+      "moduleId": "mindfulness",
+      "title": "Sound Shifting",
+      "purpose": "Practice moving attention among tinnitus, external sound, body, and the room.",
+      "instructions": "This is attention flexibility practice, not exposure therapy and not a requirement to ignore tinnitus.",
+      "entryTitleFieldIds": [
+        "what_shifted",
+        "external_sound"
+      ],
+      "saveRule": {
+        "mode": "allOf",
+        "fieldIds": [
+          "external_sound",
+          "what_shifted"
+        ]
+      },
+      "fields": [
+        {
+          "fieldId": "external_sound",
+          "type": "longText",
+          "label": "External sound",
+          "prompt": "What outside sound did you use as an anchor?",
+          "helperText": "Choose something available and comfortable.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "body_anchor",
+          "type": "optionalText",
+          "label": "Body anchor",
+          "prompt": "What body sensation did you use, if any?",
+          "helperText": "Optional.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "tinnitus_observation",
+          "type": "optionalText",
+          "label": "Tinnitus observation",
+          "prompt": "What did you notice when attention touched tinnitus?",
+          "helperText": "Optional. Use neutral wording.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "what_shifted",
+          "type": "longText",
+          "label": "What shifted",
+          "prompt": "What changed as you moved attention?",
+          "helperText": "No dramatic change is needed.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "adjustment_needed",
+          "type": "optionalText",
+          "label": "Adjustment needed",
+          "prompt": "What would make this easier next time?",
+          "helperText": "Optional.",
+          "isRequired": false
+        }
+      ]
+    },
+    {
+      "exerciseId": "I-016",
+      "screenId": "DT-002",
+      "moduleId": "distress_tolerance",
+      "title": "STOP Practice",
+      "purpose": "Pause before reacting during a tinnitus fluctuation.",
+      "instructions": "Distress tolerance tools are for cooling the moment down. They are not crisis care; if you are unsafe, seek immediate help.",
+      "entryTitleFieldIds": [
+        "proceed_mindfully_action",
+        "situation"
+      ],
+      "saveRule": {
+        "mode": "allOf",
+        "fieldIds": [
+          "situation",
+          "observe_body_thoughts_emotions_urges",
+          "proceed_mindfully_action"
+        ]
+      },
+      "fields": [
+        {
+          "fieldId": "safety_note",
+          "type": "staticInfo",
+          "label": "Safety boundary",
+          "prompt": "",
+          "helperText": "If you may harm yourself or someone else, or you cannot stay safe, use emergency or crisis resources rather than this app.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "situation",
+          "type": "longText",
+          "label": "Situation",
+          "prompt": "What was happening?",
+          "helperText": "Avoid detailed crisis narratives. A few words are enough.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "stop_note",
+          "type": "optionalText",
+          "label": "Stop note",
+          "prompt": "What helped you pause?",
+          "helperText": "Optional.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "take_a_breath_note",
+          "type": "optionalText",
+          "label": "Take a breath note",
+          "prompt": "What did one breath or step back do?",
+          "helperText": "Optional.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "observe_body_thoughts_emotions_urges",
+          "type": "longText",
+          "label": "Observe body, thoughts, emotions, urges",
+          "prompt": "What did you observe?",
+          "helperText": "Use short labels if that is easier.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "proceed_mindfully_action",
+          "type": "longText",
+          "label": "Proceed mindfully action",
+          "prompt": "What is one next action that fits the moment?",
+          "helperText": "Choose something safe and workable.",
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "exerciseId": "I-017",
+      "screenId": "DT-003",
+      "moduleId": "distress_tolerance",
+      "title": "Ice Cube Reset",
+      "purpose": "Use temperature as a noticeable sensory reset, not pain.",
+      "instructions": "The purpose is noticeable sensory input. Do not cause pain, injury, or unsafe discomfort.",
+      "entryTitleFieldIds": [
+        "what_i_noticed_physically",
+        "attention_shift"
+      ],
+      "saveRule": {
+        "mode": "allOf",
+        "fieldIds": [
+          "what_i_noticed_physically"
+        ]
+      },
+      "fields": [
+        {
+          "fieldId": "scope_note",
+          "type": "staticInfo",
+          "label": "Not pain-based",
+          "prompt": "",
+          "helperText": "Use a safe, brief temperature cue. Wrap the ice or choose another cool object if direct ice is too intense. Stop if it hurts.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "situation",
+          "type": "optionalText",
+          "label": "Situation",
+          "prompt": "What was happening?",
+          "helperText": "Optional. Keep it brief.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "what_i_noticed_physically",
+          "type": "longText",
+          "label": "What I noticed physically",
+          "prompt": "What temperature or body sensation did you notice?",
+          "helperText": "Stay with observable sensations.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "what_changed_in_attention",
+          "type": "optionalText",
+          "label": "What changed in attention",
+          "prompt": "Did attention shift in any way?",
+          "helperText": "Optional. No shift is okay.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "safety_or_comfort_adjustment",
+          "type": "optionalText",
+          "label": "Safety or comfort adjustment",
+          "prompt": "What adjustment would keep this safe or comfortable?",
+          "helperText": "Optional.",
+          "isRequired": false
+        }
+      ]
+    },
+    {
+      "exerciseId": "I-018",
+      "screenId": "DT-004",
+      "moduleId": "distress_tolerance",
+      "title": "TIPP / Using Your Body to Calm Your Mind",
+      "purpose": "Use body-based tools to cool down a high-distress moment.",
+      "instructions": "Choose only safe, appropriate options for your body and situation. This is not about pain or unsafe exercise.",
+      "entryTitleFieldIds": [
+        "skill_used_temperature_movement_breathing_or_muscle_release",
+        "after_note"
+      ],
+      "saveRule": {
+        "mode": "allOf",
+        "fieldIds": [
+          "situation",
+          "skill_used_temperature_movement_breathing_or_muscle_release",
+          "after_note"
+        ]
+      },
+      "fields": [
+        {
+          "fieldId": "scope_note",
+          "type": "staticInfo",
+          "label": "Choose safely",
+          "prompt": "",
+          "helperText": "Use temperature, movement, breathing, or muscle release only in ways that are medically and physically safe for you. Stop if anything feels unsafe.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "situation",
+          "type": "longText",
+          "label": "Situation",
+          "prompt": "What was happening?",
+          "helperText": "Keep this brief and non-crisis-focused.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "skill_used_temperature_movement_breathing_or_muscle_release",
+          "type": "longText",
+          "label": "Skill used",
+          "prompt": "Which TIPP option did you use?",
+          "helperText": "Temperature, movement, paced breathing, muscle release, or another safe body-based option.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "before_note",
+          "type": "optionalText",
+          "label": "Before note",
+          "prompt": "What did you notice before using it?",
+          "helperText": "Optional.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "after_note",
+          "type": "longText",
+          "label": "After note",
+          "prompt": "What did you notice after using it?",
+          "helperText": "A small shift counts.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "what_helped",
+          "type": "optionalText",
+          "label": "What helped",
+          "prompt": "What part was most useful?",
+          "helperText": "Optional.",
+          "isRequired": false
+        }
+      ]
+    },
+    {
+      "exerciseId": "I-019",
+      "screenId": "DT-005",
+      "moduleId": "distress_tolerance",
+      "title": "Frozen Orange Grounding",
+      "purpose": "Use temperature, texture, scent, and changing sensation as grounding.",
+      "instructions": "Use a safe sensory object. The point is grounding through noticing, not pain.",
+      "entryTitleFieldIds": [
+        "attention_shift",
+        "temperature_texture_scent_notes"
+      ],
+      "saveRule": {
+        "mode": "allOf",
+        "fieldIds": [
+          "temperature_texture_scent_notes",
+          "attention_shift"
+        ]
+      },
+      "fields": [
+        {
+          "fieldId": "situation",
+          "type": "optionalText",
+          "label": "Situation",
+          "prompt": "What was happening?",
+          "helperText": "Optional. Keep it brief.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "temperature_texture_scent_notes",
+          "type": "longText",
+          "label": "Temperature, texture, scent notes",
+          "prompt": "What did you notice about temperature, texture, or scent?",
+          "helperText": "Use simple sensory words.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "what_changed_over_time",
+          "type": "optionalText",
+          "label": "What changed over time",
+          "prompt": "What changed as the object warmed or your attention shifted?",
+          "helperText": "Optional.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "attention_shift",
+          "type": "longText",
+          "label": "Attention shift",
+          "prompt": "What happened to your attention?",
+          "helperText": "A small or temporary shift counts.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "takeaway",
+          "type": "optionalText",
+          "label": "Takeaway",
+          "prompt": "What is one takeaway?",
+          "helperText": "Optional.",
+          "isRequired": false
+        }
+      ]
+    },
+    {
+      "exerciseId": "I-021",
+      "screenId": "CR-003",
+      "moduleId": "cognitive_reframing",
+      "title": "Distortion Detective",
+      "purpose": "Identify a distressing thought and name the closest thinking pattern.",
+      "instructions": "Naming a pattern is a way to get perspective. It is not a diagnosis and not a requirement to argue with yourself.",
+      "entryTitleFieldIds": [
+        "more_balanced_perspective",
+        "closest_pattern_or_custom_name"
+      ],
+      "saveRule": {
+        "mode": "allOf",
+        "fieldIds": [
+          "distressing_thought",
+          "closest_pattern_or_custom_name",
+          "more_balanced_perspective"
+        ]
+      },
+      "fields": [
+        {
+          "fieldId": "distressing_thought",
+          "type": "longText",
+          "label": "Distressing thought",
+          "prompt": "What thought showed up?",
+          "helperText": "Use the words your mind used.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "closest_pattern_or_custom_name",
+          "type": "shortText",
+          "label": "Closest pattern or custom name",
+          "prompt": "Which thinking pattern fits best?",
+          "helperText": "Use a listed pattern or your own plain-language label.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "why_this_pattern_fits",
+          "type": "optionalText",
+          "label": "Why this pattern fits",
+          "prompt": "What makes this pattern seem relevant?",
+          "helperText": "Optional.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "more_balanced_perspective",
+          "type": "longText",
+          "label": "More balanced perspective",
+          "prompt": "What is a more balanced way to view this?",
+          "helperText": "Balanced means realistic, not forced-positive.",
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "exerciseId": "I-022",
+      "screenId": "CR-005",
+      "moduleId": "cognitive_reframing",
+      "title": "Evidence For-and-Against",
+      "purpose": "Reality-check a distressing tinnitus or sleep-related thought.",
+      "instructions": "Write the thought, look at evidence on both sides, then try a balanced statement. This is not forced positivity.",
+      "entryTitleFieldIds": [
+        "balanced_statement",
+        "distressing_thought"
+      ],
+      "saveRule": {
+        "mode": "allOf",
+        "fieldIds": [
+          "distressing_thought",
+          "balanced_statement"
+        ]
+      },
+      "fields": [
+        {
+          "fieldId": "distressing_thought",
+          "type": "longText",
+          "label": "Distressing thought",
+          "prompt": "What thought are you reality-checking?",
+          "helperText": "Use a tinnitus or sleep-related thought.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "evidence_for",
+          "type": "longText",
+          "label": "Evidence for",
+          "prompt": "What facts seem to support the thought?",
+          "helperText": "Keep this factual, not a verdict.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "evidence_against",
+          "type": "longText",
+          "label": "Evidence against",
+          "prompt": "What facts do not fit the thought?",
+          "helperText": "Look for missing context, exceptions, or alternative explanations.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "balanced_statement",
+          "type": "longText",
+          "label": "Balanced statement",
+          "prompt": "What is a more balanced way to say this?",
+          "helperText": "Balanced does not mean cheerful. It should be realistic and usable.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "distortion_label",
+          "type": "optionalText",
+          "label": "Optional pattern/distortion label",
+          "prompt": "Example: all-or-nothing, fortune telling, catastrophizing",
+          "helperText": "Use this only if it helps.",
+          "isRequired": false
+        }
+      ]
+    },
+    {
+      "exerciseId": "I-024",
+      "screenId": "CC-003",
+      "moduleId": "confidence_communication",
+      "title": "Re-Scripting a Self-Critical Thought",
+      "purpose": "Respond to self-criticism with the same care you might offer someone else.",
+      "instructions": "This exercise practices validation and self-compassion without pretending everything is easy.",
+      "entryTitleFieldIds": [
+        "compassionate_rewrite",
+        "self_critical_thought"
+      ],
+      "saveRule": {
+        "mode": "allOf",
+        "fieldIds": [
+          "self_critical_thought",
+          "what_i_would_say_to_someone_i_care_about",
+          "compassionate_rewrite"
+        ]
+      },
+      "fields": [
+        {
+          "fieldId": "self_critical_thought",
+          "type": "longText",
+          "label": "Self-critical thought",
+          "prompt": "What did the self-critical voice say?",
+          "helperText": "Write the thought as it showed up.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "how_it_affects_me",
+          "type": "optionalText",
+          "label": "How it affects me",
+          "prompt": "What happens when this thought runs the show?",
+          "helperText": "Optional.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "what_i_would_say_to_someone_i_care_about",
+          "type": "longText",
+          "label": "What I would say to someone I care about",
+          "prompt": "How would you respond to a friend or loved one?",
+          "helperText": "Use a kind but honest tone.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "compassionate_rewrite",
+          "type": "longText",
+          "label": "Compassionate rewrite",
+          "prompt": "How could you say this to yourself with more care?",
+          "helperText": "This can be realistic and still supportive.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "short_mantra_or_reminder",
+          "type": "optionalText",
+          "label": "Short mantra or reminder",
+          "prompt": "What short phrase might help later?",
+          "helperText": "Optional.",
+          "isRequired": false
+        }
+      ]
+    },
+    {
+      "exerciseId": "I-025",
+      "screenId": "CC-005",
+      "moduleId": "confidence_communication",
+      "title": "DEAR MAN Builder",
+      "purpose": "Make a clear request or explain a tinnitus-related need.",
+      "instructions": "Build a simple script. The app does not send it anywhere.",
+      "entryTitleFieldIds": [
+        "assert_the_request",
+        "describe_the_situation"
+      ],
+      "saveRule": {
+        "mode": "allOf",
+        "fieldIds": [
+          "describe_the_situation",
+          "express_how_it_affects_me",
+          "assert_the_request",
+          "reinforce_why_it_matters"
+        ]
+      },
+      "fields": [
+        {
+          "fieldId": "describe_the_situation",
+          "type": "longText",
+          "label": "Describe the situation",
+          "prompt": "What is the situation?",
+          "helperText": "Keep this factual.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "express_how_it_affects_me",
+          "type": "longText",
+          "label": "Express how it affects me",
+          "prompt": "How does it affect you?",
+          "helperText": "Use clear, non-blaming language.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "assert_the_request",
+          "type": "longText",
+          "label": "Assert the request",
+          "prompt": "What are you asking for?",
+          "helperText": "Make the request specific if possible.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "reinforce_why_it_matters",
+          "type": "longText",
+          "label": "Reinforce why it matters",
+          "prompt": "Why would this help or matter?",
+          "helperText": "Explain the practical benefit.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "mindful_confident_negotiation_note",
+          "type": "optionalText",
+          "label": "Mindful, confident, negotiation note",
+          "prompt": "What do you want to remember while communicating?",
+          "helperText": "Optional. This can include staying on topic, appearing confident, or being open to negotiation.",
+          "isRequired": false
+        }
+      ]
+    },
+    {
+      "exerciseId": "I-027",
+      "screenId": "SL-004",
+      "moduleId": "sleep",
+      "title": "Bedtime Sound Plan",
+      "purpose": "Plan sound use at night without turning sleep into a test.",
+      "instructions": "Use comfortable sound as a settling support. It does not have to force sleep to be useful.",
+      "entryTitleFieldIds": [
+        "sound_choice",
+        "when_i_will_use_it"
+      ],
+      "saveRule": {
+        "mode": "allOf",
+        "fieldIds": [
+          "sound_choice",
+          "device_or_source",
+          "volume_or_comfort_note"
+        ]
+      },
+      "fields": [
+        {
+          "fieldId": "sleep_scope_note",
+          "type": "staticInfo",
+          "label": "Sleep scope",
+          "prompt": "",
+          "helperText": "This is educational sleep support, not a full sleep-treatment program. Keep the plan gentle and adjustable.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "sound_choice",
+          "type": "longText",
+          "label": "Sound choice",
+          "prompt": "What sound might support bedtime?",
+          "helperText": "Examples: fan, rain, steady sound, soft music, sound machine.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "device_or_source",
+          "type": "shortText",
+          "label": "Device or source",
+          "prompt": "What will play the sound?",
+          "helperText": "Choose something practical and safe for the bedroom.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "volume_or_comfort_note",
+          "type": "longText",
+          "label": "Volume or comfort note",
+          "prompt": "How will you keep the sound comfortable?",
+          "helperText": "Avoid turning this into a test of perfect sleep.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "when_i_will_use_it",
+          "type": "optionalText",
+          "label": "When I will use it",
+          "prompt": "When will you start or stop the sound?",
+          "helperText": "Optional.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "what_i_will_do_if_it_is_not_helping",
+          "type": "optionalText",
+          "label": "If it is not helping",
+          "prompt": "What will you do if the sound is not helping?",
+          "helperText": "Optional. Adjusting or stopping can be part of the plan.",
+          "isRequired": false
+        }
+      ]
+    },
+    {
+      "exerciseId": "I-028",
+      "screenId": "SL-005",
+      "moduleId": "sleep",
+      "title": "Negative Sleep Thought Reframing",
+      "purpose": "Apply cognitive reframing to a sleep-related thought.",
+      "instructions": "This is educational support, not a full CBT-I or BBTI program.",
+      "entryTitleFieldIds": [
+        "balanced_sleep_statement",
+        "sleep_thought"
+      ],
+      "saveRule": {
+        "mode": "allOf",
+        "fieldIds": [
+          "sleep_thought",
+          "evidence_for",
+          "evidence_against",
+          "balanced_sleep_statement"
+        ]
+      },
+      "fields": [
+        {
+          "fieldId": "sleep_scope_note",
+          "type": "staticInfo",
+          "label": "Sleep scope",
+          "prompt": "",
+          "helperText": "Use this as a reflection tool. If sleep problems are severe, persistent, or medically concerning, consider appropriate sleep or health care.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "sleep_thought",
+          "type": "longText",
+          "label": "Sleep thought",
+          "prompt": "What sleep-related thought are you reframing?",
+          "helperText": "Use the thought as it appeared.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "possible_thought_pattern",
+          "type": "optionalText",
+          "label": "Possible thought pattern",
+          "prompt": "Does a thinking pattern fit?",
+          "helperText": "Optional.",
+          "isRequired": false
+        },
+        {
+          "fieldId": "evidence_for",
+          "type": "longText",
+          "label": "Evidence for",
+          "prompt": "What facts seem to support the thought?",
+          "helperText": "Keep this factual.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "evidence_against",
+          "type": "longText",
+          "label": "Evidence against",
+          "prompt": "What facts do not fit the thought?",
+          "helperText": "Include exceptions or missing context.",
+          "isRequired": true
+        },
+        {
+          "fieldId": "balanced_sleep_statement",
+          "type": "longText",
+          "label": "Balanced sleep statement",
+          "prompt": "What is a more balanced sleep statement?",
+          "helperText": "Realistic and usable is enough.",
+          "isRequired": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0.0",
+  "visuals": [
+    {
+      "visualId": "VIS-ST-THERMOMETER",
+      "type": "interactive_component",
+      "title": "Sound Therapy Thermometer",
+      "status": "build_component",
+      "placeholderAllowed": true,
+      "acceptanceCriteria": [
+        "Shows too quiet, sweet spot, and too loud zones",
+        "Controls a white/broadband sample volume",
+        "Uses safe volume cap",
+        "Can continue without saving"
+      ]
+    },
+    {
+      "visualId": "VIS-MF-BREATHING",
+      "type": "lightweight_component",
+      "title": "Breathing Pacer",
+      "status": "build_lightweight_component",
+      "placeholderAllowed": true,
+      "acceptanceCriteria": [
+        "Can be represented by a placeholder until the mindfulness stage"
+      ]
+    }
+  ]
+}

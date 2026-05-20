@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "1.0.0",
+  "safetyScopes": [
+    {
+      "safetyScopeId": "general_safety",
+      "title": "General Scope",
+      "bodyMarkdown": "This educational app does not replace professional care or crisis support.",
+      "appliesToRoutes": [
+        "/library",
+        "/annex/mindfulness"
+      ]
+    },
+    {
+      "safetyScopeId": "local_privacy",
+      "title": "Local Privacy",
+      "bodyMarkdown": "MVP user data is local-only and is not transmitted.",
+      "appliesToRoutes": [
+        "/my-plan"
+      ]
+    },
+    {
+      "safetyScopeId": "sound_safety",
+      "title": "Sound Safety",
+      "bodyMarkdown": "Sound content should stay comfortable and can be stopped at any time.",
+      "appliesToRoutes": [
+        "/annex/sound",
+        "/sound/thermometer"
+      ]
+    }
+  ]
+}

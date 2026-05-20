@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "1.0.0",
+  "sections": [
+    {
+      "sectionId": "HOME-001-SECTION-INTRO",
+      "screenId": "HOME-001",
+      "title": "Library shell",
+      "bodyMarkdown": "Stage 02 confirms bundle manifest loading. Module content is intentionally deferred.",
+      "expandable": false,
+      "transcriptCollapsed": true
+    },
+    {
+      "sectionId": "ANN-SOUND-001-SECTION-INTRO",
+      "screenId": "ANN-SOUND-001",
+      "title": "Sound annex shell",
+      "bodyMarkdown": "Sound therapy tools and sound samples are intentionally deferred.",
+      "expandable": false,
+      "transcriptCollapsed": true
+    },
+    {
+      "sectionId": "ANN-MIND-001-SECTION-INTRO",
+      "screenId": "ANN-MIND-001",
+      "title": "Mindfulness annex shell",
+      "bodyMarkdown": "Guided practices and mindfulness tools are intentionally deferred.",
+      "expandable": false,
+      "transcriptCollapsed": true
+    },
+    {
+      "sectionId": "MP-001-SECTION-INTRO",
+      "screenId": "MP-001",
+      "title": "My Plan shell",
+      "bodyMarkdown": "Local plan behavior and persistence are intentionally deferred.",
+      "expandable": false,
+      "transcriptCollapsed": true
+    },
+    {
+      "sectionId": "ST-003-CARD-01",
+      "screenId": "ST-003",
+      "title": "The middle zone",
+      "bodyMarkdown": "The useful range is where you can hear both the sound therapy and some awareness of tinnitus.",
+      "expandable": true,
+      "audioId": "AUD-104-G",
+      "transcriptCollapsed": true
+    }
+  ]
+}

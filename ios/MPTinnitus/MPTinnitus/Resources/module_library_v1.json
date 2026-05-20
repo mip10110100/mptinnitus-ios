@@ -1,0 +1,3462 @@
+{
+  "schemaVersion": "1.0.0",
+  "sourceFiles": [
+    "01_SOURCE_OF_TRUTH/02_mvp_screen_spec_pack.xlsx",
+    "01_SOURCE_OF_TRUTH/05_full_audio_manifest.csv",
+    "01_SOURCE_OF_TRUTH/07_visual_interaction_manifest.xlsx"
+  ],
+  "modules": [
+    {
+      "moduleId": "about_tinnitus",
+      "screenId": "AT-001",
+      "route": "/about/overview",
+      "title": "About Tinnitus",
+      "systemImage": "ear",
+      "purpose": "Orient users to the educational app scope and big-picture tinnitus approach.",
+      "overviewMarkdown": "Start here for the app's basic frame: tinnitus is a sound experience, but it is also shaped by the body, the mind, and daily life. This module explains the educational scope, local-only privacy, safety boundaries, and why Sound Therapy is usually a useful next step.",
+      "sourceScreenIds": [
+        "AT-001",
+        "AT-002",
+        "AT-003",
+        "AT-004",
+        "AT-005"
+      ],
+      "cards": [
+        {
+          "sectionId": "AT-001-section-01",
+          "screenId": "AT-001",
+          "title": "App purpose",
+          "bodyMarkdown": "MPTinnitus is an educational companion for learning about tinnitus and trying simple self-management skills. It does not promise a cure and it does not tell you there is one right way to manage tinnitus.\n\nA useful starting point is to understand your tinnitus picture, then choose tools that fit your body, your attention and emotions, and your daily life.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-000-OV"
+          ],
+          "visualIds": [],
+          "safetyNote": "Educational only; not cure/treatment promise"
+        },
+        {
+          "sectionId": "AT-002-section-02",
+          "screenId": "AT-002",
+          "title": "Scope",
+          "bodyMarkdown": "This app provides education and practice support. It is not medical advice, not therapy, not crisis care, and not a replacement for audiology, ENT, mental health care, sleep care, or emergency help.\n\nUse the app as a structured learning guide. If symptoms change suddenly, feel unsafe, or you have medical or hearing concerns, seek appropriate care outside the app.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-001-S"
+          ],
+          "visualIds": [],
+          "safetyNote": "Not medical advice, not therapy, not crisis resource"
+        },
+        {
+          "sectionId": "AT-002-section-03",
+          "screenId": "AT-002",
+          "title": "Privacy",
+          "bodyMarkdown": "The MVP is designed to work locally. Preferences, notes, journal entries, and exercise responses are meant to stay on this device.\n\nThere is no account, clinician dashboard, cloud sync, analytics tracking, or automatic transmission of your app entries in this MVP.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-002-S"
+          ],
+          "visualIds": [],
+          "safetyNote": "No automatic transmission/no dashboard/no account"
+        },
+        {
+          "sectionId": "AT-003-section-04",
+          "screenId": "AT-003",
+          "title": "Body/Mind/Life visual",
+          "bodyMarkdown": "Tinnitus often starts with sound, but the experience is shaped by more than sound. Hearing, stress, attention, sleep, thoughts, and social situations can all change how tinnitus feels.\n\nThis app uses a Body, Mind, and Life frame so you can notice more than one lever. Body includes hearing and nervous-system factors. Mind includes attention, emotion, and thoughts. Life includes sleep, routines, work, relationships, and the places where tinnitus gets in the way.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-003-OV"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "AT-003-section-05",
+          "screenId": "AT-003",
+          "title": "Sound sensitivity caveat",
+          "bodyMarkdown": "Sound sensitivity can travel with tinnitus. The goal is not to force sound or push through pain. The goal is comfortable, controlled sound and skills that help the system feel safer.\n\nIf ordinary sounds feel painful, frightening, or newly different, consider hearing healthcare guidance. Keep listening levels comfortable and stop any practice that feels unsafe.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-AT-SS-001"
+          ],
+          "visualIds": [],
+          "safetyNote": "Comfortable sound only; avoid painful exposure"
+        },
+        {
+          "sectionId": "AT-004-section-06",
+          "screenId": "AT-004",
+          "title": "Body note",
+          "bodyMarkdown": "Body factors can include hearing changes, ear or jaw symptoms, medication questions, stress physiology, fatigue, or sound sensitivity. You do not need to diagnose yourself here.\n\nA few words are enough: what does your body seem to bring into the tinnitus experience today? For hearing changes, one-sided symptoms, sudden changes, dizziness, pain, or medical concerns, use appropriate ENT, audiology, or medical care.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-004-G"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "AT-004-section-07",
+          "screenId": "AT-004",
+          "title": "Mind note",
+          "bodyMarkdown": "Mind factors include attention, worry, frustration, fear, self-criticism, and the meaning your brain gives the sound. These reactions are understandable; they are not failures.\n\nNoticing mind factors helps you choose skills such as mindfulness, distress tolerance, acceptance, or reframing instead of fighting the sound all day.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-004-G"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "AT-004-section-08",
+          "screenId": "AT-004",
+          "title": "Life note",
+          "bodyMarkdown": "Life factors include sleep, work, quiet rooms, family routines, social plans, appointments, and the activities tinnitus interrupts.\n\nThe point is not to list every problem. The point is to see where tinnitus has become most costly, so the next skill can reconnect you with one part of life that matters.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-004-G"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "AT-005-section-09",
+          "screenId": "AT-005",
+          "title": "Module preview cards",
+          "bodyMarkdown": "You can explore in any order, but a gentle path is to begin with About Tinnitus and then try Sound Therapy. Sound Therapy explains comfortable sound, masking, and the middle zone where tinnitus can still be present without dominating attention.\n\nSafety Information is always available from the welcome flow and Settings. Use it whenever you want the app's scope, privacy, and care boundaries in one place.",
+          "isExpandable": true,
+          "audioIds": [
+            "NEW-AUD-AT-MODULES-001"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        }
+      ],
+      "audio": [
+        {
+          "audioId": "AUD-SYS-001",
+          "sourceId": "AUD-SYS-001",
+          "screenIds": [
+            "SYS-001"
+          ],
+          "title": "First-launch Start Here Prompt",
+          "type": "Short explainer / exercise",
+          "assetPath": "audio/about_tinnitus/sys_001_aud_sys_001.m4a",
+          "transcript": "This app works best if you begin with the short About Tinnitus section. It explains why tinnitus management is bigger than sound therapy and how to use the rest of the app.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-000-OV",
+          "sourceId": "AUD-000-OV",
+          "screenIds": [
+            "AT-001"
+          ],
+          "title": "Start Here",
+          "type": "Chapter overview",
+          "assetPath": "audio/about_tinnitus/p_000_aud_000_ov_start_here.m4a",
+          "transcript": "Welcome to the MPTinnitus app. The goal is not to promise a cure or tell you there is only one right way to manage tinnitus. The goal is to help you understand what is happening, try practical skills, and build a plan that makes the sound less dominant in your life.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-001-S",
+          "sourceId": "AUD-001-S",
+          "screenIds": [
+            "AT-002"
+          ],
+          "title": "Scope and Safety",
+          "type": "Short explainer",
+          "assetPath": "audio/about_tinnitus/p_001_aud_001_s_scope_and_safety.m4a",
+          "transcript": "This app is educational. It can help you learn and practice self-management skills, but it does not replace medical care, audiology, therapy, or sleep care when needed.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-002-S",
+          "sourceId": "AUD-002-S",
+          "screenIds": [
+            "AT-002"
+          ],
+          "title": "Privacy / Local Only",
+          "type": "Short explainer",
+          "assetPath": "audio/about_tinnitus/p_002_aud_002_s_privacy_local_only.m4a",
+          "transcript": "Your preferences, journal entries, and exercise responses are meant to stay on this device. This is meant to maintain your privacy.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-003-OV",
+          "sourceId": "AUD-003-OV",
+          "screenIds": [
+            "AT-003"
+          ],
+          "title": "Body / Mind / Life Model",
+          "type": "Chapter overview",
+          "assetPath": "audio/about_tinnitus/p_003_aud_003_ov_body_mind_life_model.m4a",
+          "transcript": "Tinnitus often starts with sound, but the experience is shaped by more than sound. Hearing, stress, attention, sleep, thoughts, and social situations can all change how tinnitus feels. That is why this app looks at tinnitus from multiple angles instead of relying on one single tool.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-AT-SS-001",
+          "sourceId": "AUD-AT-SS-001",
+          "screenIds": [
+            "AT-003"
+          ],
+          "title": "Sound Sensitivity and Tinnitus",
+          "type": "Short explainer / exercise",
+          "assetPath": "audio/about_tinnitus/at_ss_001_aud_at_ss_001.m4a",
+          "transcript": "Sound sensitivity often travels with tinnitus. If one improves, that can give useful momentum for the other. The goal is not to force sound, but to use comfortable, controlled sound and good skills to help the system feel safer.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-004-G",
+          "sourceId": "AUD-004-G",
+          "screenIds": [
+            "AT-004"
+          ],
+          "title": "Body / Mind / Life Exploration",
+          "type": "Exercise walkthrough",
+          "assetPath": "audio/about_tinnitus/p_004_aud_004_g_body_mind_life_exploration.m4a",
+          "transcript": "Take a moment to look at the Body, Mind, and Life parts of your tinnitus experience. You do not need a perfect answer. A few words are enough. The purpose is to see the whole picture, so you can decide which tools may be most useful right now.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "NEW-AUD-AT-MODULES-001",
+          "sourceId": "NEW-AUD-AT-MODULES-001",
+          "screenIds": [
+            "AT-005"
+          ],
+          "title": "Module overview / interest selection",
+          "type": "Short explainer",
+          "assetPath": "audio/about_tinnitus/at_modules_001_module_overview.m4a",
+          "transcript": "You can explore this app in any order. Each section gives you a different way to understand tinnitus and practice useful skills. Tap a card to learn more, and check the topics that feel most useful right now. Those choices stay on your device and can help highlight where to start.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        }
+      ],
+      "exercises": [
+        {
+          "exerciseId": "I-002",
+          "screenId": "AT-004",
+          "title": "Body/Mind/Life exercise",
+          "description": "Launches the later Body/Mind/Life reflection for a few words about body factors, attention and emotion, and daily-life impact. No response is saved in this stage.",
+          "inputSummary": "Three short text fields",
+          "defaultCTAs": "Save; Skip; Repeat",
+          "route": "/placeholder/exercise/i-002",
+          "addToMyPlanBehavior": "Show Add to My Plan checkbox for exercises/tools; if already saved, show checked and allow removal."
+        },
+        {
+          "exerciseId": "I-003",
+          "screenId": "AT-005",
+          "title": "Module interest selection",
+          "description": "Launches the later module-interest selector so users can mark topics that feel most useful. In this stage it remains a navigation placeholder.",
+          "inputSummary": "Checkboxes on module cards",
+          "defaultCTAs": "Tap option / manage",
+          "route": "/placeholder/exercise/i-003",
+          "addToMyPlanBehavior": "Not an Add-to-My-Plan exercise; save local preference/action only."
+        }
+      ],
+      "safetyScopes": [
+        {
+          "safetyScopeId": "AT-001-safety-01",
+          "screenId": "AT-001",
+          "title": "Safety note: App purpose",
+          "bodyMarkdown": "Educational only; not cure/treatment promise"
+        },
+        {
+          "safetyScopeId": "AT-002-safety-02",
+          "screenId": "AT-002",
+          "title": "Safety note: Scope",
+          "bodyMarkdown": "Not medical advice, not therapy, not crisis resource"
+        },
+        {
+          "safetyScopeId": "AT-002-safety-03",
+          "screenId": "AT-002",
+          "title": "Safety note: Privacy",
+          "bodyMarkdown": "No automatic transmission/no dashboard/no account"
+        },
+        {
+          "safetyScopeId": "AT-003-safety-04",
+          "screenId": "AT-003",
+          "title": "Safety note: Sound sensitivity caveat",
+          "bodyMarkdown": "Comfortable sound only; avoid painful exposure"
+        }
+      ],
+      "visuals": [
+        {
+          "visualId": "VIS-001",
+          "screenId": "AT-003",
+          "title": "Body / Mind / Life model",
+          "status": "Placeholder approved for MVP",
+          "description": "Three-part model showing Body, Mind, and Life factors that shape tinnitus experience."
+        }
+      ],
+      "relatedModules": [
+        {
+          "moduleId": "sound_therapy",
+          "title": "Next: Sound Therapy"
+        }
+      ]
+    },
+    {
+      "moduleId": "sound_therapy",
+      "screenId": "ST-001",
+      "route": "/sound/overview",
+      "title": "Sound Therapy",
+      "systemImage": "speaker.wave.2",
+      "purpose": "Explain sound therapy as comfortable sound, not a standalone sound app.",
+      "overviewMarkdown": "Learn how comfortable background sound can reduce contrast, support adaptation, and make tinnitus less dominant. This module explains masking, the sound therapy sweet spot, sound choices, hearing care, sound sensitivity, and the Sound Therapy Annex.",
+      "sourceScreenIds": [
+        "ST-001",
+        "ST-002",
+        "ST-003",
+        "ST-004",
+        "ST-005",
+        "ST-006",
+        "ST-007",
+        "ST-008"
+      ],
+      "cards": [
+        {
+          "sectionId": "ST-001-section-01",
+          "screenId": "ST-001",
+          "title": "Definition",
+          "bodyMarkdown": "Sound therapy means using comfortable external sound on purpose. It may be music, nature sound, steady fan-like sound, water, broadband noise, or another sound that feels safe and tolerable.\n\nThe aim is not to create a standalone sound app or guarantee a specific result. The aim is to reduce the stark contrast around tinnitus and give your auditory system something else to share attention with.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-100-OV",
+            "AUD-101-S"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "ST-001-section-02",
+          "screenId": "ST-001",
+          "title": "Why quiet matters",
+          "bodyMarkdown": "In a very quiet room, tinnitus can become the main sound available to the brain. Adding gentle sound can lower the contrast between tinnitus and the environment.\n\nThis can make the moment feel less stark. Over time, consistent comfortable sound may support adaptation, which means tinnitus can become less central to attention even if it has not disappeared.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-102-S"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "ST-001-section-03",
+          "screenId": "ST-001",
+          "title": "Sound individuality",
+          "bodyMarkdown": "Useful sound is individual. One person may prefer water, another soft music, another fan or broadband noise, and another may need very little added sound.\n\nTreat sound choice as preference discovery, not a test. Notice what feels comfortable, what feels irritating, and what is easy to use during real routines.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-105-S"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "ST-002-section-04",
+          "screenId": "ST-002",
+          "title": "Masking vs sound therapy",
+          "bodyMarkdown": "Masking means covering tinnitus so completely that you hear little or none of it. That can be useful for short breaks, but it is not the whole sound therapy idea.\n\nA habituation-oriented approach often uses a middle range: you can hear the support sound and may still notice some tinnitus. That middle range can help the brain learn that tinnitus can be present without needing constant alarm or control.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-103-S"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "ST-003-section-05",
+          "screenId": "ST-003",
+          "title": "Sound sample cards",
+          "bodyMarkdown": "Starter categories include steady sounds, water sounds, nature sounds, fan-like sounds, broadband noise, and gentle music. The right category may change by time of day, mood, hearing needs, and setting.\n\nThe Sound Therapy Annex is the place planned for quicker sound exploration. In this stage, these cards introduce the categories and keep the final sound tools separate from education.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-105-S"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "ST-004-section-06",
+          "screenId": "ST-004",
+          "title": "Thermometer slider",
+          "bodyMarkdown": "The sweet spot is the comfortable middle zone. Too quiet may leave tinnitus standing alone. Too loud may feel harsh, unsafe, or like overmasking.\n\nUse the thermometer idea gently: start low, increase slowly, and stop at a level that feels comfortable. The goal is not to test how much sound you can tolerate.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-104-G"
+          ],
+          "visualIds": [],
+          "safetyNote": "Avoid unsafe loud levels"
+        },
+        {
+          "sectionId": "ST-005-section-07",
+          "screenId": "ST-005",
+          "title": "Hearing care card",
+          "bodyMarkdown": "If you have hearing loss, amplification can be an important part of sound support. Hearing aids may bring back everyday environmental sound and reduce listening strain, which can change how tinnitus is experienced.\n\nThis app cannot assess hearing or fit devices. Audiology, ENT, or hearing healthcare can help when hearing changes, one-sided symptoms, sudden changes, dizziness, pain, or device questions are present.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-ST-HH-001"
+          ],
+          "visualIds": [],
+          "safetyNote": "Encourage audiology/ENT assessment when relevant"
+        },
+        {
+          "sectionId": "ST-006-section-08",
+          "screenId": "ST-006",
+          "title": "Sensitivity overview",
+          "bodyMarkdown": "When sound sensitivity is present, sound work should stay inside a comfort boundary. The plan is not to flood yourself with sound or push through pain.\n\nSmall, predictable, controllable sound can sometimes help the system feel safer. If sound sensitivity is severe, worsening, or hard to manage, get appropriate hearing healthcare support.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-ST-SS-001"
+          ],
+          "visualIds": [],
+          "safetyNote": "Do not push through pain"
+        },
+        {
+          "sectionId": "ST-007-section-09",
+          "screenId": "ST-007",
+          "title": "Music exercise steps",
+          "bodyMarkdown": "One gentle exercise is enjoyable music through a speaker. Choose music you like, start at silence, raise the volume slowly until it approaches sensitivity, then lower it a little so it feels comfortable.\n\nListen for a short, planned period such as 10 to 15 minutes. Keep the sound below the sensitivity threshold, stop if it feels unsafe, and treat the result as information rather than a pass/fail test.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-ST-SS-002"
+          ],
+          "visualIds": [],
+          "safetyNote": "Below sensitivity threshold; nonjudgmental tracking"
+        },
+        {
+          "sectionId": "ST-008-section-10",
+          "screenId": "ST-008",
+          "title": "Sound plan builder",
+          "bodyMarkdown": "A sound plan is a short list of sounds, devices, and situations that are practical for you. It might include bedside sound, work or study sound, a travel option, and a quiet-room option.\n\nIn a later stage, saving can turn this into a local My Plan item. For now, use the exercise launch card to preview the intended plan shape without adding persistence.",
+          "isExpandable": true,
+          "audioIds": [
+            "NEW-AUD-ST-PLAN-001"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        }
+      ],
+      "audio": [
+        {
+          "audioId": "AUD-100-OV",
+          "sourceId": "AUD-100-OV",
+          "screenIds": [
+            "ST-001"
+          ],
+          "title": "Sound Therapy",
+          "type": "Chapter overview",
+          "assetPath": "audio/sound_therapy/p_100_aud_100_ov_sound_therapy.m4a",
+          "transcript": "Sound therapy means using comfortable, neutral sound to make tinnitus less dominant in your environment. The goal is not to cover up your tinnitus. The goal is to give your brain other sound to work with so tinnitus can gradually become less important.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-101-S",
+          "sourceId": "AUD-101-S",
+          "screenIds": [
+            "ST-001"
+          ],
+          "title": "What is Sound Therapy?",
+          "type": "Short explainer",
+          "assetPath": "audio/sound_therapy/p_101_aud_101_s_what_is_sound_therapy.m4a",
+          "transcript": "Think of sound therapy as a helpful backdrop for your ears. A fan, rain sound, white noise, or another calm sound can reduce the contrast between silence and tinnitus.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-102-S",
+          "sourceId": "AUD-102-S",
+          "screenIds": [
+            "ST-001"
+          ],
+          "title": "Why Sound Helps",
+          "type": "Short explainer",
+          "assetPath": "audio/sound_therapy/p_102_aud_102_s_why_sound_helps.m4a",
+          "transcript": "Tinnitus often stands out most in quiet. Adding soft sound should not erase tinnitus, but it can make the sound less isolated and less demanding of your attention.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-105-S",
+          "sourceId": "AUD-105-S",
+          "screenIds": [
+            "ST-001",
+            "ST-003"
+          ],
+          "title": "Choosing Sounds",
+          "type": "Short explainer",
+          "assetPath": "audio/sound_therapy/p_105_aud_105_s_choosing_sounds.m4a",
+          "transcript": "There is no perfect sound for everyone. Some people like rain, some like crickets, some like a fan, and some prefer a steady noise. The best sound is one you can comfortably use over time.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-103-S",
+          "sourceId": "AUD-103-S",
+          "screenIds": [
+            "ST-002"
+          ],
+          "title": "Masking vs Habituation",
+          "type": "Short explainer",
+          "assetPath": "audio/sound_therapy/p_103_aud_103_s_masking_vs_habituation.m4a",
+          "transcript": "Fully covering tinnitus can feel useful in a moment, but if the goal is to cover it up all day, the brain has less opportunity to adapt. Sound therapy is different: we keep the sound comfortable and present while still allowing some awareness of tinnitus, so the brain can learn that tinnitus does not need to dominate.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-104-G",
+          "sourceId": "AUD-104-G",
+          "screenIds": [
+            "ST-004"
+          ],
+          "title": "Sound Therapy Thermometer",
+          "type": "Exercise walkthrough",
+          "assetPath": "audio/sound_therapy/p_104_aud_104_g_sound_therapy_thermometer.m4a",
+          "transcript": "Start with the sound low and slowly bring it up. If you cannot hear the sound therapy at all, it is too low. If you cannot hear tinnitus at all, it may be more volume than you need. The middle zone is where you can hear both, and neither one is taking over.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-ST-HH-001",
+          "sourceId": "AUD-ST-HH-001",
+          "screenIds": [
+            "ST-005"
+          ],
+          "title": "Hearing Care and Amplification",
+          "type": "Short explainer / exercise",
+          "assetPath": "audio/sound_therapy/st_hh_001_aud_st_hh_001.m4a",
+          "transcript": "If you have hearing loss, hearing care is one of the most important places to start. Hearing aids can act as a very customized form of sound therapy by restoring sounds your brain has been missing.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-ST-SS-001",
+          "sourceId": "AUD-ST-SS-001",
+          "screenIds": [
+            "ST-006"
+          ],
+          "title": "Sound Therapy for Sound Sensitivity",
+          "type": "Short explainer / exercise",
+          "assetPath": "audio/sound_therapy/st_ss_001_aud_st_ss_001.m4a",
+          "transcript": "For people with sound sensitivity, using sound may seem strange at first. The same basic principle still applies: comfortable sound, presented under your control, can help the auditory system and the alarm system become less reactive over time.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-ST-SS-002",
+          "sourceId": "AUD-ST-SS-002",
+          "screenIds": [
+            "ST-007"
+          ],
+          "title": "Enjoyable Music Speaker Exercise",
+          "type": "Short explainer / exercise",
+          "assetPath": "audio/sound_therapy/st_ss_002_aud_st_ss_002.m4a",
+          "transcript": "Choose music you actually enjoy. Start with the volume all the way down, then slowly raise it until you begin to notice sensitivity. Turn it down slightly below that point and listen for 10 to 15 minutes. Some days the level will be lower and some days it will be higher. The goal is the process, not a perfect number.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "NEW-AUD-ST-PLAN-001",
+          "sourceId": "NEW-AUD-ST-PLAN-001",
+          "screenIds": [
+            "ST-008"
+          ],
+          "title": "Create sound therapy plan",
+          "type": "Exercise walkthrough",
+          "assetPath": "audio/sound_therapy/st_plan_001_create_plan.m4a",
+          "transcript": "Now turn sound therapy into a simple plan. Choose one or two sounds that feel comfortable, note when they might fit into your day, and think about what device or source you would actually use. Some times will be easy and some will be harder. That is not a problem. The goal is to make sound therapy practical enough that you can return to it consistently.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        }
+      ],
+      "exercises": [
+        {
+          "exerciseId": "I-004",
+          "screenId": "ST-003",
+          "title": "Sound preference selection",
+          "description": "Launches the later sound preference selector for comfortable sound categories and notes. No sound preferences are saved in this stage.",
+          "inputSummary": "Tap sound cards; like/neutral/dislike",
+          "defaultCTAs": "Save; Skip; Repeat",
+          "route": "/placeholder/exercise/i-004",
+          "addToMyPlanBehavior": "Show Add to My Plan checkbox for exercises/tools; if already saved, show checked and allow removal."
+        },
+        {
+          "exerciseId": "I-005",
+          "screenId": "ST-004",
+          "title": "Sound Therapy Thermometer",
+          "description": "Launches the later thermometer exercise for finding the comfortable middle zone between too quiet and too loud.",
+          "inputSummary": "Slider + optional audio examples",
+          "defaultCTAs": "Save; Skip; Repeat",
+          "route": "/placeholder/exercise/i-005",
+          "addToMyPlanBehavior": "Show Add to My Plan checkbox for exercises/tools; if already saved, show checked and allow removal."
+        },
+        {
+          "exerciseId": "I-006",
+          "screenId": "ST-007",
+          "title": "Enjoyable music speaker exercise",
+          "description": "Launches the later enjoyable music speaker exercise with safe, below-threshold listening steps.",
+          "inputSummary": "Step checklist + optional note",
+          "defaultCTAs": "Save; Skip; Repeat",
+          "route": "/placeholder/exercise/i-006",
+          "addToMyPlanBehavior": "Show Add to My Plan checkbox for exercises/tools; if already saved, show checked and allow removal."
+        },
+        {
+          "exerciseId": "I-007",
+          "screenId": "ST-008",
+          "title": "Sound plan builder",
+          "description": "Launches the later sound plan builder for sounds, devices, and situations that may support daily routines.",
+          "inputSummary": "Select/write sounds/devices/times",
+          "defaultCTAs": "Save; Skip; Repeat",
+          "route": "/placeholder/exercise/i-007",
+          "addToMyPlanBehavior": "Show Add to My Plan checkbox for exercises/tools; if already saved, show checked and allow removal."
+        }
+      ],
+      "safetyScopes": [
+        {
+          "safetyScopeId": "ST-004-safety-01",
+          "screenId": "ST-004",
+          "title": "Safety note: Thermometer slider",
+          "bodyMarkdown": "Avoid unsafe loud levels"
+        },
+        {
+          "safetyScopeId": "ST-005-safety-02",
+          "screenId": "ST-005",
+          "title": "Safety note: Hearing care card",
+          "bodyMarkdown": "Encourage audiology/ENT assessment when relevant"
+        },
+        {
+          "safetyScopeId": "ST-006-safety-03",
+          "screenId": "ST-006",
+          "title": "Safety note: Sensitivity overview",
+          "bodyMarkdown": "Do not push through pain"
+        },
+        {
+          "safetyScopeId": "ST-007-safety-04",
+          "screenId": "ST-007",
+          "title": "Safety note: Music exercise steps",
+          "bodyMarkdown": "Below sensitivity threshold; nonjudgmental tracking"
+        }
+      ],
+      "visuals": [
+        {
+          "visualId": "VIS-002",
+          "screenId": "ST-003",
+          "title": "Sound sample cards",
+          "status": "Placeholder approved for MVP",
+          "description": "Sound sample cards visual or interaction used to support the app content."
+        },
+        {
+          "visualId": "VIS-003",
+          "screenId": "ST-004",
+          "title": "Sound Therapy Thermometer",
+          "status": "Placeholder approved for MVP",
+          "description": "Volume guide showing too quiet, useful middle range, and too loud or overmasking zones."
+        },
+        {
+          "visualId": "VIS-004",
+          "screenId": "ST-005",
+          "title": "Hearing care/amplification card",
+          "status": "Placeholder approved for MVP",
+          "description": "Hearing care/amplification card visual or interaction used to support the app content."
+        },
+        {
+          "visualId": "VIS-005",
+          "screenId": "ST-007",
+          "title": "Enjoyable music speaker exercise",
+          "status": "Step-by-step text/audio",
+          "description": "Enjoyable music speaker exercise visual or interaction used to support the app content."
+        },
+        {
+          "visualId": "VIS-030",
+          "screenId": "ST-007",
+          "title": "Sound sensitivity exercise card",
+          "status": "Step-by-step text/audio",
+          "description": "Sound sensitivity exercise card visual or interaction used to support the app content."
+        }
+      ],
+      "relatedModules": [
+        {
+          "moduleId": "acceptance_and_change",
+          "title": "Next: Acceptance and Change"
+        },
+        {
+          "moduleId": "about_tinnitus",
+          "title": "Back to About Tinnitus"
+        }
+      ]
+    },
+    {
+      "moduleId": "acceptance_and_change",
+      "screenId": "AC-001",
+      "route": "/acceptance/overview",
+      "title": "Acceptance and Change",
+      "systemImage": "arrow.triangle.2.circlepath",
+      "purpose": "Introduce acceptance as the beginning of workable change, not giving up.",
+      "overviewMarkdown": "Acceptance means seeing the situation clearly enough to choose a useful next move. This module links acceptance, overmasking, Tug-of-War, both-and thinking, Yes AND statements, and reconnecting with what matters.",
+      "sourceScreenIds": [
+        "AC-001",
+        "AC-002",
+        "AC-003",
+        "AC-004",
+        "AC-005",
+        "AC-006",
+        "AC-007",
+        "AC-008"
+      ],
+      "cards": [
+        {
+          "sectionId": "AC-001-section-01",
+          "screenId": "AC-001",
+          "title": "Overview",
+          "bodyMarkdown": "Acceptance is not giving up, liking tinnitus, or deciding nothing can change. It means making room for what is already here long enough to choose a workable next step.\n\nFor many people, acceptance and change happen together: less fighting can create more energy for sound support, attention skills, sleep routines, and meaningful activity.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-200-OV",
+            "AUD-200-OBJ"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "AC-001-section-02",
+          "screenId": "AC-001",
+          "title": "Why tinnitus makes this hard",
+          "bodyMarkdown": "Tinnitus can invite urgent battles: make it stop, prove it will never get better, avoid quiet forever, or monitor every change. Those battles are understandable, but they can keep the sound at the center of attention.\n\nThe goal of this module is to notice the struggle pattern and practice stepping out of it, even briefly.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-201-S",
+            "AUD-201-BML"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "AC-002-section-03",
+          "screenId": "AC-002",
+          "title": "Acceptance vs resignation",
+          "bodyMarkdown": "Resignation says, \"Nothing matters, so I will stop trying.\" Acceptance says, \"This is here right now, and I can still choose a useful action.\"\n\nThat difference matters. Acceptance can reduce the extra struggle around tinnitus while leaving room for care, practice, boundaries, and support.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-202-A",
+            "AUD-202-R"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "AC-002-section-04",
+          "screenId": "AC-002",
+          "title": "Control and influence",
+          "bodyMarkdown": "You may not be able to control whether tinnitus appears in a given moment. You may still be able to influence sound environment, sleep habits, attention, self-talk, communication, and how you respond to hard moments.\n\nA practical plan focuses on what is influenceable today, not on winning an impossible control contest.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-202-C",
+            "AUD-204-WC"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "AC-003-section-05",
+          "screenId": "AC-003",
+          "title": "Avoidance/resistance",
+          "bodyMarkdown": "Avoidance and resistance can look helpful at first: stay away from every quiet place, overmask every second, cancel important plans, or check tinnitus repeatedly. Sometimes short-term protection is needed, but constant avoidance can shrink life.\n\nAcceptance asks: can I make space for this moment and still take one small action that fits my values?",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-203-S",
+            "AUD-203-EX",
+            "AUD-203-R"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "AC-004-section-06",
+          "screenId": "AC-004",
+          "title": "Acceptance creates change",
+          "bodyMarkdown": "Acceptance can make change possible because it lowers the fight around the problem. A sound therapy example is overmasking: fully covering tinnitus may bring relief for a while, but it can also keep the goal focused on never hearing tinnitus.\n\nA middle-zone sound plan accepts that some tinnitus may be present while you practice comfort, flexibility, and re-engagement.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-204-S",
+            "AUD-205-OV",
+            "AUD-205-OM"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "AC-005-section-07",
+          "screenId": "AC-005",
+          "title": "Tug-of-War visual",
+          "bodyMarkdown": "The Tug-of-War image shows a person pulling against tinnitus with all their strength. The harder they pull, the more the struggle becomes the whole activity.\n\nDropping the rope does not mean agreeing with tinnitus. It means pausing the fight so your hands are free for something else: sound support, a breath, a request for help, or a small step back into life.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-206-G"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "AC-005-section-08",
+          "screenId": "AC-005",
+          "title": "Pulling/dropping prompts",
+          "bodyMarkdown": "Pulling the rope might sound like \"I cannot stand this,\" \"I have to solve it now,\" or \"I cannot do anything until it is gone.\" Dropping the rope might sound like \"This is hard, and I can still lower the stakes for the next minute.\"\n\nThe later exercise route is meant to help you name both patterns. For now, use this card to notice which one is active today.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-206-F1",
+            "AUD-206-F2"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "AC-006-section-09",
+          "screenId": "AC-006",
+          "title": "Both-and concept",
+          "bodyMarkdown": "Both-and thinking means two truths can be present at the same time. Tinnitus can be frustrating, and you can still take care of yourself. You can want relief, and still choose a meaningful action now.\n\nThis is also called dialectical thinking. It reduces the pressure to choose between pretending everything is fine and giving tinnitus complete control.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-207-S",
+            "AUD-207-EX"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "AC-006-section-10",
+          "screenId": "AC-006",
+          "title": "Yes AND builder",
+          "bodyMarkdown": "A Yes AND statement begins with honest validation and ends with a workable next step: \"Yes, this sound is loud today, and I can use a comfortable background sound while I make breakfast.\"\n\nThe point is not positivity. It is flexibility: one sentence that holds the hard part and the next useful action together.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-208-G",
+            "AUD-208-F2",
+            "AUD-208-R"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "AC-007-section-11",
+          "screenId": "AC-007",
+          "title": "Values action",
+          "bodyMarkdown": "Reconnection with what matters starts small. Choose an activity, role, person, or value that tinnitus has crowded out, then name one next step that is smaller than your fear says it has to be.\n\nA values action might be sending a message, taking a short walk, attending part of an event, or using sound support while doing something important.",
+          "isExpandable": true,
+          "audioIds": [
+            "NEW-AUD-AC-VALUES-001"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "AC-008-section-12",
+          "screenId": "AC-008",
+          "title": "Save and bridge",
+          "bodyMarkdown": "Acceptance skills connect naturally to mindfulness. Mindfulness gives you practice noticing sound, thoughts, and body sensations without having to obey every alarm.\n\nIf this module helped, continue to Mindfulness next. If the moment feels too intense, Distress Tolerance may be the better next stop.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-213-TL",
+            "AUD-214-OV",
+            "AUD-214-DT",
+            "AUD-215-OV",
+            "AUD-215-NEXT"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        }
+      ],
+      "audio": [
+        {
+          "audioId": "AUD-200-OV",
+          "sourceId": "AUD-200-OV",
+          "screenIds": [
+            "AC-001"
+          ],
+          "title": "Acceptance versus change",
+          "type": "Chapter overview",
+          "assetPath": "audio/acceptance/p_200_aud_200_ov_acceptance_versus_change.m4a",
+          "transcript": "Acceptance can sound like giving up, especially when tinnitus feels new or overwhelming. In this app, acceptance means taking an honest look at what is happening right now so you can stop spending all your energy on unwinnable fights and start making changes that are actually available to you. Acceptance and change are not enemies; in many situations, acceptance is what makes meaningful change possible.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-200-OBJ",
+          "sourceId": "AUD-200-OBJ",
+          "screenIds": [
+            "AC-001"
+          ],
+          "title": "Learning objectives",
+          "type": "Short explainer",
+          "assetPath": "audio/acceptance/p_200_aud_200_obj_learning_objectives.m4a",
+          "transcript": "In this section, we are going to separate acceptance from giving up, look at how avoidance can increase frustration, and practice ways to emphasize acceptance.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-201-S",
+          "sourceId": "AUD-201-S",
+          "screenIds": [
+            "AC-001"
+          ],
+          "title": "Why this matters for tinnitus",
+          "type": "Short explainer",
+          "assetPath": "audio/acceptance/p_201_aud_201_s_why_this_matters_for_tinnitus.m4a",
+          "transcript": "At the beginning, many people try to win battles that tinnitus does not let them win quickly: finding the magic cure, blocking the sound all day, or searching constantly for the one perfect answer. Those reactions make sense, but they often lead to frustration and disappointment.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-201-BML",
+          "sourceId": "AUD-201-BML",
+          "screenIds": [
+            "AC-001"
+          ],
+          "title": "Body Mind Life bridge",
+          "type": "Short explainer",
+          "assetPath": "audio/acceptance/p_201_aud_201_bml_body_mind_life_bridge.m4a",
+          "transcript": "This connects back to the Body, Mind, and Life model. The sound is part of the body experience, but the struggle, fear, avoidance, and disruption to daily life are often where tinnitus becomes most powerful.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-202-A",
+          "sourceId": "AUD-202-A",
+          "screenIds": [
+            "AC-002"
+          ],
+          "title": "Acceptance term",
+          "type": "Short explainer",
+          "assetPath": "audio/acceptance/p_202_aud_202_a_acceptance_term.m4a",
+          "transcript": "Acceptance does not mean that you like tinnitus, want it, or believe nothing can improve. It means you are acknowledging what is here right now so you can respond more wisely.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-202-R",
+          "sourceId": "AUD-202-R",
+          "screenIds": [
+            "AC-002"
+          ],
+          "title": "Acceptance vs resignation",
+          "type": "Short explainer",
+          "assetPath": "audio/acceptance/p_202_aud_202_r_acceptance_vs_resignation.m4a",
+          "transcript": "Resignation says, nothing can change, so why try? Acceptance says, this is the situation I am in right now, and I can still choose the next useful step.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-202-C",
+          "sourceId": "AUD-202-C",
+          "screenIds": [
+            "AC-002"
+          ],
+          "title": "Control and influence",
+          "type": "Short explainer",
+          "assetPath": "audio/acceptance/p_202_aud_202_c_control_and_influence.m4a",
+          "transcript": "You may not have a switch that turns tinnitus off on command. But you can influence your sound environment, your attention, your routines, your self-talk, and the way you move through your day.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-204-WC",
+          "sourceId": "AUD-204-WC",
+          "screenIds": [
+            "AC-002"
+          ],
+          "title": "What can change",
+          "type": "Short explainer",
+          "assetPath": "audio/acceptance/p_204_aud_204_wc_what_can_change.m4a",
+          "transcript": "Change can mean using sound therapy differently, returning to a routine, communicating a need, practicing mindfulness, or responding to a thought in a new way. Change does not have to mean forcing tinnitus to disappear.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-203-S",
+          "sourceId": "AUD-203-S",
+          "screenIds": [
+            "AC-003"
+          ],
+          "title": "Avoidance vs acceptance",
+          "type": "Short explainer",
+          "assetPath": "audio/acceptance/p_203_aud_203_s_avoidance_vs_acceptance.m4a",
+          "transcript": "The real opposite of acceptance is not change. The real opposite is often avoidance: trying so hard not to experience tinnitus that your whole day begins to organize around escaping it.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-203-EX",
+          "sourceId": "AUD-203-EX",
+          "screenIds": [
+            "AC-003"
+          ],
+          "title": "Resistance examples",
+          "type": "Short explainer",
+          "assetPath": "audio/acceptance/p_203_aud_203_ex_resistance_examples.m4a",
+          "transcript": "Avoidance can look like blocking out tinnitus all day, avoiding quiet places, canceling activities, or spending every free moment searching for cures. These patterns are understandable, but they can keep tinnitus at the center of your life.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-203-R",
+          "sourceId": "AUD-203-R",
+          "screenIds": [
+            "AC-003"
+          ],
+          "title": "Resistance reflection",
+          "type": "Prompt",
+          "assetPath": "audio/acceptance/p_203_aud_203_r_resistance_reflection.m4a",
+          "transcript": "Take a moment to ask: where am I pulling against tinnitus right now? You do not need to judge the answer. Just notice it.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-204-S",
+          "sourceId": "AUD-204-S",
+          "screenIds": [
+            "AC-004"
+          ],
+          "title": "Acceptance leads to change",
+          "type": "Short explainer",
+          "assetPath": "audio/acceptance/p_204_aud_204_s_acceptance_leads_to_change.m4a",
+          "transcript": "Real change begins when we take account of the situation we are actually in. If we are fighting for a magic switch, we may miss the smaller changes that can make today easier and life better.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-205-OV",
+          "sourceId": "AUD-205-OV",
+          "screenIds": [
+            "AC-004"
+          ],
+          "title": "Sound therapy bridge",
+          "type": "Bridge explainer",
+          "assetPath": "audio/acceptance/p_205_aud_205_ov_sound_therapy_bridge.m4a",
+          "transcript": "Sound therapy gives us a concrete example of acceptance and change working together. If we use sound only to cover tinnitus completely, we may feel better for a moment, but we are also avoiding the sound. When we set sound therapy like we recommend in this app, where we can hear the sound therapy and still have some awareness of tinnitus, we are accepting enough of the situation for the brain to learn while still making the environment easier to tolerate.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-205-OM",
+          "sourceId": "AUD-205-OM",
+          "screenIds": [
+            "AC-004"
+          ],
+          "title": "Overmasking as avoidance",
+          "type": "Short explainer",
+          "assetPath": "audio/acceptance/p_205_aud_205_om_overmasking_as_avoidance.m4a",
+          "transcript": "There may be moments when covering tinnitus is useful, but if the whole strategy is to never hear tinnitus at all, the brain loses opportunity to change. Sound therapy works best when it supports your life rather than becoming another way to hide from it.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-206-G",
+          "sourceId": "AUD-206-G",
+          "screenIds": [
+            "AC-005"
+          ],
+          "title": "Tug-of-War walkthrough",
+          "type": "Exercise walkthrough",
+          "assetPath": "audio/acceptance/p_206_aud_206_g_tug_of_war_walkthrough.m4a",
+          "transcript": "Imagine tinnitus on the other side of a rope. You pull harder and harder, trying to win, but the more energy you spend, the more exhausted and stuck you feel. Dropping the rope does not mean you like tinnitus or that tinnitus wins. It means you stop spending this moment on a fight that is not helping, and you free up energy for one next useful action.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-206-F1",
+          "sourceId": "AUD-206-F1",
+          "screenIds": [
+            "AC-005"
+          ],
+          "title": "Pulling the rope prompt",
+          "type": "Prompt",
+          "assetPath": "audio/acceptance/p_206_aud_206_f1_pulling_the_rope_prompt.m4a",
+          "transcript": "What does staying in the tug-of-war look like to you? What situations make you feel the need to fight against tinnitus?",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-206-F2",
+          "sourceId": "AUD-206-F2",
+          "screenIds": [
+            "AC-005"
+          ],
+          "title": "Dropping the rope prompt",
+          "type": "Prompt",
+          "assetPath": "audio/acceptance/p_206_aud_206_f2_dropping_the_rope_prompt.m4a",
+          "transcript": "Now ask what dropping the rope could look like for just one moment. What would you have more space to do if the struggle paused?",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-207-S",
+          "sourceId": "AUD-207-S",
+          "screenIds": [
+            "AC-006"
+          ],
+          "title": "Both-and thinking",
+          "type": "Short explainer",
+          "assetPath": "audio/acceptance/p_207_aud_207_s_both_and_thinking.m4a",
+          "transcript": "Two things can be true at the same time. Tinnitus can be present, and you can still choose something helpful. You can wish this were different, and still take care of yourself today.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-207-EX",
+          "sourceId": "AUD-207-EX",
+          "screenIds": [
+            "AC-006"
+          ],
+          "title": "Both-and examples",
+          "type": "Short explainer",
+          "assetPath": "audio/acceptance/p_207_aud_207_ex_both_and_examples.m4a",
+          "transcript": "Yes, my tinnitus is loud today, and I can use sound therapy to make it feel less intrusive. Yes, I wish I did not have tinnitus, and I can still go outside, connect with someone, or do something that matters.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-208-G",
+          "sourceId": "AUD-208-G",
+          "screenIds": [
+            "AC-006"
+          ],
+          "title": "Yes AND builder",
+          "type": "Exercise walkthrough",
+          "assetPath": "audio/acceptance/p_208_aud_208_g_yes_and_builder.m4a",
+          "transcript": "Start with a real frustration. Do not soften it and do not pretend it is easy. Then add the word AND, followed by one action you can take. The first half is acceptance. The second half is change.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-208-F2",
+          "sourceId": "AUD-208-F2",
+          "screenIds": [
+            "AC-006"
+          ],
+          "title": "AND prompt",
+          "type": "Prompt",
+          "assetPath": "audio/acceptance/p_208_aud_208_f2_and_prompt.m4a",
+          "transcript": "Now add one useful action. For example: and I can use a sound I like, take one breath, or do one meaningful thing anyway.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-208-R",
+          "sourceId": "AUD-208-R",
+          "screenIds": [
+            "AC-006"
+          ],
+          "title": "Yes AND reflection",
+          "type": "Prompt",
+          "assetPath": "audio/acceptance/p_208_aud_208_r_yes_and_reflection.m4a",
+          "transcript": "Notice what changes when the sentence holds both truths. It doesn\u2019t have to feel perfect for the statement to be useful.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "NEW-AUD-AC-VALUES-001",
+          "sourceId": "NEW-AUD-AC-VALUES-001",
+          "screenIds": [
+            "AC-007"
+          ],
+          "title": "Reconnection with What Matters",
+          "type": "Exercise walkthrough",
+          "assetPath": "audio/acceptance/ac_values_001_reconnection.m4a",
+          "transcript": "Pick one thing tinnitus has made smaller in your life. It could be music, sleep, social time, quiet work, or something else that matters to you. You do not need to fix the whole situation today. List a few possible steps, then choose the easiest useful step you could take now. Reconnection starts with one realistic action.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-213-TL",
+          "sourceId": "AUD-213-STEM",
+          "screenIds": [
+            "AC-008"
+          ],
+          "title": "Three Lines journal connection",
+          "type": "Short explainer",
+          "assetPath": "audio/acceptance/p_213_aud_213_three_lines_connection.m4a",
+          "transcript": "This can also connect to your Three Lines check-in. A few words about what you did for sound therapy, emotional regulation, or mindfulness may help you notice what supports you over time. This is an exercise we will dive deeper into throughout this app.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-214-OV",
+          "sourceId": "AUD-214-OV",
+          "screenIds": [
+            "AC-008"
+          ],
+          "title": "Acceptance to mindfulness bridge",
+          "type": "Bridge explainer",
+          "assetPath": "audio/acceptance/p_214_aud_214_ov_acceptance_to_mindfulness_bridge.m4a",
+          "transcript": "Mindfulness becomes easier when we understand acceptance first. Mindfulness is not a test where you sit in silence and suffer. It is the practice of noticing what is here, including tinnitus, without letting it become the only thing in awareness.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-214-DT",
+          "sourceId": "AUD-214-DT",
+          "screenIds": [
+            "AC-008"
+          ],
+          "title": "Acceptance to distress tolerance bridge",
+          "type": "Short explainer",
+          "assetPath": "audio/acceptance/p_214_aud_214_dt_acceptance_to_distress_tolerance.m4a",
+          "transcript": "When distress is high, acceptance may start very small: one pause, one breath, or one decision not to react immediately.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-215-OV",
+          "sourceId": "AUD-215-OV",
+          "screenIds": [
+            "AC-008"
+          ],
+          "title": "Save acceptance tools",
+          "type": "Short explainer",
+          "assetPath": "audio/acceptance/p_215_aud_215_ov_save_acceptance_tools.m4a",
+          "transcript": "Write down the statements and reflections that feel useful. You can come back to them later when you need a reminder.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-215-NEXT",
+          "sourceId": "AUD-215-NEXT",
+          "screenIds": [
+            "AC-008"
+          ],
+          "title": "Next step after acceptance",
+          "type": "Short explainer",
+          "assetPath": "audio/acceptance/p_215_aud_215_next_next_step_after_acceptance.m4a",
+          "transcript": "The next section builds on this directly. Mindfulness gives you a way to practice acceptance in real moments, without needing silence or perfection.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-211-A",
+          "sourceId": "AUD-211-A",
+          "screenIds": [
+            "UNPLACED"
+          ],
+          "title": "Acceptance definition",
+          "type": "Term snippet",
+          "assetPath": "audio/acceptance/p_211_aud_211_a_acceptance_definition.m4a",
+          "transcript": "Acceptance means acknowledging the present experience without spending all your energy suppressing it, fighting it, or denying it.",
+          "playbackContext": "Unplaced v10 glossary/term audio; needs placement review before build."
+        },
+        {
+          "audioId": "AUD-211-C",
+          "sourceId": "AUD-211-C",
+          "screenIds": [
+            "UNPLACED"
+          ],
+          "title": "Change definition",
+          "type": "Term snippet",
+          "assetPath": "audio/acceptance/p_211_aud_211_c_change_definition.m4a",
+          "transcript": "Change means taking active steps to improve your well-being, even if tinnitus is still present.",
+          "playbackContext": "Unplaced v10 glossary/term audio; needs placement review before build."
+        },
+        {
+          "audioId": "AUD-211-D",
+          "sourceId": "AUD-211-D",
+          "screenIds": [
+            "UNPLACED"
+          ],
+          "title": "Dialectical thinking definition",
+          "type": "Term snippet",
+          "assetPath": "audio/acceptance/p_211_aud_211_d_dialectical_thinking_definition.m4a",
+          "transcript": "Dialectical thinking is a formal way of saying that two truths can sit next to each other: yes, this is hard, and yes, I can still move forward.",
+          "playbackContext": "Unplaced v10 glossary/term audio; needs placement review before build."
+        },
+        {
+          "audioId": "AUD-211-EA",
+          "sourceId": "AUD-211-EA",
+          "screenIds": [
+            "UNPLACED"
+          ],
+          "title": "Experiential avoidance definition",
+          "type": "Term snippet",
+          "assetPath": "audio/acceptance/p_211_aud_211_ea_experiential_avoidance_definitio.m4a",
+          "transcript": "Experiential avoidance means trying to escape uncomfortable thoughts, feelings, or sensations in ways that may bring short-term relief but make life smaller over time.",
+          "playbackContext": "Unplaced v10 glossary/term audio; needs placement review before build."
+        },
+        {
+          "audioId": "AUD-213-OV",
+          "sourceId": "AUD-213-OV",
+          "screenIds": [
+            "UNPLACED"
+          ],
+          "title": "Acceptance practice loop",
+          "type": "Loop explainer",
+          "assetPath": "audio/acceptance/p_213_aud_213_ov_acceptance_practice_loop.m4a",
+          "transcript": "Notice the fight, name what you can influence, drop the rope for one moment, make a Yes AND statement, and choose one small step. This is not something you master once. It is something you return to whenever tinnitus starts taking over the whole room.",
+          "playbackContext": "Unplaced v10 glossary/term audio; needs placement review before build."
+        }
+      ],
+      "exercises": [
+        {
+          "exerciseId": "I-008",
+          "screenId": "AC-005",
+          "title": "Tug-of-War reflection",
+          "description": "Launches the later Tug-of-War reflection for noticing what keeps the struggle going and what dropping the rope could look like.",
+          "inputSummary": "Two text prompts",
+          "defaultCTAs": "Save; Skip; Repeat",
+          "route": "/placeholder/exercise/i-008",
+          "addToMyPlanBehavior": "Show Add to My Plan checkbox for exercises/tools; if already saved, show checked and allow removal."
+        },
+        {
+          "exerciseId": "I-009",
+          "screenId": "AC-006",
+          "title": "Yes AND builder",
+          "description": "Launches the later Yes AND builder for pairing an honest difficulty with one workable next action.",
+          "inputSummary": "Two-part text builder",
+          "defaultCTAs": "Save; Skip; Repeat",
+          "route": "/placeholder/exercise/i-009",
+          "addToMyPlanBehavior": "Show Add to My Plan checkbox for exercises/tools; if already saved, show checked and allow removal."
+        },
+        {
+          "exerciseId": "I-010",
+          "screenId": "AC-007",
+          "title": "Values action",
+          "description": "Launches the later values-action planner for reconnecting with one meaningful activity or role.",
+          "inputSummary": "Text fields for activity and next step",
+          "defaultCTAs": "Save; Skip; Repeat",
+          "route": "/placeholder/exercise/i-010",
+          "addToMyPlanBehavior": "Show Add to My Plan checkbox for exercises/tools; if already saved, show checked and allow removal."
+        }
+      ],
+      "safetyScopes": [],
+      "visuals": [
+        {
+          "visualId": "VIS-006",
+          "screenId": "AC-004",
+          "title": "Acceptance + Change overlap",
+          "status": "Placeholder approved for MVP",
+          "description": "Acceptance + Change overlap visual or interaction used to support the app content."
+        },
+        {
+          "visualId": "VIS-007",
+          "screenId": "AC-005",
+          "title": "Tug-of-War",
+          "status": "Placeholder approved for MVP",
+          "description": "Person pulling a rope to represent the struggle of fighting tinnitus."
+        },
+        {
+          "visualId": "VIS-008",
+          "screenId": "AC-006",
+          "title": "Yes AND card",
+          "status": "Placeholder approved for MVP",
+          "description": "Yes AND card visual or interaction used to support the app content."
+        },
+        {
+          "visualId": "VIS-032",
+          "screenId": "AC-005",
+          "title": "Tug-of-War image",
+          "status": "User-supplied asset expected",
+          "description": "Person pulling a rope to represent the struggle of fighting tinnitus."
+        }
+      ],
+      "relatedModules": [
+        {
+          "moduleId": "mindfulness",
+          "title": "Next: Mindfulness"
+        },
+        {
+          "moduleId": "about_tinnitus",
+          "title": "Back to About Tinnitus"
+        }
+      ]
+    },
+    {
+      "moduleId": "mindfulness",
+      "screenId": "MF-001",
+      "route": "/mindfulness/overview",
+      "title": "Mindfulness",
+      "systemImage": "leaf",
+      "purpose": "Frame mindfulness as attention flexibility, not silence or forced relaxation.",
+      "overviewMarkdown": "Mindfulness is attention flexibility. This module teaches short ways to notice the present moment, widen attention, practice without needing silence, and use the Mindfulness Annex when a quick practice would help.",
+      "sourceScreenIds": [
+        "MF-001",
+        "MF-002",
+        "MF-003",
+        "MF-004",
+        "MF-005",
+        "MF-006"
+      ],
+      "cards": [
+        {
+          "sectionId": "MF-001-section-01",
+          "screenId": "MF-001",
+          "title": "Attention flexibility",
+          "bodyMarkdown": "Mindfulness for tinnitus is attention flexibility. It is the skill of noticing where attention is, moving it on purpose, and returning without turning the return into a failure.\n\nThe goal is not to erase tinnitus. The goal is to build more choice in how you relate to tinnitus and everything else happening around it.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-300-OV"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "MF-001-section-02",
+          "screenId": "MF-001",
+          "title": "Misconceptions",
+          "bodyMarkdown": "Mindfulness is not forced relaxation, blanking the mind, liking the sound, or sitting in silence until you feel calm. It can be brief, practical, and done with sound present.\n\nNon-judgment means noticing \"there is irritation\" or \"there is fear\" without adding \"I am doing this wrong.\" That lighter touch is often the practice.",
+          "isExpandable": true,
+          "audioIds": [
+            "NEW-AUD-MF-ISNOT-001"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "MF-002-section-03",
+          "screenId": "MF-002",
+          "title": "Breathing practice",
+          "bodyMarkdown": "A Deep Breath Check-In is a short reset, not a breathing test. Notice one inhale, one exhale, and the contact of your body with the chair, floor, or bed.\n\nIf focusing on breathing feels uncomfortable, choose another anchor such as your feet, hands, or a steady external sound.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-301-G"
+          ],
+          "visualIds": [],
+          "safetyNote": "Stop if practice increases distress; switch tools"
+        },
+        {
+          "sectionId": "MF-003-section-04",
+          "screenId": "MF-003",
+          "title": "3-2-1 senses",
+          "bodyMarkdown": "3-2-1 Senses widens attention. Notice three things you can see, two things you can feel, and one thing you can hear besides tinnitus, or one sound in the room if tinnitus is the main sound.\n\nThis does not argue with tinnitus. It reminds the brain that more than tinnitus is available in the present moment.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-302-G"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "MF-004-section-05",
+          "screenId": "MF-004",
+          "title": "Mindful listening",
+          "bodyMarkdown": "Mindful Listening means listening broadly during an ordinary moment. You might notice nearby sounds, faraway sounds, quiet spaces between sounds, and tinnitus as one part of the sound field.\n\nThe practice is not to decide which sound is good or bad. It is to notice that attention can include more than one sound at a time.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-303-G"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "MF-005-section-06",
+          "screenId": "MF-005",
+          "title": "Sound shifting",
+          "bodyMarkdown": "Sound Shifting practices moving attention. You might gently notice tinnitus, then shift to an external sound, then to body contact, then back to the room.\n\nIf tinnitus feels too intense, shorten the practice or choose another module. Mindfulness should be adjustable, not something you force.",
+          "isExpandable": true,
+          "audioIds": [
+            "NEW-AUD-MF-SHIFT-001"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "MF-006-section-07",
+          "screenId": "MF-006",
+          "title": "Mindfulness plan",
+          "bodyMarkdown": "When mindfulness feels hard, that is information, not failure. Try a shorter practice, keep eyes open, use a stronger external anchor, or switch to a distress tolerance skill first.\n\nThe Mindfulness Annex is planned as a quick access area for these practices. This module gives the education behind the tools.",
+          "isExpandable": true,
+          "audioIds": [
+            "NEW-AUD-MF-HARD-001"
+          ],
+          "visualIds": [],
+          "safetyNote": "If hard, shorten/add sound/switch to distress tool"
+        }
+      ],
+      "audio": [
+        {
+          "audioId": "AUD-300-OV",
+          "sourceId": "AUD-300-OV",
+          "screenIds": [
+            "MF-001"
+          ],
+          "title": "Mindfulness",
+          "type": "Chapter overview",
+          "assetPath": "audio/mindfulness/p_300_aud_300_ov_mindfulness.m4a",
+          "transcript": "Mindfulness is not forcing silence, forcing relaxation, or staring at tinnitus. In this app, mindfulness means building attention flexibility: noticing what is happening, widening the field of awareness, and returning to the present moment.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "NEW-AUD-MF-ISNOT-001",
+          "sourceId": "NEW-AUD-MF-ISNOT-001",
+          "screenIds": [
+            "MF-001"
+          ],
+          "title": "What mindfulness is and is not",
+          "type": "Short explainer",
+          "assetPath": "audio/mindfulness/mf_isnot_001_what_mindfulness_is_not.m4a",
+          "transcript": "Mindfulness does not have to mean sitting in silence, forcing relaxation, or pretending tinnitus is not there. It can be one breath, one moment of noticing, or one practice of widening attention. For tinnitus, mindfulness is about flexibility: letting tinnitus be one part of awareness, not the whole field.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-301-G",
+          "sourceId": "AUD-301-G",
+          "screenIds": [
+            "MF-002"
+          ],
+          "title": "Deep Breath Check-In",
+          "type": "Guided practice",
+          "assetPath": "audio/mindfulness/p_301_aud_301_g_deep_breath_check_in.m4a",
+          "transcript": "You are already breathing, so we may as well start there. Take one slower breath in, let it out gently, and notice what changes in your body. You do not need to make tinnitus disappear. Just notice this one breath.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-302-G",
+          "sourceId": "AUD-302-G",
+          "screenIds": [
+            "MF-003"
+          ],
+          "title": "3-2-1 Senses",
+          "type": "Guided practice",
+          "assetPath": "audio/mindfulness/p_302_aud_302_g_3_2_1_senses.m4a",
+          "transcript": "Look for three things you can see, two things you can feel, and one sound you can hear outside of tinnitus. This is not a test. It is a way to remind your attention that more is happening than tinnitus alone.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-303-G",
+          "sourceId": "AUD-303-G",
+          "screenIds": [
+            "MF-004"
+          ],
+          "title": "Mindful Listening",
+          "type": "Guided practice",
+          "assetPath": "audio/mindfulness/p_303_aud_303_g_mindful_listening.m4a",
+          "transcript": "Choose a simple activity, like making coffee or walking through a room. Listen broadly. Notice environmental sounds, body sounds, and tinnitus if it is present. Label tinnitus neutrally as one sound among others.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "NEW-AUD-MF-SHIFT-001",
+          "sourceId": "NEW-AUD-MF-SHIFT-001",
+          "screenIds": [
+            "MF-005"
+          ],
+          "title": "Sound Shifting practice",
+          "type": "Guided practice",
+          "assetPath": "audio/mindfulness/mf_shift_001_sound_shifting.m4a",
+          "transcript": "Choose a comfortable outside sound, such as a fan, water, rain, or another sound you can hear easily. Start by listening to that sound. Then, if tinnitus is present, gently notice it for a moment without arguing with it. Shift back to the outside sound. Then widen your attention and notice both sounds as part of the same environment. The goal is not to win or force tinnitus away. The goal is to practice moving attention on purpose.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "NEW-AUD-MF-HARD-001",
+          "sourceId": "NEW-AUD-MF-HARD-001",
+          "screenIds": [
+            "MF-006"
+          ],
+          "title": "When mindfulness feels hard",
+          "type": "Short explainer",
+          "assetPath": "audio/mindfulness/mf_hard_001_when_mindfulness_feels_hard.m4a",
+          "transcript": "If mindfulness feels hard, that does not mean you are doing it wrong. Make the practice shorter, keep your eyes open, add comfortable sound, or switch to a simple 3-2-1 senses exercise. Then choose when mindfulness fits best for you: morning, evening, or brief moments throughout the day.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        }
+      ],
+      "exercises": [
+        {
+          "exerciseId": "I-011",
+          "screenId": "MF-002",
+          "title": "Deep breath practice",
+          "description": "Launches the later Deep Breath Check-In practice. In this stage it remains a placeholder route without saved results.",
+          "inputSummary": "Play + mark done/favorite",
+          "defaultCTAs": "Save; Skip; Repeat",
+          "route": "/placeholder/exercise/i-011",
+          "addToMyPlanBehavior": "Show Add to My Plan checkbox for exercises/tools; if already saved, show checked and allow removal."
+        },
+        {
+          "exerciseId": "I-012",
+          "screenId": "MF-003",
+          "title": "3-2-1 senses",
+          "description": "Launches the later 3-2-1 Senses practice for widening attention to the present moment.",
+          "inputSummary": "Guided steps + optional note",
+          "defaultCTAs": "Save; Skip; Repeat",
+          "route": "/placeholder/exercise/i-012",
+          "addToMyPlanBehavior": "Show Add to My Plan checkbox for exercises/tools; if already saved, show checked and allow removal."
+        },
+        {
+          "exerciseId": "I-013",
+          "screenId": "MF-004",
+          "title": "Mindful listening reflection",
+          "description": "Launches the later mindful listening reflection for noticing tinnitus as one part of the sound field.",
+          "inputSummary": "Activity choice + reflection",
+          "defaultCTAs": "Save; Skip; Repeat",
+          "route": "/placeholder/exercise/i-013",
+          "addToMyPlanBehavior": "Show Add to My Plan checkbox for exercises/tools; if already saved, show checked and allow removal."
+        },
+        {
+          "exerciseId": "I-014",
+          "screenId": "MF-005",
+          "title": "Sound shifting reflection",
+          "description": "Launches the later sound shifting reflection for moving attention between tinnitus, external sound, and body contact.",
+          "inputSummary": "Guided practice + reflection",
+          "defaultCTAs": "Save; Skip; Repeat",
+          "route": "/placeholder/exercise/i-014",
+          "addToMyPlanBehavior": "Show Add to My Plan checkbox for exercises/tools; if already saved, show checked and allow removal."
+        },
+        {
+          "exerciseId": "I-015",
+          "screenId": "MF-006",
+          "title": "Mindfulness plan",
+          "description": "Launches the later mindfulness plan for choosing a short practice and a realistic time to use it.",
+          "inputSummary": "Select preferred practices/times",
+          "defaultCTAs": "Save; Skip; Repeat",
+          "route": "/placeholder/exercise/i-015",
+          "addToMyPlanBehavior": "Show Add to My Plan checkbox for exercises/tools; if already saved, show checked and allow removal."
+        }
+      ],
+      "safetyScopes": [
+        {
+          "safetyScopeId": "MF-002-safety-01",
+          "screenId": "MF-002",
+          "title": "Safety note: Breathing practice",
+          "bodyMarkdown": "Stop if practice increases distress; switch tools"
+        },
+        {
+          "safetyScopeId": "MF-006-safety-02",
+          "screenId": "MF-006",
+          "title": "Safety note: Mindfulness plan",
+          "bodyMarkdown": "If hard, shorten/add sound/switch to distress tool"
+        }
+      ],
+      "visuals": [
+        {
+          "visualId": "VIS-009",
+          "screenId": "MF-002",
+          "title": "Breathing pacer",
+          "status": "Placeholder approved for MVP",
+          "description": "Breathing pacer showing inhale, hold, and exhale timing."
+        },
+        {
+          "visualId": "VIS-010",
+          "screenId": "MF-003",
+          "title": "3-2-1 senses card",
+          "status": "Placeholder approved for MVP",
+          "description": "3-2-1 senses card visual or interaction used to support the app content."
+        },
+        {
+          "visualId": "VIS-011",
+          "screenId": "MF-004",
+          "title": "Mindful listening card",
+          "status": "Placeholder approved for MVP",
+          "description": "Mindful listening card visual or interaction used to support the app content."
+        },
+        {
+          "visualId": "VIS-012",
+          "screenId": "MF-005",
+          "title": "Sound shifting card",
+          "status": "Placeholder approved for MVP",
+          "description": "Sound shifting card visual or interaction used to support the app content."
+        },
+        {
+          "visualId": "VIS-031",
+          "screenId": "MF-002 / MA-001",
+          "title": "Breathing pacer",
+          "status": "Placeholder approved for MVP",
+          "description": "Breathing pacer showing inhale, hold, and exhale timing."
+        }
+      ],
+      "relatedModules": [
+        {
+          "moduleId": "distress_tolerance",
+          "title": "Next: Distress Tolerance"
+        },
+        {
+          "moduleId": "about_tinnitus",
+          "title": "Back to About Tinnitus"
+        }
+      ]
+    },
+    {
+      "moduleId": "distress_tolerance",
+      "screenId": "DT-001",
+      "route": "/distress/safety-overview",
+      "title": "Distress Tolerance",
+      "systemImage": "lifepreserver",
+      "purpose": "Explain that distress tools cool things down, but crisis/unsafe situations require direct help.",
+      "overviewMarkdown": "Distress tolerance skills are for cooling down intense moments so you can choose what to do next. This module covers safety boundaries, STOP, TIPP, temperature resets, grounding, and a short Skill Response Sheet.",
+      "sourceScreenIds": [
+        "DT-001",
+        "DT-002",
+        "DT-003",
+        "DT-004",
+        "DT-005",
+        "DT-006"
+      ],
+      "cards": [
+        {
+          "sectionId": "DT-001-section-01",
+          "screenId": "DT-001",
+          "title": "Safety boundary",
+          "bodyMarkdown": "Distress tolerance skills are for moments that feel hot, urgent, or overwhelming. They are not crisis services and they do not replace mental health care, emergency care, or support from people who can help you stay safe.\n\nIf you feel at risk of harming yourself or someone else, use local emergency services or a crisis support resource now. The app is educational and cannot respond to emergencies.",
+          "isExpandable": true,
+          "audioIds": [
+            "NEW-AUD-DT-SAFETY-001"
+          ],
+          "visualIds": [],
+          "safetyNote": "If unsafe/mental health crisis, seek immediate help"
+        },
+        {
+          "sectionId": "DT-001-section-02",
+          "screenId": "DT-001",
+          "title": "Fluctuation language",
+          "bodyMarkdown": "A hard tinnitus moment can feel like a spike, but it may be more useful to call it a fluctuation. Fluctuation language leaves room for change: this is louder or harder right now, not proof that the future is fixed.\n\nThe purpose of distress tolerance is to cool the moment enough that you can choose the next safe step.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-400-OV",
+            "AUD-401-S"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "DT-002-section-03",
+          "screenId": "DT-002",
+          "title": "STOP card",
+          "bodyMarkdown": "STOP is a pause skill: Stop, Take a step back, Observe, and Proceed mindfully. It creates a small gap between the alarm and the action.\n\nIn tinnitus moments, STOP might mean pausing before checking, arguing, overmasking, canceling, or sending a message from panic.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-403-G"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "DT-003-section-04",
+          "screenId": "DT-003",
+          "title": "Temperature reset",
+          "bodyMarkdown": "A Temperature Reset uses a safe, noticeable sensation to help shift attention and body arousal. Cool water on the face, holding a wrapped cool object, or stepping into cooler air may be enough.\n\nUse comfort and safety as the boundary. The goal is a noticeable reset, not pain, numbness, or endurance.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-402-G"
+          ],
+          "visualIds": [],
+          "safetyNote": "Noticeable shift, not pain"
+        },
+        {
+          "sectionId": "DT-003-section-05",
+          "screenId": "DT-003",
+          "title": "Ice cube",
+          "bodyMarkdown": "The Ice Cube Reset is a short version of temperature grounding. Hold an ice cube wrapped in cloth or use another safe cool object, then notice temperature, texture, and the way the sensation changes.\n\nStop if it hurts or feels unsafe. This is a grounding option, not a test of toughness.",
+          "isExpandable": true,
+          "audioIds": [
+            "NEW-AUD-DT-ICE-001"
+          ],
+          "visualIds": [],
+          "safetyNote": "Stop if painful/unsafe"
+        },
+        {
+          "sectionId": "DT-004-section-06",
+          "screenId": "DT-004",
+          "title": "TIPP card",
+          "bodyMarkdown": "TIPP stands for Temperature, Intense movement when safe, Paced breathing, and Paired muscle relaxation. These skills aim at body arousal first, because intense emotion is not only a thought problem.\n\nChoose the part that fits the moment and your health. Skip any movement or breathing pattern that is not safe for you.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-404-G"
+          ],
+          "visualIds": [],
+          "safetyNote": "Movement only if safe"
+        },
+        {
+          "sectionId": "DT-005-section-07",
+          "screenId": "DT-005",
+          "title": "Frozen orange",
+          "bodyMarkdown": "Frozen Orange Grounding uses several senses at once: cool temperature, texture, scent, color, and the movement of peeling or holding the orange.\n\nThe point is to give attention something concrete and safe to contact while the wave passes. Substitute another safe object if an orange is not available.",
+          "isExpandable": true,
+          "audioIds": [
+            "NEW-AUD-DT-ORANGE-001"
+          ],
+          "visualIds": [],
+          "safetyNote": "No pain; substitute safe object if needed"
+        },
+        {
+          "sectionId": "DT-006-section-08",
+          "screenId": "DT-006",
+          "title": "Skill response",
+          "bodyMarkdown": "The Skill Response Sheet is a short after-action review: what happened, what skill did I try, what changed even a little, and what might I try next time?\n\nThe interactive sheet is planned for a later stage. For now, this card previews the idea and bridges to Cognitive Reframing, where thoughts and interpretations get a closer look.",
+          "isExpandable": true,
+          "audioIds": [
+            "NEW-AUD-DT-SKILL-001"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        }
+      ],
+      "audio": [
+        {
+          "audioId": "NEW-AUD-DT-SAFETY-001",
+          "sourceId": "NEW-AUD-DT-SAFETY-001",
+          "screenIds": [
+            "DT-001"
+          ],
+          "title": "Distress is not the same as danger",
+          "type": "Scope/safety explainer",
+          "assetPath": "audio/distress/dt_safety_001_distress_not_danger.m4a",
+          "transcript": "Distress tolerance skills are for moments that feel intense, frustrating, or overwhelming. They are not a substitute for help if you feel unsafe or are in a mental health crisis. If safety is the concern, the goal is not to practice perfectly. The goal is to get direct support right away.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-400-OV",
+          "sourceId": "AUD-400-OV",
+          "screenIds": [
+            "DT-001"
+          ],
+          "title": "Distress Tolerance",
+          "type": "Chapter overview",
+          "assetPath": "audio/distress/p_400_aud_400_ov_distress_tolerance.m4a",
+          "transcript": "Distress tolerance skills are for the moments when tinnitus feels overwhelming. These skills do not need to solve tinnitus. Their job is to help you pause, reduce the intensity of the moment, and avoid reacting in a way that makes things harder.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-401-S",
+          "sourceId": "AUD-401-S",
+          "screenIds": [
+            "DT-001"
+          ],
+          "title": "Fluctuations",
+          "type": "Short explainer",
+          "assetPath": "audio/distress/p_401_aud_401_s_fluctuations.m4a",
+          "transcript": "The word fluctuation reminds us that tinnitus can change. A difficult moment does not automatically mean a permanent setback.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-403-G",
+          "sourceId": "AUD-403-G",
+          "screenIds": [
+            "DT-002"
+          ],
+          "title": "STOP",
+          "type": "Guided practice",
+          "assetPath": "audio/distress/p_403_aud_403_g_stop.m4a",
+          "transcript": "Stop. Take a step back. Observe what is happening in your body, thoughts, emotions, and urges. Then proceed mindfully by choosing the next action that helps rather than the first reaction that appears.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-402-G",
+          "sourceId": "AUD-402-G",
+          "screenIds": [
+            "DT-003"
+          ],
+          "title": "Temperature Reset",
+          "type": "Guided practice",
+          "assetPath": "audio/distress/p_402_aud_402_g_temperature_reset.m4a",
+          "transcript": "Temperature changes can grab our attention. The goal of this is changing the perception that we are having. Definitely not causing pain. We are bringing awareness to one of our senses.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "NEW-AUD-DT-ICE-001",
+          "sourceId": "NEW-AUD-DT-ICE-001",
+          "screenIds": [
+            "DT-003"
+          ],
+          "title": "Grab an ice cube",
+          "type": "Guided mini-exercise",
+          "assetPath": "audio/distress/dt_ice_001_ice_cube.m4a",
+          "transcript": "For a quick temperature reset, hold an ice cube, a cold pack, or something cool in your hand. Notice the temperature, texture, and the way your attention shifts. This is not about causing pain. Set it down if it hurts. The purpose is to give your body a clear signal that helps the moment slow down.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-404-G",
+          "sourceId": "AUD-404-G",
+          "screenIds": [
+            "DT-004"
+          ],
+          "title": "TIPP",
+          "type": "Exercise walkthrough",
+          "assetPath": "audio/distress/p_404_aud_404_g_tipp.m4a",
+          "transcript": "TIPP uses the body to help calm the mind: temperature, intense movement when appropriate, paced breathing, and paired muscle relaxation. Choose the safest option for your body and your situation.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "NEW-AUD-DT-ORANGE-001",
+          "sourceId": "NEW-AUD-DT-ORANGE-001",
+          "screenIds": [
+            "DT-005"
+          ],
+          "title": "Frozen orange sensory grounding",
+          "type": "Guided mini-exercise",
+          "assetPath": "audio/distress/dt_orange_001_frozen_orange.m4a",
+          "transcript": "A frozen orange or another piece of citrus can become a simple grounding tool. Hold it and notice the cold, the texture, the weight, and any scent that appears as it warms. As the surface changes, let your attention follow those details. The point is not pain or endurance. The point is using safe, noticeable sensory information to step out of the tinnitus tornado.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "NEW-AUD-DT-SKILL-001",
+          "sourceId": "NEW-AUD-DT-SKILL-001",
+          "screenIds": [
+            "DT-006"
+          ],
+          "title": "Skill response sheet",
+          "type": "Exercise walkthrough",
+          "assetPath": "audio/distress/dt_skill_001_response_sheet.m4a",
+          "transcript": "After using a distress skill, write only a few words. What was happening? What skill did you use? Did it help a little, a lot, or not right now? This is not a graded assignment. It is a way to learn which tools are useful and to fill in the emotional regulation line when it fits.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        }
+      ],
+      "exercises": [
+        {
+          "exerciseId": "I-016",
+          "screenId": "DT-002",
+          "title": "STOP practice",
+          "description": "Launches the later STOP practice for pausing before reacting during a hard tinnitus moment.",
+          "inputSummary": "Tap through STOP steps + optional note",
+          "defaultCTAs": "Save; Skip; Repeat",
+          "route": "/placeholder/exercise/i-016",
+          "addToMyPlanBehavior": "Show Add to My Plan checkbox for exercises/tools; if already saved, show checked and allow removal."
+        },
+        {
+          "exerciseId": "I-017",
+          "screenId": "DT-003",
+          "title": "Temperature/Ice practice",
+          "description": "Launches the later temperature or ice reset practice with comfort and safety boundaries.",
+          "inputSummary": "Choose tool + mark used",
+          "defaultCTAs": "Save; Skip; Repeat",
+          "route": "/placeholder/exercise/i-017",
+          "addToMyPlanBehavior": "Show Add to My Plan checkbox for exercises/tools; if already saved, show checked and allow removal."
+        },
+        {
+          "exerciseId": "I-018",
+          "screenId": "DT-004",
+          "title": "TIPP practice",
+          "description": "Launches the later TIPP practice for choosing a safe body-based reset skill.",
+          "inputSummary": "Choose T/I/P/P component + optional note",
+          "defaultCTAs": "Save; Skip; Repeat",
+          "route": "/placeholder/exercise/i-018",
+          "addToMyPlanBehavior": "Show Add to My Plan checkbox for exercises/tools; if already saved, show checked and allow removal."
+        },
+        {
+          "exerciseId": "I-019",
+          "screenId": "DT-005",
+          "title": "Frozen orange practice",
+          "description": "Launches the later frozen orange grounding practice using temperature, texture, scent, and sight.",
+          "inputSummary": "Mark used + optional note",
+          "defaultCTAs": "Save; Skip; Repeat",
+          "route": "/placeholder/exercise/i-019",
+          "addToMyPlanBehavior": "Show Add to My Plan checkbox for exercises/tools; if already saved, show checked and allow removal."
+        },
+        {
+          "exerciseId": "I-020",
+          "screenId": "DT-006",
+          "title": "Skill response sheet",
+          "description": "Launches the later Skill Response Sheet for reviewing what happened, what skill was tried, and what helped.",
+          "inputSummary": "Situation + skill + effect",
+          "defaultCTAs": "Save; Skip; Repeat",
+          "route": "/placeholder/exercise/i-020",
+          "addToMyPlanBehavior": "Show Add to My Plan checkbox for exercises/tools; if already saved, show checked and allow removal."
+        }
+      ],
+      "safetyScopes": [
+        {
+          "safetyScopeId": "DT-001-safety-01",
+          "screenId": "DT-001",
+          "title": "Safety note: Safety boundary",
+          "bodyMarkdown": "If unsafe/mental health crisis, seek immediate help"
+        },
+        {
+          "safetyScopeId": "DT-003-safety-02",
+          "screenId": "DT-003",
+          "title": "Safety note: Temperature reset",
+          "bodyMarkdown": "Noticeable shift, not pain"
+        },
+        {
+          "safetyScopeId": "DT-003-safety-03",
+          "screenId": "DT-003",
+          "title": "Safety note: Ice cube",
+          "bodyMarkdown": "Stop if painful/unsafe"
+        },
+        {
+          "safetyScopeId": "DT-004-safety-04",
+          "screenId": "DT-004",
+          "title": "Safety note: TIPP card",
+          "bodyMarkdown": "Movement only if safe"
+        },
+        {
+          "safetyScopeId": "DT-005-safety-05",
+          "screenId": "DT-005",
+          "title": "Safety note: Frozen orange",
+          "bodyMarkdown": "No pain; substitute safe object if needed"
+        }
+      ],
+      "visuals": [
+        {
+          "visualId": "VIS-013",
+          "screenId": "DT-002",
+          "title": "STOP card",
+          "status": "Placeholder approved for MVP",
+          "description": "STOP card visual or interaction used to support the app content."
+        },
+        {
+          "visualId": "VIS-014",
+          "screenId": "DT-004",
+          "title": "TIPP card",
+          "status": "Placeholder approved for MVP",
+          "description": "TIPP card visual or interaction used to support the app content."
+        },
+        {
+          "visualId": "VIS-015",
+          "screenId": "DT-003",
+          "title": "Ice cube visual",
+          "status": "Placeholder approved for MVP",
+          "description": "Ice cube visual visual or interaction used to support the app content."
+        },
+        {
+          "visualId": "VIS-016",
+          "screenId": "DT-005",
+          "title": "Frozen orange visual",
+          "status": "Placeholder approved for MVP",
+          "description": "Frozen orange visual visual or interaction used to support the app content."
+        }
+      ],
+      "relatedModules": [
+        {
+          "moduleId": "cognitive_reframing",
+          "title": "Next: Cognitive Reframing"
+        },
+        {
+          "moduleId": "about_tinnitus",
+          "title": "Back to About Tinnitus"
+        }
+      ]
+    },
+    {
+      "moduleId": "cognitive_reframing",
+      "screenId": "CR-001",
+      "route": "/cognitive/overview",
+      "title": "Cognitive Reframing",
+      "systemImage": "brain.head.profile",
+      "purpose": "Explain reframing as reality-checking, not forced positivity.",
+      "overviewMarkdown": "Reframing is reality-checking, not forced positivity. This module introduces the thought-feeling-behavior loop, common thinking shortcuts, evidence checks, balanced reframes, and practice expectations.",
+      "sourceScreenIds": [
+        "CR-001",
+        "CR-002",
+        "CR-003",
+        "CR-004",
+        "CR-005",
+        "CR-006"
+      ],
+      "cards": [
+        {
+          "sectionId": "CR-001-section-01",
+          "screenId": "CR-001",
+          "title": "Reframing overview",
+          "bodyMarkdown": "Cognitive reframing comes from CBT-style skills. It looks at the loop between thoughts, feelings, body reactions, and behaviors.\n\nFor tinnitus, the meaning attached to the sound can make the moment heavier or lighter. Reframing helps test that meaning without pretending the sound is pleasant.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-500-OV",
+            "AUD-501-S",
+            "AUD-505-TINNITUS",
+            "AUD-514-NOT-POSITIVE"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "CR-002-section-02",
+          "screenId": "CR-002",
+          "title": "CBT loop visual",
+          "bodyMarkdown": "A thought can trigger emotion, emotion can change attention, attention can change behavior, and behavior can feed the next thought. With tinnitus, a thought like \"I will never cope\" may lead to scanning, withdrawal, or panic.\n\nThe loop is not your fault. It is a pattern you can learn to notice and influence.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-502-LOOP",
+            "AUD-502-EXAMPLE"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "CR-002-section-03",
+          "screenId": "CR-002",
+          "title": "Shortcuts and bridges",
+          "bodyMarkdown": "The mind uses shortcuts, especially under stress. Shortcuts can sound certain even when they are guesses: always, never, ruined, unsafe, hopeless.\n\nThoughts are not facts. They are mental events that can be checked, softened, or balanced after the moment is cool enough to think.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-503-SHORTCUT",
+            "AUD-503-REFLECT",
+            "AUD-504-FACTS",
+            "AUD-506-DT-BRIDGE",
+            "AUD-507-MIND-BRIDGE"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "CR-003-section-04",
+          "screenId": "CR-003",
+          "title": "Distortion library",
+          "bodyMarkdown": "Common distortion patterns include catastrophizing, all-or-nothing thinking, fortune telling, mind reading, filtering out positives, should statements, emotional reasoning, and overgeneralizing.\n\nA distortion label is not an insult. It is a handle that helps you ask, \"What is my mind doing right now, and is there another fair way to see this?\"",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-508-LIBRARY",
+            "AUD-508-AON",
+            "AUD-508-OVER",
+            "AUD-508-FILTER",
+            "AUD-508-MINDREAD",
+            "AUD-508-MIN",
+            "AUD-508-CATA",
+            "AUD-508-CONTROL",
+            "AUD-508-REWARD",
+            "AUD-508-LABEL",
+            "AUD-508-PERSON"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "CR-004-section-05",
+          "screenId": "CR-004",
+          "title": "Loud morning example",
+          "bodyMarkdown": "Example: \"Tinnitus is loud this morning, so the whole day is ruined.\" Evidence for: it is loud and uncomfortable right now. Evidence against: other loud mornings have shifted, and some parts of the day may still be workable.\n\nA balanced reframe might be: \"This is a hard start, and I can use sound support, take the morning one block at a time, and reassess later.\"",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-509-LOUD-MORNING"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "CR-005-section-06",
+          "screenId": "CR-005",
+          "title": "Distortion Detective",
+          "bodyMarkdown": "Distortion Detective is a worksheet idea: write the thought, choose a possible thinking pattern, list evidence for and against, and write one balanced reframe.\n\nBalanced does not mean cheerful. It means more complete, less extreme, and more useful for the next action.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-510-DISTORTION-DETECTIVE",
+            "AUD-510-LABEL",
+            "AUD-510-EVIDENCE",
+            "AUD-510-BALANCED",
+            "AUD-511-EVIDENCE-CONCEPT",
+            "AUD-512-EVIDENCE-TABLE",
+            "AUD-513-REFRAME"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "CR-006-section-07",
+          "screenId": "CR-006",
+          "title": "Practice expectations",
+          "bodyMarkdown": "Reframing takes repetition. You may catch one thought out of twenty at first, and that still counts. The goal is not perfect thinking; it is more moments where you notice the pattern before it runs the whole day.\n\nThis module bridges to Confidence and Communication because self-compassion often makes reframing easier to practice.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-515-ONE-IN-TWENTY",
+            "AUD-516-TOP-PATTERNS",
+            "AUD-519-SUCCESS",
+            "AUD-520-BEYOND",
+            "AUD-521-WHACK",
+            "AUD-522-MYPLAN",
+            "AUD-523-BRIDGE"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        }
+      ],
+      "audio": [
+        {
+          "audioId": "AUD-500-OV",
+          "sourceId": "AUD-500-OV",
+          "screenIds": [
+            "CR-001"
+          ],
+          "title": "Cognitive Reframing",
+          "type": "Chapter overview",
+          "assetPath": "audio/cognitive/p_500_aud_500_ov_cognitive_reframing.m4a",
+          "transcript": "Cognitive reframing is not forced positivity. It is a way of slowing down a thought, checking whether it is accurate, and finding a more balanced way to respond. Tinnitus may be real and difficult, and your mind may still add a story that makes the moment feel even more threatening.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-501-S",
+          "sourceId": "AUD-501-S",
+          "screenIds": [
+            "CR-001"
+          ],
+          "title": "CBT Context",
+          "type": "Short explainer",
+          "assetPath": "audio/cognitive/p_501_aud_501_s_cbt_context.m4a",
+          "transcript": "CBT is built around a simple idea: what we think, what we feel, and what we do all influence each other. In this app, we are using one practical CBT skill: checking the thoughts that make tinnitus distress feel bigger.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-505-TINNITUS",
+          "sourceId": "AUD-505-TINNITUS",
+          "screenIds": [
+            "CR-001"
+          ],
+          "title": "Why This Matters for Tinnitus",
+          "type": "Short explainer",
+          "assetPath": "audio/cognitive/p_505_aud_505_tinnitus_why_this_matters_for_tinnitus.m4a",
+          "transcript": "Tinnitus is not only the sound. It is also the meaning your brain attaches to the sound. If the meaning is danger, helplessness, or failure, distress can grow quickly. Reframing helps test that meaning.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-514-NOT-POSITIVE",
+          "sourceId": "AUD-514-NOT-POSITIVE",
+          "screenIds": [
+            "CR-001"
+          ],
+          "title": "Not Forced Positivity",
+          "type": "Short explainer",
+          "assetPath": "audio/cognitive/p_514_aud_514_not_positive_not_forced_positivity.m4a",
+          "transcript": "This is not about telling yourself tinnitus is wonderful. That would probably feel fake, because it is. Reframing is about accuracy: this is unpleasant, and it does not have to control every choice I make today.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-502-LOOP",
+          "sourceId": "AUD-502-LOOP",
+          "screenIds": [
+            "CR-002"
+          ],
+          "title": "Thoughts Feelings Behaviors",
+          "type": "Short explainer",
+          "assetPath": "audio/cognitive/p_502_aud_502_loop_thoughts_feelings_behaviors.m4a",
+          "transcript": "Awareness of tinnitus can trigger a thought. That thought can change your emotions. Those emotions can shape what you do next. Then that behavior can reinforce the next thought. Reframing gives you an off-ramp in that loop.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-502-EXAMPLE",
+          "sourceId": "AUD-502-EXAMPLE",
+          "screenIds": [
+            "CR-002"
+          ],
+          "title": "Thoughts Feelings Behaviors Example",
+          "type": "Example walkthrough",
+          "assetPath": "audio/cognitive/p_502_aud_502_example_thoughts_feelings_behaviors_exam.m4a",
+          "transcript": "For example: tinnitus feels loud. The thought is, today is ruined. The feeling is dread. The behavior may be withdrawing, checking, or searching for a quick fix. The new goal is to pause that chain before it takes over the whole day.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-503-SHORTCUT",
+          "sourceId": "AUD-503-SHORTCUT",
+          "screenIds": [
+            "CR-002"
+          ],
+          "title": "Automatic Shortcuts",
+          "type": "Short explainer",
+          "assetPath": "audio/cognitive/p_503_aud_503_shortcut_automatic_shortcuts.m4a",
+          "transcript": "Your thoughts use shortcuts all the time. That is normal. The problem is that stress can make those shortcuts too fast and too certain, especially when tinnitus already feels threatening.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-503-REFLECT",
+          "sourceId": "AUD-503-REFLECT",
+          "screenIds": [
+            "CR-002"
+          ],
+          "title": "Jumping to Conclusions Reflection",
+          "type": "Short explainer",
+          "assetPath": "audio/cognitive/p_503_aud_503_reflect_jumping_to_conclusions_reflectio.m4a",
+          "transcript": "Almost everyone has made a decision in the moment, then later realized they jumped too quickly. Cognitive reframing is a way to catch that process earlier, and to recognize the pattern that brought it up.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-504-FACTS",
+          "sourceId": "AUD-504-FACTS",
+          "screenIds": [
+            "CR-002"
+          ],
+          "title": "Thoughts Are Not Facts",
+          "type": "Short explainer",
+          "assetPath": "audio/cognitive/p_504_aud_504_facts_thoughts_are_not_facts.m4a",
+          "transcript": "A thought can feel true before it has been checked. In this section, we are not fighting thoughts or pretending they are are inappropriat. We are asking whether they are accurate enough to guide what happens next.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-506-DT-BRIDGE",
+          "sourceId": "AUD-506-DT-BRIDGE",
+          "screenIds": [
+            "CR-002"
+          ],
+          "title": "Distress Bridge",
+          "type": "Short explainer",
+          "assetPath": "audio/cognitive/p_506_aud_506_dt_bridge_distress_bridge.m4a",
+          "transcript": "If distress is high, do not force yourself into a thought worksheet. First use a distress tolerance tool to cool things down. Reframing works better when the tornado has slowed enough for thinking to come back online.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-507-MIND-BRIDGE",
+          "sourceId": "AUD-507-MIND-BRIDGE",
+          "screenIds": [
+            "CR-002"
+          ],
+          "title": "Mindfulness Bridge",
+          "type": "Short explainer",
+          "assetPath": "audio/cognitive/p_507_aud_507_mind_bridge_mindfulness_bridge.m4a",
+          "transcript": "Mindfulness helps you notice the thought before you react to it. Cognitive reframing then asks, is this thought complete, accurate, and useful right now?",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-508-LIBRARY",
+          "sourceId": "AUD-508-LIBRARY",
+          "screenIds": [
+            "CR-003"
+          ],
+          "title": "Distortion Library",
+          "type": "Short explainer",
+          "assetPath": "audio/cognitive/p_508_aud_508_library_distortion_library.m4a",
+          "transcript": "Cognitive distortions are common thinking shortcuts. They are not signs that you are doing anything wrong. They are patterns to notice. Once you can name a pattern, it becomes easier to question it.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-508-AON",
+          "sourceId": "AUD-508-AON",
+          "screenIds": [
+            "CR-003"
+          ],
+          "title": "All-or-Nothing Thinking",
+          "type": "Short explainer",
+          "assetPath": "audio/cognitive/p_508_aud_508_aon_all_or_nothing_thinking.m4a",
+          "transcript": "All-or-nothing thinking turns a complicated situation into two choices: perfect or ruined. Tinnitus rarely works that way. A difficult sound day does not mean the whole day, week, or future is lost.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-508-OVER",
+          "sourceId": "AUD-508-OVER",
+          "screenIds": [
+            "CR-003"
+          ],
+          "title": "Overgeneralization",
+          "type": "Short explainer",
+          "assetPath": "audio/cognitive/p_508_aud_508_over_overgeneralization.m4a",
+          "transcript": "Overgeneralization takes one moment and stretches it too far. My tinnitus is loud today does not automatically mean every day will feel this way.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-508-FILTER",
+          "sourceId": "AUD-508-FILTER",
+          "screenIds": [
+            "CR-003"
+          ],
+          "title": "Filtering",
+          "type": "Short explainer",
+          "assetPath": "audio/cognitive/p_508_aud_508_filter_filtering.m4a",
+          "transcript": "Filtering means your mind locks onto the evidence that supports distress and filters out everything else. Reframing asks what else is true too.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-508-MINDREAD",
+          "sourceId": "AUD-508-MINDREAD",
+          "screenIds": [
+            "CR-003"
+          ],
+          "title": "Mind Reading",
+          "type": "Short explainer",
+          "assetPath": "audio/cognitive/p_508_aud_508_mindread_mind_reading.m4a",
+          "transcript": "Mind reading happens when we assume we know what other people think. With tinnitus, this may sound like, everyone thinks I am overreacting. The first question is: do I actually know that?",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-508-MIN",
+          "sourceId": "AUD-508-MIN",
+          "screenIds": [
+            "CR-003"
+          ],
+          "title": "Minimizing",
+          "type": "Short explainer",
+          "assetPath": "audio/cognitive/p_508_aud_508_min_minimizing.m4a",
+          "transcript": "Minimizing downplays progress. If you used sound therapy, breathing, or a better plan, that is not just luck. It is evidence that your choices matter.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-508-CATA",
+          "sourceId": "AUD-508-CATA",
+          "screenIds": [
+            "CR-003"
+          ],
+          "title": "Catastrophizing",
+          "type": "Short explainer",
+          "assetPath": "audio/cognitive/p_508_aud_508_cata_catastrophizing.m4a",
+          "transcript": "Catastrophizing turns a hard moment into a disaster story. The goal is not to deny that the moment is hard. The goal is to stop the story from becoming larger than the evidence.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-508-CONTROL",
+          "sourceId": "AUD-508-CONTROL",
+          "screenIds": [
+            "CR-003"
+          ],
+          "title": "Control Fallacies",
+          "type": "Short explainer",
+          "assetPath": "audio/cognitive/p_508_aud_508_control_control_fallacies.m4a",
+          "transcript": "Control fallacies make it feel like you have either total control or no control at all. Tinnitus management usually lives in the middle: you may not control every sound moment, but you can influence your response and environment.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-508-REWARD",
+          "sourceId": "AUD-508-REWARD",
+          "screenIds": [
+            "CR-003"
+          ],
+          "title": "Heaven's Reward Fallacy",
+          "type": "Short explainer",
+          "assetPath": "audio/cognitive/p_508_aud_508_reward_heaven_s_reward_fallacy.m4a",
+          "transcript": "Heaven\u2019s reward fallacy is thinking that our struggle is justified just from it being a struggle. Suffering harder does not make tinnitus improve faster. A more useful question is: what action actually supports me today?",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-508-LABEL",
+          "sourceId": "AUD-508-LABEL",
+          "screenIds": [
+            "CR-003"
+          ],
+          "title": "Labeling",
+          "type": "Short explainer",
+          "assetPath": "audio/cognitive/p_508_aud_508_label_labeling.m4a",
+          "transcript": "Labeling turns a struggle into an identity. I am having a hard tinnitus day is very different from I am a failure.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-508-PERSON",
+          "sourceId": "AUD-508-PERSON",
+          "screenIds": [
+            "CR-003"
+          ],
+          "title": "Personalization",
+          "type": "Short explainer",
+          "assetPath": "audio/cognitive/p_508_aud_508_person_personalization.m4a",
+          "transcript": "Personalization puts all the blame on you, even when the situation is more complicated. Reframing helps separate responsibility from self-attack.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-509-LOUD-MORNING",
+          "sourceId": "AUD-509-LOUD-MORNING",
+          "screenIds": [
+            "CR-004"
+          ],
+          "title": "Loud Morning Example",
+          "type": "Example walkthrough",
+          "assetPath": "audio/cognitive/p_509_aud_509_loud_morning_loud_morning_example.m4a",
+          "transcript": "Let's try one example. The thought is: my tinnitus is loud this morning, so today will be terrible. That thought feels understandable, but is it guaranteed? Have you ever had loud tinnitus and still had a meaningful or even decent day? A more balanced statement might be: this morning is difficult, and I can still use my tools and see how the day unfolds.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-510-DISTORTION-DETECTIVE",
+          "sourceId": "AUD-510-DISTORTION-DETECTIVE",
+          "screenIds": [
+            "CR-005"
+          ],
+          "title": "Distortion Detective",
+          "type": "Exercise walkthrough",
+          "assetPath": "audio/cognitive/p_510_aud_510_distortion_detective_distortion_detective.m4a",
+          "transcript": "Write the distressing thought as clearly as you can. Then choose the thought pattern that seems closest. Next, list what supports the thought and what contradicts it. Finally, write a more balanced way to look at the situation.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-510-LABEL",
+          "sourceId": "AUD-510-LABEL",
+          "screenIds": [
+            "CR-005"
+          ],
+          "title": "Name the Distortion",
+          "type": "Short explainer",
+          "assetPath": "audio/cognitive/p_510_aud_510_label_name_the_distortion.m4a",
+          "transcript": "You do not have to pick the perfect label. Choose the closest pattern, or create your own name for it. The purpose is distance, not perfection.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-510-EVIDENCE",
+          "sourceId": "AUD-510-EVIDENCE",
+          "screenIds": [
+            "CR-005"
+          ],
+          "title": "Exercise 10 Evidence",
+          "type": "Short explainer",
+          "assetPath": "audio/cognitive/p_510_aud_510_evidence_exercise_10_evidence.m4a",
+          "transcript": "Evidence for and evidence against help the thought become testable. A thought can be partly true without being the whole story.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-510-BALANCED",
+          "sourceId": "AUD-510-BALANCED",
+          "screenIds": [
+            "CR-005"
+          ],
+          "title": "Exercise 10 Balanced Thought",
+          "type": "Short explainer",
+          "assetPath": "audio/cognitive/p_510_aud_510_balanced_exercise_10_balanced_thought.m4a",
+          "transcript": "The balanced thought should feel realistic enough to believe. It does not need to be cheerful. It needs to be more accurate than the original thought.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-511-EVIDENCE-CONCEPT",
+          "sourceId": "AUD-511-EVIDENCE-CONCEPT",
+          "screenIds": [
+            "CR-005"
+          ],
+          "title": "Evidence Concept",
+          "type": "Short explainer",
+          "assetPath": "audio/cognitive/p_511_aud_511_evidence_concept_evidence_concept.m4a",
+          "transcript": "When a thought is loud, certainty can come quickly. Looking at both sides slows the process down and gives your mind more than one path forward.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-512-EVIDENCE-TABLE",
+          "sourceId": "AUD-512-EVIDENCE-TABLE",
+          "screenIds": [
+            "CR-005"
+          ],
+          "title": "Evidence For-and-Against",
+          "type": "Exercise walkthrough",
+          "assetPath": "audio/cognitive/p_512_aud_512_evidence_table_evidence_for_and_against.m4a",
+          "transcript": "Choose one negative belief about tinnitus. Write the evidence that seems to support it, then the evidence that does not support it. Use both sides to create a more balanced statement.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-513-REFRAME",
+          "sourceId": "AUD-513-REFRAME",
+          "screenIds": [
+            "CR-005"
+          ],
+          "title": "Balanced Reframe Builder",
+          "type": "Exercise walkthrough",
+          "assetPath": "audio/cognitive/p_513_aud_513_reframe_balanced_reframe_builder.m4a",
+          "transcript": "A useful reframe often starts small: this is difficult, and I have handled difficult moments before. Or: this feels threatening, but the evidence does not prove that today is ruined. Choose words that are realistic for you.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-515-ONE-IN-TWENTY",
+          "sourceId": "AUD-515-ONE-IN-TWENTY",
+          "screenIds": [
+            "CR-006"
+          ],
+          "title": "Practice Expectations",
+          "type": "Short explainer",
+          "assetPath": "audio/cognitive/p_515_aud_515_one_in_twenty_practice_expectations.m4a",
+          "transcript": "At first, you may miss most of these thoughts. That is expected. If you catch one out of twenty, that is not failure. That is the beginning of a skill becoming visible.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-516-TOP-PATTERNS",
+          "sourceId": "AUD-516-TOP-PATTERNS",
+          "screenIds": [
+            "CR-006"
+          ],
+          "title": "Top Thought Patterns",
+          "type": "Short explainer",
+          "assetPath": "audio/cognitive/p_516_aud_516_top_patterns_top_thought_patterns.m4a",
+          "transcript": "Do not try to monitor every thought. Pick one or two patterns that show up often, like catastrophizing or all-or-nothing thinking. Those are the patterns we will practice noticing first.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-519-SUCCESS",
+          "sourceId": "AUD-519-SUCCESS",
+          "screenIds": [
+            "CR-006"
+          ],
+          "title": "Success Recognition",
+          "type": "Short explainer",
+          "assetPath": "audio/cognitive/p_519_aud_519_success_success_recognition.m4a",
+          "transcript": "Progress is easy to minimize. If you used a skill, changed the environment, took a breath, or stayed engaged, that is worth noticing. It gives your brain evidence that your responses matter.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-520-BEYOND",
+          "sourceId": "AUD-520-BEYOND",
+          "screenIds": [
+            "CR-006"
+          ],
+          "title": "Beyond Tinnitus",
+          "type": "Short explainer",
+          "assetPath": "audio/cognitive/p_520_aud_520_beyond_beyond_tinnitus.m4a",
+          "transcript": "Many people first notice these patterns with tinnitus, then find them elsewhere. The same catastrophizing that says tinnitus will ruin the day may also appear when a work inbox is full. Once you recognize the pattern, you can use the same skill in more than one place.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-521-WHACK",
+          "sourceId": "AUD-521-WHACK",
+          "screenIds": [
+            "CR-006"
+          ],
+          "title": "Do Not Chase Every Thought",
+          "type": "Short explainer",
+          "assetPath": "audio/cognitive/p_521_aud_521_whack_do_not_chase_every_thought.m4a",
+          "transcript": "Cognitive reframing should not become a whack-a-mole game where you chase every uncomfortable thought. Start with the repeated patterns that create the most distress.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-522-MYPLAN",
+          "sourceId": "AUD-522-MYPLAN",
+          "screenIds": [
+            "CR-006"
+          ],
+          "title": "Save to My Plan",
+          "type": "Short explainer",
+          "assetPath": "audio/cognitive/p_522_aud_522_myplan_save_to_my_plan.m4a",
+          "transcript": "Save the patterns and balanced statements that feel useful. These will stay in the app and can become part of your personal tinnitus management plan.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-523-BRIDGE",
+          "sourceId": "AUD-523-BRIDGE",
+          "screenIds": [
+            "CR-006"
+          ],
+          "title": "Bridge to Self-Compassion",
+          "type": "Short explainer",
+          "assetPath": "audio/cognitive/p_523_aud_523_bridge_bridge_to_self_compassion.m4a",
+          "transcript": "After we learn to question a thought, the next step is learning not to attack ourselves for having it. The next section focuses on validation and self-compassion.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        }
+      ],
+      "exercises": [
+        {
+          "exerciseId": "I-021",
+          "screenId": "CR-003",
+          "title": "Select top distortions",
+          "description": "Launches the later distortion selector for choosing common thought patterns that show up around tinnitus.",
+          "inputSummary": "Tap cards + custom label",
+          "defaultCTAs": "Save; Skip; Repeat",
+          "route": "/placeholder/exercise/i-021",
+          "addToMyPlanBehavior": "Show Add to My Plan checkbox for exercises/tools; if already saved, show checked and allow removal."
+        },
+        {
+          "exerciseId": "I-022",
+          "screenId": "CR-005",
+          "title": "Thought record",
+          "description": "Launches the later thought record for evidence for, evidence against, and a balanced reframe.",
+          "inputSummary": "Thought, label, evidence, reframe",
+          "defaultCTAs": "Save; Skip; Repeat",
+          "route": "/placeholder/exercise/i-022",
+          "addToMyPlanBehavior": "Show Add to My Plan checkbox for exercises/tools; if already saved, show checked and allow removal."
+        },
+        {
+          "exerciseId": "I-023",
+          "screenId": "CR-006",
+          "title": "Cue card save",
+          "description": "Launches the later cue-card saver for keeping a balanced statement available in My Plan.",
+          "inputSummary": "Save balanced statement",
+          "defaultCTAs": "Save; Skip; Repeat",
+          "route": "/placeholder/exercise/i-023",
+          "addToMyPlanBehavior": "Show Add to My Plan checkbox for exercises/tools; if already saved, show checked and allow removal."
+        }
+      ],
+      "safetyScopes": [],
+      "visuals": [
+        {
+          "visualId": "VIS-017",
+          "screenId": "CR-002",
+          "title": "Thoughts/Feelings/Behaviors cycle",
+          "status": "Placeholder approved for MVP",
+          "description": "Cycle diagram showing how thoughts, feelings, and behaviors influence each other."
+        },
+        {
+          "visualId": "VIS-018",
+          "screenId": "CR-003",
+          "title": "Distortion cards",
+          "status": "Placeholder approved for MVP",
+          "description": "Distortion cards visual or interaction used to support the app content."
+        },
+        {
+          "visualId": "VIS-019",
+          "screenId": "CR-005",
+          "title": "Evidence table / reframe card",
+          "status": "Placeholder approved for MVP",
+          "description": "Evidence table / reframe card visual or interaction used to support the app content."
+        },
+        {
+          "visualId": "VIS-020",
+          "screenId": "CR-006",
+          "title": "Counterstatement cue card",
+          "status": "Placeholder approved for MVP",
+          "description": "Counterstatement cue card visual or interaction used to support the app content."
+        },
+        {
+          "visualId": "VIS-033",
+          "screenId": "CR-002",
+          "title": "Thoughts / Feelings / Behaviors cycle",
+          "status": "User-supplied asset expected",
+          "description": "Cycle diagram showing how thoughts, feelings, and behaviors influence each other."
+        }
+      ],
+      "relatedModules": [
+        {
+          "moduleId": "confidence_communication",
+          "title": "Next: Confidence and Communication"
+        },
+        {
+          "moduleId": "about_tinnitus",
+          "title": "Back to About Tinnitus"
+        }
+      ]
+    },
+    {
+      "moduleId": "confidence_communication",
+      "screenId": "CC-001",
+      "route": "/confidence/overview",
+      "title": "Confidence and Communication",
+      "systemImage": "bubble.left.and.bubble.right",
+      "purpose": "Introduce internal support and external communication as paired skills.",
+      "overviewMarkdown": "Confidence has an inside part and an outside part. This module pairs self-compassion and validation with practical communication tools like DEAR MAN, including a waiting-room example and support-plan ideas.",
+      "sourceScreenIds": [
+        "CC-001",
+        "CC-002",
+        "CC-003",
+        "CC-004",
+        "CC-005",
+        "CC-006"
+      ],
+      "cards": [
+        {
+          "sectionId": "CC-001-section-01",
+          "screenId": "CC-001",
+          "title": "Overview",
+          "bodyMarkdown": "Confidence has an internal side and an external side. Internal confidence is how you speak to yourself when tinnitus is hard. External confidence is how you ask for what you need in appointments, relationships, work, or noisy places.\n\nBoth skills can reduce the isolation that tinnitus often creates.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-700-OV",
+            "AUD-701-S",
+            "AUD-702-S"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "CC-002-section-02",
+          "screenId": "CC-002",
+          "title": "Self-compassion and validation",
+          "bodyMarkdown": "Self-compassion means responding to yourself with steadiness instead of attack. Validation means acknowledging that the struggle makes sense without giving up on skillful action.\n\nSlow progress counts. A shorter reaction, a kinder sentence, or one clear request can be real movement.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-710-S",
+            "AUD-711-S",
+            "AUD-713-S",
+            "AUD-716-S"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "CC-003-section-03",
+          "screenId": "CC-003",
+          "title": "Re-scripting",
+          "bodyMarkdown": "The self-critical voice may say, \"I should be over this,\" \"I am weak,\" or \"I am ruining everything.\" Re-scripting answers as you might answer a friend.\n\nA re-script might be: \"This is hard, and I am learning. I can take one next step without attacking myself.\"",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-714-G"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "CC-004-section-04",
+          "screenId": "CC-004",
+          "title": "DEAR MAN overview",
+          "bodyMarkdown": "DEAR MAN is a communication structure: Describe, Express, Assert, Reinforce, stay Mindful, Appear confident, and Negotiate.\n\nIt can help when you need a sound adjustment, hearing support, appointment clarification, or a calmer way to explain what tinnitus makes difficult.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-730-S"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "CC-005-section-05",
+          "screenId": "CC-005",
+          "title": "DEAR MAN builder",
+          "bodyMarkdown": "A DEAR MAN request is specific and respectful. Describe the situation, express the impact, ask for one concrete change, and explain why it helps.\n\nThe later builder will help structure the request. For now, choose one situation where a clear request would be kinder than staying silent or exploding.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-731-G",
+            "AUD-701-G"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "CC-006-section-06",
+          "screenId": "CC-006",
+          "title": "Example and support plan",
+          "bodyMarkdown": "Waiting-room example: \"The TV volume is making my sound sensitivity worse. Could we lower it or could I wait in a quieter area? That would help me stay for the appointment.\"\n\nThis module wraps the skills loop: understand tinnitus, support the body with sound, steady the moment, reframe thoughts, speak to yourself with compassion, and ask for support when needed.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-732-S",
+            "AUD-750-OV"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        }
+      ],
+      "audio": [
+        {
+          "audioId": "AUD-700-OV",
+          "sourceId": "AUD-700-OV",
+          "screenIds": [
+            "CC-001"
+          ],
+          "title": "Support and Communication",
+          "type": "Loop overview",
+          "assetPath": "audio/confidence_and_communication/p_700_aud_700_ov_support_and_communication.m4a",
+          "transcript": "This section brings together two sides of tinnitus management. One side is internal: how you respond to yourself when tinnitus is hard. The other side is external: how you communicate your needs without withdrawing, over-apologizing, or feeling like your experience does not matter.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-701-S",
+          "sourceId": "AUD-701-S",
+          "screenIds": [
+            "CC-001"
+          ],
+          "title": "Why this belongs",
+          "type": "Short explainer",
+          "assetPath": "audio/confidence_and_communication/p_701_aud_701_s_why_this_belongs.m4a",
+          "transcript": "Tinnitus may be heard as a sound, but it can also affect confidence, relationships, and the way you talk to yourself. That is why support and communication belong in tinnitus management.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-702-S",
+          "sourceId": "AUD-702-S",
+          "screenIds": [
+            "CC-001"
+          ],
+          "title": "Internal and external support",
+          "type": "Short explainer",
+          "assetPath": "audio/confidence_and_communication/p_702_aud_702_s_internal_and_external_support.m4a",
+          "transcript": "Self-compassion is the internal side of support. Interpersonal effectiveness is the external side. One helps you respond to yourself with more patience. The other helps you communicate clearly with the people around you.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-710-S",
+          "sourceId": "AUD-710-S",
+          "screenIds": [
+            "CC-002"
+          ],
+          "title": "Self-compassion basics",
+          "type": "Short explainer",
+          "assetPath": "audio/confidence_and_communication/p_710_aud_710_s_self_compassion_basics.m4a",
+          "transcript": "Self-compassion is the skill of responding to yourself with the same patience and care you would probably offer to someone else who was struggling.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-711-S",
+          "sourceId": "AUD-711-S",
+          "screenIds": [
+            "CC-002"
+          ],
+          "title": "Validation basics",
+          "type": "Short explainer",
+          "assetPath": "audio/confidence_and_communication/p_711_aud_711_s_validation_basics.m4a",
+          "transcript": "Validation means recognizing that your reaction makes sense. Tinnitus distress is real. You can acknowledge that without deciding that nothing can change.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-713-S",
+          "sourceId": "AUD-713-S",
+          "screenIds": [
+            "CC-002"
+          ],
+          "title": "Self-critical voice",
+          "type": "Short explainer",
+          "assetPath": "audio/confidence_and_communication/p_713_aud_713_s_self_critical_voice.m4a",
+          "transcript": "The self-critical voice adds another layer to tinnitus. Instead of only dealing with the sound, you may also be dealing with thoughts like, I should be handling this better. This section helps you soften that voice.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-716-S",
+          "sourceId": "AUD-716-S",
+          "screenIds": [
+            "CC-002"
+          ],
+          "title": "Slow progress counts",
+          "type": "Short explainer",
+          "assetPath": "audio/confidence_and_communication/p_716_aud_716_s_slow_progress_counts.m4a",
+          "transcript": "You will miss opportunities to practice this. That is normal. It takes time. If you catch one self-critical thought that you would have missed before, that is progress.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-714-G",
+          "sourceId": "AUD-714-G",
+          "screenIds": [
+            "CC-003"
+          ],
+          "title": "Re-scripting exercise",
+          "type": "Exercise walkthrough",
+          "assetPath": "audio/confidence_and_communication/p_714_aud_714_g_re_scripting_exercise.m4a",
+          "transcript": "Start with one self-critical thought. Now imagine that someone you care about said the same thing about themselves. What would you say back? Write that response down. Then adjust it so it sounds like something you could say to yourself on a hard day.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-730-S",
+          "sourceId": "AUD-730-S",
+          "screenIds": [
+            "CC-004"
+          ],
+          "title": "DEAR MAN overview",
+          "type": "Short explainer",
+          "assetPath": "audio/confidence_and_communication/p_730_aud_730_s_dear_man_overview.m4a",
+          "transcript": "DEAR MAN is a structured way to make a request or explain a need. You describe the situation, express how it affects you, assert what you are asking for, reinforce why it matters, stay mindful, appear confident, and negotiate when needed.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-731-G",
+          "sourceId": "AUD-731-G",
+          "screenIds": [
+            "CC-005"
+          ],
+          "title": "DEAR MAN exercise",
+          "type": "Exercise walkthrough",
+          "assetPath": "audio/confidence_and_communication/p_731_aud_731_g_dear_man_exercise.m4a",
+          "transcript": "Think of one situation where tinnitus, hearing difficulty, or sound sensitivity makes communication harder. Describe the situation in neutral terms. Express how it affects you. Then write one clear request that would make the situation easier.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-701-G",
+          "sourceId": "AUD-701-G",
+          "screenIds": [
+            "CC-005"
+          ],
+          "title": "DEAR MAN",
+          "type": "Exercise walkthrough",
+          "assetPath": "audio/confidence_and_communication/p_701_aud_701_g_dear_man.m4a",
+          "transcript": "DEAR MAN helps you make a clear request. Describe the situation, express how it affects you, assert what you need, reinforce why it helps, and stay mindful, confident, and willing to negotiate.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-732-S",
+          "sourceId": "AUD-732-S",
+          "screenIds": [
+            "CC-006"
+          ],
+          "title": "Waiting room example",
+          "type": "Example",
+          "assetPath": "audio/confidence_and_communication/p_732_aud_732_s_waiting_room_example.m4a",
+          "transcript": "A person waiting in a shared room may feel overwhelmed by a loud television. Distress tolerance skills can help, but another option is a clear, respectful request: would it be possible to mute the TV while I wait? Sometimes the helpful action is simpler than we expect.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-750-OV",
+          "sourceId": "AUD-750-OV",
+          "screenIds": [
+            "CC-006"
+          ],
+          "title": "Loop wrap-up",
+          "type": "Wrap-up",
+          "assetPath": "audio/confidence_and_communication/p_750_aud_750_ov_loop_wrap_up.m4a",
+          "transcript": "Self-compassion helps you stop adding shame to tinnitus. Communication skills help you stop carrying everything alone. Together, they support the same goal as the rest of this app: staying engaged with life while you keep practicing the tools that help.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        }
+      ],
+      "exercises": [
+        {
+          "exerciseId": "I-024",
+          "screenId": "CC-003",
+          "title": "Self-compassion re-scripting",
+          "description": "Launches the later self-compassion re-scripting exercise for answering a critical thought more kindly.",
+          "inputSummary": "Critical thought + friend response + self-response",
+          "defaultCTAs": "Save; Skip; Repeat",
+          "route": "/placeholder/exercise/i-024",
+          "addToMyPlanBehavior": "Show Add to My Plan checkbox for exercises/tools; if already saved, show checked and allow removal."
+        },
+        {
+          "exerciseId": "I-025",
+          "screenId": "CC-005",
+          "title": "DEAR MAN builder",
+          "description": "Launches the later DEAR MAN builder for a clear and respectful request.",
+          "inputSummary": "Structured request fields",
+          "defaultCTAs": "Save; Skip; Repeat",
+          "route": "/placeholder/exercise/i-025",
+          "addToMyPlanBehavior": "Show Add to My Plan checkbox for exercises/tools; if already saved, show checked and allow removal."
+        },
+        {
+          "exerciseId": "I-026",
+          "screenId": "CC-006",
+          "title": "Support plan",
+          "description": "Launches the later support plan for communication needs, appointment questions, and practical supports.",
+          "inputSummary": "Write support/accommodation note",
+          "defaultCTAs": "Save; Skip; Repeat",
+          "route": "/placeholder/exercise/i-026",
+          "addToMyPlanBehavior": "Show Add to My Plan checkbox for exercises/tools; if already saved, show checked and allow removal."
+        }
+      ],
+      "safetyScopes": [],
+      "visuals": [
+        {
+          "visualId": "VIS-021",
+          "screenId": "CC-003",
+          "title": "Self-compassion response card",
+          "status": "Placeholder approved for MVP",
+          "description": "Self-compassion response card visual or interaction used to support the app content."
+        },
+        {
+          "visualId": "VIS-022",
+          "screenId": "CC-005",
+          "title": "DEAR MAN builder",
+          "status": "Placeholder approved for MVP",
+          "description": "Structured fields for describing a situation, expressing impact, asserting a request, reinforcing why it matters, staying mindful, appearing confident, and negotiating."
+        }
+      ],
+      "relatedModules": [
+        {
+          "moduleId": "sleep",
+          "title": "Next: Sleep"
+        },
+        {
+          "moduleId": "about_tinnitus",
+          "title": "Back to About Tinnitus"
+        }
+      ]
+    },
+    {
+      "moduleId": "sleep",
+      "screenId": "SL-001",
+      "route": "/sleep/overview",
+      "title": "Sleep",
+      "systemImage": "moon",
+      "purpose": "Explain why sleep belongs here while keeping scope clear.",
+      "overviewMarkdown": "Sleep and tinnitus can influence each other. This module gives an educational overview of bedtime sound planning, sleep thoughts, wind-down audio, stimulus control ideas, and when to seek sleep support.",
+      "sourceScreenIds": [
+        "SL-001",
+        "SL-002",
+        "SL-003",
+        "SL-004",
+        "SL-005",
+        "SL-006",
+        "SL-007",
+        "SL-008"
+      ],
+      "cards": [
+        {
+          "sectionId": "SL-001-section-01",
+          "screenId": "SL-001",
+          "title": "Sleep scope",
+          "bodyMarkdown": "Sleep belongs in a tinnitus app because tired brains often cope with sound less flexibly, and tinnitus can make sleep feel harder. This module is educational only.\n\nIt is not a sleep treatment program, medication guide, or replacement for sleep medicine, mental health care, or medical care when those are needed.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-800-OV",
+            "NEW-AUD-SL-SCOPE-001"
+          ],
+          "visualIds": [],
+          "safetyNote": "Medication neutrality; seek care if needed"
+        },
+        {
+          "sectionId": "SL-002-section-02",
+          "screenId": "SL-002",
+          "title": "Sleep-tinnitus loop",
+          "bodyMarkdown": "Sleep and tinnitus can form a bidirectional loop. Poor sleep can increase stress and sound awareness; tinnitus worry can make bedtime feel tense and watchful.\n\nThe goal is not to force sleep. The goal is to reduce friction around bedtime and build a plan that supports rest.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-801-S"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "SL-003-section-03",
+          "screenId": "SL-003",
+          "title": "CBT-I/BBTI education",
+          "bodyMarkdown": "CBT-I and BBTI are structured sleep approaches used by trained professionals. This app can explain a few education ideas, but it does not deliver a full protocol.\n\nIf insomnia is persistent, severe, connected to safety concerns, or mixed with breathing pauses, restless legs, medication questions, or significant distress, seek appropriate care.",
+          "isExpandable": true,
+          "audioIds": [
+            "NEW-AUD-SL-CBTI-001"
+          ],
+          "visualIds": [],
+          "safetyNote": "Education only; not CBT-I program"
+        },
+        {
+          "sectionId": "SL-004-section-04",
+          "screenId": "SL-004",
+          "title": "Bedtime sound plan",
+          "bodyMarkdown": "A bedtime sound plan applies the Sound Therapy sweet spot to sleep. Choose a comfortable sound, keep volume gentle, make it easy to start, and avoid turning the search for the perfect sound into another bedtime task.\n\nThe sound is a settling cue and a contrast reducer, not a promise that sleep will happen on command.",
+          "isExpandable": true,
+          "audioIds": [
+            "NEW-AUD-SL-SOUND-001"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "SL-005-section-05",
+          "screenId": "SL-005",
+          "title": "Negative sleep thoughts",
+          "bodyMarkdown": "Sleep thoughts can become catastrophic: \"If I do not sleep now, tomorrow is ruined\" or \"Tinnitus means I cannot rest.\" These thoughts are understandable, but they can increase pressure.\n\nA balanced sleep reframe might be: \"Rest still helps. I can lower stimulation, use my sound plan, and handle tomorrow in smaller steps.\"",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-803-G"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "SL-006-section-06",
+          "screenId": "SL-006",
+          "title": "Stimulus control education",
+          "bodyMarkdown": "Stimulus control education is about the bed becoming linked with sleep instead of long periods of frustration. A common idea is to leave bed briefly when awake and distressed, then return when sleepiness builds.\n\nUse this carefully and adapt it to safety, mobility, medical needs, caregiving, and clinician guidance. This app only introduces the idea.",
+          "isExpandable": true,
+          "audioIds": [
+            "NEW-AUD-SL-STIM-001"
+          ],
+          "visualIds": [],
+          "safetyNote": "Education only; no rigid prescription"
+        },
+        {
+          "sectionId": "SL-007-section-07",
+          "screenId": "SL-007",
+          "title": "Wind-down practice",
+          "bodyMarkdown": "Wind-down audio is for settling and transition. It should not become another test you can fail or a promise that sleep must arrive.\n\nUse it as a gentle cue: lower demands, reduce checking, and give the body a predictable path toward rest.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-802-G"
+          ],
+          "visualIds": [],
+          "safetyNote": "Do not promise sleep"
+        },
+        {
+          "sectionId": "SL-008-section-08",
+          "screenId": "SL-008",
+          "title": "When to seek help",
+          "bodyMarkdown": "Seek sleep support when sleep problems persist, feel severe, involve breathing pauses or gasping, include safety concerns, or raise medication or mental health questions.\n\nA sleep support plan can include bedtime sound, a wind-down cue, a balanced sleep thought, and a note about when to contact a qualified professional.",
+          "isExpandable": true,
+          "audioIds": [
+            "NEW-AUD-SL-HELP-001"
+          ],
+          "visualIds": [],
+          "safetyNote": "Seek professional support for sleep apnea/persistent insomnia/unsafe thoughts"
+        }
+      ],
+      "audio": [
+        {
+          "audioId": "AUD-800-OV",
+          "sourceId": "AUD-800-OV",
+          "screenIds": [
+            "SL-001"
+          ],
+          "title": "Sleep",
+          "type": "Chapter overview",
+          "assetPath": "audio/sleep/p_800_aud_800_ov_sleep.m4a",
+          "transcript": "Sleep and tinnitus can affect each other. Poor sleep can make the day feel harder, and tinnitus distress can make sleep feel harder. This section will talk about some of the things we can do to help sleep.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "NEW-AUD-SL-SCOPE-001",
+          "sourceId": "NEW-AUD-SL-SCOPE-001",
+          "screenIds": [
+            "SL-001"
+          ],
+          "title": "Sleep scope and professional support",
+          "type": "Scope explainer",
+          "assetPath": "audio/sleep/sl_scope_001_sleep_scope.m4a",
+          "transcript": "Sleep belongs here because tinnitus and sleep can strongly affect each other. This section is educational. It can help you understand common patterns and starter tools, but persistent sleep problems, suspected sleep apnea, medication questions, or major impairment deserve direct support from a qualified clinician.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-801-S",
+          "sourceId": "AUD-801-S",
+          "screenIds": [
+            "SL-002"
+          ],
+          "title": "Sleep Cycle",
+          "type": "Short explainer",
+          "assetPath": "audio/sleep/p_801_aud_801_s_sleep_cycle.m4a",
+          "transcript": "When tinnitus, stress, and poor sleep feed each other, the problem can feel bigger than any one piece. The goal is to find one helpful place to interrupt the cycle.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "NEW-AUD-SL-CBTI-001",
+          "sourceId": "NEW-AUD-SL-CBTI-001",
+          "screenIds": [
+            "SL-003"
+          ],
+          "title": "CBT-I and BBTI in plain language",
+          "type": "Short explainer",
+          "assetPath": "audio/sleep/sl_cbti_001_cbti_bbti_plain_language.m4a",
+          "transcript": "CBT-I is a structured treatment that looks at the thoughts, habits, and patterns that keep insomnia going. BBTI is a briefer behavioral version designed to make effective sleep tools more accessible. This app is not providing those treatments, but it can introduce the idea that sleep can often be approached with skills, structure, and professional support instead of only trying to knock yourself out.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "NEW-AUD-SL-SOUND-001",
+          "sourceId": "NEW-AUD-SL-SOUND-001",
+          "screenIds": [
+            "SL-004"
+          ],
+          "title": "Sound at night / bedtime sound plan",
+          "type": "Exercise walkthrough",
+          "assetPath": "audio/sleep/sl_sound_001_bedtime_sound_plan.m4a",
+          "transcript": "At night, tinnitus can stand out because the world gets quieter and there may be less to hold your attention. A bedtime sound plan uses the same sound therapy principles: comfortable sound, enough to hear, not so loud that it has to cover everything. Choose a sound source you can use consistently and safely, then let it support settling rather than forcing sleep.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-803-G",
+          "sourceId": "AUD-803-G",
+          "screenIds": [
+            "SL-005"
+          ],
+          "title": "Negative Sleep Thoughts",
+          "type": "Exercise walkthrough",
+          "assetPath": "audio/sleep/p_803_aud_803_g_negative_sleep_thoughts.m4a",
+          "transcript": "Thoughts that arise when we are trying to sleep can become very convincing. Write the sleep thought down, name the pattern, challenge it with evidence, and create a statement that is more balanced and less threatening.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "NEW-AUD-SL-STIM-001",
+          "sourceId": "NEW-AUD-SL-STIM-001",
+          "screenIds": [
+            "SL-006"
+          ],
+          "title": "Stimulus control education",
+          "type": "Short explainer",
+          "assetPath": "audio/sleep/sl_stim_001_stimulus_control_education.m4a",
+          "transcript": "When someone spends a lot of time awake, frustrated, and alert in bed, the bed can start to feel connected to struggle instead of sleep. Stimulus control is a sleep concept that tries to rebuild that connection. Here, we are introducing the idea carefully, not prescribing a rigid sleep treatment. If insomnia is persistent or severe, this is a good reason to seek sleep-focused care.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-802-G",
+          "sourceId": "AUD-802-G",
+          "screenIds": [
+            "SL-007"
+          ],
+          "title": "Wind-Down",
+          "type": "Guided practice",
+          "assetPath": "audio/sleep/p_802_aud_802_g_wind_down.m4a",
+          "transcript": "Let this be a transition rather than a test. You do not have to force sleep. Notice the body supported, soften the breath, and allow the next few minutes to be about settling rather than solving.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "NEW-AUD-SL-HELP-001",
+          "sourceId": "NEW-AUD-SL-HELP-001",
+          "screenIds": [
+            "SL-008"
+          ],
+          "title": "When to seek sleep help",
+          "type": "Scope/help explainer",
+          "assetPath": "audio/sleep/sl_help_001_when_to_seek_help.m4a",
+          "transcript": "If sleep is persistently disrupted, if you snore heavily, gasp, stop breathing, feel very sleepy during the day, or if sleep problems feel unsafe or unmanageable, it is worth seeking direct help. Tinnitus tools can support sleep, but they should not replace evaluation for sleep conditions or mental health concerns.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        }
+      ],
+      "exercises": [
+        {
+          "exerciseId": "I-027",
+          "screenId": "SL-004",
+          "title": "Bedtime sound plan",
+          "description": "Launches the later bedtime sound plan for choosing a comfortable settling sound and routine.",
+          "inputSummary": "Preferred sound/source/routine",
+          "defaultCTAs": "Save; Skip; Repeat",
+          "route": "/placeholder/exercise/i-027",
+          "addToMyPlanBehavior": "Show Add to My Plan checkbox for exercises/tools; if already saved, show checked and allow removal."
+        },
+        {
+          "exerciseId": "I-028",
+          "screenId": "SL-005",
+          "title": "Sleep thought reframe",
+          "description": "Launches the later sleep thought reframe for reducing pressure around rest.",
+          "inputSummary": "Sleep thought, pattern, evidence, reframe",
+          "defaultCTAs": "Save; Skip; Repeat",
+          "route": "/placeholder/exercise/i-028",
+          "addToMyPlanBehavior": "Show Add to My Plan checkbox for exercises/tools; if already saved, show checked and allow removal."
+        },
+        {
+          "exerciseId": "I-029",
+          "screenId": "SL-006",
+          "title": "Stimulus control optional plan",
+          "description": "Launches the later stimulus-control planning placeholder with careful education-only boundaries.",
+          "inputSummary": "Education + optional plan text",
+          "defaultCTAs": "Save; Skip; Repeat",
+          "route": "/placeholder/exercise/i-029",
+          "addToMyPlanBehavior": "Show Add to My Plan checkbox for exercises/tools; if already saved, show checked and allow removal."
+        },
+        {
+          "exerciseId": "I-030",
+          "screenId": "SL-007",
+          "title": "Wind-down audio favorite",
+          "description": "Launches the later wind-down audio favorite so users can mark a settling practice without forcing sleep.",
+          "inputSummary": "Play/favorite",
+          "defaultCTAs": "Save; Skip; Repeat",
+          "route": "/placeholder/exercise/i-030",
+          "addToMyPlanBehavior": "Show Add to My Plan checkbox for exercises/tools; if already saved, show checked and allow removal."
+        }
+      ],
+      "safetyScopes": [
+        {
+          "safetyScopeId": "SL-001-safety-01",
+          "screenId": "SL-001",
+          "title": "Safety note: Sleep scope",
+          "bodyMarkdown": "Medication neutrality; seek care if needed"
+        },
+        {
+          "safetyScopeId": "SL-003-safety-02",
+          "screenId": "SL-003",
+          "title": "Safety note: CBT-I/BBTI education",
+          "bodyMarkdown": "Education only; not CBT-I program"
+        },
+        {
+          "safetyScopeId": "SL-006-safety-03",
+          "screenId": "SL-006",
+          "title": "Safety note: Stimulus control education",
+          "bodyMarkdown": "Education only; no rigid prescription"
+        },
+        {
+          "safetyScopeId": "SL-007-safety-04",
+          "screenId": "SL-007",
+          "title": "Safety note: Wind-down practice",
+          "bodyMarkdown": "Do not promise sleep"
+        },
+        {
+          "safetyScopeId": "SL-008-safety-05",
+          "screenId": "SL-008",
+          "title": "Safety note: When to seek help",
+          "bodyMarkdown": "Seek professional support for sleep apnea/persistent insomnia/unsafe thoughts"
+        }
+      ],
+      "visuals": [
+        {
+          "visualId": "VIS-023",
+          "screenId": "SL-002",
+          "title": "Sleep-tinnitus loop",
+          "status": "Placeholder approved for MVP",
+          "description": "Loop diagram showing how tinnitus distress and sleep difficulty can reinforce each other."
+        },
+        {
+          "visualId": "VIS-024",
+          "screenId": "SL-004",
+          "title": "Bedtime sound plan card",
+          "status": "Placeholder approved for MVP",
+          "description": "Bedtime sound plan card visual or interaction used to support the app content."
+        },
+        {
+          "visualId": "VIS-034",
+          "screenId": "SL-002",
+          "title": "Sleep-Tinnitus loop",
+          "status": "User-supplied asset expected",
+          "description": "Loop diagram showing how tinnitus distress and sleep difficulty can reinforce each other."
+        }
+      ],
+      "relatedModules": [
+        {
+          "moduleId": "my_plan",
+          "title": "Next: My Plan"
+        },
+        {
+          "moduleId": "about_tinnitus",
+          "title": "Back to About Tinnitus"
+        }
+      ]
+    },
+    {
+      "moduleId": "my_plan",
+      "screenId": "MP-001",
+      "route": "/my-plan",
+      "title": "My Plan",
+      "systemImage": "checkmark.circle",
+      "purpose": "Collect saved tools, notes, and practices without external transmission.",
+      "overviewMarkdown": "My Plan is the local home for saved tools and quick reflections. Saving and journal entry behavior is planned for a later stage, but this module explains the intended Add to My Plan flow, Three Lines Journal, privacy, and settings/reset boundaries.",
+      "sourceScreenIds": [
+        "MP-001",
+        "MP-002",
+        "MP-003",
+        "MP-004",
+        "MP-005"
+      ],
+      "cards": [
+        {
+          "sectionId": "MP-001-section-01",
+          "screenId": "MP-001",
+          "title": "Dashboard",
+          "bodyMarkdown": "My Plan is intended to collect the tools, sounds, statements, and short practices that feel useful to you. It is not completion tracking, scoring, or a streak system.\n\nSaving is planned for a later stage. In this stage, My Plan explains the intended local-only hub without storing new items yet.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-950-S"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "MP-002-section-02",
+          "screenId": "MP-002",
+          "title": "Saved tools list",
+          "bodyMarkdown": "Add to My Plan will mean choosing an exercise, tool, sound plan, or statement because you want to find it again. It should be reversible and user-selected.\n\nThe saved tools list is planned to stay on the device. It is not sent to an account, clinician dashboard, analytics service, or cloud sync in the MVP.",
+          "isExpandable": true,
+          "audioIds": [],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "MP-003-section-03",
+          "screenId": "MP-003",
+          "title": "Three Lines entry",
+          "bodyMarkdown": "The Three Lines Journal is meant to be short and nonjudgmental: ST for Sound Therapy, E for Emotional Regulation, and M for Mindfulness.\n\nA checkmark, a few words, or \"not today\" can be enough. The point is gentle reflection, not proving progress.",
+          "isExpandable": true,
+          "audioIds": [
+            "AUD-900-S"
+          ],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "MP-004-section-04",
+          "screenId": "MP-004",
+          "title": "Past entries",
+          "bodyMarkdown": "Past entries are planned as a simple local list so you can review or delete your own notes. No analytics, scoring, remote monitoring, or clinician review is part of the MVP.\n\nBecause local persistence is not implemented in this stage, this card describes the intended behavior only.",
+          "isExpandable": true,
+          "audioIds": [],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "MP-005-section-05",
+          "screenId": "MP-005",
+          "title": "Reminders",
+          "bodyMarkdown": "Reminders are planned as optional local notifications, off by default. They should support your plan without nagging, scoring, or transmitting data.\n\nSettings should also provide safety information and, in a later stage, local delete or reset controls for user-owned data.",
+          "isExpandable": true,
+          "audioIds": [],
+          "visualIds": [],
+          "safetyNote": ""
+        },
+        {
+          "sectionId": "MP-001-section-06",
+          "screenId": "MP-001",
+          "title": "Other exercises",
+          "bodyMarkdown": "Other exercises are listed through module launch cards rather than a separate bottom tab. This keeps the app organized around the Library, Sound, Mindfulness, and My Plan.\n\nUse this area as a future shortcut list for exercises such as sound planning, STOP, reframing, DEAR MAN, and sleep support while keeping each interactive exercise local-only.",
+          "isExpandable": true,
+          "audioIds": [
+            "None required"
+          ],
+          "visualIds": [],
+          "safetyNote": "Global scope applies"
+        }
+      ],
+      "audio": [
+        {
+          "audioId": "AUD-950-S",
+          "sourceId": "AUD-950-S",
+          "screenIds": [
+            "MP-001"
+          ],
+          "title": "My Plan",
+          "type": "Short explainer",
+          "assetPath": "audio/my_plan/p_950_aud_950_s_my_plan.m4a",
+          "transcript": "My Plan collects the pieces you choose to save: sounds, statements, reframes, mindfulness tools, sleep supports, and other reminders. It is here so the app becomes personal without sending your data anywhere.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        },
+        {
+          "audioId": "AUD-900-S",
+          "sourceId": "AUD-900-S",
+          "screenIds": [
+            "MP-003"
+          ],
+          "title": "Three Lines Journal",
+          "type": "Short explainer",
+          "assetPath": "audio/my_plan/p_900_aud_900_s_three_lines_journal.m4a",
+          "transcript": "The Three Lines Journal is a quick local check-in: sound therapy, emotional regulation, and mindfulness. A few words or a checkmark can be enough. This is about routine when we get started.",
+          "playbackContext": "Page narration / practice; global mini-player controls active while audio plays."
+        }
+      ],
+      "exercises": [
+        {
+          "exerciseId": "I-031",
+          "screenId": "MP-003",
+          "title": "Three Lines Journal",
+          "description": "Launches the later Three Lines Journal: ST for Sound Therapy, E for Emotional Regulation, and M for Mindfulness.",
+          "inputSummary": "ST/E/M lines or checkmarks",
+          "defaultCTAs": "Save; Skip; Repeat",
+          "route": "/placeholder/exercise/i-031",
+          "addToMyPlanBehavior": "Show Add to My Plan checkbox for exercises/tools; if already saved, show checked and allow removal."
+        },
+        {
+          "exerciseId": "I-032",
+          "screenId": "MP-004",
+          "title": "Past entry review",
+          "description": "Launches the later past-entry review list for local review and delete behavior.",
+          "inputSummary": "Open/edit/delete entry",
+          "defaultCTAs": "Tap option / manage",
+          "route": "/placeholder/exercise/i-032",
+          "addToMyPlanBehavior": "Not an Add-to-My-Plan exercise; save local preference/action only."
+        },
+        {
+          "exerciseId": "I-033",
+          "screenId": "MP-005",
+          "title": "Local reminders",
+          "description": "Launches the later local reminder settings placeholder. Reminders are not implemented in this stage.",
+          "inputSummary": "Enable/time/pause",
+          "defaultCTAs": "Tap option / manage",
+          "route": "/placeholder/exercise/i-033",
+          "addToMyPlanBehavior": "Not an Add-to-My-Plan exercise; save local preference/action only."
+        }
+      ],
+      "safetyScopes": [
+        {
+          "safetyScopeId": "MP-001-safety-01",
+          "screenId": "MP-001",
+          "title": "Safety note: Other exercises",
+          "bodyMarkdown": "Global scope applies"
+        }
+      ],
+      "visuals": [
+        {
+          "visualId": "VIS-025",
+          "screenId": "MP-001",
+          "title": "My Plan dashboard",
+          "status": "Placeholder approved for MVP",
+          "description": "My Plan dashboard visual or interaction used to support the app content."
+        },
+        {
+          "visualId": "VIS-026",
+          "screenId": "MP-003",
+          "title": "Three Lines Journal card",
+          "status": "Placeholder approved for MVP",
+          "description": "Three-line journal card for Sound Therapy, Emotional Regulation, and Mindfulness."
+        }
+      ],
+      "relatedModules": [
+        {
+          "moduleId": "about_tinnitus",
+          "title": "Back to About Tinnitus"
+        }
+      ]
+    }
+  ]
+}

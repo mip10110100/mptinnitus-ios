@@ -1,0 +1,69 @@
+screenId,route,module,title,role
+SYS-001,first_launch_modal,System,First Launch Prompt,modal
+HOME-001,/library,Global,Library / Main Module Hub,navigation_hub
+SAFE-001,/safety,Global,Safety Information,safety_scope
+SET-001,/settings,Global,Settings,settings
+AT-001,/about/overview,About Tinnitus,What This App Is,education
+AT-002,/about/scope-privacy,About Tinnitus,"Scope, Safety, and Local Privacy",education_scope
+AT-003,/about/body-mind-life,About Tinnitus,Body / Mind / Life Model,education_visual
+AT-004,/about/body-mind-life-exercise,About Tinnitus,My Tinnitus Picture,exercise
+AT-005,/about/module-overview,About Tinnitus,Choose What Seems Useful,interest_selection
+ST-001,/sound/overview,Sound Therapy,Sound Therapy Basics,education
+ST-002,/sound/masking-habituation,Sound Therapy,Sound Therapy vs Masking,education_bridge
+ST-003,/sound/thermometer,Sound Therapy,Finding the Sweet Spot,interactive_exercise
+ST-004,/sound/preferences,Sound Therapy,Choose Sound Preferences,interactive_selection
+ST-005,/sound/plan,Sound Therapy,Sound Therapy Plan,exercise
+ST-SS-001,/sound/sensitivity,Sound Therapy,Sound Therapy and Sound Sensitivity,education_scope
+ST-SS-002,/sound/sensitivity/music-exercise,Sound Therapy,Enjoyable Music Speaker Exercise,step_exercise
+ST-HH-001,/sound/hearing-care,Sound Therapy,Hearing Care and Amplification,education_scope
+AC-001,/acceptance/overview,Acceptance and Change,Acceptance and Change,education
+AC-002,/acceptance/avoidance,Acceptance and Change,Acceptance vs Avoidance,education
+AC-003,/acceptance/sound-bridge,Acceptance and Change,Sound Therapy Bridge,bridge
+AC-004,/acceptance/tug-of-war,Acceptance and Change,Tug-of-War,interactive_exercise
+AC-005,/acceptance/yes-and,Acceptance and Change,Yes AND,interactive_exercise
+AC-006,/acceptance/values-action,Acceptance and Change,Reconnection with What Matters,exercise
+MF-001,/mindfulness/overview,Mindfulness,Mindfulness Basics,education
+MF-002,/mindfulness/what-it-is-not,Mindfulness,What Mindfulness Is and Is Not,education
+MF-003,/mindfulness/deep-breath,Mindfulness,Deep Breath Check-In,guided_practice
+MF-004,/mindfulness/3-2-1,Mindfulness,3-2-1 Senses,guided_practice
+MF-005,/mindfulness/mindful-listening,Mindfulness,Mindful Listening,guided_practice
+MF-006,/mindfulness/sound-shifting,Mindfulness,Sound Shifting,guided_practice
+MF-007,/mindfulness/plan,Mindfulness,Build Your Mindfulness Plan,exercise
+MF-008,/mindfulness/when-hard,Mindfulness,When Mindfulness Feels Hard,safety_scope
+DT-001,/distress/overview,Distress Tolerance,Distress Tolerance,education
+DT-002,/distress/safety,Distress Tolerance,Distress Is Not Danger,safety_scope
+DT-003,/distress/fluctuations,Distress Tolerance,Fluctuations,education
+DT-004,/distress/stop,Distress Tolerance,STOP,interactive_exercise
+DT-005,/distress/tipp,Distress Tolerance,TIPP,interactive_exercise
+DT-006,/distress/ice-cube,Distress Tolerance,Ice Cube Reset,mini_exercise
+DT-007,/distress/frozen-orange,Distress Tolerance,Frozen Orange Grounding,mini_exercise
+DT-008,/distress/response-sheet,Distress Tolerance,Skill Response Sheet,exercise
+CR-001,/cognitive/overview,Cognitive Reframing,Cognitive Reframing,education
+CR-002,/cognitive/cbt-loop,Cognitive Reframing,Thoughts / Feelings / Behaviors,education_visual
+CR-003,/cognitive/distortions,Cognitive Reframing,Distortion Library,education_cards
+CR-004,/cognitive/loud-morning,Cognitive Reframing,Loud Morning Example,example
+CR-005,/cognitive/distortion-detective,Cognitive Reframing,Distortion Detective,interactive_exercise
+CR-006,/cognitive/evidence,Cognitive Reframing,Evidence For-and-Against,interactive_exercise
+CR-007,/cognitive/reframe,Cognitive Reframing,Balanced Reframe,interactive_exercise
+CC-001,/confidence/overview,Confidence and Communication,Support and Communication,education
+CC-002,/confidence/self-compassion,Confidence and Communication,Self-Compassion Basics,education
+CC-003,/confidence/validation,Confidence and Communication,Validation Basics,education
+CC-004,/confidence/rescripting,Confidence and Communication,Re-Scripting Self-Critical Thought,interactive_exercise
+CC-005,/confidence/dear-man,Confidence and Communication,DEAR MAN,interactive_exercise
+CC-006,/confidence/waiting-room-example,Confidence and Communication,Waiting Room Example,example
+SL-001,/sleep/overview,Sleep,Sleep and Tinnitus,education
+SL-002,/sleep/scope,Sleep,Sleep Scope and Support,safety_scope
+SL-003,/sleep/loop,Sleep,Sleep-Tinnitus Loop,education_visual
+SL-004,/sleep/cbti-bbti,Sleep,CBT-I / BBTI Overview,education
+SL-005,/sleep/sound-at-night,Sleep,Bedtime Sound Plan,exercise
+SL-006,/sleep/thoughts,Sleep,Challenging Negative Sleep Thoughts,interactive_exercise
+SL-007,/sleep/stimulus-control,Sleep,Stimulus Control Education,education_scope
+SL-008,/sleep/wind-down,Sleep,Wind-Down Practice,guided_practice
+SL-009,/sleep/seek-help,Sleep,When to Seek Sleep Help,safety_scope
+MP-001,/my-plan,My Plan,My Plan Dashboard,hub
+MP-002,/my-plan/three-lines,My Plan,Three Lines Journal,journal
+MP-003,/my-plan/past-entries,My Plan,Past Entries,review
+MP-004,/my-plan/reminders,My Plan,Reminder Settings,settings
+MP-005,/my-plan/delete-reset,My Plan,Delete / Reset Local Data,settings_safety
+ANN-SOUND-001,/annex/sound,Sound Therapy Annex,Sound Therapy Annex,annex
+ANN-MIND-001,/annex/mindfulness,Mindfulness Annex,Mindfulness Annex,annex

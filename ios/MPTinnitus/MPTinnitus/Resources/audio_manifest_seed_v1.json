@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "1.0.0",
+  "audio": [
+    {
+      "audioId": "AUD-104-G",
+      "moduleId": "sound_therapy",
+      "topic": "Sound Therapy Thermometer",
+      "type": "exercise_walkthrough",
+      "assetPath": "audio/sound_therapy/p_104_aud_104_g_sound_therapy_thermometer.m4a",
+      "transcript": "Start with the sound low and slowly bring it up...",
+      "embeddedForMVP": true,
+      "playbackContext": "narration"
+    }
+  ]
+}

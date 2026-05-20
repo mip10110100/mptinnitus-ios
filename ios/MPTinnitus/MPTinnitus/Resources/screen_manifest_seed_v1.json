@@ -1,0 +1,117 @@
+{
+  "schemaVersion": "1.0.0",
+  "screens": [
+    {
+      "screenId": "HOME-001",
+      "route": "/library",
+      "moduleId": "Global",
+      "title": "Library / Main Module Hub",
+      "role": "navigation_hub",
+      "layout": "placeholder_hub",
+      "sections": [
+        "HOME-001-SECTION-INTRO"
+      ],
+      "audioIds": [],
+      "visualIds": [],
+      "interactionIds": [],
+      "primaryCtas": [],
+      "localDataKeys": [],
+      "safetyScopeId": "general_safety",
+      "nextRoutes": [
+        "/annex/sound",
+        "/annex/mindfulness",
+        "/my-plan"
+      ]
+    },
+    {
+      "screenId": "ANN-SOUND-001",
+      "route": "/annex/sound",
+      "moduleId": "Sound Therapy Annex",
+      "title": "Sound Therapy Annex",
+      "role": "annex",
+      "layout": "placeholder_annex",
+      "sections": [
+        "ANN-SOUND-001-SECTION-INTRO"
+      ],
+      "audioIds": [],
+      "visualIds": [
+        "VIS-ST-THERMOMETER"
+      ],
+      "interactionIds": [],
+      "primaryCtas": [],
+      "localDataKeys": [],
+      "safetyScopeId": "sound_safety",
+      "nextRoutes": []
+    },
+    {
+      "screenId": "ANN-MIND-001",
+      "route": "/annex/mindfulness",
+      "moduleId": "Mindfulness Annex",
+      "title": "Mindfulness Annex",
+      "role": "annex",
+      "layout": "placeholder_annex",
+      "sections": [
+        "ANN-MIND-001-SECTION-INTRO"
+      ],
+      "audioIds": [],
+      "visualIds": [
+        "VIS-MF-BREATHING"
+      ],
+      "interactionIds": [],
+      "primaryCtas": [],
+      "localDataKeys": [],
+      "safetyScopeId": "general_safety",
+      "nextRoutes": []
+    },
+    {
+      "screenId": "MP-001",
+      "route": "/my-plan",
+      "moduleId": "My Plan",
+      "title": "My Plan Dashboard",
+      "role": "hub",
+      "layout": "placeholder_hub",
+      "sections": [
+        "MP-001-SECTION-INTRO"
+      ],
+      "audioIds": [],
+      "visualIds": [],
+      "interactionIds": [],
+      "primaryCtas": [],
+      "localDataKeys": [],
+      "safetyScopeId": "local_privacy",
+      "nextRoutes": []
+    },
+    {
+      "screenId": "ST-003",
+      "route": "/sound/thermometer",
+      "moduleId": "Sound Therapy",
+      "title": "Finding the Sweet Spot",
+      "role": "interactive_exercise",
+      "layout": "exercise_detail",
+      "sections": [
+        "ST-003-CARD-01"
+      ],
+      "audioIds": [
+        "AUD-104-G"
+      ],
+      "visualIds": [
+        "VIS-ST-THERMOMETER"
+      ],
+      "interactionIds": [
+        "INT-ST-THERMOMETER"
+      ],
+      "primaryCtas": [
+        "Save",
+        "Add to My Plan",
+        "Continue"
+      ],
+      "localDataKeys": [
+        "sound_therapy_level_entry"
+      ],
+      "safetyScopeId": "sound_safety",
+      "nextRoutes": [
+        "/sound/preferences"
+      ]
+    }
+  ]
+}
