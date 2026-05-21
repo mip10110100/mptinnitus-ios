@@ -55,7 +55,10 @@ struct RootShellView: View {
             }
 
             tabContent(for: .myPlan, path: $myPlanPath) {
-                MyPlanView(moduleLibrary: moduleLibrary)
+                MyPlanView(
+                    moduleLibrary: moduleLibrary,
+                    exerciseDefinitionLibrary: exerciseDefinitionLibrary
+                )
             }
         }
         .tint(MPTTheme.accentColor)

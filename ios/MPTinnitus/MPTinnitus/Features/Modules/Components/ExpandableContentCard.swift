@@ -11,7 +11,17 @@ struct ExpandableContentCard: View {
     let card: StaticContentCard
     let module: StaticModule
 
-    @State private var isExpanded = false
+    @State private var isExpanded: Bool
+
+    init(
+        card: StaticContentCard,
+        module: StaticModule,
+        initiallyExpanded: Bool = false
+    ) {
+        self.card = card
+        self.module = module
+        _isExpanded = State(initialValue: initiallyExpanded)
+    }
 
     var body: some View {
         Group {
@@ -40,8 +50,6 @@ struct ExpandableContentCard: View {
             Text(card.title)
                 .font(.headline)
                 .foregroundStyle(.primary)
-
-            SourceIDDebugLabel("section", ids: [card.sectionId, card.screenId])
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -52,11 +60,6 @@ struct ExpandableContentCard: View {
                 .font(.body)
                 .foregroundStyle(.primary)
                 .fixedSize(horizontal: false, vertical: true)
-
-            SourceIDDebugLabel("audio", ids: card.audioIds)
-            SourceIDDebugLabel("visual", ids: card.visualIds)
-
-            MyPlanSaveToggle(descriptor: .contentCard(card, module: module))
         }
     }
 }

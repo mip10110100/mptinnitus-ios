@@ -27,7 +27,7 @@ struct LibraryView: View {
                 if moduleLibrary.modules.isEmpty {
                     missingLibraryPlaceholder
                 } else {
-                    SectionHeader("Modules", subtitle: "Locked MVP module list from the Stage 04 source workbook.")
+                    SectionHeader("Modules", subtitle: "Start with About Tinnitus if you are unsure where to begin.")
                     ModuleList(modules: moduleLibrary.modules)
                 }
 
@@ -36,6 +36,7 @@ struct LibraryView: View {
                 #endif
             }
             .padding(MPTTheme.Spacing.screen)
+            .padding(.bottom, MPTTheme.Spacing.bottomScrollContent)
         }
         .background(MPTTheme.screenBackground)
         .navigationTitle(AppTab.library.fullTitle)
@@ -52,7 +53,7 @@ struct LibraryView: View {
                 .font(.title2.weight(.semibold))
                 .foregroundStyle(.primary)
 
-            Text("Browse static educational module overviews, audio transcript placeholders, and exercise placeholder routes.")
+            Text("Choose a module to learn, listen, and practice. You can move in order or start with what feels most useful today.")
                 .font(.body)
                 .foregroundStyle(.primary)
                 .fixedSize(horizontal: false, vertical: true)
@@ -68,7 +69,7 @@ struct LibraryView: View {
             Text("Module library unavailable")
                 .font(.headline)
 
-            Text("module_library_v1.json is missing or malformed. The Stage 03 shell remains available while the development manifest is repaired.")
+            Text("The local module library is unavailable. The rest of the app remains available while this is repaired.")
                 .font(.body)
                 .foregroundStyle(MPTTheme.secondaryText)
                 .fixedSize(horizontal: false, vertical: true)

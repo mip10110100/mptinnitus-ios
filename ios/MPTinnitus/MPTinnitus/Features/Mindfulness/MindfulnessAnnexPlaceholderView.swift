@@ -11,7 +11,7 @@ struct MindfulnessAnnexPlaceholderView: View {
     var body: some View {
         PlaceholderScreenView(
             title: AppTab.mindfulnessAnnex.fullTitle,
-            subtitle: "The mindfulness annex destination is reserved for future guided practice content.",
+            subtitle: "Mindfulness practices are not available right now.",
             systemImage: AppTab.mindfulnessAnnex.systemImage
         )
     }

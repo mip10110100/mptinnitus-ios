@@ -53,6 +53,7 @@ struct ExerciseEntryScreen: View {
                 pastEntriesSection
             }
             .padding(MPTTheme.Spacing.screen)
+            .padding(.bottom, MPTTheme.Spacing.bottomScrollContent)
         }
         .background(MPTTheme.screenBackground)
         .navigationTitle(definition.title)

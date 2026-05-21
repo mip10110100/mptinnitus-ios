@@ -17,7 +17,7 @@ struct LibraryPlaceholderView: View {
     var body: some View {
         PlaceholderScreenView(
             title: AppTab.library.fullTitle,
-            subtitle: "The table of contents shell is ready for bundled module manifests in a later stage.",
+            subtitle: "The table of contents is not available right now.",
             systemImage: AppTab.library.systemImage
         ) {
             #if DEBUG

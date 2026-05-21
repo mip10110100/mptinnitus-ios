@@ -55,6 +55,7 @@ struct SettingsPlaceholderView: View {
                 #endif
             }
             .padding(MPTTheme.Spacing.screen)
+            .padding(.bottom, MPTTheme.Spacing.bottomScrollContent)
         }
         .background(MPTTheme.screenBackground)
         .navigationTitle(AppRoute.settings.title)

@@ -20,7 +20,7 @@ enum MyPlanSourceType: String, CaseIterable {
         case .contentCard:
             "Education Card"
         case .exercisePlaceholder:
-            "Exercise Placeholder"
+            "Practice Tool"
         case .audioItem:
             "Audio"
         case .module:
@@ -112,7 +112,7 @@ extension MyPlanItemDescriptor {
             sourceID: exercise.exerciseId,
             moduleID: module.moduleId,
             title: exercise.title,
-            summary: exercise.description,
+            summary: patientFacingExerciseSummary(exercise.description),
             payloadJSON: payloadJSON(
                 route: exercise.route,
                 screenID: exercise.screenId,
@@ -152,5 +152,24 @@ extension MyPlanItemDescriptor {
         }
 
         return String(normalized.prefix(maxLength)).trimmingCharacters(in: .whitespacesAndNewlines) + "..."
+    }
+
+    private static func patientFacingExerciseSummary(_ description: String) -> String {
+        var text = description
+        let replacements = [
+            "Launches the later ": "Open ",
+            "Launches the ": "Open ",
+            "In this stage it remains a placeholder route without saved results.": "Use this as a practice tool when you want to return to it.",
+            "In this stage it remains a navigation placeholder.": "Use this when you want a quick way to choose where to begin.",
+            "No response is saved in this stage.": "Use this as a practice tool when you want to return to it.",
+            "Reminder settings are future local preferences only. No reminders are scheduled in this MVP.": "Reminder scheduling is not available yet.",
+            "Reminders are not implemented in this stage.": "Reminder scheduling is not available yet."
+        ]
+
+        for (target, replacement) in replacements {
+            text = text.replacingOccurrences(of: target, with: replacement)
+        }
+
+        return text
     }
 }

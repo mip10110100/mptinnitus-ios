@@ -71,7 +71,7 @@ final class AudioController: ObservableObject {
             audioPlayer = nil
             isPlayable = false
             isPlaying = false
-            statusMessage = "Could not play bundled audio."
+            statusMessage = "Could not play this audio."
 
             #if DEBUG
             print("[MPTinnitus][AudioController] Failed to play \(assetPath): \(error.localizedDescription)")
@@ -128,7 +128,7 @@ final class AudioController: ObservableObject {
         audioPlayer = nil
         isPlayable = false
         isPlaying = false
-        statusMessage = message
+        statusMessage = "Audio file will be added later."
         stopProgressTimer()
 
         #if DEBUG

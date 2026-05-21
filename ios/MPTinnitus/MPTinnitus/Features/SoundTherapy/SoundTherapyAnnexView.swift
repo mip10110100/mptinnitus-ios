@@ -44,6 +44,7 @@ struct SoundTherapyAnnexView: View {
                 #endif
             }
             .padding(MPTTheme.Spacing.screen)
+            .padding(.bottom, MPTTheme.Spacing.bottomScrollContent)
         }
         .background(MPTTheme.screenBackground)
         .navigationTitle(AppTab.soundAnnex.fullTitle)
@@ -98,7 +99,7 @@ struct SoundTherapyAnnexView: View {
 
     private var soundSamplesSection: some View {
         VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
-            SectionHeader("Starter Sound Samples", subtitle: "Local .m4a files play when bundled. Missing files show a placeholder state.")
+            SectionHeader("Starter Sound Samples", subtitle: "Local .m4a files play when available. Unavailable samples stay visible without playing.")
 
             ForEach(samples) { sample in
                 SoundSampleCard(

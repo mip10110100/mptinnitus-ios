@@ -11,17 +11,16 @@ struct SafetyScopeCard: View {
     let safetyScope: StaticSafetyScope
 
     var body: some View {
-        VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
-            Label(safetyScope.title, systemImage: "cross.case")
-                .font(.headline)
-                .foregroundStyle(.primary)
-
+        DisclosureGroup {
             Text(safetyScope.bodyMarkdown)
                 .font(.body)
                 .foregroundStyle(.primary)
                 .fixedSize(horizontal: false, vertical: true)
-
-            SourceIDDebugLabel("safety", ids: [safetyScope.safetyScopeId, safetyScope.screenId])
+                .padding(.top, MPTTheme.Spacing.small)
+        } label: {
+            Label(safetyScope.title, systemImage: "cross.case")
+                .font(.headline)
+                .foregroundStyle(.primary)
         }
         .padding(MPTTheme.Spacing.medium)
         .frame(maxWidth: .infinity, alignment: .leading)

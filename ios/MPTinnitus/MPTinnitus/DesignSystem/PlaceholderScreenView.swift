@@ -47,7 +47,7 @@ struct PlaceholderScreenView<Footer: View>: View {
                 .background(MPTTheme.surfaceBackground)
                 .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
 
-                Text("Manifest-ready placeholder")
+                Text("Local content unavailable")
                     .font(.footnote.weight(.medium))
                     .foregroundStyle(MPTTheme.secondaryText)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -55,6 +55,7 @@ struct PlaceholderScreenView<Footer: View>: View {
                 footer
             }
             .padding(MPTTheme.Spacing.screen)
+            .padding(.bottom, MPTTheme.Spacing.bottomScrollContent)
         }
         .background(MPTTheme.screenBackground)
         .navigationTitle(title)
@@ -82,7 +83,7 @@ extension PlaceholderScreenView where Footer == EmptyView {
     NavigationStack {
         PlaceholderScreenView(
             title: "Library / Table of Contents",
-            subtitle: "The module list will be added in a later content stage.",
+            subtitle: "The module list is not available right now.",
             systemImage: "list.bullet.rectangle"
         )
     }

@@ -17,18 +17,6 @@ struct SourceIDDebugLabel: View {
     }
 
     var body: some View {
-        Group {
-        #if DEBUG
-            if !ids.isEmpty {
-                Text("\(title): \(ids.joined(separator: ", "))")
-                    .font(.caption2.monospaced())
-                    .foregroundStyle(MPTTheme.secondaryText)
-                    .textSelection(.enabled)
-                    .accessibilityLabel("\(title) \(ids.joined(separator: ", "))")
-            }
-        #else
-            EmptyView()
-        #endif
-        }
+        EmptyView()
     }
 }

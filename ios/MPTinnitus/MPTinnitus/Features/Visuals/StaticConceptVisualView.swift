@@ -29,7 +29,7 @@ struct StaticConceptVisualView: View {
 
                 conceptDiagram
 
-                Text("Final artwork can replace this placeholder later. No external images or network loading are used.")
+                Text("This built-in diagram uses simple shapes and text. No external images or network loading are used.")
                     .font(.footnote)
                     .foregroundStyle(MPTTheme.secondaryText)
                     .fixedSize(horizontal: false, vertical: true)
@@ -83,22 +83,22 @@ struct StaticConceptVisualView: View {
     private var placeholderTitle: String {
         switch kind {
         case .bodyMindLife:
-            "Body / Mind / Life visual placeholder"
+            "Body / Mind / Life visual guide"
         case .thoughtsFeelingsBehaviors:
-            "Thoughts / Feelings / Behaviors visual placeholder"
+            "Thoughts / Feelings / Behaviors visual guide"
         case .sleepTinnitusLoop:
-            "Sleep-Tinnitus loop visual placeholder"
+            "Sleep-Tinnitus loop visual guide"
         }
     }
 
     private var placeholderMessage: String {
         switch kind {
         case .bodyMindLife:
-            "This placeholder shows the app's three-part view of tinnitus: body factors, mind factors, and daily-life context."
+            "This diagram shows the three-part view of tinnitus: body factors, mind factors, and daily-life context."
         case .thoughtsFeelingsBehaviors:
-            "This placeholder represents the CBT loop used for cognitive reframing education."
+            "This diagram shows the thought, feeling, and behavior loop used in cognitive reframing."
         case .sleepTinnitusLoop:
-            "This placeholder represents the bidirectional relationship between tinnitus distress and sleep difficulty."
+            "This diagram shows the two-way relationship between tinnitus distress and sleep difficulty."
         }
     }
 

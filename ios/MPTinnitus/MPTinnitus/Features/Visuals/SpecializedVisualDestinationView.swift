@@ -44,12 +44,12 @@ struct GenericVisualPlaceholderView: View {
     var body: some View {
         VisualToolScaffold(visual: visual, module: module) {
             VisualPlaceholderPanel(
-                title: "\(visual.title) placeholder",
+                title: "\(visual.title) visual guide",
                 systemImage: "photo",
                 message: visual.description
             )
 
-            Text("A specialized interaction has not been added for this visual reference yet.")
+            Text("This visual uses a simple built-in guide for now.")
                 .font(.body)
                 .foregroundStyle(MPTTheme.secondaryText)
                 .fixedSize(horizontal: false, vertical: true)
@@ -79,6 +79,7 @@ struct VisualToolScaffold<Content: View>: View {
                 content
             }
             .padding(MPTTheme.Spacing.screen)
+            .padding(.bottom, MPTTheme.Spacing.bottomScrollContent)
         }
         .background(MPTTheme.screenBackground)
         .navigationTitle(visual.title)

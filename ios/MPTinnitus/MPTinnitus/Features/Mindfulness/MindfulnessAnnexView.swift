@@ -52,6 +52,7 @@ struct MindfulnessAnnexView: View {
                 #endif
             }
             .padding(MPTTheme.Spacing.screen)
+            .padding(.bottom, MPTTheme.Spacing.bottomScrollContent)
         }
         .background(MPTTheme.screenBackground)
         .navigationTitle(AppTab.mindfulnessAnnex.fullTitle)
@@ -90,7 +91,7 @@ struct MindfulnessAnnexView: View {
                 .foregroundStyle(.primary)
                 .fixedSize(horizontal: false, vertical: true)
 
-            Text("Sound therapy can make practice more accessible. If mindfulness feels too intense, shorten the practice, add comfortable sound, use grounding, or switch to distress tolerance. If you save a practice or audio card to My Plan, that marker stays on this device.")
+            Text("Sound therapy can make practice more accessible. If mindfulness feels too intense, shorten the practice, add comfortable sound, use grounding, or switch to distress tolerance. If you save a practice to My Plan, that marker stays on this device.")
                 .font(.footnote)
                 .foregroundStyle(MPTTheme.secondaryText)
                 .fixedSize(horizontal: false, vertical: true)
@@ -103,7 +104,7 @@ struct MindfulnessAnnexView: View {
 
     private func practiceSection(module: StaticModule) -> some View {
         VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
-            SectionHeader("Practice Options", subtitle: "Open a short exercise, visual pacer, or support route. Saving is optional.")
+            SectionHeader("Practice Options", subtitle: "Open a short exercise, visual pacer, or support tool. Saving is optional.")
 
             exercisePracticeCard(
                 module: module,
@@ -119,7 +120,7 @@ struct MindfulnessAnnexView: View {
                 systemImage: "circle.dashed",
                 route: .visual("VIS-009"),
                 myPlanDescriptor: nil,
-                footer: "Visual tool: VIS-009"
+                footer: "Visual breathing guide"
             )
 
             exercisePracticeCard(
@@ -171,7 +172,7 @@ struct MindfulnessAnnexView: View {
             systemImage: systemImage,
             route: .exercise(exerciseId),
             myPlanDescriptor: exercise.map { MyPlanItemDescriptor.exercise($0, module: module) },
-            footer: exercise == nil ? "Exercise definition not found in the bundled module manifest." : "Exercise: \(exerciseId)"
+            footer: exercise == nil ? "This exercise is not available right now." : "Practice tool"
         )
     }
 
@@ -182,7 +183,7 @@ struct MindfulnessAnnexView: View {
             SectionHeader("Audio Practice", subtitle: "Uses the existing local bundled narration playback and collapsed transcripts.")
 
             if audioItems.isEmpty {
-                Text("No mindfulness audio entries are available from the bundled module manifest.")
+                Text("No mindfulness audio entries are available right now.")
                     .font(.body)
                     .foregroundStyle(MPTTheme.secondaryText)
                     .fixedSize(horizontal: false, vertical: true)

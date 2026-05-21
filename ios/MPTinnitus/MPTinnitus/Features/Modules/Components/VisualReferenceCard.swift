@@ -28,8 +28,6 @@ struct VisualReferenceCard: View {
                         .font(.subheadline)
                         .foregroundStyle(MPTTheme.secondaryText)
                         .fixedSize(horizontal: false, vertical: true)
-
-                    SourceIDDebugLabel("visual", ids: [visual.visualId, visual.screenId, module.moduleId])
                 }
 
                 Spacer(minLength: MPTTheme.Spacing.small)

@@ -11,7 +11,7 @@ struct SoundTherapyAnnexPlaceholderView: View {
     var body: some View {
         PlaceholderScreenView(
             title: AppTab.soundAnnex.fullTitle,
-            subtitle: "The sound therapy annex destination is reserved for future local sound tools and samples.",
+            subtitle: "Sound therapy tools are not available right now.",
             systemImage: AppTab.soundAnnex.systemImage
         )
     }

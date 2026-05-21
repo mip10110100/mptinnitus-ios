@@ -33,7 +33,7 @@ struct MyPlanSavedItemRow: View {
                         .lineLimit(3)
                 }
 
-                Text("\(sourceTypeLabel) | \(item.moduleID)")
+                Text(sourceTypeLabel)
                     .font(.caption)
                     .foregroundStyle(MPTTheme.secondaryText)
             }

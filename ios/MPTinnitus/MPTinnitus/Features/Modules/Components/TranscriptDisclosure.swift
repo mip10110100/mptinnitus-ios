@@ -23,7 +23,7 @@ struct TranscriptDisclosure: View {
 
     var body: some View {
         DisclosureGroup(isExpanded: isExpanded) {
-            Text(transcript.isEmpty ? "Transcript will be added from the audio manifest." : transcript)
+            Text(transcript.isEmpty ? "Transcript is not available for this audio yet." : transcript)
                 .font(.body)
                 .foregroundStyle(.primary)
                 .fixedSize(horizontal: false, vertical: true)

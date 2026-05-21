@@ -28,8 +28,6 @@ struct ModuleCard: View {
                             .font(.subheadline)
                             .foregroundStyle(MPTTheme.secondaryText)
                             .lineLimit(3)
-
-                        SourceIDDebugLabel("screen", ids: module.sourceScreenIds)
                     }
 
                     Spacer(minLength: MPTTheme.Spacing.small)
@@ -40,10 +38,6 @@ struct ModuleCard: View {
                 }
             }
             .buttonStyle(.plain)
-
-            Divider()
-
-            MyPlanSaveToggle(descriptor: .module(module))
         }
         .padding(MPTTheme.Spacing.medium)
         .frame(maxWidth: .infinity, alignment: .leading)

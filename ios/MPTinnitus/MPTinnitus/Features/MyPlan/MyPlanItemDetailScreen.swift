@@ -33,6 +33,7 @@ struct MyPlanItemDetailScreen: View {
                 removeSection
             }
             .padding(MPTTheme.Spacing.screen)
+            .padding(.bottom, MPTTheme.Spacing.bottomScrollContent)
         }
         .background(MPTTheme.screenBackground)
         .navigationTitle("Saved Item")
@@ -71,9 +72,7 @@ struct MyPlanItemDetailScreen: View {
         VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
             SectionHeader("Source")
             labeledText("Type", sourceTypeLabel)
-            labeledText("Source ID", item.sourceID)
-            labeledText("Module", module?.title ?? item.moduleID)
-            SourceIDDebugLabel("record", ids: [item.id.uuidString])
+            labeledText("Module", module?.title ?? "Module not available")
         }
         .padding(MPTTheme.Spacing.medium)
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -88,7 +87,7 @@ struct MyPlanItemDetailScreen: View {
 
             if item.sourceType == MyPlanSourceType.exercisePlaceholder.rawValue {
                 NavigationLink(value: AppRoute.exercise(item.sourceID)) {
-                    sourceLinkLabel("Open Exercise Placeholder", systemImage: "square.and.pencil")
+                    sourceLinkLabel("Open Exercise", systemImage: "square.and.pencil")
                 }
                 .buttonStyle(.plain)
             }
@@ -99,7 +98,7 @@ struct MyPlanItemDetailScreen: View {
                 }
                 .buttonStyle(.plain)
             } else if item.sourceType != MyPlanSourceType.exercisePlaceholder.rawValue {
-                Text("The saved source module is not available in the bundled manifest.")
+                Text("The original module is not available right now.")
                     .font(.body)
                     .foregroundStyle(MPTTheme.secondaryText)
                     .fixedSize(horizontal: false, vertical: true)

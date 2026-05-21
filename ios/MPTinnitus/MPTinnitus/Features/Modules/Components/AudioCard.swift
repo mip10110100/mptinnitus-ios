@@ -19,7 +19,7 @@ struct AudioCard: View {
                     .font(.headline)
                     .foregroundStyle(.primary)
 
-                Text(audio.type)
+                Text("Audio explanation")
                     .font(.subheadline)
                     .foregroundStyle(MPTTheme.secondaryText)
             }
@@ -38,7 +38,7 @@ struct AudioCard: View {
                     )
                 }
                 .buttonStyle(.borderedProminent)
-                .accessibilityHint("Plays bundled local audio when the m4a asset exists.")
+                .accessibilityHint("Plays this audio when the local file is available.")
 
                 Spacer(minLength: MPTTheme.Spacing.small)
             }
@@ -49,18 +49,12 @@ struct AudioCard: View {
                     .foregroundStyle(MPTTheme.secondaryText)
                     .fixedSize(horizontal: false, vertical: true)
             } else if isCurrentAudio, audioController.isPlayable {
-                Text("Loaded from bundled local audio.")
+                Text("Audio is ready.")
                     .font(.footnote)
                     .foregroundStyle(MPTTheme.secondaryText)
             }
 
             TranscriptDisclosure(transcript: audio.transcript)
-
-            MyPlanSaveToggle(descriptor: .audioItem(audio, module: module))
-
-            SourceIDDebugLabel("audio", ids: [audio.audioId, audio.sourceId])
-            SourceIDDebugLabel("screen", ids: audio.screenIds)
-            SourceIDDebugLabel("asset", ids: [audio.assetPath])
         }
         .padding(MPTTheme.Spacing.medium)
         .frame(maxWidth: .infinity, alignment: .leading)

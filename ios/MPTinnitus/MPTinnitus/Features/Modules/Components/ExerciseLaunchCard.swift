@@ -25,12 +25,10 @@ struct ExerciseLaunchCard: View {
                             .font(.headline)
                             .foregroundStyle(.primary)
 
-                        Text(exercise.description)
+                        Text(displayDescription)
                             .font(.subheadline)
                             .foregroundStyle(MPTTheme.secondaryText)
                             .fixedSize(horizontal: false, vertical: true)
-
-                        SourceIDDebugLabel("exercise", ids: [exercise.exerciseId, exercise.screenId])
                     }
 
                     Spacer(minLength: MPTTheme.Spacing.small)
@@ -50,5 +48,24 @@ struct ExerciseLaunchCard: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(MPTTheme.surfaceBackground)
         .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+    }
+
+    private var displayDescription: String {
+        var text = exercise.description
+        let replacements = [
+            "Launches the later ": "Open ",
+            "Launches the ": "Open ",
+            "In this stage it remains a placeholder route without saved results.": "Use this as a practice tool when you want to return to it.",
+            "In this stage it remains a navigation placeholder.": "Use this when you want a quick way to choose where to begin.",
+            "No response is saved in this stage.": "Use this as a practice tool when you want to return to it.",
+            "Reminder settings are future local preferences only. No reminders are scheduled in this MVP.": "Reminder scheduling is not available yet.",
+            "Reminders are not implemented in this stage.": "Reminder scheduling is not available yet."
+        ]
+
+        for (target, replacement) in replacements {
+            text = text.replacingOccurrences(of: target, with: replacement)
+        }
+
+        return text
     }
 }

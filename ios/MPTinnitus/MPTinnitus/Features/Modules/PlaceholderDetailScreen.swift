@@ -26,11 +26,11 @@ struct PlaceholderDetailScreen: View {
                         .font(.system(size: 34, weight: .semibold))
                         .foregroundStyle(MPTTheme.accentColor)
 
-                    Text(exercise?.title ?? "Exercise Placeholder")
+                    Text(exercise?.title ?? "Practice Tool")
                         .font(.title2.weight(.semibold))
                         .foregroundStyle(.primary)
 
-                    Text("This route is a Stage 04 static placeholder. The interactive exercise will be implemented in a later stage. No responses are saved here.")
+                    Text("Use this as a saveable reminder for a practice you may want to revisit.")
                         .font(.body)
                         .foregroundStyle(.primary)
                         .fixedSize(horizontal: false, vertical: true)
@@ -42,12 +42,10 @@ struct PlaceholderDetailScreen: View {
 
                 if let exercise {
                     VStack(alignment: .leading, spacing: MPTTheme.Spacing.medium) {
-                        SectionHeader("Planned Exercise Shape")
+                        SectionHeader("Practice Preview")
 
-                        labeledText("Inputs / actions", exercise.inputSummary)
-                        labeledText("Default CTAs", exercise.defaultCTAs)
-                        labeledText("My Plan behavior", exercise.addToMyPlanBehavior)
-                        SourceIDDebugLabel("exercise", ids: [exercise.exerciseId, exercise.screenId, exercise.route])
+                        labeledText("What you will do", exercise.inputSummary)
+                        labeledText("How to use it", exercise.defaultCTAs)
 
                         if let module {
                             MyPlanSaveToggle(descriptor: .exercise(exercise, module: module))
@@ -58,7 +56,7 @@ struct PlaceholderDetailScreen: View {
                     .background(MPTTheme.surfaceBackground)
                     .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
                 } else {
-                    Text("Missing exercise manifest entry for \(exerciseId).")
+                    Text("This practice tool is not available right now.")
                         .font(.body)
                         .foregroundStyle(MPTTheme.secondaryText)
                         .padding(MPTTheme.Spacing.medium)
@@ -68,6 +66,7 @@ struct PlaceholderDetailScreen: View {
                 }
             }
             .padding(MPTTheme.Spacing.screen)
+            .padding(.bottom, MPTTheme.Spacing.bottomScrollContent)
         }
         .background(MPTTheme.screenBackground)
         .navigationTitle(exercise?.title ?? "Exercise")
@@ -80,7 +79,7 @@ struct PlaceholderDetailScreen: View {
                 .font(.caption.weight(.semibold))
                 .foregroundStyle(MPTTheme.secondaryText)
 
-            Text(value.isEmpty ? "Not specified in Stage 04." : value)
+            Text(value.isEmpty ? "Not specified yet." : value)
                 .font(.body)
                 .foregroundStyle(.primary)
                 .fixedSize(horizontal: false, vertical: true)

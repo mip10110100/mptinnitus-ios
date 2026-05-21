@@ -15,9 +15,9 @@ struct TugOfWarVisualView: View {
         VisualToolScaffold(visual: visual, module: module) {
             VStack(alignment: .leading, spacing: MPTTheme.Spacing.large) {
                 VisualPlaceholderPanel(
-                    title: "Tug-of-War image placeholder",
+                    title: "Tug-of-War visual guide",
                     systemImage: "figure.strengthtraining.traditional",
-                    message: "A final tug-of-war image can replace this placeholder later without changing saved data."
+                    message: "Use this image area as a simple reminder: you can stop pulling against an unwinnable fight and choose one useful next action."
                 )
 
                 VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {

@@ -42,6 +42,7 @@ struct SafetyInformationView: View {
                 )
             }
             .padding(MPTTheme.Spacing.screen)
+            .padding(.bottom, MPTTheme.Spacing.bottomScrollContent)
         }
         .background(MPTTheme.screenBackground)
         .navigationTitle(AppRoute.safetyInformation.title)

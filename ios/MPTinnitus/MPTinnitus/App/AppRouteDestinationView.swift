@@ -36,12 +36,13 @@ struct AppRouteDestinationView: View {
             ModuleOverviewScreen(
                 module: module,
                 library: moduleLibrary,
+                exerciseDefinitionLibrary: exerciseDefinitionLibrary,
                 audioController: audioController
             )
         } else {
             PlaceholderScreenView(
                 title: "Module Unavailable",
-                subtitle: "The static module manifest is missing this module ID: \(moduleId).",
+                subtitle: "This module is not available right now.",
                 systemImage: "exclamationmark.triangle"
             )
         }
@@ -82,7 +83,7 @@ struct AppRouteDestinationView: View {
         } else {
             PlaceholderScreenView(
                 title: "Visual Tool Unavailable",
-                subtitle: "The static module manifest is missing this visual ID: \(visualId).",
+                subtitle: "This visual tool is not available right now.",
                 systemImage: "exclamationmark.triangle"
             )
         }

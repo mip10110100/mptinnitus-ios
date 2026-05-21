@@ -10,12 +10,17 @@ import SwiftUI
 
 struct MyPlanView: View {
     let moduleLibrary: StaticModuleLibrary
+    let exerciseDefinitionLibrary: ExerciseDefinitionLibrary
 
     @Query private var myPlanItems: [MyPlanItemRecord]
     @Query private var journalEntries: [ThreeLinesJournalEntryRecord]
 
-    init(moduleLibrary: StaticModuleLibrary = .empty) {
+    init(
+        moduleLibrary: StaticModuleLibrary = .empty,
+        exerciseDefinitionLibrary: ExerciseDefinitionLibrary = .empty
+    ) {
         self.moduleLibrary = moduleLibrary
+        self.exerciseDefinitionLibrary = exerciseDefinitionLibrary
     }
 
     private var activeItems: [MyPlanItemRecord] {
@@ -59,6 +64,7 @@ struct MyPlanView: View {
                 #endif
             }
             .padding(MPTTheme.Spacing.screen)
+            .padding(.bottom, MPTTheme.Spacing.bottomScrollContent)
         }
         .background(MPTTheme.screenBackground)
         .navigationTitle(AppTab.myPlan.fullTitle)
@@ -75,7 +81,7 @@ struct MyPlanView: View {
                 .font(.title2.weight(.semibold))
                 .foregroundStyle(.primary)
 
-            Text("Save useful modules, education cards, audio cards, and exercise placeholders here. Items saved here stay on this device.")
+            Text("Save exercises and practice tools you want to revisit. Items saved here stay on this device.")
                 .font(.body)
                 .foregroundStyle(.primary)
                 .fixedSize(horizontal: false, vertical: true)
@@ -135,7 +141,7 @@ struct MyPlanView: View {
                 .font(.headline)
                 .foregroundStyle(.primary)
 
-            Text("Use Add to My Plan on modules, education cards, audio cards, or exercise placeholders. Saved items are local to this device and can be removed later.")
+            Text("Use Add to My Plan on exercises and practice tools. Saved items are local to this device and can be removed whenever needed.")
                 .font(.body)
                 .foregroundStyle(MPTTheme.secondaryText)
                 .fixedSize(horizontal: false, vertical: true)
@@ -167,10 +173,10 @@ struct MyPlanView: View {
 
     private var otherExercisesSection: some View {
         VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
-            SectionHeader("Other Exercises", subtitle: "Exercise interactions are placeholders in this stage. You can save a placeholder to My Plan without saving responses.")
+            SectionHeader("Other Exercises", subtitle: "Browse practice tools from across the Library.")
 
-            if moduleLibrary.exerciseReferences.isEmpty {
-                Text("No exercise placeholders are available from the bundled module manifest.")
+            if implementedExerciseReferences.isEmpty {
+                Text("No exercise practice tools are available from the bundled module library.")
                     .font(.body)
                     .foregroundStyle(MPTTheme.secondaryText)
                     .fixedSize(horizontal: false, vertical: true)
@@ -179,10 +185,16 @@ struct MyPlanView: View {
                     .background(MPTTheme.surfaceBackground)
                     .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
             } else {
-                ForEach(moduleLibrary.exerciseReferences) { reference in
+                ForEach(implementedExerciseReferences) { reference in
                     ExerciseLaunchCard(exercise: reference.exercise, module: reference.module)
                 }
             }
+        }
+    }
+
+    private var implementedExerciseReferences: [StaticExerciseReference] {
+        moduleLibrary.exerciseReferences.filter { reference in
+            exerciseDefinitionLibrary.definition(id: reference.exercise.exerciseId) != nil
         }
     }
 

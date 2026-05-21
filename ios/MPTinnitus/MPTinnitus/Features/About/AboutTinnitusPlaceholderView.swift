@@ -11,7 +11,7 @@ struct AboutTinnitusPlaceholderView: View {
     var body: some View {
         PlaceholderScreenView(
             title: "About Tinnitus",
-            subtitle: "This route is reserved for the opening educational overview from the bundled content manifests.",
+            subtitle: "This educational overview is not available right now.",
             systemImage: "ear"
         )
     }

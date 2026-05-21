@@ -45,6 +45,7 @@ struct ThreeLinesJournalView: View {
                 pastEntriesSection
             }
             .padding(MPTTheme.Spacing.screen)
+            .padding(.bottom, MPTTheme.Spacing.bottomScrollContent)
         }
         .background(MPTTheme.screenBackground)
         .navigationTitle("Three Lines Journal")
