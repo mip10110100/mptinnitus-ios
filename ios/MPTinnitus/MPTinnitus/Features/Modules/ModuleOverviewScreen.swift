@@ -35,6 +35,13 @@ struct ModuleOverviewScreen: View {
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             initializeExpandedGroupsIfNeeded()
+            updateSectionAudioQueue()
+        }
+        .onChange(of: expandedGroupIDs) { _, _ in
+            updateSectionAudioQueue()
+        }
+        .onDisappear {
+            audioController.clearSectionAudioQueue(contextID: module.moduleId)
         }
     }
 
@@ -214,6 +221,29 @@ struct ModuleOverviewScreen: View {
         }
 
         return groups
+    }
+
+    private var visibleSectionAudioQueue: [StaticAudioItem] {
+        var queuedAudio: [StaticAudioItem] = []
+        var queuedAudioIDs: Set<String> = []
+
+        for group in learningGroups where expandedGroupIDs.contains(group.id) {
+            for card in group.cards {
+                guard let sectionAudio = audioItems(for: card).first,
+                      !queuedAudioIDs.contains(sectionAudio.audioId) else {
+                    continue
+                }
+
+                queuedAudio.append(sectionAudio)
+                queuedAudioIDs.insert(sectionAudio.audioId)
+            }
+        }
+
+        return queuedAudio
+    }
+
+    private func updateSectionAudioQueue() {
+        audioController.setSectionAudioQueue(visibleSectionAudioQueue, contextID: module.moduleId)
     }
 
     @ViewBuilder

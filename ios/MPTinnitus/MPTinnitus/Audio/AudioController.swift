@@ -9,8 +9,12 @@ import Combine
 import AVFoundation
 import Foundation
 
+enum AudioPreferenceKeys {
+    static let automaticallyPlayNextEducationSection = "mptinnitus.automaticallyPlayNextEducationSection"
+}
+
 @MainActor
-final class AudioController: ObservableObject {
+final class AudioController: NSObject, ObservableObject, AVAudioPlayerDelegate {
     @Published private(set) var currentAudioLabel = "No audio selected"
     @Published private(set) var currentAudioID: String?
     @Published private(set) var currentAssetPath: String?
@@ -20,13 +24,18 @@ final class AudioController: ObservableObject {
     @Published private(set) var isPlayable = false
     @Published private(set) var elapsedTime: TimeInterval = 0
     @Published private(set) var duration: TimeInterval = 0
+    @Published private(set) var hasNextSectionInQueue = false
 
     private var audioPlayer: AVAudioPlayer?
     private var progressTimer: Timer?
     private let bundle: Bundle
+    private var sectionAudioQueue: [StaticAudioItem] = []
+    private var sectionAudioQueueContextID: String?
+    private var currentSectionQueueIndex: Int?
 
     init(bundle: Bundle = .main) {
         self.bundle = bundle
+        super.init()
     }
 
     deinit {
@@ -39,6 +48,7 @@ final class AudioController: ObservableObject {
 
     func play(audio: StaticAudioItem) {
         stopCurrentPlayback()
+        syncQueueIndex(for: audio.audioId)
 
         currentAudioID = audio.audioId
         currentAudioLabel = audio.title
@@ -59,6 +69,7 @@ final class AudioController: ObservableObject {
 
         do {
             let player = try AVAudioPlayer(contentsOf: url)
+            player.delegate = self
             player.prepareToPlay()
             audioPlayer = player
             isPlayable = true
@@ -90,6 +101,11 @@ final class AudioController: ObservableObject {
             refreshProgress()
             stopProgressTimer()
         } else {
+            if audioPlayer.currentTime >= audioPlayer.duration {
+                audioPlayer.currentTime = 0
+                elapsedTime = 0
+            }
+            statusMessage = nil
             audioPlayer.play()
             isPlaying = true
             startProgressTimer()
@@ -114,6 +130,38 @@ final class AudioController: ObservableObject {
         refreshProgress()
     }
 
+    func setSectionAudioQueue(_ queue: [StaticAudioItem], contextID: String) {
+        sectionAudioQueue = queue
+        sectionAudioQueueContextID = contextID
+        syncQueueIndex(for: currentAudioID)
+    }
+
+    func clearSectionAudioQueue(contextID: String? = nil) {
+        guard contextID == nil || contextID == sectionAudioQueueContextID else {
+            return
+        }
+
+        sectionAudioQueue = []
+        sectionAudioQueueContextID = nil
+        currentSectionQueueIndex = nil
+        hasNextSectionInQueue = false
+    }
+
+    func playNextSection() {
+        guard let nextAudio = nextSectionAudio else {
+            hasNextSectionInQueue = false
+            return
+        }
+
+        play(audio: nextAudio)
+    }
+
+    nonisolated func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        Task { @MainActor [weak self] in
+            self?.handlePlaybackFinished(for: player)
+        }
+    }
+
     private func stopCurrentPlayback() {
         audioPlayer?.stop()
         audioPlayer = nil
@@ -130,6 +178,7 @@ final class AudioController: ObservableObject {
         isPlaying = false
         statusMessage = "Audio file will be added later."
         stopProgressTimer()
+        updateHasNextSection()
 
         #if DEBUG
         print("[MPTinnitus][AudioController] \(message)")
@@ -139,8 +188,12 @@ final class AudioController: ObservableObject {
     private func startProgressTimer() {
         stopProgressTimer()
         progressTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { [weak self] _ in
-            Task { @MainActor in
-                self?.refreshProgress()
+            Task { @MainActor [weak self] in
+                guard let self else {
+                    return
+                }
+
+                self.refreshProgress()
             }
         }
     }
@@ -162,8 +215,36 @@ final class AudioController: ObservableObject {
         duration = audioPlayer.duration
 
         if isPlaying && !audioPlayer.isPlaying {
-            isPlaying = false
-            stopProgressTimer()
+            handlePlaybackFinished(for: audioPlayer)
+        }
+    }
+
+    private func handlePlaybackFinished(for finishedPlayer: AVAudioPlayer) {
+        guard finishedPlayer === audioPlayer else {
+            return
+        }
+
+        guard isPlaying || audioPlayer != nil else {
+            return
+        }
+
+        isPlaying = false
+        if let audioPlayer {
+            elapsedTime = audioPlayer.duration
+            duration = audioPlayer.duration
+        }
+        stopProgressTimer()
+        updateHasNextSection()
+
+        guard UserDefaults.standard.bool(forKey: AudioPreferenceKeys.automaticallyPlayNextEducationSection) else {
+            statusMessage = hasNextSectionInQueue ? "Section ended. Tap next to continue." : "Section ended."
+            return
+        }
+
+        if hasNextSectionInQueue {
+            playNextSection()
+        } else {
+            statusMessage = "Section ended."
         }
     }
 
@@ -206,5 +287,39 @@ final class AudioController: ObservableObject {
         let fileName = nsPath.lastPathComponent as NSString
         let flatResource = fileName.deletingPathExtension
         return bundle.url(forResource: flatResource, withExtension: fileExtension)
+    }
+
+    private var nextSectionAudio: StaticAudioItem? {
+        guard let currentSectionQueueIndex else {
+            return nil
+        }
+
+        let nextIndex = currentSectionQueueIndex + 1
+        guard sectionAudioQueue.indices.contains(nextIndex) else {
+            return nil
+        }
+
+        return sectionAudioQueue[nextIndex]
+    }
+
+    private func syncQueueIndex(for audioID: String?) {
+        guard let audioID,
+              let index = sectionAudioQueue.firstIndex(where: { $0.audioId == audioID }) else {
+            currentSectionQueueIndex = nil
+            hasNextSectionInQueue = false
+            return
+        }
+
+        currentSectionQueueIndex = index
+        updateHasNextSection()
+    }
+
+    private func updateHasNextSection() {
+        guard let currentSectionQueueIndex else {
+            hasNextSectionInQueue = false
+            return
+        }
+
+        hasNextSectionInQueue = sectionAudioQueue.indices.contains(currentSectionQueueIndex + 1)
     }
 }

@@ -22,19 +22,19 @@ struct AudioMiniPlayerPlaceholderView: View {
                     .lineLimit(1)
                     .foregroundStyle(.primary)
 
-                if audioController.duration > 0 {
-                    Text("\(formattedTime(audioController.elapsedTime)) / \(formattedTime(audioController.duration))")
-                        .font(.caption)
-                        .foregroundStyle(MPTTheme.secondaryText)
-                } else if let statusMessage = audioController.statusMessage {
+                if let statusMessage = audioController.statusMessage {
                     Text(statusMessage)
                         .font(.caption)
                         .lineLimit(1)
                         .foregroundStyle(MPTTheme.secondaryText)
+                } else if audioController.duration > 0 {
+                    Text("\(formattedTime(audioController.elapsedTime)) / \(formattedTime(audioController.duration))")
+                        .font(.caption)
+                        .foregroundStyle(MPTTheme.secondaryText)
                 }
             }
 
-            Spacer(minLength: MPTTheme.Spacing.medium)
+            Spacer(minLength: MPTTheme.Spacing.small)
 
             Group {
                 Button(action: audioController.rewindFifteenSeconds) {
@@ -54,6 +54,12 @@ struct AudioMiniPlayerPlaceholderView: View {
                 }
                 .accessibilityLabel("Forward 15 seconds")
                 .disabled(!audioController.canControlCurrentItem)
+
+                Button(action: audioController.playNextSection) {
+                    Image(systemName: "forward.end.fill")
+                }
+                .accessibilityLabel("Play next section")
+                .disabled(!audioController.hasNextSectionInQueue)
             }
             .buttonStyle(.plain)
             .font(.title3.weight(.semibold))

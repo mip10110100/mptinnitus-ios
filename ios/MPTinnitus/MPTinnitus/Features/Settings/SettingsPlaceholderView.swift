@@ -14,6 +14,8 @@ struct SettingsPlaceholderView: View {
     private var firstLaunchDecisionRaw = FirstLaunchDecision.pending.rawValue
     @AppStorage("mptinnitus.transcriptsExpandedByDefault")
     private var transcriptsExpandedByDefault = false
+    @AppStorage(AudioPreferenceKeys.automaticallyPlayNextEducationSection)
+    private var automaticallyPlayNextEducationSection = false
 
     @Query private var myPlanItems: [MyPlanItemRecord]
     @Query private var exerciseEntries: [ExerciseEntryRecord]
@@ -146,6 +148,19 @@ struct SettingsPlaceholderView: View {
                 }
             }
             .toggleStyle(.switch)
+
+            Toggle(isOn: $automaticallyPlayNextEducationSection) {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Automatically play next education section")
+                        .font(.headline)
+
+                    Text("Default is off. When this is off, each section stops and waits for you to choose the next one.")
+                        .font(.subheadline)
+                        .foregroundStyle(MPTTheme.secondaryText)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
+            .toggleStyle(.switch)
         }
         .settingsCardPadding()
     }
@@ -204,7 +219,7 @@ struct SettingsPlaceholderView: View {
 
             resetRow(
                 title: "Reset all local app data",
-                subtitle: "Deletes local records and resets welcome/transcript preferences. Bundled education content stays installed.",
+                subtitle: "Deletes local records and resets welcome/audio/transcript preferences. Bundled education content stays installed.",
                 action: .allLocalData
             )
 
@@ -315,6 +330,7 @@ struct SettingsPlaceholderView: View {
                 try LocalDataResetService(modelContext: modelContext).reset(.allLocalData)
                 resetWelcomePrompt()
                 transcriptsExpandedByDefault = false
+                automaticallyPlayNextEducationSection = false
             default:
                 if let scope = action.resetScope {
                     try LocalDataResetService(modelContext: modelContext).reset(scope)
@@ -427,7 +443,7 @@ private enum SettingsResetAction: String {
         case .safetyScopeFlags:
             "This clears local safety/scope acknowledgement flags. Safety content remains available."
         case .allLocalData:
-            "This deletes My Plan items, exercise entries, journal entries, sound preferences, reminder settings, safety flags, and local schema/preference records. It also resets the welcome prompt and transcript preference. This cannot be undone."
+            "This deletes My Plan items, exercise entries, journal entries, sound preferences, reminder settings, safety flags, and local schema/preference records. It also resets the welcome prompt, audio preference, and transcript preference. This cannot be undone."
         case .welcomePrompt:
             "The welcome sheet will appear again on a future app launch. No saved data will be deleted."
         }
