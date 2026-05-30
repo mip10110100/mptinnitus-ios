@@ -282,6 +282,10 @@ private final class ThermometerSamplePreview: ObservableObject {
 
     private func findPreviewURL() -> URL? {
         let candidatePaths = [
+            "audio/sound_samples/white_noise_1min_loop_no_fades_128kbps.mp3",
+            "audio/sound_samples/white_noise_1min_fade_in_out_128kbps.mp3",
+            "white_noise_1min_loop_no_fades_128kbps.mp3",
+            "white_noise_1min_fade_in_out_128kbps.mp3",
             "audio/samples/white_broadband_placeholder.m4a",
             "audio/sound_samples/ss_001_white_noise_loop.m4a",
             "white_broadband_placeholder.m4a",

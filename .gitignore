@@ -4,3 +4,13 @@
 *.xcuserstate
 *.xcuserdatad
 DerivedData/
+
+# Local system files
+.DS_Store
+**/.DS_Store
+
+# Source audio/render archives kept outside app-ready resources
+/*.zip
+trial_renders.zip
+*_renders.zip
+*_render*.zip

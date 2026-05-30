@@ -62,11 +62,13 @@ final class SoundSampleController: ObservableObject {
 
         do {
             let audioPlayer = try AVAudioPlayer(contentsOf: url)
-            audioPlayer.numberOfLoops = 0
+            audioPlayer.numberOfLoops = sample.loopCapable ? -1 : 0
             audioPlayer.prepareToPlay()
             player = audioPlayer
             isPlayable = true
-            statusMessage = "Playing a local foreground preview. Volume is capped for safety."
+            statusMessage = sample.loopCapable
+                ? "Playing a local foreground sound. Volume is capped for safety."
+                : "Playing a local foreground preview. Volume is capped for safety."
             applyVolume()
 
             if audioPlayer.play() {
@@ -100,7 +102,7 @@ final class SoundSampleController: ObservableObject {
 
             player.play()
             isPlaying = true
-            statusMessage = "Playing a local foreground preview. Volume is capped for safety."
+            statusMessage = "Playing a local foreground sound. Volume is capped for safety."
         }
     }
 

@@ -147,19 +147,21 @@ struct SoundSampleCard: View {
     }
 
     private var iconName: String {
-        switch sample.id {
-        case "SS-001", "SS-002":
-            "waveform"
-        case "SS-003":
-            "cloud.rain"
-        case "SS-004":
-            "water.waves"
-        case "SS-005":
-            "fan"
-        case "SS-006":
-            "moon.stars"
-        default:
-            "speaker.wave.2"
+        let id = sample.id.lowercased()
+        let title = sample.title.lowercased()
+
+        if id.contains("rain") || title.contains("rain") {
+            return "cloud.rain"
+        } else if id.contains("stream") || title.contains("stream") || title.contains("water") {
+            return "water.waves"
+        } else if id.contains("fan") || title.contains("fan") {
+            return "fan"
+        } else if id.contains("crickets") || title.contains("crickets") {
+            return "moon.stars"
+        } else if id.contains("noise") || title.contains("noise") {
+            return "waveform"
+        } else {
+            return "speaker.wave.2"
         }
     }
 

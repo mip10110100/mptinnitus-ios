@@ -258,17 +258,11 @@ final class AudioController: NSObject, ObservableObject, AVAudioPlayerDelegate {
         let nsPath = path as NSString
         let pathExtension = nsPath.pathExtension.lowercased()
 
-        guard !pathExtension.isEmpty, pathExtension != "m4a" else {
+        guard !pathExtension.isEmpty else {
             return path
         }
 
-        let normalized = nsPath.deletingPathExtension + ".m4a"
-
-        #if DEBUG
-        print("[MPTinnitus][AudioController] Normalized audio path from \(path) to \(normalized).")
-        #endif
-
-        return normalized
+        return path
     }
 
     private func bundledAudioURL(for assetPath: String) -> URL? {

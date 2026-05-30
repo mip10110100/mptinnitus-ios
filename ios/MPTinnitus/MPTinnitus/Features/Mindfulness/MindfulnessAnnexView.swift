@@ -11,14 +11,24 @@ struct MindfulnessAnnexView: View {
     let moduleLibrary: StaticModuleLibrary
     @ObservedObject var audioController: AudioController
 
-    private let mindfulnessAudioOrder = [
-        "AUD-300-OV",
-        "NEW-AUD-MF-ISNOT-001",
-        "AUD-301-G",
-        "AUD-302-G",
-        "AUD-303-G",
-        "NEW-AUD-MF-SHIFT-001",
-        "NEW-AUD-MF-HARD-001"
+    private let guidedMindfulnessAudioOrder = [
+        "mindfulness.long_bodyscan",
+        "mindfulness.acceptance_present_moment",
+        "mindfulness.body_scan",
+        "mindfulness.mindful_listening",
+        "mindfulness.sound_therapy_mindful",
+        "mindfulness.three_two_one",
+        "mindfulness.name_it",
+        "mindfulness.one_breath",
+        "mindfulness.open_hands",
+        "mindfulness.sound_shifting",
+        "mindfulness.body_anchor",
+        "mindfulness.breathing_space"
+    ]
+
+    private let sleepMindfulnessAudioOrder = [
+        "mindfulness.long_sleep",
+        "mindfulness.settling_sleep"
     ]
 
     private var mindfulnessModule: StaticModule? {
@@ -43,7 +53,7 @@ struct MindfulnessAnnexView: View {
                 header
                 practiceNotPerfectCard
                 practiceSection(module: module)
-                audioPracticeSection(module: module)
+                audioPracticeSection()
                 helpSection
                 learnSection
 
@@ -176,14 +186,15 @@ struct MindfulnessAnnexView: View {
         )
     }
 
-    private func audioPracticeSection(module: StaticModule) -> some View {
-        let audioItems = mindfulnessAudioItems(module: module)
+    private func audioPracticeSection() -> some View {
+        let guidedAudioItems = audioReferences(for: guidedMindfulnessAudioOrder)
+        let sleepAudioItems = audioReferences(for: sleepMindfulnessAudioOrder)
 
         return VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
-            SectionHeader("Audio Practice", subtitle: "Uses the existing local bundled narration playback and collapsed transcripts.")
+            SectionHeader("Guided Mindfulness Practices", subtitle: "These guided practices can be used on their own or alongside skills from the program. They are single-play recordings, not continuous sound therapy loops.")
 
-            if audioItems.isEmpty {
-                Text("No mindfulness audio entries are available right now.")
+            if guidedAudioItems.isEmpty {
+                Text("No guided mindfulness recordings are available right now.")
                     .font(.body)
                     .foregroundStyle(MPTTheme.secondaryText)
                     .fixedSize(horizontal: false, vertical: true)
@@ -192,10 +203,23 @@ struct MindfulnessAnnexView: View {
                     .background(MPTTheme.surfaceBackground)
                     .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
             } else {
-                ForEach(audioItems) { audio in
+                ForEach(guidedAudioItems) { reference in
                     AudioCard(
-                        audio: audio,
-                        module: module,
+                        audio: reference.audio,
+                        module: reference.module,
+                        audioController: audioController
+                    )
+                }
+            }
+
+            if !sleepAudioItems.isEmpty {
+                SectionHeader("Sleep-Oriented Guided Practices", subtitle: "Use these as single-play wind-down supports when they fit the moment.")
+                    .padding(.top, MPTTheme.Spacing.medium)
+
+                ForEach(sleepAudioItems) { reference in
+                    AudioCard(
+                        audio: reference.audio,
+                        module: reference.module,
                         audioController: audioController
                     )
                 }
@@ -281,9 +305,15 @@ struct MindfulnessAnnexView: View {
         .buttonStyle(.plain)
     }
 
-    private func mindfulnessAudioItems(module: StaticModule) -> [StaticAudioItem] {
-        mindfulnessAudioOrder.compactMap { audioId in
-            module.audio.first { $0.audioId == audioId }
+    private func audioReferences(for audioIDs: [String]) -> [MindfulnessAudioReference] {
+        audioIDs.compactMap { audioID in
+            for module in moduleLibrary.modules {
+                if let audio = module.audio.first(where: { $0.audioId == audioID }) {
+                    return MindfulnessAudioReference(audio: audio, module: module)
+                }
+            }
+
+            return nil
         }
     }
 
@@ -293,7 +323,8 @@ struct MindfulnessAnnexView: View {
             SectionHeader("Mindfulness Annex Debug")
             Text("Practice exercises: I-011, I-012, I-013, I-014")
             Text("Breathing visual: VIS-009")
-            Text("Audio cards: \(mindfulnessAudioItems(module: module).count)")
+            Text("Guided mindfulness audio cards: \(audioReferences(for: guidedMindfulnessAudioOrder).count)")
+            Text("Sleep-oriented audio cards: \(audioReferences(for: sleepMindfulnessAudioOrder).count)")
         }
         .font(.footnote.monospacedDigit())
         .foregroundStyle(MPTTheme.secondaryText)
@@ -303,4 +334,13 @@ struct MindfulnessAnnexView: View {
         .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
     }
     #endif
+}
+
+private struct MindfulnessAudioReference: Identifiable {
+    let audio: StaticAudioItem
+    let module: StaticModule
+
+    var id: String {
+        audio.audioId
+    }
 }

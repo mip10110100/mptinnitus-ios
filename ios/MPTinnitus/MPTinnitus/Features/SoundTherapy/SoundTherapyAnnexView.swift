@@ -64,7 +64,7 @@ struct SoundTherapyAnnexView: View {
                 .font(.title2.weight(.semibold))
                 .foregroundStyle(.primary)
 
-            Text("Explore six local starter sound categories. Samples are previews only, and preference is individual.")
+            Text("Explore local starter sound categories. Preference is individual, and comfortable sound matters more than covering tinnitus completely.")
                 .font(.body)
                 .foregroundStyle(.primary)
                 .fixedSize(horizontal: false, vertical: true)
@@ -99,16 +99,49 @@ struct SoundTherapyAnnexView: View {
 
     private var soundSamplesSection: some View {
         VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
-            SectionHeader("Starter Sound Samples", subtitle: "Local .m4a files play when available. Unavailable samples stay visible without playing.")
+            SectionHeader("Sound Therapy Samples", subtitle: "Use these sounds at a comfortable level. For sound therapy, the goal is usually to let external sound and tinnitus gently overlap rather than covering tinnitus completely.")
 
-            ForEach(samples) { sample in
-                SoundSampleCard(
-                    sample: sample,
-                    preferences: soundPreferences,
-                    controller: sampleController
-                )
+            ForEach(groupedSamples, id: \.title) { group in
+                VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
+                    Text(group.title)
+                        .font(.subheadline.weight(.semibold))
+                        .foregroundStyle(MPTTheme.secondaryText)
+                        .padding(.top, MPTTheme.Spacing.small)
+
+                    ForEach(group.samples) { sample in
+                        SoundSampleCard(
+                            sample: sample,
+                            preferences: soundPreferences,
+                            controller: sampleController
+                        )
+                    }
+                }
             }
         }
+    }
+
+    private var groupedSamples: [(title: String, samples: [SoundSampleItem])] {
+        let groupOrder = [
+            "Nature and environmental sounds",
+            "Static noise",
+            "One-minute static noise samples"
+        ]
+        let grouped = Dictionary(grouping: samples, by: \.displayGroup)
+
+        var orderedGroups = groupOrder.compactMap { title -> (title: String, samples: [SoundSampleItem])? in
+            guard let samples = grouped[title], !samples.isEmpty else {
+                return nil
+            }
+            return (title, samples)
+        }
+
+        for title in grouped.keys.sorted() where !groupOrder.contains(title) {
+            if let samples = grouped[title], !samples.isEmpty {
+                orderedGroups.append((title, samples))
+            }
+        }
+
+        return orderedGroups
     }
 
     private var favoritesSection: some View {

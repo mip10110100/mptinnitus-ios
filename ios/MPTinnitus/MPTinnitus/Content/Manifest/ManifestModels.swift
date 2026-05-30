@@ -134,6 +134,19 @@ struct SoundSamplePlaceholder: Codable, Identifiable, Equatable {
     let title: String
     let assetPath: String
     let status: String
+    let category: String?
+    let displayGroup: String?
+    let playbackMode: String?
+    let loopCapable: Bool?
+    let guidance: String?
+    let alternateAssetPaths: [String]?
+    let legacyIds: [String]?
+    let sourceFilename: String?
+    let sourceZip: String?
+    let sourceZipPath: String?
+    let fileSizeBytes: Int?
+    let durationSeconds: Double?
+    let sha256: String?
 }
 
 struct VisualPlaceholderItem: Codable, Identifiable, Equatable {

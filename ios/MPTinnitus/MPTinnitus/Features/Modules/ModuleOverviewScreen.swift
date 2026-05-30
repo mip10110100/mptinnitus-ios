@@ -394,6 +394,9 @@ struct ModuleOverviewScreen: View {
     }
 
     private func mindfulnessGroup(for title: String) -> String {
+        if title.hasPrefix("guided practice:") {
+            return "Guided Practices"
+        }
         if title.contains("not forced") || title.contains("not the same") || title.contains("do not have to like") {
             return "What Mindfulness Is Not"
         }
@@ -473,6 +476,9 @@ struct ModuleOverviewScreen: View {
     }
 
     private func sleepGroup(for title: String) -> String {
+        if title.hasPrefix("guided sleep practice:") {
+            return "Guided Sleep Practices"
+        }
         if title.contains("thought") || title.contains("myth") {
             return "Sleep Thoughts and Myths"
         }
