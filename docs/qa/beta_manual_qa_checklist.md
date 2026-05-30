@@ -103,6 +103,19 @@ Use this checklist for a 30 to 60 minute simulator smoke pass before a beta buil
 
 - [ ] Open the Mindfulness tab and confirm the Mindfulness Annex appears.
 - [ ] Confirm guided practice cards are visible and grouped appropriately.
+- [ ] Confirm Breathing Practice Videos appears in the Mindfulness Annex.
+- [ ] Confirm Breathing Practice Videos appears in the Mindfulness module practice area.
+- [ ] Confirm all four breathing video cards appear:
+  - [ ] 4-2-4 Balanced Breathing
+  - [ ] 4-4 Even Breathing
+  - [ ] 4-6 Extended Exhale
+  - [ ] 4-2-6 Extended Exhale with Pause
+- [ ] Play each breathing video.
+- [ ] Confirm each breathing video loops until exit.
+- [ ] Confirm exiting the video screen stops playback.
+- [ ] Confirm breathing videos are muted by default.
+- [ ] Confirm no network, permission, or download prompt appears for breathing videos.
+- [ ] Turn on Reduce Motion if practical and confirm the SwiftUI breathing pacer remains an acceptable fallback.
 - [ ] Confirm the 14 mindfulness assets are reachable where expected:
   - [ ] Long Body Scan
   - [ ] Long Sleep Practice
@@ -186,6 +199,12 @@ Use this checklist for a 30 to 60 minute simulator smoke pass before a beta buil
   - [ ] Body / Mind / Life, if linked
   - [ ] Thoughts / Feelings / Behaviors, if linked
   - [ ] Sleep-Tinnitus loop, if linked
+- [ ] Confirm the Body / Mind / Life visual appears where expected.
+- [ ] Confirm the Sound Therapy Thermometer visual/diagram appears without breaking thermometer slider or preview behavior.
+- [ ] Confirm the Tug-of-War visual appears in Acceptance and Change.
+- [ ] Confirm the Thoughts / Feelings / Behaviors cycle appears in Cognitive Reframing.
+- [ ] Confirm the Self-Compassion visual appears in the self-compassion/validation area.
+- [ ] Confirm no STOP, TIPP, DEAR MAN, sleep-loop, sound-sensitivity, or breathing-pacer static placeholder appears as a broken MVP card.
 - [ ] Confirm missing final images fall back to clean built-in diagrams or text without crashing.
 - [ ] Confirm no card text is clipped on the tested simulator size.
 - [ ] Confirm final content on scroll screens remains readable above the mini-player and tab bar.

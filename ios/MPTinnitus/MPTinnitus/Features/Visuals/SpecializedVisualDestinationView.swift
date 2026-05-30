@@ -31,6 +31,8 @@ struct SpecializedVisualDestinationView: View {
             StaticConceptVisualView(visual: visual, module: module, kind: .thoughtsFeelingsBehaviors)
         case "VIS-023", "VIS-034":
             StaticConceptVisualView(visual: visual, module: module, kind: .sleepTinnitusLoop)
+        case "VIS-021":
+            MVPStaticImageVisualView(visual: visual, module: module)
         default:
             GenericVisualPlaceholderView(visual: visual, module: module)
         }
@@ -162,5 +164,33 @@ struct VisualExerciseLink: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
         .buttonStyle(.bordered)
+    }
+}
+
+struct MVPStaticImageVisualView: View {
+    let visual: StaticVisualReference
+    let module: StaticModule
+
+    var body: some View {
+        VisualToolScaffold(visual: visual, module: module) {
+            if let asset = MVPStaticVisualAsset.asset(for: visual.visualId) {
+                MVPStaticVisualImageCard(
+                    asset: asset,
+                    caption: visual.description
+                ) {
+                    VisualPlaceholderPanel(
+                        title: visual.title,
+                        systemImage: "photo",
+                        message: visual.description
+                    )
+                }
+            } else {
+                VisualPlaceholderPanel(
+                    title: visual.title,
+                    systemImage: "photo",
+                    message: visual.description
+                )
+            }
+        }
     }
 }

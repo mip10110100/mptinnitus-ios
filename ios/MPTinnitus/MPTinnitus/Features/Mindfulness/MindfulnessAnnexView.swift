@@ -53,6 +53,7 @@ struct MindfulnessAnnexView: View {
                 header
                 practiceNotPerfectCard
                 practiceSection(module: module)
+                BreathingVideoSection(module: module)
                 audioPracticeSection()
                 helpSection
                 learnSection
@@ -323,6 +324,7 @@ struct MindfulnessAnnexView: View {
             SectionHeader("Mindfulness Annex Debug")
             Text("Practice exercises: I-011, I-012, I-013, I-014")
             Text("Breathing visual: VIS-009")
+            Text("Breathing videos: \(BreathingVideoLibraryLoader().loadVideos().count)")
             Text("Guided mindfulness audio cards: \(audioReferences(for: guidedMindfulnessAudioOrder).count)")
             Text("Sleep-oriented audio cards: \(audioReferences(for: sleepMindfulnessAudioOrder).count)")
         }

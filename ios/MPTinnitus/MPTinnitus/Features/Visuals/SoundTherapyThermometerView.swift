@@ -23,6 +23,14 @@ struct SoundTherapyThermometerView: View {
     var body: some View {
         VisualToolScaffold(visual: visual, module: module) {
             VStack(alignment: .leading, spacing: MPTTheme.Spacing.large) {
+                if let asset = MVPStaticVisualAsset.asset(for: visual.visualId) {
+                    MVPStaticVisualImageCard(
+                        asset: asset,
+                        caption: "Use the diagram as an overview, then move the slider below to practice the sound therapy zones."
+                    ) {
+                        EmptyView()
+                    }
+                }
                 thermometerPanel
                 explanationPanel
                 previewPanel

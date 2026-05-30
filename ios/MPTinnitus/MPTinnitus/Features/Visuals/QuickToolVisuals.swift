@@ -14,11 +14,24 @@ struct TugOfWarVisualView: View {
     var body: some View {
         VisualToolScaffold(visual: visual, module: module) {
             VStack(alignment: .leading, spacing: MPTTheme.Spacing.large) {
-                VisualPlaceholderPanel(
-                    title: "Tug-of-War visual guide",
-                    systemImage: "figure.strengthtraining.traditional",
-                    message: "Use this image area as a simple reminder: you can stop pulling against an unwinnable fight and choose one useful next action."
-                )
+                if let asset = MVPStaticVisualAsset.asset(for: visual.visualId) {
+                    MVPStaticVisualImageCard(
+                        asset: asset,
+                        caption: "Use this visual as a simple reminder: you can stop pulling against an unwinnable fight and choose one useful next action."
+                    ) {
+                        VisualPlaceholderPanel(
+                            title: "Tug-of-War visual guide",
+                            systemImage: "figure.strengthtraining.traditional",
+                            message: "Use this image area as a simple reminder: you can stop pulling against an unwinnable fight and choose one useful next action."
+                        )
+                    }
+                } else {
+                    VisualPlaceholderPanel(
+                        title: "Tug-of-War visual guide",
+                        systemImage: "figure.strengthtraining.traditional",
+                        message: "Use this image area as a simple reminder: you can stop pulling against an unwinnable fight and choose one useful next action."
+                    )
+                }
 
                 VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
                     Text("Dropping the rope does not mean tinnitus wins. It means you stop spending this moment on a fight that is not helping.")

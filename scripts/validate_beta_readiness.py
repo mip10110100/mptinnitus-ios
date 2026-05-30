@@ -23,8 +23,10 @@ APP_RESOURCES = APP_ROOT / "Resources"
 MODULE_LIBRARY_PATH = APP_RESOURCES / "module_library_v1.json"
 ASSET_PLACEHOLDERS_PATH = APP_RESOURCES / "asset_placeholders_v1.json"
 AUDIO_ASSETS_PATH = APP_RESOURCES / "audio_assets_mvp_2026_05_29.json"
+VIDEO_ASSETS_PATH = APP_RESOURCES / "video_assets_v1.json"
 EXERCISE_DEFINITIONS_PATH = APP_RESOURCES / "exercise_definitions_v1.json"
 APP_ICON_CONTENTS_PATH = APP_ROOT / "Assets.xcassets/AppIcon.appiconset/Contents.json"
+VISUAL_ASSET_MANIFEST_PATH = ROOT / "docs/visual_assets/visual_asset_manifest_v1.json"
 
 EXPECTED_SOUND_IDS = {
     "st.noise.rain",
@@ -59,6 +61,30 @@ EXPECTED_MINDFULNESS_IDS = {
 REMOVED_MINDFULNESS_FILES = {
     "full_body_scan1.mp3",
     "full_body_scan2.mp3",
+}
+
+EXPECTED_STATIC_VISUALS = {
+    "visual.body_mind_life_model": "body_mind_life_model.png",
+    "visual.sound_therapy_thermometer": "sound_therapy_thermometer.png",
+    "visual.tug_of_war": "tug_of_war.png",
+    "visual.thoughts_feelings_behaviors_cycle": "thoughts_feelings_behaviors_cycle.png",
+    "visual.self_compassion_response_card": "self_compassion_response_card.png",
+}
+
+EXPECTED_NOT_BETA_SCOPE_VISUALS = {
+    "visual.breathing_pacer",
+    "visual.stop_card",
+    "visual.tipp_card",
+    "visual.sleep_tinnitus_loop",
+    "visual.sound_sensitivity_music_steps",
+    "visual.dear_man_card",
+}
+
+EXPECTED_BREATHING_VIDEOS = {
+    "video.breathing.4_2_4.loop": "breathing_4_2_4_loop.mp4",
+    "video.breathing.4_4.loop": "breathing_4_4_loop.mp4",
+    "video.breathing.4_6.loop": "breathing_4_6_loop.mp4",
+    "video.breathing.4_2_6.loop": "breathing_4_2_6_loop.mp4",
 }
 
 PLANNING_PATTERNS = [
@@ -217,6 +243,94 @@ def validate_mvp_audio(audio_assets: dict[str, Any], asset_placeholders: dict[st
     for filename in REMOVED_MINDFULNESS_FILES:
         if filename in combined_user_data:
             add_failure("MVP audio", f"Removed mindfulness file is exposed or required: {filename}")
+
+
+def validate_mvp_visuals_and_videos(visual_manifest: dict[str, Any], video_assets: dict[str, Any]) -> None:
+    static_visuals = visual_manifest.get("staticVisuals", [])
+    static_ids = {visual.get("id") for visual in static_visuals}
+    if static_ids != set(EXPECTED_STATIC_VISUALS):
+        missing = sorted(set(EXPECTED_STATIC_VISUALS) - static_ids)
+        extra = sorted(static_ids - set(EXPECTED_STATIC_VISUALS))
+        add_failure("MVP visuals", f"Static MVP visual IDs mismatch. Missing={missing}; extra={extra}")
+
+    visuals_folder = APP_RESOURCES / "visuals"
+    expected_visual_files = set(EXPECTED_STATIC_VISUALS.values())
+    actual_visual_files = {path.name for path in visuals_folder.glob("*.png")} if visuals_folder.exists() else set()
+    if actual_visual_files != expected_visual_files:
+        missing = sorted(expected_visual_files - actual_visual_files)
+        extra = sorted(actual_visual_files - expected_visual_files)
+        add_failure("MVP visuals", f"Expected exactly five MVP visual PNGs in {visuals_folder}. Missing={missing}; extra={extra}")
+
+    for visual in static_visuals:
+        visual_id = visual.get("id", "<missing id>")
+        expected_filename = EXPECTED_STATIC_VISUALS.get(visual_id)
+        if expected_filename is None:
+            continue
+        if visual.get("status") != "available":
+            add_failure("MVP visuals", f"{visual_id} should have status available")
+        if visual.get("bundledFilename") != expected_filename:
+            add_failure("MVP visuals", f"{visual_id} bundledFilename should be {expected_filename}")
+        asset_path = visual.get("assetPath", "")
+        if asset_path != f"visuals/{expected_filename}":
+            add_failure("MVP visuals", f"{visual_id} assetPath should be visuals/{expected_filename}, found {asset_path!r}")
+        if not resource_exists(asset_path):
+            add_failure("MVP visuals", f"{visual_id} does not resolve to bundled resource path {asset_path!r}")
+        for required in ["sourceFilename", "altText", "fileSizeBytes", "sha256"]:
+            if not visual.get(required):
+                add_failure("MVP visuals", f"{visual_id} missing required field {required}")
+
+    excluded_ids = {visual.get("id") for visual in visual_manifest.get("excludedVisuals", [])}
+    missing_exclusions = sorted(EXPECTED_NOT_BETA_SCOPE_VISUALS - excluded_ids)
+    if missing_exclusions:
+        add_failure("MVP visuals", f"Not-beta-scope visual IDs are not marked excluded: {missing_exclusions}")
+    for visual in visual_manifest.get("excludedVisuals", []):
+        if visual.get("id") in EXPECTED_NOT_BETA_SCOPE_VISUALS and visual.get("status") != "not_beta_scope":
+            add_failure("MVP visuals", f"{visual.get('id')} should be marked not_beta_scope")
+    if EXPECTED_NOT_BETA_SCOPE_VISUALS <= excluded_ids:
+        add_warning("MVP visuals", "Not-beta-scope static visual IDs are intentionally excluded from visual asset validation.")
+
+    video_entries = video_assets.get("videos", [])
+    video_ids = {video.get("id") for video in video_entries}
+    if video_ids != set(EXPECTED_BREATHING_VIDEOS):
+        missing = sorted(set(EXPECTED_BREATHING_VIDEOS) - video_ids)
+        extra = sorted(video_ids - set(EXPECTED_BREATHING_VIDEOS))
+        add_failure("Breathing videos", f"Breathing video IDs mismatch. Missing={missing}; extra={extra}")
+
+    video_folder = APP_RESOURCES / "video/breathing"
+    expected_video_files = set(EXPECTED_BREATHING_VIDEOS.values())
+    actual_video_files = {path.name for path in video_folder.glob("*.mp4")} if video_folder.exists() else set()
+    if actual_video_files != expected_video_files:
+        missing = sorted(expected_video_files - actual_video_files)
+        extra = sorted(actual_video_files - expected_video_files)
+        add_failure("Breathing videos", f"Expected exactly four breathing MP4s in {video_folder}. Missing={missing}; extra={extra}")
+
+    for video in video_entries:
+        video_id = video.get("id", "<missing id>")
+        expected_filename = EXPECTED_BREATHING_VIDEOS.get(video_id)
+        if expected_filename is None:
+            continue
+        asset_path = video.get("assetPath", "")
+        if video.get("filename") != expected_filename:
+            add_failure("Breathing videos", f"{video_id} filename should be {expected_filename}")
+        if asset_path != f"video/breathing/{expected_filename}":
+            add_failure("Breathing videos", f"{video_id} assetPath should be video/breathing/{expected_filename}, found {asset_path!r}")
+        if not resource_exists(asset_path):
+            add_failure("Breathing videos", f"{video_id} does not resolve to bundled resource path {asset_path!r}")
+        if video.get("category") != "mindfulness_breathing":
+            add_failure("Breathing videos", f"{video_id} should use category mindfulness_breathing")
+        if video.get("loopCapable") is not True:
+            add_failure("Breathing videos", f"{video_id} should be loop-capable")
+        if video.get("playbackMode") != "loop_until_exit":
+            add_failure("Breathing videos", f"{video_id} should use playbackMode loop_until_exit")
+        if video.get("mutedByDefault") is not True:
+            add_failure("Breathing videos", f"{video_id} should be muted by default")
+        if video.get("reducedMotionFallback") != "swiftui_breathing_pacer":
+            add_failure("Breathing videos", f"{video_id} should use the SwiftUI breathing pacer reduced-motion fallback")
+        for required in ["title", "description", "sourceFilename", "sourceZip", "fileSizeBytes", "sha256", "durationSeconds"]:
+            if not video.get(required):
+                add_failure("Breathing videos", f"{video_id} missing required field {required}")
+        if ".zip" in asset_path or "http://" in asset_path or "https://" in asset_path:
+            add_failure("Breathing videos", f"{video_id} points to an invalid runtime path: {asset_path}")
 
 
 def validate_active_audio(module_library: dict[str, Any]) -> None:
@@ -381,7 +495,12 @@ def validate_source_archive_cleanliness() -> None:
     for path in APP_RESOURCES.rglob("*"):
         if not path.is_file():
             continue
-        if path.name == ".DS_Store" or path.suffix.lower() == ".zip" or "__MACOSX" in path.parts:
+        if (
+            path.name == ".DS_Store"
+            or path.name.startswith("._")
+            or path.suffix.lower() == ".zip"
+            or "__MACOSX" in path.parts
+        ):
             bad_inside_resources.append(path)
     for path in bad_inside_resources:
         add_failure("Source/archive cleanliness", f"Archive/system file is inside app resources: {path}")
@@ -405,13 +524,16 @@ def main() -> int:
     module_library = load_json(MODULE_LIBRARY_PATH)
     asset_placeholders = load_json(ASSET_PLACEHOLDERS_PATH)
     audio_assets = load_json(AUDIO_ASSETS_PATH)
+    video_assets = load_json(VIDEO_ASSETS_PATH)
+    visual_manifest = load_json(VISUAL_ASSET_MANIFEST_PATH)
     exercise_definitions = load_json(EXERCISE_DEFINITIONS_PATH)
 
-    if not all(isinstance(doc, dict) for doc in [module_library, asset_placeholders, audio_assets, exercise_definitions]):
+    if not all(isinstance(doc, dict) for doc in [module_library, asset_placeholders, audio_assets, video_assets, visual_manifest, exercise_definitions]):
         print_results()
         return 1
 
     validate_mvp_audio(audio_assets, asset_placeholders, module_library)
+    validate_mvp_visuals_and_videos(visual_manifest, video_assets)
     validate_active_audio(module_library)
     validate_planning_language(module_library)
     validate_visual_references(module_library)

@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "1.0",
+  "manifestVersion": "mvp_breathing_video_2026_05_30",
+  "videos": [
+    {
+      "id": "video.breathing.4_2_4.loop",
+      "title": "4-2-4 Balanced Breathing",
+      "description": "A steady breathing pattern with a short pause after the inhale.",
+      "category": "mindfulness_breathing",
+      "pattern": {
+        "inhale": 4,
+        "holdAfterInhale": 2,
+        "exhale": 4,
+        "holdAfterExhale": 0
+      },
+      "filename": "breathing_4_2_4_loop.mp4",
+      "assetPath": "video/breathing/breathing_4_2_4_loop.mp4",
+      "loopCapable": true,
+      "playbackMode": "loop_until_exit",
+      "mutedByDefault": true,
+      "sourceFilename": "4-2-4.mp4",
+      "sourceZip": "breathing_videos.zip",
+      "fileSizeBytes": 639976,
+      "sha256": "c255f9fe6eccc19405de11f35796702357bf07707f8f1e75ba66a0b403ea37b0",
+      "durationSeconds": 10.027,
+      "reducedMotionFallback": "swiftui_breathing_pacer",
+      "status": "available"
+    },
+    {
+      "id": "video.breathing.4_4.loop",
+      "title": "4-4 Even Breathing",
+      "description": "A simple inhale-and-exhale rhythm.",
+      "category": "mindfulness_breathing",
+      "pattern": {
+        "inhale": 4,
+        "holdAfterInhale": 0,
+        "exhale": 4,
+        "holdAfterExhale": 0
+      },
+      "filename": "breathing_4_4_loop.mp4",
+      "assetPath": "video/breathing/breathing_4_4_loop.mp4",
+      "loopCapable": true,
+      "playbackMode": "loop_until_exit",
+      "mutedByDefault": true,
+      "sourceFilename": "4-4.mp4",
+      "sourceZip": "breathing_videos.zip",
+      "fileSizeBytes": 503673,
+      "sha256": "9b8e08f478c258ed5f80072d7d97de9237a4ef4da500db24bc5deef1bb93d3f7",
+      "durationSeconds": 8.0,
+      "reducedMotionFallback": "swiftui_breathing_pacer",
+      "status": "available"
+    },
+    {
+      "id": "video.breathing.4_6.loop",
+      "title": "4-6 Extended Exhale",
+      "description": "A gentle pattern with a longer exhale.",
+      "category": "mindfulness_breathing",
+      "pattern": {
+        "inhale": 4,
+        "holdAfterInhale": 0,
+        "exhale": 6,
+        "holdAfterExhale": 0
+      },
+      "filename": "breathing_4_6_loop.mp4",
+      "assetPath": "video/breathing/breathing_4_6_loop.mp4",
+      "loopCapable": true,
+      "playbackMode": "loop_until_exit",
+      "mutedByDefault": true,
+      "sourceFilename": "4-6.mp4",
+      "sourceZip": "breathing_videos.zip",
+      "fileSizeBytes": 557991,
+      "sha256": "828d6af451231d0dbec0c333e26b07487d4c5291f74c464ed71554a17b0aa866",
+      "durationSeconds": 10.027,
+      "reducedMotionFallback": "swiftui_breathing_pacer",
+      "status": "available"
+    },
+    {
+      "id": "video.breathing.4_2_6.loop",
+      "title": "4-2-6 Extended Exhale with Pause",
+      "description": "A slower pattern with a short pause and a longer exhale.",
+      "category": "mindfulness_breathing",
+      "pattern": {
+        "inhale": 4,
+        "holdAfterInhale": 2,
+        "exhale": 6,
+        "holdAfterExhale": 0
+      },
+      "filename": "breathing_4_2_6_loop.mp4",
+      "assetPath": "video/breathing/breathing_4_2_6_loop.mp4",
+      "loopCapable": true,
+      "playbackMode": "loop_until_exit",
+      "mutedByDefault": true,
+      "sourceFilename": "4-2-6.mp4",
+      "sourceZip": "breathing_videos.zip",
+      "fileSizeBytes": 713481,
+      "sha256": "edb40224e0c0cdea3143c111eaa06a44c99dbde3e174dfdcfd62b770212e5221",
+      "durationSeconds": 12.075,
+      "reducedMotionFallback": "swiftui_breathing_pacer",
+      "status": "available"
+    }
+  ]
+}

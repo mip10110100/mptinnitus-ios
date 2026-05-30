@@ -122,6 +122,11 @@ struct ModuleOverviewScreen: View {
             ForEach(implementedExercises, id: \.exerciseId) { exercise in
                 ExerciseLaunchCard(exercise: exercise, module: module)
             }
+
+            if module.moduleId == "mindfulness" {
+                BreathingVideoSection(module: module)
+                    .padding(.top, MPTTheme.Spacing.small)
+            }
         }
     }
 

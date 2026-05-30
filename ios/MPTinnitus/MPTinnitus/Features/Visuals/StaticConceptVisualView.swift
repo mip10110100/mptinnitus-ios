@@ -21,18 +21,27 @@ struct StaticConceptVisualView: View {
     var body: some View {
         VisualToolScaffold(visual: visual, module: module) {
             VStack(alignment: .leading, spacing: MPTTheme.Spacing.large) {
-                VisualPlaceholderPanel(
-                    title: placeholderTitle,
-                    systemImage: systemImage,
-                    message: placeholderMessage
-                )
+                if let asset = MVPStaticVisualAsset.asset(for: visual.visualId) {
+                    MVPStaticVisualImageCard(
+                        asset: asset,
+                        caption: placeholderMessage
+                    ) {
+                        conceptDiagram
+                    }
+                } else {
+                    VisualPlaceholderPanel(
+                        title: placeholderTitle,
+                        systemImage: systemImage,
+                        message: placeholderMessage
+                    )
 
-                conceptDiagram
+                    conceptDiagram
 
-                Text("This built-in diagram uses simple shapes and text. No external images or network loading are used.")
-                    .font(.footnote)
-                    .foregroundStyle(MPTTheme.secondaryText)
-                    .fixedSize(horizontal: false, vertical: true)
+                    Text("This built-in diagram uses simple shapes and text. No external images or network loading are used.")
+                        .font(.footnote)
+                        .foregroundStyle(MPTTheme.secondaryText)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
             }
         }
     }
