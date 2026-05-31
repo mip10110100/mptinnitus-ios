@@ -53,6 +53,16 @@ Use this checklist for a 30 to 60 minute simulator smoke pass before a beta buil
 - [ ] Confirm Add to My Plan appears only on exercises or practice tools.
 - [ ] Confirm internal IDs, source IDs, editor notes, removal notes, and planning language are not visible.
 - [ ] Scroll to the bottom of each module and confirm the last content is not blocked by the mini-player or tab bar.
+- [ ] Confirm FAQ groups are titled “FAQs,” not “FAQs / Common Questions.”
+- [ ] In About Tinnitus, confirm the Body / Mind / Life image appears under “Why go beyond the sound?”
+- [ ] In About Tinnitus, confirm the Body / Mind / Life image does not repeat inside the individual Body, Mind, or Life sections.
+- [ ] In About Tinnitus, confirm the Body / Mind / Life image does not repeat inside the multimodal care section.
+- [ ] In About Tinnitus, confirm Pause & Reflect opens as a fill-in-the-blanks reflection exercise, not a static text-only card.
+- [ ] In Acceptance and Change, confirm content and Tug-of-War placement still match the previously reviewed state, aside from any global FAQ title normalization.
+- [ ] In Distress Tolerance, confirm practice labels appear as STOP, Temperature/Ice, TIPP, and The Frozen Orange.
+- [ ] In Distress Tolerance, confirm STOP and TIPP do not appear as “STOP card” or “TIPP card” titles.
+- [ ] In Cognitive Reframing, confirm Heaven’s Reward Fallacy appears in the Distortion Library.
+- [ ] In Cognitive Reframing, confirm Heaven’s Reward Fallacy is not grouped under Reality-Checking Thoughts.
 
 ## 5. Narration Audio
 
@@ -72,12 +82,14 @@ Use this checklist for a 30 to 60 minute simulator smoke pass before a beta buil
 
 ## 6. Sound Therapy
 
-- [ ] Open the Sound tab and confirm the Sound Therapy Annex appears.
+- [ ] Open the Sound tab and confirm the page title is Sound Therapy Player.
+- [ ] Confirm the guidance section is concise and does not repeat long warning blocks.
+- [ ] Confirm the Sound Therapy Player shows only actual demo sound sample cards, not incomplete secondary resource cards.
 - [ ] Confirm Sound Therapy sample groups are visible:
-  - [ ] Nature and environmental sounds
-  - [ ] Static noise
-  - [ ] One-minute static noise samples, if exposed separately
-- [ ] Confirm the 10 sound/noise assets are present where expected:
+  - [ ] Nature / Environmental
+  - [ ] Household / Environmental
+  - [ ] Static / Artificial
+- [ ] Confirm the 7 visible Sound Therapy demo cards are present:
   - [ ] Rain
   - [ ] Stream / Flowing Water
   - [ ] Crickets
@@ -85,57 +97,94 @@ Use this checklist for a 30 to 60 minute simulator smoke pass before a beta buil
   - [ ] Brown Noise
   - [ ] Pink Noise
   - [ ] White Noise
-  - [ ] Brown Noise, 1-Minute Sample
-  - [ ] Pink Noise, 1-Minute Sample
-  - [ ] White Noise, 1-Minute Sample
+- [ ] Confirm Brown Noise, 1-Minute Sample; Pink Noise, 1-Minute Sample; and White Noise, 1-Minute Sample are not visible in the player.
+- [ ] Confirm Fan Noise is tagged Household / Environmental.
+- [ ] Confirm Brown Noise, Pink Noise, and White Noise are tagged Static / Artificial.
+- [ ] Confirm sample cards do not repeat long instructions already covered in Guidance.
+- [ ] Confirm sample volume shows a simple percentage such as 35%, 50%, or 65%.
+- [ ] Confirm Saved Preferred Sounds appears without the “Favorites stay on this device” sublabel.
+- [ ] Confirm no incomplete secondary resource cards such as hearing care/amplification appear unless finalized.
+- [ ] Play each of the 7 visible Sound Therapy demo samples and confirm each starts without a crash.
 - [ ] Play Rain and confirm it starts.
 - [ ] Switch from Rain to White Noise and confirm only the new sample remains active.
 - [ ] Adjust the volume slider and confirm volume changes without jumping to an unsafe level.
 - [ ] Favorite a sample and confirm favorite state appears.
 - [ ] Remove the favorite and confirm state clears.
-- [ ] Leave the Sound tab and confirm sample playback stops or behaves according to the foreground-only design.
+- [ ] Leave the Sound tab while the app remains in the foreground and confirm the active sample continues.
+- [ ] Return to Sound Therapy Player and pause the active sample.
+- [ ] Play Rain, then select Brown Noise, and confirm Rain stops while Brown Noise starts.
+- [ ] Confirm samples switch rather than layer on top of each other.
+- [ ] Send the app to the background or lock the simulator and confirm sound sample playback stops or is released safely.
 - [ ] From the Sound Therapy module, confirm Sound Therapy samples or links are reachable where expected.
+- [ ] In the Sound Therapy module, confirm the Sound Therapy Thermometer visual appears only at the first useful sweet-spot instructional point.
+- [ ] Confirm later volume-zone and volume-setting references link to the Sound Therapy Player instead of repeating the thermometer image.
+- [ ] Confirm no blank visual containers or missing-image placeholders appear where repeated thermometer images were removed.
 - [ ] Open the Sound Therapy Thermometer and confirm the slider works.
 - [ ] Confirm the thermometer preview uses a local sound safely when available and does not crash.
+- [ ] Confirm the former Enjoyable Music Exercise is now titled Sound Sensitivity Exercise.
+- [ ] Confirm Sound Sensitivity Exercise opens normally.
 - [ ] Confirm `st_mindful.mp3` is not exposed as a Sound Therapy sample.
 
 ## 7. Mindfulness
 
-- [ ] Open the Mindfulness tab and confirm the Mindfulness Annex appears.
-- [ ] Confirm guided practice cards are visible and grouped appropriately.
-- [ ] Confirm Breathing Practice Videos appears in the Mindfulness Annex.
-- [ ] Confirm Breathing Practice Videos appears in the Mindfulness module practice area.
-- [ ] Confirm all four breathing video cards appear:
-  - [ ] 4-2-4 Balanced Breathing
+- [ ] Open the Mindfulness tab and confirm the Mindfulness Practice page appears.
+- [ ] Confirm guided practice sections are collapsed by default:
+  - [ ] Short Guided Practices
+  - [ ] Medium Guided Practices
+  - [ ] Long Guided Practices
+  - [ ] Sleep-Oriented Practices
+  - [ ] Breathing Pacer
+  - [ ] Reflection Exercises
+- [ ] Confirm “Audio Explanation” does not appear under guided practice titles.
+- [ ] Confirm guided practice cards show titles without redundant short descriptions under the titles.
+- [ ] Expand Short Guided Practices and confirm it includes:
+  - [ ] One Breath Reset
+  - [ ] Name It and Widen
+  - [ ] 3-2-1 Senses Mini
+  - [ ] Sound Therapy Mindful Start
+- [ ] Expand Medium Guided Practices and confirm it includes:
+  - [ ] Breathing Space
+  - [ ] Body Anchor and Room Sounds
+  - [ ] Sound Shifting
+  - [ ] Open Hands Grounding
+  - [ ] Mindful Listening with Tinnitus and External Sound
+  - [ ] Acceptance in the Present Moment
+  - [ ] Medium Length Body-Scan
+- [ ] Expand Long Guided Practices and confirm it includes only:
+  - [ ] Full Body Scan
+- [ ] Expand Sleep-Oriented Practices and confirm it includes:
+  - [ ] Settling Without Forcing Sleep
+  - [ ] Evening Body and Sound Wind-Down
+- [ ] Open Breathing Pacer and confirm the SwiftUI breathing pacer is visible and usable.
+- [ ] Open each Breathing Pacer timing option:
   - [ ] 4-4 Even Breathing
+  - [ ] 4-2-4 Balanced Breathing
   - [ ] 4-6 Extended Exhale
   - [ ] 4-2-6 Extended Exhale with Pause
-- [ ] Play each breathing video.
-- [ ] Confirm each breathing video loops until exit.
-- [ ] Confirm exiting the video screen stops playback.
-- [ ] Confirm breathing videos are muted by default.
-- [ ] Confirm no network, permission, or download prompt appears for breathing videos.
-- [ ] Turn on Reduce Motion if practical and confirm the SwiftUI breathing pacer remains an acceptable fallback.
-- [ ] Confirm the 14 mindfulness assets are reachable where expected:
-  - [ ] Long Body Scan
-  - [ ] Long Sleep Practice
-  - [ ] Acceptance and Present Moment
-  - [ ] Body Scan
+- [ ] Confirm Reflection Exercises appears below Breathing Pacer.
+- [ ] Confirm Reflection Exercises is collapsed by default.
+- [ ] Expand Reflection Exercises and confirm the implemented reflection exercises are visible:
+  - [ ] Deep Breath Check-In Reflection
+  - [ ] 3-2-1 Senses
   - [ ] Mindful Listening
-  - [ ] Sound Therapy Mindfulness
-  - [ ] 3-2-1 Grounding
-  - [ ] Name It
-  - [ ] One Breath
-  - [ ] Settling for Sleep
-  - [ ] Open Hands
   - [ ] Sound Shifting
-  - [ ] Body Anchor
-  - [ ] Breathing Space
-- [ ] Play at least 3 mindfulness recordings and confirm they are single-play guided audio, not looped.
+- [ ] Open each listed reflection exercise and confirm it opens a real exercise page.
+- [ ] Confirm no unsupported or broken exercise cards appear in Reflection Exercises.
+- [ ] Confirm no breathing video cards appear in the beta Mindfulness Practice page or Mindfulness module practice area.
+- [ ] Confirm the 14 mindfulness assets are reachable through the grouped practice sections above.
+- [ ] Play at least 3 mindfulness recordings from different sections and confirm playback starts, pauses, and switches cleanly.
 - [ ] Confirm switching from one guided practice to another stops or replaces the prior one cleanly.
+- [ ] Open transcript disclosures and confirm accurate script text for sampled mindfulness exercises:
+  - [ ] One Breath Reset
+  - [ ] 3-2-1 Senses Mini
+  - [ ] Settling Without Forcing Sleep
+  - [ ] Medium Length Body-Scan
+  - [ ] Full Body Scan
 - [ ] Confirm `full_body_scan1.mp3` and `full_body_scan2.mp3` are not visible or required.
 - [ ] Confirm mindfulness practice cards in the Mindfulness module route correctly.
 - [ ] Open Breathing Pacer and confirm it remains functional.
+- [ ] Confirm no technical loop-contrast copy appears in the normal Mindfulness Practice UI.
+- [ ] Confirm “If Practice Feels Too Intense” remains below Reflection Exercises as a separate first learning/support link.
 - [ ] Confirm mindfulness guidance does not imply forced silence, cure, or treatment replacement.
 
 ## 8. Sleep
@@ -145,12 +194,16 @@ Use this checklist for a 30 to 60 minute simulator smoke pass before a beta buil
 - [ ] Confirm sleep safety/scope language is available near the bottom when present.
 - [ ] Confirm Long Sleep Practice is surfaced where expected.
 - [ ] Confirm Settling for Sleep is surfaced where expected.
-- [ ] Play a sleep-oriented recording and confirm it behaves as single-play guided audio.
+- [ ] Play a sleep-oriented recording and confirm playback starts and can be paused or switched cleanly.
 - [ ] Confirm sleep copy does not claim to treat insomnia or replace sleep medicine evaluation.
 
 ## 9. Exercises
 
 - [ ] Open practice/exercise cards from several modules.
+- [ ] From About Tinnitus, open Pause & Reflect.
+- [ ] Enter notes in the Body, Mind, Life, and Support fields.
+- [ ] Save the Pause & Reflect entry.
+- [ ] Review the saved Pause & Reflect entry using the existing saved exercise pattern.
 - [ ] Confirm implemented exercise screens open without crash.
 - [ ] Complete and save at least one exercise entry.
 - [ ] Review past entries if the exercise supports review.
@@ -200,12 +253,20 @@ Use this checklist for a 30 to 60 minute simulator smoke pass before a beta buil
   - [ ] Thoughts / Feelings / Behaviors, if linked
   - [ ] Sleep-Tinnitus loop, if linked
 - [ ] Confirm the Body / Mind / Life visual appears where expected.
+- [ ] Confirm the Body / Mind / Life visual does not repeat on nearby About Tinnitus cards.
+- [ ] Confirm no blank visual container or missing-image placeholder appears where duplicate Body / Mind / Life visuals were removed.
 - [ ] Confirm the Sound Therapy Thermometer visual/diagram appears without breaking thermometer slider or preview behavior.
+- [ ] Confirm repeated Sound Therapy Thermometer images do not appear later in the Sound Therapy education flow.
 - [ ] Confirm the Tug-of-War visual appears in Acceptance and Change.
 - [ ] Confirm the Thoughts / Feelings / Behaviors cycle appears in Cognitive Reframing.
-- [ ] Confirm the Self-Compassion visual appears in the self-compassion/validation area.
+- [ ] Confirm the Self-Compassion Response Card appears in “The three parts of self-compassion.”
+- [ ] Confirm the Self-Compassion Response Card does not repeat in later self-compassion component, validation, practice, connection, important terms, main points, or FAQ dropdowns.
+- [ ] Confirm later self-compassion sections such as validation, practice, “How self-compassion connects to the other tools,” “From self-blame to a supportive inner voice,” important terms, and FAQs still show their text normally.
+- [ ] Confirm no blank image container or missing-image placeholder appears where duplicate Self-Compassion Response Card placements were removed.
 - [ ] Confirm no STOP, TIPP, DEAR MAN, sleep-loop, sound-sensitivity, or breathing-pacer static placeholder appears as a broken MVP card.
 - [ ] Confirm missing final images fall back to clean built-in diagrams or text without crashing.
+- [ ] Confirm the five MVP static visuals are readable on the tested small screen size.
+- [ ] Switch between light and dark mode if practical and confirm static visuals remain readable.
 - [ ] Confirm no card text is clipped on the tested simulator size.
 - [ ] Confirm final content on scroll screens remains readable above the mini-player and tab bar.
 - [ ] Confirm app icon appears on the simulator home screen after install.

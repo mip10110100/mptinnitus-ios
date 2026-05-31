@@ -13,7 +13,7 @@
       "altText": "Diagram showing tinnitus management across body, mind, and life areas.",
       "fileSizeBytes": 152403,
       "sha256": "456eec77602efa0295342e94a62987044ef2a925e51304a45a0a136d9db9f673",
-      "status": "available"
+      "status": "integrated_mvp"
     },
     {
       "id": "visual.sound_therapy_thermometer",
@@ -22,11 +22,12 @@
       "bundledFilename": "sound_therapy_thermometer.png",
       "assetPath": "visuals/sound_therapy_thermometer.png",
       "module": "Sound Therapy",
-      "section": "Sound Therapy",
+      "section": "Finding the sound therapy sweet spot",
       "altText": "Thermometer-style guide showing sound therapy volume from too low to too loud, with a comfortable overlap zone.",
       "fileSizeBytes": 220684,
       "sha256": "2e86084aadd0e4849ae054d1fb0209c09e77d85f792f0a51ec24d9942bb14b33",
-      "status": "available"
+      "status": "integrated_mvp",
+      "placementNote": "Use only at the first intended Sound Therapy sweet-spot placement; later volume reminders link to the Sound Therapy Player instead of repeating this image."
     },
     {
       "id": "visual.tug_of_war",
@@ -39,7 +40,7 @@
       "altText": "Illustration of struggling with tinnitus as a tug-of-war, used to introduce acceptance and letting go of the struggle.",
       "fileSizeBytes": 33844,
       "sha256": "37efdee0143c726a7a4b8a14a5c7fb6a924bc807b2d7188765bb2e89e1295b4a",
-      "status": "available"
+      "status": "integrated_mvp"
     },
     {
       "id": "visual.thoughts_feelings_behaviors_cycle",
@@ -52,7 +53,7 @@
       "altText": "Cycle diagram showing how thoughts, feelings, and behaviors can influence each other.",
       "fileSizeBytes": 55082,
       "sha256": "79fbd416b940ce1b2a138452cef752241c422ab2bc40c98216e03518b4431e3e",
-      "status": "available"
+      "status": "integrated_mvp"
     },
     {
       "id": "visual.self_compassion_response_card",
@@ -65,7 +66,8 @@
       "altText": "Prompt card showing self-kindness, common humanity, and mindfulness as parts of a self-compassionate response.",
       "fileSizeBytes": 143570,
       "sha256": "9f8c046ab51d864395e139a4a05888efee30b40f760fb0e30130052aa2c883d9",
-      "status": "available"
+      "status": "integrated_mvp",
+      "placementNote": "Use only in the Confidence and Communication section titled The three parts of self-compassion. Later self-compassion explanations, validation, practice, terms, and FAQs should not repeat this image."
     }
   ],
   "breathingVideos": [
@@ -75,7 +77,7 @@
       "sourceFilename": "4-2-4.mp4",
       "bundledFilename": "breathing_4_2_4_loop.mp4",
       "assetPath": "video/breathing/breathing_4_2_4_loop.mp4",
-      "status": "available"
+      "status": "deferred_post_beta"
     },
     {
       "id": "video.breathing.4_4.loop",
@@ -83,7 +85,7 @@
       "sourceFilename": "4-4.mp4",
       "bundledFilename": "breathing_4_4_loop.mp4",
       "assetPath": "video/breathing/breathing_4_4_loop.mp4",
-      "status": "available"
+      "status": "deferred_post_beta"
     },
     {
       "id": "video.breathing.4_6.loop",
@@ -91,7 +93,7 @@
       "sourceFilename": "4-6.mp4",
       "bundledFilename": "breathing_4_6_loop.mp4",
       "assetPath": "video/breathing/breathing_4_6_loop.mp4",
-      "status": "available"
+      "status": "deferred_post_beta"
     },
     {
       "id": "video.breathing.4_2_6.loop",
@@ -99,14 +101,14 @@
       "sourceFilename": "4-2-6.mp4",
       "bundledFilename": "breathing_4_2_6_loop.mp4",
       "assetPath": "video/breathing/breathing_4_2_6_loop.mp4",
-      "status": "available"
+      "status": "deferred_post_beta"
     }
   ],
   "excludedVisuals": [
     {
       "id": "visual.breathing_pacer",
-      "title": "Breathing Pacer Static Image",
-      "status": "not_beta_scope"
+      "title": "Breathing Pacer",
+      "status": "existing_swiftui_kept"
     },
     {
       "id": "visual.stop_card",

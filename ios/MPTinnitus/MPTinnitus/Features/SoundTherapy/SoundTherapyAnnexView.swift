@@ -12,15 +12,17 @@ struct SoundTherapyAnnexView: View {
     let moduleLibrary: StaticModuleLibrary
 
     @Query private var soundPreferences: [SoundPreferenceRecord]
-    @StateObject private var sampleController = SoundSampleController()
+    @ObservedObject private var sampleController: SoundSampleController
 
     private let samples: [SoundSampleItem]
 
     init(
         moduleLibrary: StaticModuleLibrary = .empty,
+        sampleController: SoundSampleController,
         samples: [SoundSampleItem] = SoundSampleLibraryLoader().loadSamples()
     ) {
         self.moduleLibrary = moduleLibrary
+        self.sampleController = sampleController
         self.samples = samples
     }
 
@@ -49,9 +51,6 @@ struct SoundTherapyAnnexView: View {
         .background(MPTTheme.screenBackground)
         .navigationTitle(AppTab.soundAnnex.fullTitle)
         .navigationBarTitleDisplayMode(.inline)
-        .onDisappear {
-            sampleController.stop()
-        }
     }
 
     private var header: some View {
@@ -63,11 +62,6 @@ struct SoundTherapyAnnexView: View {
             Text(AppTab.soundAnnex.fullTitle)
                 .font(.title2.weight(.semibold))
                 .foregroundStyle(.primary)
-
-            Text("Explore local starter sound categories. Preference is individual, and comfortable sound matters more than covering tinnitus completely.")
-                .font(.body)
-                .foregroundStyle(.primary)
-                .fixedSize(horizontal: false, vertical: true)
         }
         .padding(MPTTheme.Spacing.large)
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -77,18 +71,18 @@ struct SoundTherapyAnnexView: View {
 
     private var guidanceCard: some View {
         VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
-            Label("Sound therapy guidance", systemImage: "ear.and.waveform")
+            Label("Guidance", systemImage: "ear.and.waveform")
                 .font(.headline)
                 .foregroundStyle(.primary)
 
-            Text("Sound therapy is individualized. The goal is not always to fully mask tinnitus. Many people practice in a comfortable middle range where the support sound and tinnitus can both be heard.")
+            Text("Sound therapy is individual. Pick a sound that is comfortable, soothing, or calming to you.")
                 .font(.body)
                 .foregroundStyle(.primary)
                 .fixedSize(horizontal: false, vertical: true)
 
-            Text("Start low and adjust gradually. Do not push into painful or unsafe sound. If sound sensitivity is present, keep sound under your control and below the level that feels sensitive. Hearing care, audiology, or ENT assessment may be important when hearing loss or medical concerns are present.")
-                .font(.footnote)
-                .foregroundStyle(MPTTheme.secondaryText)
+            Text("Start with the volume low, and increase it until you can hear the sound therapy. If you want to explore the high-volume side of the range, increase the sound therapy until it entirely covers tinnitus. Then lower it until the sound therapy is below the volume of the tinnitus.")
+                .font(.body)
+                .foregroundStyle(.primary)
                 .fixedSize(horizontal: false, vertical: true)
         }
         .padding(MPTTheme.Spacing.medium)
@@ -99,7 +93,7 @@ struct SoundTherapyAnnexView: View {
 
     private var soundSamplesSection: some View {
         VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
-            SectionHeader("Sound Therapy Samples", subtitle: "Use these sounds at a comfortable level. For sound therapy, the goal is usually to let external sound and tinnitus gently overlap rather than covering tinnitus completely.")
+            SectionHeader("Sound Therapy Samples", subtitle: "Set these sounds to a comfortable level to explore how they work as sound therapy options.")
 
             ForEach(groupedSamples, id: \.title) { group in
                 VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
@@ -122,11 +116,14 @@ struct SoundTherapyAnnexView: View {
 
     private var groupedSamples: [(title: String, samples: [SoundSampleItem])] {
         let groupOrder = [
-            "Nature and environmental sounds",
-            "Static noise",
-            "One-minute static noise samples"
+            "Nature / Environmental",
+            "Household / Environmental",
+            "Static / Artificial"
         ]
-        let grouped = Dictionary(grouping: samples, by: \.displayGroup)
+        let visibleSamples = samples.filter { sample in
+            Self.visibleBetaSampleIDs.contains(sample.id)
+        }
+        let grouped = Dictionary(grouping: visibleSamples, by: \.displayGroup)
 
         var orderedGroups = groupOrder.compactMap { title -> (title: String, samples: [SoundSampleItem])? in
             guard let samples = grouped[title], !samples.isEmpty else {
@@ -144,9 +141,19 @@ struct SoundTherapyAnnexView: View {
         return orderedGroups
     }
 
+    private static let visibleBetaSampleIDs: Set<String> = [
+        "st.noise.rain",
+        "st.noise.stream_flowing_water",
+        "st.noise.crickets",
+        "st.noise.fan",
+        "st.noise.brown.loop_1min_128",
+        "st.noise.pink.loop_1min_128",
+        "st.noise.white.loop_1min_128"
+    ]
+
     private var favoritesSection: some View {
         VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
-            SectionHeader("Saved Preferred Sounds", subtitle: "Favorites stay on this device.")
+            SectionHeader("Saved Preferred Sounds")
 
             if activeFavorites.isEmpty {
                 Text("No preferred sounds saved yet. Use Favorite on a sample card to keep track of sounds you may want to revisit.")
@@ -190,7 +197,7 @@ struct SoundTherapyAnnexView: View {
 
     private var relatedToolsSection: some View {
         VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
-            SectionHeader("Learn and Practice", subtitle: "Return to the education and exercises that support this annex.")
+            SectionHeader("Learn and Practice", subtitle: "Return to the education and exercises that support sound therapy.")
 
             relatedToolLink(
                 title: "Sound Therapy education module",
@@ -221,7 +228,7 @@ struct SoundTherapyAnnexView: View {
             )
 
             relatedToolLink(
-                title: "Enjoyable Music Speaker Exercise",
+                title: "Sound Sensitivity Exercise",
                 subtitle: "Use comfortable, controlled music below the sensitivity point.",
                 systemImage: "speaker.wave.2",
                 route: .exercise("I-006")
@@ -270,7 +277,7 @@ struct SoundTherapyAnnexView: View {
     #if DEBUG
     private var debugPanel: some View {
         VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
-            SectionHeader("Sound Annex Debug")
+            SectionHeader("Sound Player Debug")
 
             Text("Samples: \(samples.count)")
             Text("Active favorites: \(activeFavorites.count)")

@@ -12,6 +12,7 @@ struct AppRouteDestinationView: View {
     let moduleLibrary: StaticModuleLibrary
     let exerciseDefinitionLibrary: ExerciseDefinitionLibrary
     @ObservedObject var audioController: AudioController
+    @ObservedObject var soundSampleController: SoundSampleController
 
     var body: some View {
         switch route {
@@ -23,6 +24,11 @@ struct AppRouteDestinationView: View {
             exerciseDestination(exerciseId: exerciseId)
         case .visual(let visualId):
             visualDestination(visualId: visualId)
+        case .soundTherapyPlayer:
+            SoundTherapyAnnexView(
+                moduleLibrary: moduleLibrary,
+                sampleController: soundSampleController
+            )
         case .safetyInformation:
             SafetyInformationView()
         case .settings:

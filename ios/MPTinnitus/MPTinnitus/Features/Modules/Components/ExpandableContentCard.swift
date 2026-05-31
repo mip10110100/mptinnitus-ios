@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct ExpandableContentCard: View {
     let card: StaticContentCard
     let module: StaticModule
     let sectionAudio: StaticAudioItem?
     let visuals: [StaticVisualReference]
+    let showsSoundTherapyPlayerLink: Bool
     let isCollapsible: Bool
     @ObservedObject var audioController: AudioController
 
@@ -22,6 +24,7 @@ struct ExpandableContentCard: View {
         module: StaticModule,
         sectionAudio: StaticAudioItem? = nil,
         visuals: [StaticVisualReference] = [],
+        showsSoundTherapyPlayerLink: Bool = false,
         isCollapsible: Bool = true,
         audioController: AudioController,
         initiallyExpanded: Bool = false
@@ -30,6 +33,7 @@ struct ExpandableContentCard: View {
         self.module = module
         self.sectionAudio = sectionAudio
         self.visuals = visuals
+        self.showsSoundTherapyPlayerLink = showsSoundTherapyPlayerLink
         self.isCollapsible = isCollapsible
         self.audioController = audioController
         _isExpanded = State(initialValue: initiallyExpanded)
@@ -122,6 +126,10 @@ struct ExpandableContentCard: View {
             ForEach(visuals, id: \.visualId) { visual in
                 InlineVisualLink(visual: visual)
             }
+
+            if showsSoundTherapyPlayerLink {
+                SoundTherapyPlayerInlineLink()
+            }
         }
     }
 
@@ -146,23 +154,21 @@ struct ExpandableContentCard: View {
     }
 }
 
-private struct InlineVisualLink: View {
-    let visual: StaticVisualReference
-
+private struct SoundTherapyPlayerInlineLink: View {
     var body: some View {
-        NavigationLink(value: AppRoute.visual(visual.visualId)) {
+        NavigationLink(value: AppRoute.soundTherapyPlayer) {
             HStack(alignment: .center, spacing: MPTTheme.Spacing.small) {
-                Image(systemName: iconName)
+                Image(systemName: "speaker.wave.2")
                     .font(.subheadline.weight(.semibold))
                     .foregroundStyle(MPTTheme.accentColor)
                     .frame(width: 24)
 
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(visual.title)
+                    Text("Open Sound Therapy Player")
                         .font(.subheadline.weight(.semibold))
                         .foregroundStyle(.primary)
 
-                    Text(visual.description)
+                    Text("Try sound therapy samples and adjust the volume while you practice.")
                         .font(.footnote)
                         .foregroundStyle(MPTTheme.secondaryText)
                         .fixedSize(horizontal: false, vertical: true)
@@ -173,6 +179,55 @@ private struct InlineVisualLink: View {
                 Image(systemName: "chevron.right")
                     .font(.caption.weight(.semibold))
                     .foregroundStyle(MPTTheme.secondaryText)
+            }
+            .padding(MPTTheme.Spacing.small)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(MPTTheme.screenBackground, in: RoundedRectangle(cornerRadius: 8))
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel("Open Sound Therapy Player")
+        .accessibilityHint("Opens sound therapy samples and volume controls.")
+    }
+}
+
+private struct InlineVisualLink: View {
+    let visual: StaticVisualReference
+
+    var body: some View {
+        NavigationLink(value: AppRoute.visual(visual.visualId)) {
+            VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
+                if let asset = MVPStaticVisualAsset.asset(for: visual.visualId),
+                   let image = asset.image() {
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: .infinity, maxHeight: 180)
+                        .accessibilityLabel(asset.altText)
+                }
+
+                HStack(alignment: .center, spacing: MPTTheme.Spacing.small) {
+                    Image(systemName: iconName)
+                        .font(.subheadline.weight(.semibold))
+                        .foregroundStyle(MPTTheme.accentColor)
+                        .frame(width: 24)
+
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(visual.title)
+                            .font(.subheadline.weight(.semibold))
+                            .foregroundStyle(.primary)
+
+                        Text(visual.description)
+                            .font(.footnote)
+                            .foregroundStyle(MPTTheme.secondaryText)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+
+                    Spacer(minLength: MPTTheme.Spacing.small)
+
+                    Image(systemName: "chevron.right")
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(MPTTheme.secondaryText)
+                }
             }
             .padding(MPTTheme.Spacing.small)
             .frame(maxWidth: .infinity, alignment: .leading)

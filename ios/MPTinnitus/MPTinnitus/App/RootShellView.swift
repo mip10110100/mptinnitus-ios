@@ -8,10 +8,14 @@
 import SwiftUI
 
 struct RootShellView: View {
+    @Environment(\.scenePhase)
+    private var scenePhase
+
     @AppStorage("mptinnitus.firstLaunchDecision")
     private var firstLaunchDecisionRaw = FirstLaunchDecision.pending.rawValue
 
     @StateObject private var audioController = AudioController()
+    @StateObject private var soundSampleController = SoundSampleController()
     @State private var selectedTab: AppTab = .library
     @State private var libraryPath: [AppRoute] = []
     @State private var soundPath: [AppRoute] = []
@@ -44,12 +48,16 @@ struct RootShellView: View {
             }
 
             tabContent(for: .soundAnnex, path: $soundPath) {
-                SoundTherapyAnnexView(moduleLibrary: moduleLibrary)
+                SoundTherapyAnnexView(
+                    moduleLibrary: moduleLibrary,
+                    sampleController: soundSampleController
+                )
             }
 
             tabContent(for: .mindfulnessAnnex, path: $mindfulnessPath) {
                 MindfulnessAnnexView(
                     moduleLibrary: moduleLibrary,
+                    exerciseDefinitionLibrary: exerciseDefinitionLibrary,
                     audioController: audioController
                 )
             }
@@ -63,6 +71,11 @@ struct RootShellView: View {
         }
         .tint(MPTTheme.accentColor)
         .onAppear(perform: presentWelcomeIfNeeded)
+        .onChange(of: scenePhase) { _, newPhase in
+            if newPhase != .active {
+                soundSampleController.stop()
+            }
+        }
         .sheet(isPresented: $isShowingWelcome) {
             FirstLaunchWelcomeView(
                 startWithAboutTinnitus: startWithAboutTinnitus,
@@ -84,7 +97,8 @@ struct RootShellView: View {
                         route: route,
                         moduleLibrary: moduleLibrary,
                         exerciseDefinitionLibrary: exerciseDefinitionLibrary,
-                        audioController: audioController
+                        audioController: audioController,
+                        soundSampleController: soundSampleController
                     )
                 }
                 .toolbar {

@@ -24,6 +24,7 @@ MODULE_LIBRARY_PATH = APP_RESOURCES / "module_library_v1.json"
 ASSET_PLACEHOLDERS_PATH = APP_RESOURCES / "asset_placeholders_v1.json"
 AUDIO_ASSETS_PATH = APP_RESOURCES / "audio_assets_mvp_2026_05_29.json"
 VIDEO_ASSETS_PATH = APP_RESOURCES / "video_assets_v1.json"
+MINDFULNESS_TRANSCRIPTS_PATH = APP_RESOURCES / "mindfulness_transcripts_v1.json"
 EXERCISE_DEFINITIONS_PATH = APP_RESOURCES / "exercise_definitions_v1.json"
 APP_ICON_CONTENTS_PATH = APP_ROOT / "Assets.xcassets/AppIcon.appiconset/Contents.json"
 VISUAL_ASSET_MANIFEST_PATH = ROOT / "docs/visual_assets/visual_asset_manifest_v1.json"
@@ -36,6 +37,32 @@ EXPECTED_SOUND_IDS = {
     "st.noise.brown.loop_1min_128",
     "st.noise.pink.loop_1min_128",
     "st.noise.white.loop_1min_128",
+    "st.noise.brown.fade_1min_128",
+    "st.noise.pink.fade_1min_128",
+    "st.noise.white.fade_1min_128",
+}
+
+EXPECTED_SOUND_PLAYER_IDS = {
+    "st.noise.rain",
+    "st.noise.stream_flowing_water",
+    "st.noise.crickets",
+    "st.noise.fan",
+    "st.noise.brown.loop_1min_128",
+    "st.noise.pink.loop_1min_128",
+    "st.noise.white.loop_1min_128",
+}
+
+EXPECTED_SOUND_PLAYER_LABELS = {
+    "st.noise.rain": ("Rain", "Nature / Environmental"),
+    "st.noise.stream_flowing_water": ("Stream / Flowing Water", "Nature / Environmental"),
+    "st.noise.crickets": ("Crickets", "Nature / Environmental"),
+    "st.noise.fan": ("Fan Noise", "Household / Environmental"),
+    "st.noise.brown.loop_1min_128": ("Brown Noise", "Static / Artificial"),
+    "st.noise.pink.loop_1min_128": ("Pink Noise", "Static / Artificial"),
+    "st.noise.white.loop_1min_128": ("White Noise", "Static / Artificial"),
+}
+
+HIDDEN_SOUND_PLAYER_IDS = {
     "st.noise.brown.fade_1min_128",
     "st.noise.pink.fade_1min_128",
     "st.noise.white.fade_1min_128",
@@ -71,8 +98,28 @@ EXPECTED_STATIC_VISUALS = {
     "visual.self_compassion_response_card": "self_compassion_response_card.png",
 }
 
+SELF_COMPASSION_VISUAL_ID = "VIS-021"
+SELF_COMPASSION_RETAINED_CARD_ID = "CC-V5-006-section"
+SELF_COMPASSION_RETAINED_CARD_TITLE = "The three parts of self-compassion"
+SELF_COMPASSION_DUPLICATE_CARD_IDS = {
+    "CC-V5-002-section",
+    "CC-V5-005-section",
+    "CC-V5-007-section",
+    "CC-V5-008-section",
+    "CC-V5-010-section",
+    "CC-V5-011-section",
+    "CC-V5-012-section",
+    "CC-V5-014-section",
+    "CC-V5-015-section",
+    "CC-V5-016-section",
+    "CC-V5-017-section",
+    "CC-V5-018-section",
+    "CC-V5-019-section",
+    "CC-V5-022-section",
+    "CC-V5-034-section",
+}
+
 EXPECTED_NOT_BETA_SCOPE_VISUALS = {
-    "visual.breathing_pacer",
     "visual.stop_card",
     "visual.tipp_card",
     "visual.sleep_tinnitus_loop",
@@ -80,11 +127,150 @@ EXPECTED_NOT_BETA_SCOPE_VISUALS = {
     "visual.dear_man_card",
 }
 
-EXPECTED_BREATHING_VIDEOS = {
-    "video.breathing.4_2_4.loop": "breathing_4_2_4_loop.mp4",
-    "video.breathing.4_4.loop": "breathing_4_4_loop.mp4",
-    "video.breathing.4_6.loop": "breathing_4_6_loop.mp4",
-    "video.breathing.4_2_6.loop": "breathing_4_2_6_loop.mp4",
+EXPECTED_DEFERRED_BREATHING_VIDEO_IDS = {
+    "video.breathing.4_2_4.loop",
+    "video.breathing.4_4.loop",
+    "video.breathing.4_6.loop",
+    "video.breathing.4_2_6.loop",
+}
+
+EXPECTED_MINDFULNESS_TRANSCRIPTS = {
+    "mindfulness.one_breath": "MF-SHORT-001",
+    "mindfulness.name_it": "MF-SHORT-002",
+    "mindfulness.three_two_one": "MF-SHORT-003",
+    "mindfulness.sound_therapy_mindful": "MF-SHORT-004",
+    "mindfulness.breathing_space": "MF-MED-001",
+    "mindfulness.body_anchor": "MF-MED-002",
+    "mindfulness.sound_shifting": "MF-MED-003",
+    "mindfulness.open_hands": "MF-MED-004",
+    "mindfulness.settling_sleep": "MF-MED-005",
+    "mindfulness.mindful_listening": "MF-LONG-001",
+    "mindfulness.body_scan": "MF-LONG-002",
+    "mindfulness.acceptance_present_moment": "MF-LONG-003",
+    "mindfulness.long_sleep": "MF-LONG-005",
+    "mindfulness.long_bodyscan": "MF-EXT-001",
+}
+
+EXPECTED_MINDFULNESS_PRACTICE_DISPLAY_TITLES = {
+    "mindfulness.one_breath": "One Breath Reset",
+    "mindfulness.name_it": "Name It and Widen",
+    "mindfulness.three_two_one": "3-2-1 Senses Mini",
+    "mindfulness.sound_therapy_mindful": "Sound Therapy Mindful Start",
+    "mindfulness.breathing_space": "Breathing Space",
+    "mindfulness.body_anchor": "Body Anchor and Room Sounds",
+    "mindfulness.sound_shifting": "Sound Shifting",
+    "mindfulness.open_hands": "Open Hands Grounding",
+    "mindfulness.mindful_listening": "Mindful Listening with Tinnitus and External Sound",
+    "mindfulness.acceptance_present_moment": "Acceptance in the Present Moment",
+    "mindfulness.body_scan": "Medium Length Body-Scan",
+    "mindfulness.long_bodyscan": "Full Body Scan",
+    "mindfulness.settling_sleep": "Settling Without Forcing Sleep",
+    "mindfulness.long_sleep": "Evening Body and Sound Wind-Down",
+}
+
+EXPECTED_MINDFULNESS_PRACTICE_GROUPS = {
+    "shortGuidedPracticeAudioOrder": [
+        "mindfulness.one_breath",
+        "mindfulness.name_it",
+        "mindfulness.three_two_one",
+        "mindfulness.sound_therapy_mindful",
+    ],
+    "mediumGuidedPracticeAudioOrder": [
+        "mindfulness.breathing_space",
+        "mindfulness.body_anchor",
+        "mindfulness.sound_shifting",
+        "mindfulness.open_hands",
+        "mindfulness.mindful_listening",
+        "mindfulness.acceptance_present_moment",
+        "mindfulness.body_scan",
+    ],
+    "longGuidedPracticeAudioOrder": [
+        "mindfulness.long_bodyscan",
+    ],
+    "sleepGuidedPracticeAudioOrder": [
+        "mindfulness.settling_sleep",
+        "mindfulness.long_sleep",
+    ],
+}
+
+EXPECTED_MINDFULNESS_PRACTICE_SECTIONS = {
+    "Short Guided Practices",
+    "Medium Guided Practices",
+    "Long Guided Practices",
+    "Sleep-Oriented Practices",
+    "Breathing Pacer",
+    "Reflection Exercises",
+}
+
+EXPECTED_BREATHING_PACER_OPTIONS = {
+    "4-4 Even Breathing",
+    "4-2-4 Balanced Breathing",
+    "4-6 Extended Exhale",
+    "4-2-6 Extended Exhale with Pause",
+}
+
+EXPECTED_MINDFULNESS_REFLECTION_EXERCISES = {
+    "I-011": "Deep Breath Check-In Reflection",
+    "I-012": "3-2-1 Senses",
+    "I-013": "Mindful Listening",
+    "I-014": "Sound Shifting",
+}
+
+ABOUT_BML_VISUAL_ID = "VIS-001"
+ABOUT_BML_VISUAL_CARD = "AT-002-BEYOND-section"
+ABOUT_BML_VISUAL_SCREEN = "AT-002"
+ABOUT_PAUSE_REFLECT_EXERCISE_ID = "I-002"
+ABOUT_PAUSE_REFLECT_CARD = "AT-010-PAUSE-section"
+ABOUT_PAUSE_REFLECT_FIELDS = {
+    "body_note": "In my body, I notice…",
+    "mind_note": "In my mind, I notice…",
+    "life_note": "In my daily life, I notice…",
+    "support_note": "One area I may want to support first is…",
+}
+
+SOUND_THERAPY_THERMOMETER_VISUAL_ID = "VIS-003"
+SOUND_THERAPY_THERMOMETER_CARD = "ST-V5-009-section"
+SOUND_THERAPY_PLAYER_LINK_CARDS = {
+    "ST-V5-010-section",
+    "ST-V5-014-section",
+}
+SOUND_SENSITIVITY_EXERCISE_ID = "I-006"
+OLD_SOUND_SENSITIVITY_TITLES = [
+    "Enjoyable Music Exercise",
+    "Enjoyable Music Speaker Exercise",
+    "Enjoyable music speaker exercise",
+    "Enjoyable music speaker practice",
+    "Open Enjoyable Music Speaker Exercise",
+]
+
+EXPECTED_DISTRESS_TOLERANCE_EXERCISE_TITLES = {
+    "I-016": "STOP",
+    "I-017": "Temperature/Ice",
+    "I-018": "TIPP",
+    "I-019": "The Frozen Orange",
+}
+
+FORBIDDEN_DISTRESS_TOLERANCE_LABELS = [
+    "STOP card",
+    "Stop card",
+    "TIPP card",
+    "TIPP Card",
+    "STOP Practice",
+    "STOP practice",
+    "Temperature/Ice Practice",
+    "Temperature/Ice practice",
+    "TIPP Practice",
+    "TIPP practice",
+    "The Frozen Orange Practice",
+    "Frozen orange practice",
+    "Open STOP Practice",
+    "Open TIPP Practice",
+]
+
+EXCLUDED_MINDFULNESS_SCRIPT_IDS = {
+    "MF-SHORT-005",
+    "MF-LONG-004",
+    "MF-EXT-002",
 }
 
 PLANNING_PATTERNS = [
@@ -231,6 +417,23 @@ def validate_mvp_audio(audio_assets: dict[str, Any], asset_placeholders: dict[st
     if sound_sample_ids != EXPECTED_SOUND_IDS:
         add_failure("MVP audio", f"Sound sample registry IDs mismatch: {ASSET_PLACEHOLDERS_PATH}")
 
+    expected_sound_titles = {
+        "st.noise.rain": "Rain",
+        "st.noise.stream_flowing_water": "Stream / Flowing Water",
+        "st.noise.crickets": "Crickets",
+        "st.noise.fan": "Fan Noise",
+        "st.noise.brown.loop_1min_128": "Brown Noise",
+        "st.noise.pink.loop_1min_128": "Pink Noise",
+        "st.noise.white.loop_1min_128": "White Noise",
+        "st.noise.brown.fade_1min_128": "Brown Noise, 1-Minute Sample",
+        "st.noise.pink.fade_1min_128": "Pink Noise, 1-Minute Sample",
+        "st.noise.white.fade_1min_128": "White Noise, 1-Minute Sample",
+    }
+    for sample in sound_samples:
+        sample_id = sample.get("id")
+        if sample_id in expected_sound_titles and sample.get("title") != expected_sound_titles[sample_id]:
+            add_failure("MVP audio", f"{sample_id} title should be {expected_sound_titles[sample_id]!r}, found {sample.get('title')!r}")
+
     combined_user_data = json.dumps(
         {
             "audioAssets": audio_assets,
@@ -245,7 +448,281 @@ def validate_mvp_audio(audio_assets: dict[str, Any], asset_placeholders: dict[st
             add_failure("MVP audio", f"Removed mindfulness file is exposed or required: {filename}")
 
 
-def validate_mvp_visuals_and_videos(visual_manifest: dict[str, Any], video_assets: dict[str, Any]) -> None:
+def validate_sound_therapy_player(asset_placeholders: dict[str, Any]) -> None:
+    sound_samples = asset_placeholders.get("soundSamples", [])
+    samples_by_id = {sample.get("id"): sample for sample in sound_samples}
+
+    for sample_id, (expected_title, expected_category) in EXPECTED_SOUND_PLAYER_LABELS.items():
+        sample = samples_by_id.get(sample_id)
+        if not sample:
+            add_failure("Sound Therapy Player", f"Visible player sample is missing from sound sample registry: {sample_id}")
+            continue
+        if sample.get("title") != expected_title:
+            add_failure("Sound Therapy Player", f"{sample_id} title should be {expected_title!r}, found {sample.get('title')!r}")
+        if sample.get("category") != expected_category:
+            add_failure("Sound Therapy Player", f"{sample_id} category should be {expected_category!r}, found {sample.get('category')!r}")
+        if sample.get("displayGroup") != expected_category:
+            add_failure("Sound Therapy Player", f"{sample_id} displayGroup should be {expected_category!r}, found {sample.get('displayGroup')!r}")
+
+    view_path = APP_ROOT / "Features/SoundTherapy/SoundTherapyAnnexView.swift"
+    card_path = APP_ROOT / "Features/SoundTherapy/SoundSampleCard.swift"
+    app_tab_path = APP_ROOT / "Core/AppTab.swift"
+
+    view_text = view_path.read_text()
+    card_text = card_path.read_text()
+    app_tab_text = app_tab_path.read_text()
+
+    for expected_text in [
+        "Sound Therapy Player",
+        "Guidance",
+        "Sound Therapy Samples",
+        "Set these sounds to a comfortable level to explore how they work as sound therapy options.",
+        "Saved Preferred Sounds",
+    ]:
+        if expected_text not in view_text and expected_text not in app_tab_text:
+            add_failure("Sound Therapy Player", f"Expected player UI text is missing: {expected_text!r}")
+
+    for old_text in [
+        "Sound Therapy Annex",
+        "support this annex",
+        "Sound Annex Debug",
+        "Favorites stay on this device.",
+        "Do not push into painful or unsafe sound",
+    ]:
+        if old_text in view_text or old_text in app_tab_text:
+            add_failure("Sound Therapy Player", f"Old annex or warning copy remains in player UI source: {old_text!r}")
+
+    for old_text in [
+        "sample.guidance",
+        "% of capped range",
+        "The app caps this preview below full device volume",
+    ]:
+        if old_text in card_text:
+            add_failure("Sound Therapy Player", f"Repeated per-card instruction text remains: {old_text!r}")
+
+    for sample_id in EXPECTED_SOUND_PLAYER_IDS:
+        if sample_id not in view_text:
+            add_failure("Sound Therapy Player", f"Visible player sample ID is not included in the beta display filter: {sample_id}")
+    for sample_id in HIDDEN_SOUND_PLAYER_IDS:
+        if sample_id in view_text:
+            add_failure("Sound Therapy Player", f"One-minute sample should not be visible in the beta display filter: {sample_id}")
+
+
+def validate_sound_sample_foreground_continuity() -> None:
+    root_shell_path = APP_ROOT / "App/RootShellView.swift"
+    sound_player_path = APP_ROOT / "Features/SoundTherapy/SoundTherapyAnnexView.swift"
+    controller_path = APP_ROOT / "Audio/SoundSampleController.swift"
+
+    root_shell_text = root_shell_path.read_text()
+    sound_player_text = sound_player_path.read_text()
+    controller_text = controller_path.read_text()
+
+    if "@StateObject private var soundSampleController = SoundSampleController()" not in root_shell_text:
+        add_failure("Sound sample foreground continuity", "RootShellView should own one shared SoundSampleController for foreground tab navigation.")
+    if "sampleController: soundSampleController" not in root_shell_text:
+        add_failure("Sound sample foreground continuity", "RootShellView should pass the shared SoundSampleController into SoundTherapyAnnexView.")
+    if "@ObservedObject private var sampleController: SoundSampleController" not in sound_player_text:
+        add_failure("Sound sample foreground continuity", "SoundTherapyAnnexView should observe the shared SoundSampleController instead of owning a tab-local one.")
+    if ".onDisappear" in sound_player_text and "sampleController.stop()" in sound_player_text:
+        add_failure("Sound sample foreground continuity", "SoundTherapyAnnexView should not stop sound samples merely because the user navigates away in the foreground.")
+    if "newPhase != .active" not in root_shell_text or "soundSampleController.stop()" not in root_shell_text:
+        add_failure("Sound sample foreground continuity", "Sound samples should stop or release when the app leaves the foreground.")
+    if "stopCurrentPlayback(clearSelection: false)" not in controller_text:
+        add_failure("Sound sample foreground continuity", "Starting a sound sample should stop the prior sample before playing the next one.")
+    if "audioPlayer.numberOfLoops = sample.loopCapable ? -1 : 0" not in controller_text:
+        add_failure("Sound sample foreground continuity", "Loop-capable sound samples should continue looping in the foreground.")
+
+
+def validate_mindfulness_practice_ui(module_library: dict[str, Any], exercise_definitions: dict[str, Any]) -> None:
+    app_tab_path = APP_ROOT / "Core/AppTab.swift"
+    practice_path = APP_ROOT / "Features/Mindfulness/MindfulnessAnnexView.swift"
+    pacer_path = APP_ROOT / "Features/Visuals/BreathingPacerVisualView.swift"
+    root_shell_path = APP_ROOT / "App/RootShellView.swift"
+    audio_card_path = APP_ROOT / "Features/Modules/Components/AudioCard.swift"
+
+    app_tab_text = app_tab_path.read_text()
+    practice_text = practice_path.read_text()
+    pacer_text = pacer_path.read_text()
+    root_shell_text = root_shell_path.read_text()
+    audio_card_text = audio_card_path.read_text()
+    module_library_text = json.dumps(module_library, ensure_ascii=False)
+
+    if "Mindfulness Practice" not in app_tab_text:
+        add_failure("Mindfulness Practice", "AppTab user-facing title should be Mindfulness Practice.")
+    if "Mindfulness Annex" in practice_text or '"Mindfulness Annex"' in app_tab_text:
+        add_failure("Mindfulness Practice", "Mindfulness practice page source should not show Mindfulness Annex as user-facing copy.")
+
+    for section_title in EXPECTED_MINDFULNESS_PRACTICE_SECTIONS:
+        if section_title not in practice_text:
+            add_failure("Mindfulness Practice", f"Missing collapsed practice section title: {section_title}")
+
+    expected_audio_ids = set(EXPECTED_MINDFULNESS_TRANSCRIPTS)
+    for audio_id in sorted(expected_audio_ids):
+        if audio_id not in practice_text:
+            add_failure("Mindfulness Practice", f"Mindfulness Practice does not surface expected audio asset ID: {audio_id}")
+
+    for title in EXPECTED_MINDFULNESS_PRACTICE_DISPLAY_TITLES.values():
+        if title not in practice_text:
+            add_failure("Mindfulness Practice", f"Mindfulness Practice is missing expected display title: {title}")
+
+    for array_name, expected_ids in EXPECTED_MINDFULNESS_PRACTICE_GROUPS.items():
+        match = re.search(rf"private let {array_name} = \[(.*?)\]", practice_text, re.S)
+        if not match:
+            add_failure("Mindfulness Practice", f"Missing practice audio group: {array_name}")
+            continue
+        actual_ids = re.findall(r'"([^"]+)"', match.group(1))
+        if actual_ids != expected_ids:
+            add_failure("Mindfulness Practice", f"{array_name} should be {expected_ids}, found {actual_ids}")
+
+    if "Audio explanation" in practice_text:
+        add_failure("Mindfulness Practice", "Mindfulness Practice should not render the repeated Audio explanation label.")
+    if "showsContextLabel: false" not in practice_text or "showsContextLabel" not in audio_card_text:
+        add_failure("Mindfulness Practice", "Mindfulness Practice should hide the reusable AudioCard context label for guided practice cards.")
+    if "TranscriptDisclosure(transcript: audio.transcript)" not in audio_card_text:
+        add_failure("Mindfulness Practice", "Mindfulness Practice guided recordings should keep the reusable transcript disclosure.")
+    if "Text(audio.title)" not in audio_card_text:
+        add_failure("Mindfulness Practice", "Mindfulness Practice guided recordings should keep the practice title visible.")
+
+    for title in EXPECTED_BREATHING_PACER_OPTIONS:
+        if title not in pacer_text:
+            add_failure("Mindfulness Practice", f"Missing Breathing Pacer timing option: {title}")
+
+    mindfulness_module = next(
+        (module for module in module_library.get("modules", []) if module.get("moduleId") == "mindfulness"),
+        {},
+    )
+    mindfulness_exercise_ids = {
+        exercise.get("exerciseId")
+        for exercise in mindfulness_module.get("exercises", [])
+    }
+    implemented_exercise_ids = {
+        definition.get("exerciseId")
+        for definition in exercise_definitions.get("definitions", [])
+    }
+    for exercise_id, title in EXPECTED_MINDFULNESS_REFLECTION_EXERCISES.items():
+        if exercise_id not in practice_text:
+            add_failure("Mindfulness Practice", f"Reflection Exercises section does not expose expected exercise route: {exercise_id} {title}")
+        if exercise_id not in mindfulness_exercise_ids:
+            add_failure("Mindfulness Practice", f"Mindfulness module is missing reflection exercise reference: {exercise_id} {title}")
+        if exercise_id not in implemented_exercise_ids:
+            add_failure("Mindfulness Practice", f"Reflection exercise lacks an implemented definition: {exercise_id} {title}")
+    if "exerciseDefinitionLibrary: exerciseDefinitionLibrary" not in root_shell_text:
+        add_failure("Mindfulness Practice", "RootShellView should pass ExerciseDefinitionLibrary into Mindfulness Practice so unsupported exercises can stay hidden.")
+
+    for forbidden in [
+        "single-play recordings, not continuous loops",
+        "not continuous loops",
+        "single-play guided recording",
+        "single-play sleep-oriented guided practice",
+        "not a looped sound therapy sample",
+    ]:
+        if forbidden in practice_text or forbidden in module_library_text:
+            add_failure("Mindfulness Practice", f"Technical single-play/loop contrast copy remains user-facing: {forbidden!r}")
+
+    for forbidden in ["BreathingVideoSection", "BreathingVideoLibrary", "VideoPlayer", "AVKit"]:
+        if forbidden in practice_text or forbidden in pacer_text:
+            add_failure("Mindfulness Practice", f"Breathing video runtime code should not be exposed for beta: {forbidden}")
+
+    support_index = practice_text.find("If Practice Feels Too Intense")
+    learn_index = practice_text.find("Mindfulness education module")
+    if support_index == -1:
+        add_failure("Mindfulness Practice", "If Practice Feels Too Intense support link is missing.")
+    elif learn_index != -1 and support_index > learn_index:
+        add_failure("Mindfulness Practice", "If Practice Feels Too Intense should be the first lower learning/support link.")
+
+
+def validate_stage_23k_copy_cleanup(module_library: dict[str, Any], exercise_definitions: dict[str, Any]) -> None:
+    renderer_path = APP_ROOT / "Features/Modules/ModuleOverviewScreen.swift"
+    renderer_text = renderer_path.read_text()
+    if '"FAQs / Common Questions"' in renderer_text:
+        add_failure("Stage 23K copy cleanup", "Module group headings should use FAQs instead of FAQs / Common Questions.")
+    if 'return "FAQs"' not in renderer_text:
+        add_failure("Stage 23K copy cleanup", "Module group headings should include the user-facing title FAQs.")
+    if 'title.contains("fallacy")' not in renderer_text:
+        add_failure("Stage 23K copy cleanup", "Cognitive Reframing grouping should send singular fallacy titles to the Distortion Library.")
+
+    searchable_paths = [
+        path
+        for path in APP_ROOT.rglob("*")
+        if path.is_file() and path.suffix in {".swift", ".json"}
+    ]
+    for path in searchable_paths:
+        text = path.read_text(errors="ignore")
+        if "FAQs / Common Questions" in text:
+            add_failure("Stage 23K copy cleanup", f"User-facing FAQ section title remains in {path}.")
+        for forbidden in FORBIDDEN_DISTRESS_TOLERANCE_LABELS:
+            if forbidden in text:
+                add_failure("Stage 23K copy cleanup", f"Old Distress Tolerance label remains in {path}: {forbidden!r}")
+
+    distress_module = next(
+        (module for module in module_library.get("modules", []) if module.get("moduleId") == "distress_tolerance"),
+        None,
+    )
+    if not distress_module:
+        add_failure("Stage 23K copy cleanup", "Distress Tolerance module is missing.")
+    else:
+        exercises_by_id = {exercise.get("exerciseId"): exercise for exercise in distress_module.get("exercises", [])}
+        for exercise_id, expected_title in EXPECTED_DISTRESS_TOLERANCE_EXERCISE_TITLES.items():
+            exercise = exercises_by_id.get(exercise_id)
+            if not exercise:
+                add_failure("Stage 23K copy cleanup", f"Distress Tolerance exercise {exercise_id} is missing.")
+            elif exercise.get("title") != expected_title:
+                add_failure(
+                    "Stage 23K copy cleanup",
+                    f"Distress Tolerance exercise {exercise_id} should be titled {expected_title!r}, found {exercise.get('title')!r}.",
+                )
+
+        visuals_by_id = {visual.get("visualId"): visual for visual in distress_module.get("visuals", [])}
+        for visual_id, expected_title in {"VIS-013": "STOP", "VIS-014": "TIPP"}.items():
+            visual = visuals_by_id.get(visual_id)
+            if not visual:
+                add_failure("Stage 23K copy cleanup", f"Distress Tolerance visual {visual_id} is missing.")
+            elif visual.get("title") != expected_title:
+                add_failure(
+                    "Stage 23K copy cleanup",
+                    f"Distress Tolerance visual {visual_id} should be titled {expected_title!r}, found {visual.get('title')!r}.",
+                )
+
+    definitions_by_id = {
+        definition.get("exerciseId"): definition
+        for definition in exercise_definitions.get("definitions", [])
+    }
+    for exercise_id, expected_title in EXPECTED_DISTRESS_TOLERANCE_EXERCISE_TITLES.items():
+        definition = definitions_by_id.get(exercise_id)
+        if not definition:
+            add_failure("Stage 23K copy cleanup", f"Exercise definition {exercise_id} is missing.")
+        elif definition.get("title") != expected_title:
+            add_failure(
+                "Stage 23K copy cleanup",
+                f"Exercise definition {exercise_id} should be titled {expected_title!r}, found {definition.get('title')!r}.",
+            )
+
+    cognitive_module = next(
+        (module for module in module_library.get("modules", []) if module.get("moduleId") == "cognitive_reframing"),
+        None,
+    )
+    if not cognitive_module:
+        add_failure("Stage 23K copy cleanup", "Cognitive Reframing module is missing.")
+    else:
+        heaven_reward_cards = [
+            card for card in cognitive_module.get("cards", [])
+            if "heaven" in card.get("title", "").lower() and "reward" in card.get("title", "").lower()
+        ]
+        if not heaven_reward_cards:
+            add_failure("Stage 23K copy cleanup", "Heaven’s Reward Fallacy card is missing from Cognitive Reframing.")
+
+    acceptance_module = next(
+        (module for module in module_library.get("modules", []) if module.get("moduleId") == "acceptance_and_change"),
+        None,
+    )
+    if acceptance_module:
+        acceptance_text = json.dumps(acceptance_module, ensure_ascii=False)
+        for forbidden in FORBIDDEN_DISTRESS_TOLERANCE_LABELS:
+            if forbidden in acceptance_text:
+                add_failure("Stage 23K copy cleanup", f"Acceptance and Change unexpectedly contains Stage 23K Distress label {forbidden!r}.")
+
+
+def validate_mvp_visuals_and_deferred_videos(visual_manifest: dict[str, Any]) -> None:
     static_visuals = visual_manifest.get("staticVisuals", [])
     static_ids = {visual.get("id") for visual in static_visuals}
     if static_ids != set(EXPECTED_STATIC_VISUALS):
@@ -266,8 +743,8 @@ def validate_mvp_visuals_and_videos(visual_manifest: dict[str, Any], video_asset
         expected_filename = EXPECTED_STATIC_VISUALS.get(visual_id)
         if expected_filename is None:
             continue
-        if visual.get("status") != "available":
-            add_failure("MVP visuals", f"{visual_id} should have status available")
+        if visual.get("status") not in {"integrated_mvp", "mapped", "available"}:
+            add_failure("MVP visuals", f"{visual_id} should be marked integrated or available")
         if visual.get("bundledFilename") != expected_filename:
             add_failure("MVP visuals", f"{visual_id} bundledFilename should be {expected_filename}")
         asset_path = visual.get("assetPath", "")
@@ -289,48 +766,98 @@ def validate_mvp_visuals_and_videos(visual_manifest: dict[str, Any], video_asset
     if EXPECTED_NOT_BETA_SCOPE_VISUALS <= excluded_ids:
         add_warning("MVP visuals", "Not-beta-scope static visual IDs are intentionally excluded from visual asset validation.")
 
-    video_entries = video_assets.get("videos", [])
-    video_ids = {video.get("id") for video in video_entries}
-    if video_ids != set(EXPECTED_BREATHING_VIDEOS):
-        missing = sorted(set(EXPECTED_BREATHING_VIDEOS) - video_ids)
-        extra = sorted(video_ids - set(EXPECTED_BREATHING_VIDEOS))
-        add_failure("Breathing videos", f"Breathing video IDs mismatch. Missing={missing}; extra={extra}")
+    breathing_pacer = next(
+        (visual for visual in visual_manifest.get("excludedVisuals", []) if visual.get("id") == "visual.breathing_pacer"),
+        None,
+    )
+    if not breathing_pacer or breathing_pacer.get("status") != "existing_swiftui_kept":
+        add_failure("MVP visuals", "visual.breathing_pacer should be marked existing_swiftui_kept")
 
-    video_folder = APP_RESOURCES / "video/breathing"
-    expected_video_files = set(EXPECTED_BREATHING_VIDEOS.values())
-    actual_video_files = {path.name for path in video_folder.glob("*.mp4")} if video_folder.exists() else set()
-    if actual_video_files != expected_video_files:
-        missing = sorted(expected_video_files - actual_video_files)
-        extra = sorted(actual_video_files - expected_video_files)
-        add_failure("Breathing videos", f"Expected exactly four breathing MP4s in {video_folder}. Missing={missing}; extra={extra}")
+    deferred_video_ids = {video.get("id") for video in visual_manifest.get("breathingVideos", [])}
+    if deferred_video_ids != EXPECTED_DEFERRED_BREATHING_VIDEO_IDS:
+        missing = sorted(EXPECTED_DEFERRED_BREATHING_VIDEO_IDS - deferred_video_ids)
+        extra = sorted(deferred_video_ids - EXPECTED_DEFERRED_BREATHING_VIDEO_IDS)
+        add_failure("Breathing videos", f"Deferred breathing video IDs mismatch. Missing={missing}; extra={extra}")
 
-    for video in video_entries:
+    for video in visual_manifest.get("breathingVideos", []):
         video_id = video.get("id", "<missing id>")
-        expected_filename = EXPECTED_BREATHING_VIDEOS.get(video_id)
-        if expected_filename is None:
+        if video.get("status") != "deferred_post_beta":
+            add_failure("Breathing videos", f"{video_id} should be marked deferred_post_beta")
+
+    if deferred_video_ids == EXPECTED_DEFERRED_BREATHING_VIDEO_IDS:
+        add_warning("Breathing videos", "Breathing videos are listed as deferred_post_beta and are not required for beta runtime.")
+
+    if VIDEO_ASSETS_PATH.exists():
+        add_failure("Breathing videos", f"Runtime video registry should not be bundled for beta: {VIDEO_ASSETS_PATH}")
+
+    video_resource_root = APP_RESOURCES / "video"
+    if video_resource_root.exists():
+        bundled_video_files = [path for path in video_resource_root.rglob("*") if path.is_file()]
+        if bundled_video_files:
+            add_failure(
+                "Breathing videos",
+                "Breathing video files should not be bundled for beta: "
+                + "; ".join(str(path) for path in bundled_video_files),
+            )
+
+
+def validate_mindfulness_transcripts(transcripts: dict[str, Any], audio_assets: dict[str, Any], module_library: dict[str, Any]) -> None:
+    entries = transcripts.get("transcripts", [])
+    entries_by_audio_id = {entry.get("audioAssetId"): entry for entry in entries}
+    expected_audio_ids = set(EXPECTED_MINDFULNESS_TRANSCRIPTS)
+
+    if set(entries_by_audio_id) != expected_audio_ids:
+        missing = sorted(expected_audio_ids - set(entries_by_audio_id))
+        extra = sorted(set(entries_by_audio_id) - expected_audio_ids)
+        add_failure("Mindfulness transcripts", f"Expected exactly 14 mindfulness transcript mappings. Missing={missing}; extra={extra}")
+
+    audio_asset_ids = {asset.get("id") for asset in audio_assets.get("assets", [])}
+    for audio_id, script_id in EXPECTED_MINDFULNESS_TRANSCRIPTS.items():
+        entry = entries_by_audio_id.get(audio_id)
+        if audio_id not in audio_asset_ids:
+            add_failure("Mindfulness transcripts", f"{audio_id} is missing from {AUDIO_ASSETS_PATH}")
+        if not entry:
             continue
-        asset_path = video.get("assetPath", "")
-        if video.get("filename") != expected_filename:
-            add_failure("Breathing videos", f"{video_id} filename should be {expected_filename}")
-        if asset_path != f"video/breathing/{expected_filename}":
-            add_failure("Breathing videos", f"{video_id} assetPath should be video/breathing/{expected_filename}, found {asset_path!r}")
-        if not resource_exists(asset_path):
-            add_failure("Breathing videos", f"{video_id} does not resolve to bundled resource path {asset_path!r}")
-        if video.get("category") != "mindfulness_breathing":
-            add_failure("Breathing videos", f"{video_id} should use category mindfulness_breathing")
-        if video.get("loopCapable") is not True:
-            add_failure("Breathing videos", f"{video_id} should be loop-capable")
-        if video.get("playbackMode") != "loop_until_exit":
-            add_failure("Breathing videos", f"{video_id} should use playbackMode loop_until_exit")
-        if video.get("mutedByDefault") is not True:
-            add_failure("Breathing videos", f"{video_id} should be muted by default")
-        if video.get("reducedMotionFallback") != "swiftui_breathing_pacer":
-            add_failure("Breathing videos", f"{video_id} should use the SwiftUI breathing pacer reduced-motion fallback")
-        for required in ["title", "description", "sourceFilename", "sourceZip", "fileSizeBytes", "sha256", "durationSeconds"]:
-            if not video.get(required):
-                add_failure("Breathing videos", f"{video_id} missing required field {required}")
-        if ".zip" in asset_path or "http://" in asset_path or "https://" in asset_path:
-            add_failure("Breathing videos", f"{video_id} points to an invalid runtime path: {asset_path}")
+        if entry.get("sourceScriptId") != script_id:
+            add_failure("Mindfulness transcripts", f"{audio_id} should map to {script_id}, found {entry.get('sourceScriptId')}")
+        if not str(entry.get("transcriptText", "")).strip():
+            add_failure("Mindfulness transcripts", f"{audio_id} has an empty transcriptText")
+        expected_display_title = EXPECTED_MINDFULNESS_PRACTICE_DISPLAY_TITLES.get(audio_id)
+        if entry.get("displayTitle") != expected_display_title:
+            add_failure("Mindfulness transcripts", f"{audio_id} should record displayTitle {expected_display_title!r}, found {entry.get('displayTitle')!r}")
+        if not str(entry.get("sourceTitle", "")).strip():
+            add_failure("Mindfulness transcripts", f"{audio_id} should preserve a non-empty sourceTitle")
+        if entry.get("sourceWorkbook") != "mptinnitus_mindfulness_exercise_scripts_v1.xlsx":
+            add_failure("Mindfulness transcripts", f"{audio_id} should record the source workbook")
+        if entry.get("sourceSheet") != "Script Manifest":
+            add_failure("Mindfulness transcripts", f"{audio_id} should record the source sheet")
+
+    exposed_registry_script_ids = {entry.get("sourceScriptId") for entry in entries}
+    exposed_runtime_text = json.dumps(
+        {
+            "transcripts": entries,
+            "moduleAudio": [audio for module in module_library.get("modules", []) for audio in module.get("audio", [])],
+        },
+        ensure_ascii=False,
+    )
+    for script_id in EXCLUDED_MINDFULNESS_SCRIPT_IDS:
+        if script_id in exposed_registry_script_ids or script_id in exposed_runtime_text:
+            add_failure("Mindfulness transcripts", f"Excluded spreadsheet script is exposed: {script_id}")
+
+    module_audio_by_id: dict[str, list[dict[str, Any]]] = {}
+    for module in module_library.get("modules", []):
+        for audio in module.get("audio", []):
+            module_audio_by_id.setdefault(audio.get("audioId"), []).append(audio)
+
+    for audio_id, entry in entries_by_audio_id.items():
+        if audio_id not in expected_audio_ids:
+            continue
+        expected_text = str(entry.get("transcriptText", "")).strip()
+        if not expected_text:
+            continue
+        for audio in module_audio_by_id.get(audio_id, []):
+            if str(audio.get("transcript", "")).strip() != expected_text:
+                add_failure("Mindfulness transcripts", f"{audio_id} transcript in {MODULE_LIBRARY_PATH} does not match transcript registry")
 
 
 def validate_active_audio(module_library: dict[str, Any]) -> None:
@@ -420,6 +947,306 @@ def validate_visual_references(module_library: dict[str, Any]) -> None:
     for module_id, card_id, visual_id in referenced_visual_ids:
         if visual_id not in known_or_fallback:
             add_failure("Visual references", f"{module_id}/{card_id} references unknown visual ID {visual_id}")
+
+    sound_therapy_stand_ins = {"VIS-002", "VIS-004"}
+    exposed_stand_ins = [
+        f"{module_id}/{card_id}/{visual_id}"
+        for module_id, card_id, visual_id in referenced_visual_ids
+        if module_id == "sound_therapy" and visual_id in sound_therapy_stand_ins
+    ]
+    if exposed_stand_ins:
+        add_failure(
+            "Visual references",
+            "Sound Therapy beta should not expose incomplete secondary visual stand-ins: "
+            + "; ".join(exposed_stand_ins),
+        )
+
+
+def validate_about_tinnitus_beta(module_library: dict[str, Any], exercise_definitions: dict[str, Any], visual_manifest: dict[str, Any]) -> None:
+    about_module = next(
+        (module for module in module_library.get("modules", []) if module.get("moduleId") == "about_tinnitus"),
+        None,
+    )
+    if not about_module:
+        add_failure("About Tinnitus beta fixes", "About Tinnitus module is missing from module library.")
+        return
+
+    bml_visual_path = APP_RESOURCES / "visuals/body_mind_life_model.png"
+    if not bml_visual_path.exists():
+        add_failure("About Tinnitus beta fixes", f"Body / Mind / Life visual file is missing: {bml_visual_path}")
+
+    bml_manifest_entry = next(
+        (visual for visual in visual_manifest.get("staticVisuals", []) if visual.get("id") == "visual.body_mind_life_model"),
+        None,
+    )
+    if not bml_manifest_entry:
+        add_failure("About Tinnitus beta fixes", "visual.body_mind_life_model is missing from the visual asset manifest.")
+    elif bml_manifest_entry.get("assetPath") != "visuals/body_mind_life_model.png":
+        add_failure(
+            "About Tinnitus beta fixes",
+            f"visual.body_mind_life_model should use visuals/body_mind_life_model.png, found {bml_manifest_entry.get('assetPath')!r}",
+        )
+
+    cards_with_bml_visual = [
+        (card.get("sectionId"), card.get("screenId"), card.get("title"))
+        for card in about_module.get("cards", [])
+        if ABOUT_BML_VISUAL_ID in card.get("visualIds", [])
+    ]
+    expected_bml_card = [(ABOUT_BML_VISUAL_CARD, "AT-002-BEYOND", "Why go beyond the sound?")]
+    if cards_with_bml_visual != expected_bml_card:
+        add_failure(
+            "About Tinnitus beta fixes",
+            f"{ABOUT_BML_VISUAL_ID} should appear only on {ABOUT_BML_VISUAL_CARD}; found {cards_with_bml_visual}",
+        )
+
+    bml_visual_entries = [
+        visual for visual in about_module.get("visuals", []) if visual.get("visualId") == ABOUT_BML_VISUAL_ID
+    ]
+    if len(bml_visual_entries) != 1:
+        add_failure("About Tinnitus beta fixes", f"Expected exactly one About Tinnitus {ABOUT_BML_VISUAL_ID} visual entry, found {len(bml_visual_entries)}.")
+    elif bml_visual_entries[0].get("screenId") != ABOUT_BML_VISUAL_SCREEN:
+        add_failure(
+            "About Tinnitus beta fixes",
+            f"{ABOUT_BML_VISUAL_ID} should route through screenId {ABOUT_BML_VISUAL_SCREEN}, found {bml_visual_entries[0].get('screenId')!r}.",
+        )
+
+    about_exercises = {exercise.get("exerciseId"): exercise for exercise in about_module.get("exercises", [])}
+    pause_manifest = about_exercises.get(ABOUT_PAUSE_REFLECT_EXERCISE_ID)
+    if not pause_manifest:
+        add_failure("About Tinnitus beta fixes", f"About Tinnitus is missing exercise {ABOUT_PAUSE_REFLECT_EXERCISE_ID}.")
+    else:
+        expected_manifest_values = {
+            "screenId": "AT-010",
+            "title": "Pause & Reflect",
+            "inputSummary": "Body, Mind, Life, and Support reflection fields",
+        }
+        for key, expected in expected_manifest_values.items():
+            if pause_manifest.get(key) != expected:
+                add_failure(
+                    "About Tinnitus beta fixes",
+                    f"{ABOUT_PAUSE_REFLECT_EXERCISE_ID} manifest {key} should be {expected!r}, found {pause_manifest.get(key)!r}.",
+                )
+
+    definitions_by_id = {
+        definition.get("exerciseId"): definition
+        for definition in exercise_definitions.get("definitions", [])
+    }
+    pause_definition = definitions_by_id.get(ABOUT_PAUSE_REFLECT_EXERCISE_ID)
+    if not pause_definition:
+        add_failure("About Tinnitus beta fixes", f"Exercise definition {ABOUT_PAUSE_REFLECT_EXERCISE_ID} is missing.")
+    else:
+        if pause_definition.get("moduleId") != "about_tinnitus":
+            add_failure("About Tinnitus beta fixes", f"{ABOUT_PAUSE_REFLECT_EXERCISE_ID} should belong to about_tinnitus.")
+        if pause_definition.get("screenId") != "AT-010":
+            add_failure("About Tinnitus beta fixes", f"{ABOUT_PAUSE_REFLECT_EXERCISE_ID} should use screenId AT-010.")
+        if pause_definition.get("title") != "Pause & Reflect":
+            add_failure("About Tinnitus beta fixes", f"{ABOUT_PAUSE_REFLECT_EXERCISE_ID} should be titled Pause & Reflect.")
+
+        save_rule = pause_definition.get("saveRule", {})
+        if save_rule.get("mode") != "anyOf":
+            add_failure("About Tinnitus beta fixes", f"{ABOUT_PAUSE_REFLECT_EXERCISE_ID} should use an anyOf save rule.")
+        if set(save_rule.get("fieldIds", [])) != set(ABOUT_PAUSE_REFLECT_FIELDS):
+            add_failure(
+                "About Tinnitus beta fixes",
+                f"{ABOUT_PAUSE_REFLECT_EXERCISE_ID} save fields should be {sorted(ABOUT_PAUSE_REFLECT_FIELDS)}, found {save_rule.get('fieldIds', [])}.",
+            )
+
+        fields_by_id = {
+            field.get("fieldId"): field
+            for field in pause_definition.get("fields", [])
+        }
+        for field_id, expected_prompt in ABOUT_PAUSE_REFLECT_FIELDS.items():
+            field = fields_by_id.get(field_id)
+            if not field:
+                add_failure("About Tinnitus beta fixes", f"{ABOUT_PAUSE_REFLECT_EXERCISE_ID} is missing field {field_id}.")
+                continue
+            if field.get("type") != "longText":
+                add_failure("About Tinnitus beta fixes", f"{ABOUT_PAUSE_REFLECT_EXERCISE_ID}/{field_id} should be a longText field.")
+            if field.get("prompt") != expected_prompt:
+                add_failure(
+                    "About Tinnitus beta fixes",
+                    f"{ABOUT_PAUSE_REFLECT_EXERCISE_ID}/{field_id} prompt should be {expected_prompt!r}, found {field.get('prompt')!r}.",
+                )
+
+    renderer_path = APP_ROOT / "Features/Modules/ModuleOverviewScreen.swift"
+    renderer_text = renderer_path.read_text()
+    required_renderer_snippets = [
+        "private var inlineExerciseIDs: Set<String>",
+        "\"about_tinnitus\"",
+        "\"I-002\"",
+        "card.sectionId == \"AT-010-PAUSE-section\"",
+        "ExerciseLaunchCard(exercise: inlineExercise, module: module)",
+        "&& !inlineExerciseIDs.contains(exercise.exerciseId)",
+    ]
+    for snippet in required_renderer_snippets:
+        if snippet not in renderer_text:
+            add_failure("About Tinnitus beta fixes", f"Module renderer is missing inline Pause & Reflect support snippet: {snippet}")
+
+
+def validate_sound_therapy_beta_visuals_and_labels(module_library: dict[str, Any], exercise_definitions: dict[str, Any], visual_manifest: dict[str, Any]) -> None:
+    sound_module = next(
+        (module for module in module_library.get("modules", []) if module.get("moduleId") == "sound_therapy"),
+        None,
+    )
+    if not sound_module:
+        add_failure("Sound Therapy beta visual cleanup", "Sound Therapy module is missing from module library.")
+        return
+
+    thermometer_asset_path = APP_RESOURCES / "visuals/sound_therapy_thermometer.png"
+    if not thermometer_asset_path.exists():
+        add_failure("Sound Therapy beta visual cleanup", f"Sound Therapy Thermometer visual file is missing: {thermometer_asset_path}")
+
+    thermometer_manifest_entry = next(
+        (visual for visual in visual_manifest.get("staticVisuals", []) if visual.get("id") == "visual.sound_therapy_thermometer"),
+        None,
+    )
+    if not thermometer_manifest_entry:
+        add_failure("Sound Therapy beta visual cleanup", "visual.sound_therapy_thermometer is missing from the visual asset manifest.")
+    else:
+        if thermometer_manifest_entry.get("status") != "integrated_mvp":
+            add_failure("Sound Therapy beta visual cleanup", "visual.sound_therapy_thermometer should remain integrated_mvp.")
+        if thermometer_manifest_entry.get("assetPath") != "visuals/sound_therapy_thermometer.png":
+            add_failure(
+                "Sound Therapy beta visual cleanup",
+                f"visual.sound_therapy_thermometer should use visuals/sound_therapy_thermometer.png, found {thermometer_manifest_entry.get('assetPath')!r}",
+            )
+        placement_note = str(thermometer_manifest_entry.get("placementNote", ""))
+        if "link to the Sound Therapy Player" not in placement_note:
+            add_failure("Sound Therapy beta visual cleanup", "visual.sound_therapy_thermometer should document that later reminders link to the Sound Therapy Player.")
+
+    cards_with_thermometer = [
+        (card.get("sectionId"), card.get("title"))
+        for card in sound_module.get("cards", [])
+        if SOUND_THERAPY_THERMOMETER_VISUAL_ID in card.get("visualIds", [])
+    ]
+    expected_placement = [(SOUND_THERAPY_THERMOMETER_CARD, "Finding the sound therapy sweet spot")]
+    if cards_with_thermometer != expected_placement:
+        add_failure(
+            "Sound Therapy beta visual cleanup",
+            f"{SOUND_THERAPY_THERMOMETER_VISUAL_ID} should appear only on {SOUND_THERAPY_THERMOMETER_CARD}; found {cards_with_thermometer}",
+        )
+
+    sound_visual = next(
+        (visual for visual in sound_module.get("visuals", []) if visual.get("visualId") == SOUND_THERAPY_THERMOMETER_VISUAL_ID),
+        None,
+    )
+    if not sound_visual:
+        add_failure("Sound Therapy beta visual cleanup", f"{SOUND_THERAPY_THERMOMETER_VISUAL_ID} is missing from Sound Therapy visuals.")
+    elif sound_visual.get("title") != "Sound Therapy Thermometer":
+        add_failure("Sound Therapy beta visual cleanup", f"{SOUND_THERAPY_THERMOMETER_VISUAL_ID} should remain titled Sound Therapy Thermometer.")
+
+    renderer_path = APP_ROOT / "Features/Modules/ModuleOverviewScreen.swift"
+    renderer_text = renderer_path.read_text()
+    for card_id in sorted(SOUND_THERAPY_PLAYER_LINK_CARDS):
+        if f'"{card_id}"' not in renderer_text:
+            add_failure("Sound Therapy beta visual cleanup", f"Module renderer should attach a Sound Therapy Player link to {card_id}.")
+
+    expandable_card_path = APP_ROOT / "Features/Modules/Components/ExpandableContentCard.swift"
+    expandable_card_text = expandable_card_path.read_text()
+    if "Open Sound Therapy Player" not in expandable_card_text or "AppRoute.soundTherapyPlayer" not in expandable_card_text:
+        add_failure("Sound Therapy beta visual cleanup", "ExpandableContentCard should render an inline Sound Therapy Player link card.")
+
+    route_text = (APP_ROOT / "Core/AppRoute.swift").read_text()
+    destination_text = (APP_ROOT / "App/AppRouteDestinationView.swift").read_text()
+    if "case soundTherapyPlayer" not in route_text or "AppTab.soundAnnex.route" not in route_text:
+        add_failure("Sound Therapy beta visual cleanup", "AppRoute should expose the existing Sound Therapy Player route.")
+    if "SoundTherapyAnnexView(" not in destination_text or "soundSampleController" not in destination_text:
+        add_failure("Sound Therapy beta visual cleanup", "Sound Therapy Player route should use the shared SoundSampleController.")
+
+    sound_exercises = {exercise.get("exerciseId"): exercise for exercise in sound_module.get("exercises", [])}
+    sound_sensitivity_manifest = sound_exercises.get(SOUND_SENSITIVITY_EXERCISE_ID)
+    if not sound_sensitivity_manifest:
+        add_failure("Sound Therapy beta visual cleanup", f"Sound Therapy is missing exercise {SOUND_SENSITIVITY_EXERCISE_ID}.")
+    elif sound_sensitivity_manifest.get("title") != "Sound Sensitivity Exercise":
+        add_failure("Sound Therapy beta visual cleanup", f"{SOUND_SENSITIVITY_EXERCISE_ID} manifest title should be Sound Sensitivity Exercise.")
+
+    definitions_by_id = {
+        definition.get("exerciseId"): definition
+        for definition in exercise_definitions.get("definitions", [])
+    }
+    sound_sensitivity_definition = definitions_by_id.get(SOUND_SENSITIVITY_EXERCISE_ID)
+    if not sound_sensitivity_definition:
+        add_failure("Sound Therapy beta visual cleanup", f"Exercise definition {SOUND_SENSITIVITY_EXERCISE_ID} is missing.")
+    elif sound_sensitivity_definition.get("title") != "Sound Sensitivity Exercise":
+        add_failure("Sound Therapy beta visual cleanup", f"{SOUND_SENSITIVITY_EXERCISE_ID} definition title should be Sound Sensitivity Exercise.")
+
+    if "Sound Sensitivity Exercise" not in (APP_ROOT / "Features/SoundTherapy/SoundTherapyAnnexView.swift").read_text():
+        add_failure("Sound Therapy beta visual cleanup", "Sound Therapy Player related tools should link to Sound Sensitivity Exercise.")
+
+    searchable_paths = [
+        path
+        for path in APP_ROOT.rglob("*")
+        if path.is_file() and path.suffix in {".swift", ".json"}
+    ]
+    for path in searchable_paths:
+        text = path.read_text(errors="ignore")
+        for old_title in OLD_SOUND_SENSITIVITY_TITLES:
+            if old_title in text:
+                add_failure("Sound Therapy beta visual cleanup", f"Old user-facing exercise title remains in {path}: {old_title!r}")
+
+
+def validate_self_compassion_visual_deduplication(module_library: dict[str, Any], visual_manifest: dict[str, Any]) -> None:
+    confidence_module = next(
+        (module for module in module_library.get("modules", []) if module.get("moduleId") == "confidence_communication"),
+        None,
+    )
+    if not confidence_module:
+        add_failure("Self-compassion visual", "Confidence and Communication module is missing from module library.")
+        return
+
+    manifest_entry = next(
+        (visual for visual in visual_manifest.get("staticVisuals", []) if visual.get("id") == "visual.self_compassion_response_card"),
+        None,
+    )
+    if not manifest_entry:
+        add_failure("Self-compassion visual", "visual.self_compassion_response_card is missing from the visual asset manifest.")
+    else:
+        if manifest_entry.get("status") != "integrated_mvp":
+            add_failure("Self-compassion visual", "visual.self_compassion_response_card should remain integrated_mvp.")
+        if manifest_entry.get("assetPath") != "visuals/self_compassion_response_card.png":
+            add_failure(
+                "Self-compassion visual",
+                f"visual.self_compassion_response_card should use visuals/self_compassion_response_card.png, found {manifest_entry.get('assetPath')!r}",
+            )
+        placement_note = str(manifest_entry.get("placementNote", ""))
+        if SELF_COMPASSION_RETAINED_CARD_TITLE not in placement_note:
+            add_failure(
+                "Self-compassion visual",
+                f"visual.self_compassion_response_card should document its retained placement in {SELF_COMPASSION_RETAINED_CARD_TITLE!r}.",
+            )
+
+    module_visual = next(
+        (visual for visual in confidence_module.get("visuals", []) if visual.get("visualId") == SELF_COMPASSION_VISUAL_ID),
+        None,
+    )
+    if not module_visual:
+        add_failure("Self-compassion visual", f"{SELF_COMPASSION_VISUAL_ID} is missing from Confidence and Communication visuals.")
+
+    cards_with_visual = [
+        (card.get("sectionId"), card.get("title"))
+        for card in confidence_module.get("cards", [])
+        if SELF_COMPASSION_VISUAL_ID in card.get("visualIds", [])
+    ]
+    expected_cards = [(SELF_COMPASSION_RETAINED_CARD_ID, SELF_COMPASSION_RETAINED_CARD_TITLE)]
+    if cards_with_visual != expected_cards:
+        add_failure(
+            "Self-compassion visual",
+            f"{SELF_COMPASSION_VISUAL_ID} should appear only on {SELF_COMPASSION_RETAINED_CARD_ID}; found {cards_with_visual}",
+        )
+
+    cards_by_id = {
+        card.get("sectionId"): card
+        for card in confidence_module.get("cards", [])
+    }
+    for card_id in sorted(SELF_COMPASSION_DUPLICATE_CARD_IDS):
+        card = cards_by_id.get(card_id)
+        if not card:
+            add_failure("Self-compassion visual", f"Expected Confidence and Communication card is missing: {card_id}")
+            continue
+        if SELF_COMPASSION_VISUAL_ID in card.get("visualIds", []):
+            add_failure("Self-compassion visual", f"Duplicate self-compassion visual remains on {card_id}: {card.get('title')}")
+        if not str(card.get("bodyMarkdown", "")).strip():
+            add_failure("Self-compassion visual", f"{card_id} should still retain body text after visual deduplication.")
 
 
 def validate_exercise_references(module_library: dict[str, Any], exercise_definitions: dict[str, Any]) -> None:
@@ -524,19 +1351,27 @@ def main() -> int:
     module_library = load_json(MODULE_LIBRARY_PATH)
     asset_placeholders = load_json(ASSET_PLACEHOLDERS_PATH)
     audio_assets = load_json(AUDIO_ASSETS_PATH)
-    video_assets = load_json(VIDEO_ASSETS_PATH)
+    mindfulness_transcripts = load_json(MINDFULNESS_TRANSCRIPTS_PATH)
     visual_manifest = load_json(VISUAL_ASSET_MANIFEST_PATH)
     exercise_definitions = load_json(EXERCISE_DEFINITIONS_PATH)
 
-    if not all(isinstance(doc, dict) for doc in [module_library, asset_placeholders, audio_assets, video_assets, visual_manifest, exercise_definitions]):
+    if not all(isinstance(doc, dict) for doc in [module_library, asset_placeholders, audio_assets, mindfulness_transcripts, visual_manifest, exercise_definitions]):
         print_results()
         return 1
 
     validate_mvp_audio(audio_assets, asset_placeholders, module_library)
-    validate_mvp_visuals_and_videos(visual_manifest, video_assets)
+    validate_sound_therapy_player(asset_placeholders)
+    validate_sound_sample_foreground_continuity()
+    validate_mindfulness_practice_ui(module_library, exercise_definitions)
+    validate_stage_23k_copy_cleanup(module_library, exercise_definitions)
+    validate_mvp_visuals_and_deferred_videos(visual_manifest)
+    validate_mindfulness_transcripts(mindfulness_transcripts, audio_assets, module_library)
     validate_active_audio(module_library)
     validate_planning_language(module_library)
     validate_visual_references(module_library)
+    validate_about_tinnitus_beta(module_library, exercise_definitions, visual_manifest)
+    validate_sound_therapy_beta_visuals_and_labels(module_library, exercise_definitions, visual_manifest)
+    validate_self_compassion_visual_deduplication(module_library, visual_manifest)
     validate_exercise_references(module_library, exercise_definitions)
     validate_duplicate_flattened_resource_names()
     validate_prohibited_source_terms()

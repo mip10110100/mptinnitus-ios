@@ -38,13 +38,12 @@ struct SoundSampleCard: View {
                         .foregroundStyle(.primary)
 
                     Text(sample.category)
-                        .font(.subheadline)
-                        .foregroundStyle(MPTTheme.secondaryText)
-
-                    Text(sample.guidance)
-                        .font(.footnote)
-                        .foregroundStyle(MPTTheme.secondaryText)
-                        .fixedSize(horizontal: false, vertical: true)
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(MPTTheme.accentColor)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 5)
+                        .background(MPTTheme.accentColor.opacity(0.12))
+                        .clipShape(Capsule())
 
                     SourceIDDebugLabel("sound", ids: [sample.id])
                 }
@@ -101,7 +100,7 @@ struct SoundSampleCard: View {
                 Text("Preview volume")
                     .font(.subheadline.weight(.semibold))
                 Spacer()
-                Text("\(controller.safeVolumePercent)% of capped range")
+                Text("\(controller.safeVolumePercent)%")
                     .font(.caption.monospacedDigit())
                     .foregroundStyle(MPTTheme.secondaryText)
             }
@@ -122,11 +121,6 @@ struct SoundSampleCard: View {
                     .font(.caption)
             }
             .disabled(!controller.isPlayable)
-
-            Text("The app caps this preview below full device volume. Keep sound comfortable and stop if it feels painful or unsafe.")
-                .font(.footnote)
-                .foregroundStyle(MPTTheme.secondaryText)
-                .fixedSize(horizontal: false, vertical: true)
         }
     }
 

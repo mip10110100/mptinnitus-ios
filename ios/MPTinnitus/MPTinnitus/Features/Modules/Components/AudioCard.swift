@@ -11,6 +11,19 @@ struct AudioCard: View {
     let audio: StaticAudioItem
     let module: StaticModule
     @ObservedObject var audioController: AudioController
+    let showsContextLabel: Bool
+
+    init(
+        audio: StaticAudioItem,
+        module: StaticModule,
+        audioController: AudioController,
+        showsContextLabel: Bool = true
+    ) {
+        self.audio = audio
+        self.module = module
+        self._audioController = ObservedObject(wrappedValue: audioController)
+        self.showsContextLabel = showsContextLabel
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: MPTTheme.Spacing.medium) {
@@ -19,9 +32,11 @@ struct AudioCard: View {
                     .font(.headline)
                     .foregroundStyle(.primary)
 
-                Text("Audio explanation")
-                    .font(.subheadline)
-                    .foregroundStyle(MPTTheme.secondaryText)
+                if showsContextLabel {
+                    Text("Audio explanation")
+                        .font(.subheadline)
+                        .foregroundStyle(MPTTheme.secondaryText)
+                }
             }
 
             HStack(spacing: MPTTheme.Spacing.medium) {

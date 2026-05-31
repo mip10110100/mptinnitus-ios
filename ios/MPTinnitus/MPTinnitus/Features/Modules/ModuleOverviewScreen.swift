@@ -122,17 +122,22 @@ struct ModuleOverviewScreen: View {
             ForEach(implementedExercises, id: \.exerciseId) { exercise in
                 ExerciseLaunchCard(exercise: exercise, module: module)
             }
-
-            if module.moduleId == "mindfulness" {
-                BreathingVideoSection(module: module)
-                    .padding(.top, MPTTheme.Spacing.small)
-            }
         }
     }
 
     private var implementedExercises: [StaticExerciseItem] {
         module.exercises.filter { exercise in
             exerciseDefinitionLibrary.definition(id: exercise.exerciseId) != nil
+                && !inlineExerciseIDs.contains(exercise.exerciseId)
+        }
+    }
+
+    private var inlineExerciseIDs: Set<String> {
+        switch module.moduleId {
+        case "about_tinnitus":
+            ["I-002"]
+        default:
+            []
         }
     }
 
@@ -294,18 +299,46 @@ struct ModuleOverviewScreen: View {
             if expandedGroupIDs.contains(group.id) {
                 VStack(alignment: .leading, spacing: MPTTheme.Spacing.medium) {
                     ForEach(group.cards, id: \.id) { card in
-                        ExpandableContentCard(
-                            card: card,
-                            module: module,
-                            sectionAudio: audioItems(for: card).first,
-                            visuals: visualItems(for: card),
-                            isCollapsible: false,
-                            audioController: audioController,
-                            initiallyExpanded: true
-                        )
+                        if let inlineExercise = inlineExercise(for: card) {
+                            ExerciseLaunchCard(exercise: inlineExercise, module: module)
+                        } else {
+                            ExpandableContentCard(
+                                card: card,
+                                module: module,
+                                sectionAudio: audioItems(for: card).first,
+                                visuals: visualItems(for: card),
+                                showsSoundTherapyPlayerLink: soundTherapyPlayerLinkCardIDs.contains(card.sectionId),
+                                isCollapsible: false,
+                                audioController: audioController,
+                                initiallyExpanded: true
+                            )
+                        }
                     }
                 }
             }
+        }
+    }
+
+    private var soundTherapyPlayerLinkCardIDs: Set<String> {
+        guard module.moduleId == "sound_therapy" else {
+            return []
+        }
+
+        return [
+            "ST-V5-010-section",
+            "ST-V5-014-section"
+        ]
+    }
+
+    private func inlineExercise(for card: StaticContentCard) -> StaticExerciseItem? {
+        guard module.moduleId == "about_tinnitus",
+              card.sectionId == "AT-010-PAUSE-section" else {
+            return nil
+        }
+
+        return module.exercises.first { exercise in
+            exercise.exerciseId == "I-002"
+                && exerciseDefinitionLibrary.definition(id: exercise.exerciseId) != nil
         }
     }
 
@@ -313,7 +346,7 @@ struct ModuleOverviewScreen: View {
         let title = card.title.lowercased()
 
         if title.hasPrefix("faq:") {
-            return "FAQs / Common Questions"
+            return "FAQs"
         }
 
         if title.contains("important term") || title.hasPrefix("term:") || title.contains("important terms") {
@@ -446,7 +479,7 @@ struct ModuleOverviewScreen: View {
         if title.contains("thoughts") && title.contains("feelings") || title.contains("thoughts can move") || title.contains("challenging negative") {
             return "CBT and the Thoughts / Feelings / Behaviors Loop"
         }
-        if title.contains("distortion") || title.contains("all-or-nothing") || title.contains("overgeneralization") || title.contains("filtering") || title.contains("mind reading") || title.contains("minimizing") || title.contains("catastrophizing") || title.contains("fallacies") || title.contains("labeling") || title.contains("personalization") {
+        if title.contains("distortion") || title.contains("all-or-nothing") || title.contains("overgeneralization") || title.contains("filtering") || title.contains("mind reading") || title.contains("minimizing") || title.contains("catastrophizing") || title.contains("fallacy") || title.contains("fallacies") || title.contains("labeling") || title.contains("personalization") {
             return "Distortion Library"
         }
         if title.contains("evidence") || title.contains("reframe") || title.contains("reality-checking") || title.contains("accurate thinking") || title.contains("example") {
@@ -466,7 +499,7 @@ struct ModuleOverviewScreen: View {
             return "Communicating With Others"
         }
         if title.contains("faq:") {
-            return "FAQs / Common Questions"
+            return "FAQs"
         }
         if title.contains("self-critical") || title.contains("self-blame") || title.contains("inner voice") {
             return "The Self-Critical Voice"

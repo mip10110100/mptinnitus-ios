@@ -35,9 +35,9 @@ enum AppTab: String, CaseIterable, Identifiable {
         case .library:
             "Library / Table of Contents"
         case .soundAnnex:
-            "Sound Therapy Annex"
+            "Sound Therapy Player"
         case .mindfulnessAnnex:
-            "Mindfulness Annex"
+            "Mindfulness Practice"
         case .myPlan:
             "My Plan"
         }

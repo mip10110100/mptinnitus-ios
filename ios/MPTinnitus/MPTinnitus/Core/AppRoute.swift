@@ -12,6 +12,7 @@ enum AppRoute: Hashable, Identifiable {
     case module(String)
     case exercise(String)
     case visual(String)
+    case soundTherapyPlayer
     case safetyInformation
     case settings
 
@@ -29,6 +30,8 @@ enum AppRoute: Hashable, Identifiable {
             "/placeholder/exercise/\(exerciseId)"
         case .visual(let visualId):
             "/visual/\(visualId)"
+        case .soundTherapyPlayer:
+            AppTab.soundAnnex.route
         case .safetyInformation:
             "/safety"
         case .settings:
@@ -46,6 +49,8 @@ enum AppRoute: Hashable, Identifiable {
             "Exercise"
         case .visual:
             "Visual Tool"
+        case .soundTherapyPlayer:
+            AppTab.soundAnnex.fullTitle
         case .safetyInformation:
             "Safety Information"
         case .settings:

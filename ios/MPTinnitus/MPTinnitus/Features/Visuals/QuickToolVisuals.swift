@@ -86,7 +86,7 @@ struct STOPQuickCardView: View {
 
                 VisualExerciseLink(
                     exerciseId: "I-016",
-                    title: "Open STOP Practice"
+                    title: "Open STOP"
                 )
             }
         }
@@ -122,7 +122,7 @@ struct TIPPQuickCardView: View {
 
                 VisualExerciseLink(
                     exerciseId: "I-018",
-                    title: "Open TIPP Practice"
+                    title: "Open TIPP"
                 )
             }
         }
@@ -163,7 +163,7 @@ struct SoundSensitivityStepsView: View {
 
                 VisualExerciseLink(
                     exerciseId: "I-006",
-                    title: "Open Enjoyable Music Speaker Exercise"
+                    title: "Open Sound Sensitivity Exercise"
                 )
             }
         }

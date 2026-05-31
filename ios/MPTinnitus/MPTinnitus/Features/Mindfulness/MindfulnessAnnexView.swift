@@ -9,26 +9,42 @@ import SwiftUI
 
 struct MindfulnessAnnexView: View {
     let moduleLibrary: StaticModuleLibrary
+    let exerciseDefinitionLibrary: ExerciseDefinitionLibrary
     @ObservedObject var audioController: AudioController
 
-    private let guidedMindfulnessAudioOrder = [
-        "mindfulness.long_bodyscan",
-        "mindfulness.acceptance_present_moment",
-        "mindfulness.body_scan",
-        "mindfulness.mindful_listening",
-        "mindfulness.sound_therapy_mindful",
-        "mindfulness.three_two_one",
-        "mindfulness.name_it",
-        "mindfulness.one_breath",
-        "mindfulness.open_hands",
-        "mindfulness.sound_shifting",
-        "mindfulness.body_anchor",
-        "mindfulness.breathing_space"
+    @State private var expandedPracticeSections: Set<MindfulnessPracticeSectionID> = []
+
+    private let reflectionExerciseIDs = [
+        "I-011",
+        "I-012",
+        "I-013",
+        "I-014"
     ]
 
-    private let sleepMindfulnessAudioOrder = [
-        "mindfulness.long_sleep",
-        "mindfulness.settling_sleep"
+    private let shortGuidedPracticeAudioOrder = [
+        "mindfulness.one_breath",
+        "mindfulness.name_it",
+        "mindfulness.three_two_one",
+        "mindfulness.sound_therapy_mindful"
+    ]
+
+    private let mediumGuidedPracticeAudioOrder = [
+        "mindfulness.breathing_space",
+        "mindfulness.body_anchor",
+        "mindfulness.sound_shifting",
+        "mindfulness.open_hands",
+        "mindfulness.mindful_listening",
+        "mindfulness.acceptance_present_moment",
+        "mindfulness.body_scan"
+    ]
+
+    private let longGuidedPracticeAudioOrder = [
+        "mindfulness.long_bodyscan"
+    ]
+
+    private let sleepGuidedPracticeAudioOrder = [
+        "mindfulness.settling_sleep",
+        "mindfulness.long_sleep"
     ]
 
     private var mindfulnessModule: StaticModule? {
@@ -37,7 +53,7 @@ struct MindfulnessAnnexView: View {
 
     var body: some View {
         if let module = mindfulnessModule {
-            annexContent(module: module)
+            practiceContent(module: module)
         } else {
             PlaceholderScreenView(
                 title: AppTab.mindfulnessAnnex.fullTitle,
@@ -47,19 +63,15 @@ struct MindfulnessAnnexView: View {
         }
     }
 
-    private func annexContent(module: StaticModule) -> some View {
+    private func practiceContent(module: StaticModule) -> some View {
         ScrollView {
             VStack(alignment: .leading, spacing: MPTTheme.Spacing.large) {
                 header
-                practiceNotPerfectCard
-                practiceSection(module: module)
-                BreathingVideoSection(module: module)
-                audioPracticeSection()
-                helpSection
-                learnSection
+                practiceSections(module: module)
+                supportAndLearnSection
 
                 #if DEBUG
-                debugPanel(module: module)
+                debugPanel
                 #endif
             }
             .padding(MPTTheme.Spacing.screen)
@@ -80,7 +92,7 @@ struct MindfulnessAnnexView: View {
                 .font(.title2.weight(.semibold))
                 .foregroundStyle(.primary)
 
-            Text("Brief practices for attention flexibility, grounding, and listening. Use what is useful and stop or switch when a practice is not a fit.")
+            Text("Choose a guided practice or breathing rhythm. Mindfulness is attention flexibility, and one breath can count as practice.")
                 .font(.body)
                 .foregroundStyle(.primary)
                 .fixedSize(horizontal: false, vertical: true)
@@ -91,21 +103,66 @@ struct MindfulnessAnnexView: View {
         .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
     }
 
-    private var practiceNotPerfectCard: some View {
+    private func practiceSections(module: StaticModule) -> some View {
         VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
-            Label("Practice, don't perfect", systemImage: "leaf")
+            practiceDisclosure(
+                id: .short,
+                title: "Short Guided Practices"
+            ) {
+                audioCards(for: shortGuidedPracticeAudioOrder)
+            }
+
+            practiceDisclosure(
+                id: .medium,
+                title: "Medium Guided Practices"
+            ) {
+                audioCards(for: mediumGuidedPracticeAudioOrder)
+            }
+
+            practiceDisclosure(
+                id: .long,
+                title: "Long Guided Practices"
+            ) {
+                audioCards(for: longGuidedPracticeAudioOrder)
+            }
+
+            practiceDisclosure(
+                id: .sleep,
+                title: "Sleep-Oriented Practices"
+            ) {
+                audioCards(for: sleepGuidedPracticeAudioOrder)
+            }
+
+            practiceDisclosure(
+                id: .breathing,
+                title: "Breathing Pacer"
+            ) {
+                breathingPacerOptions(module: module)
+            }
+
+            practiceDisclosure(
+                id: .reflection,
+                title: "Reflection Exercises"
+            ) {
+                reflectionExerciseCards(module: module)
+            }
+        }
+    }
+
+    private func practiceDisclosure<Content: View>(
+        id: MindfulnessPracticeSectionID,
+        title: String,
+        @ViewBuilder content: @escaping () -> Content
+    ) -> some View {
+        DisclosureGroup(isExpanded: expansionBinding(for: id)) {
+            VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
+                content()
+            }
+            .padding(.top, MPTTheme.Spacing.small)
+        } label: {
+            Text(title)
                 .font(.headline)
                 .foregroundStyle(.primary)
-
-            Text("Mindfulness is attention flexibility. It does not require silence, forced relaxation, or staring at tinnitus. One breath can count as practice.")
-                .font(.body)
-                .foregroundStyle(.primary)
-                .fixedSize(horizontal: false, vertical: true)
-
-            Text("Sound therapy can make practice more accessible. If mindfulness feels too intense, shorten the practice, add comfortable sound, use grounding, or switch to distress tolerance. If you save a practice to My Plan, that marker stays on this device.")
-                .font(.footnote)
-                .foregroundStyle(MPTTheme.secondaryText)
-                .fixedSize(horizontal: false, vertical: true)
         }
         .padding(MPTTheme.Spacing.medium)
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -113,130 +170,188 @@ struct MindfulnessAnnexView: View {
         .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
     }
 
-    private func practiceSection(module: StaticModule) -> some View {
-        VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
-            SectionHeader("Practice Options", subtitle: "Open a short exercise, visual pacer, or support tool. Saving is optional.")
-
-            exercisePracticeCard(
-                module: module,
-                exerciseId: "I-011",
-                title: "Deep Breath Check-In",
-                subtitle: "Use one breath as a brief present-moment reset.",
-                systemImage: "wind"
-            )
-
-            MindfulnessPracticeCard(
-                title: "Breathing Pacer",
-                subtitle: "Follow a simple inhale, hold, and exhale visual guide. Adjust or stop if the pace does not fit.",
-                systemImage: "circle.dashed",
-                route: .visual("VIS-009"),
-                myPlanDescriptor: nil,
-                footer: "Visual breathing guide"
-            )
-
-            exercisePracticeCard(
-                module: module,
-                exerciseId: "I-012",
-                title: "3-2-1 Senses",
-                subtitle: "Widen attention beyond tinnitus with quick sensory noticing.",
-                systemImage: "hand.point.up.left"
-            )
-
-            exercisePracticeCard(
-                module: module,
-                exerciseId: "I-013",
-                title: "Mindful Listening",
-                subtitle: "Practice hearing tinnitus as one sound among many during an everyday activity.",
-                systemImage: "ear"
-            )
-
-            exercisePracticeCard(
-                module: module,
-                exerciseId: "I-014",
-                title: "Sound Shifting",
-                subtitle: "Move attention between tinnitus, external sound, the body, and the room.",
-                systemImage: "arrow.left.arrow.right"
-            )
-
-            MindfulnessPracticeCard(
-                title: "When Mindfulness Feels Hard",
-                subtitle: "Shorten the practice, add comfortable sound, use grounding, or switch to a distress tolerance tool.",
-                systemImage: "lifepreserver",
-                route: .module("distress_tolerance"),
-                myPlanDescriptor: nil,
-                footer: "Audio guidance is available below."
-            )
+    private func expansionBinding(for id: MindfulnessPracticeSectionID) -> Binding<Bool> {
+        Binding {
+            expandedPracticeSections.contains(id)
+        } set: { isExpanded in
+            if isExpanded {
+                expandedPracticeSections.insert(id)
+            } else {
+                expandedPracticeSections.remove(id)
+            }
         }
     }
 
-    private func exercisePracticeCard(
-        module: StaticModule,
-        exerciseId: String,
-        title: String,
-        subtitle: String,
-        systemImage: String
-    ) -> some View {
-        let exercise = module.exercises.first { $0.exerciseId == exerciseId }
-        return MindfulnessPracticeCard(
-            title: title,
-            subtitle: subtitle,
-            systemImage: systemImage,
-            route: .exercise(exerciseId),
-            myPlanDescriptor: exercise.map { MyPlanItemDescriptor.exercise($0, module: module) },
-            footer: exercise == nil ? "This exercise is not available right now." : "Practice tool"
-        )
-    }
+    private func audioCards(for audioIDs: [String]) -> some View {
+        let audioItems = audioReferences(for: audioIDs)
 
-    private func audioPracticeSection() -> some View {
-        let guidedAudioItems = audioReferences(for: guidedMindfulnessAudioOrder)
-        let sleepAudioItems = audioReferences(for: sleepMindfulnessAudioOrder)
-
-        return VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
-            SectionHeader("Guided Mindfulness Practices", subtitle: "These guided practices can be used on their own or alongside skills from the program. They are single-play recordings, not continuous sound therapy loops.")
-
-            if guidedAudioItems.isEmpty {
-                Text("No guided mindfulness recordings are available right now.")
+        return Group {
+            if audioItems.isEmpty {
+                Text("No guided recordings are available right now.")
                     .font(.body)
                     .foregroundStyle(MPTTheme.secondaryText)
                     .fixedSize(horizontal: false, vertical: true)
-                    .padding(MPTTheme.Spacing.medium)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(MPTTheme.surfaceBackground)
-                    .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
             } else {
-                ForEach(guidedAudioItems) { reference in
+                ForEach(audioItems) { reference in
                     AudioCard(
-                        audio: reference.audio,
+                        audio: mindfulnessPracticeDisplayAudio(reference.audio),
                         module: reference.module,
-                        audioController: audioController
-                    )
-                }
-            }
-
-            if !sleepAudioItems.isEmpty {
-                SectionHeader("Sleep-Oriented Guided Practices", subtitle: "Use these as single-play wind-down supports when they fit the moment.")
-                    .padding(.top, MPTTheme.Spacing.medium)
-
-                ForEach(sleepAudioItems) { reference in
-                    AudioCard(
-                        audio: reference.audio,
-                        module: reference.module,
-                        audioController: audioController
+                        audioController: audioController,
+                        showsContextLabel: false
                     )
                 }
             }
         }
     }
 
-    private var helpSection: some View {
+    private func mindfulnessPracticeDisplayAudio(_ audio: StaticAudioItem) -> StaticAudioItem {
+        StaticAudioItem(
+            audioId: audio.audioId,
+            sourceId: audio.sourceId,
+            screenIds: audio.screenIds,
+            title: mindfulnessPracticeDisplayTitle(for: audio.audioId) ?? audio.title,
+            type: audio.type,
+            assetPath: audio.assetPath,
+            transcript: audio.transcript,
+            playbackContext: audio.playbackContext
+        )
+    }
+
+    private func mindfulnessPracticeDisplayTitle(for audioId: String) -> String? {
+        switch audioId {
+        case "mindfulness.one_breath":
+            "One Breath Reset"
+        case "mindfulness.name_it":
+            "Name It and Widen"
+        case "mindfulness.three_two_one":
+            "3-2-1 Senses Mini"
+        case "mindfulness.sound_therapy_mindful":
+            "Sound Therapy Mindful Start"
+        case "mindfulness.breathing_space":
+            "Breathing Space"
+        case "mindfulness.body_anchor":
+            "Body Anchor and Room Sounds"
+        case "mindfulness.sound_shifting":
+            "Sound Shifting"
+        case "mindfulness.open_hands":
+            "Open Hands Grounding"
+        case "mindfulness.mindful_listening":
+            "Mindful Listening with Tinnitus and External Sound"
+        case "mindfulness.acceptance_present_moment":
+            "Acceptance in the Present Moment"
+        case "mindfulness.body_scan":
+            "Medium Length Body-Scan"
+        case "mindfulness.long_bodyscan":
+            "Full Body Scan"
+        case "mindfulness.settling_sleep":
+            "Settling Without Forcing Sleep"
+        case "mindfulness.long_sleep":
+            "Evening Body and Sound Wind-Down"
+        default:
+            nil
+        }
+    }
+
+    private func breathingPacerOptions(module: StaticModule) -> some View {
+        let visual = moduleLibrary.visual(id: "VIS-009")
+        let visualModule = moduleLibrary.module(containingVisual: "VIS-009") ?? module
+
+        return Group {
+            if let visual {
+                ForEach(BreathingPacerPattern.mindfulnessPracticeOptions) { pattern in
+                    NavigationLink {
+                        BreathingPacerVisualView(
+                            visual: visual,
+                            module: visualModule,
+                            pattern: pattern
+                        )
+                    } label: {
+                        HStack(alignment: .center, spacing: MPTTheme.Spacing.medium) {
+                            Image(systemName: "circle.dashed")
+                                .font(.title3.weight(.semibold))
+                                .foregroundStyle(MPTTheme.accentColor)
+                                .frame(width: 32)
+
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(pattern.title)
+                                    .font(.headline)
+                                    .foregroundStyle(.primary)
+
+                                Text(pattern.description)
+                                    .font(.subheadline)
+                                    .foregroundStyle(MPTTheme.secondaryText)
+                                    .fixedSize(horizontal: false, vertical: true)
+                            }
+
+                            Spacer(minLength: MPTTheme.Spacing.small)
+
+                            Image(systemName: "chevron.right")
+                                .font(.caption.weight(.semibold))
+                                .foregroundStyle(MPTTheme.secondaryText)
+                        }
+                        .padding(MPTTheme.Spacing.medium)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(Color(.tertiarySystemGroupedBackground))
+                        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+                    }
+                    .buttonStyle(.plain)
+                }
+
+                Text("Return to natural breathing or stop the practice if you feel uncomfortable, dizzy, short of breath, or more anxious.")
+                    .font(.footnote)
+                    .foregroundStyle(MPTTheme.secondaryText)
+                    .fixedSize(horizontal: false, vertical: true)
+            } else {
+                Text("Breathing Pacer is not available right now.")
+                    .font(.body)
+                    .foregroundStyle(MPTTheme.secondaryText)
+            }
+        }
+    }
+
+    private func reflectionExerciseCards(module: StaticModule) -> some View {
+        let exercises = reflectionExercises(module: module)
+
+        return Group {
+            if exercises.isEmpty {
+                Text("Reflection exercises are not available right now.")
+                    .font(.body)
+                    .foregroundStyle(MPTTheme.secondaryText)
+                    .fixedSize(horizontal: false, vertical: true)
+            } else {
+                ForEach(exercises, id: \.exerciseId) { exercise in
+                    ExerciseLaunchCard(exercise: exercise, module: module)
+                }
+            }
+        }
+    }
+
+    private func reflectionExercises(module: StaticModule) -> [StaticExerciseItem] {
+        reflectionExerciseIDs.compactMap { exerciseId in
+            guard exerciseDefinitionLibrary.definition(id: exerciseId) != nil else {
+                return nil
+            }
+
+            return module.exercises.first { $0.exerciseId == exerciseId }
+        }
+    }
+
+    private var supportAndLearnSection: some View {
         VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
-            SectionHeader("If Practice Feels Too Intense", subtitle: "Mindfulness is optional and adjustable.")
+            SectionHeader("Learn and Support", subtitle: "Use education or another tool when practice needs adjustment.")
 
             relatedLink(
-                title: "Open Distress Tolerance",
-                subtitle: "Use STOP, TIPP, temperature, or grounding when cooling the moment down is the better next step.",
-                systemImage: "hand.raised",
+                title: "If Practice Feels Too Intense",
+                subtitle: "Shorten the practice, add comfortable sound, use grounding, or switch to a distress tolerance tool.",
+                systemImage: "lifepreserver",
                 route: .module("distress_tolerance")
+            )
+
+            relatedLink(
+                title: "Mindfulness education module",
+                subtitle: "Review mindfulness as attention flexibility, not forced silence.",
+                systemImage: "book",
+                route: .module("mindfulness")
             )
 
             relatedLink(
@@ -244,19 +359,6 @@ struct MindfulnessAnnexView: View {
                 subtitle: "Comfortable sound can make attention practice more accessible.",
                 systemImage: "speaker.wave.2",
                 route: .module("sound_therapy")
-            )
-        }
-    }
-
-    private var learnSection: some View {
-        VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
-            SectionHeader("Learn", subtitle: "Review the education connected to these practices.")
-
-            relatedLink(
-                title: "Mindfulness education module",
-                subtitle: "Review mindfulness as attention flexibility, not forced silence.",
-                systemImage: "book",
-                route: .module("mindfulness")
             )
 
             relatedLink(
@@ -319,14 +421,17 @@ struct MindfulnessAnnexView: View {
     }
 
     #if DEBUG
-    private func debugPanel(module: StaticModule) -> some View {
+    private var debugPanel: some View {
         VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
-            SectionHeader("Mindfulness Annex Debug")
-            Text("Practice exercises: I-011, I-012, I-013, I-014")
-            Text("Breathing visual: VIS-009")
-            Text("Breathing videos: \(BreathingVideoLibraryLoader().loadVideos().count)")
-            Text("Guided mindfulness audio cards: \(audioReferences(for: guidedMindfulnessAudioOrder).count)")
-            Text("Sleep-oriented audio cards: \(audioReferences(for: sleepMindfulnessAudioOrder).count)")
+            SectionHeader("Mindfulness Practice Debug")
+            Text("Short practices: \(audioReferences(for: shortGuidedPracticeAudioOrder).count)")
+            Text("Medium practices: \(audioReferences(for: mediumGuidedPracticeAudioOrder).count)")
+            Text("Long practices: \(audioReferences(for: longGuidedPracticeAudioOrder).count)")
+            Text("Sleep-oriented practices: \(audioReferences(for: sleepGuidedPracticeAudioOrder).count)")
+            Text("Breathing pacer options: \(BreathingPacerPattern.mindfulnessPracticeOptions.count)")
+            if let module = mindfulnessModule {
+                Text("Reflection exercises: \(reflectionExercises(module: module).count)")
+            }
         }
         .font(.footnote.monospacedDigit())
         .foregroundStyle(MPTTheme.secondaryText)
@@ -336,6 +441,15 @@ struct MindfulnessAnnexView: View {
         .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
     }
     #endif
+}
+
+private enum MindfulnessPracticeSectionID: Hashable {
+    case short
+    case medium
+    case long
+    case sleep
+    case breathing
+    case reflection
 }
 
 private struct MindfulnessAudioReference: Identifiable {

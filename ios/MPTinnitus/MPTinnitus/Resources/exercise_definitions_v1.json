@@ -8,13 +8,13 @@
   "definitions": [
     {
       "exerciseId": "I-002",
-      "screenId": "AT-004",
+      "screenId": "AT-010",
       "moduleId": "about_tinnitus",
-      "title": "Body / Mind / Life Exploration",
-      "purpose": "Identify body, mind, and life factors shaping the user's tinnitus experience.",
-      "instructions": "Use a few words or longer notes. The goal is to see the whole picture, not to diagnose yourself.",
+      "title": "Pause & Reflect",
+      "purpose": "Use the Body / Mind / Life model to notice where tinnitus is affecting you right now.",
+      "instructions": "Use a few words or longer notes. This reflection is for noticing patterns, not diagnosing yourself.",
       "entryTitleFieldIds": [
-        "takeaway",
+        "support_note",
         "body_note",
         "mind_note",
         "life_note"
@@ -25,7 +25,7 @@
           "body_note",
           "mind_note",
           "life_note",
-          "takeaway"
+          "support_note"
         ]
       },
       "fields": [
@@ -34,39 +34,39 @@
           "type": "staticInfo",
           "label": "Before you write",
           "prompt": "",
-          "helperText": "Body can include hearing, sound sensitivity, stress physiology, fatigue, or other physical factors. Mind can include attention, emotion, worry, or meaning. Life can include sleep, routines, work, relationships, and places tinnitus gets in the way.",
+          "helperText": "Use the Body / Mind / Life model to notice where tinnitus is affecting you right now. A short note is enough.",
           "isRequired": false
         },
         {
           "fieldId": "body_note",
           "type": "longText",
           "label": "Body",
-          "prompt": "What body or hearing factors seem relevant today?",
-          "helperText": "A short note is enough.",
+          "prompt": "In my body, I notice…",
+          "helperText": "This might include hearing, sound sensitivity, tension, fatigue, stress physiology, or other physical factors.",
           "isRequired": false
         },
         {
           "fieldId": "mind_note",
           "type": "longText",
           "label": "Mind",
-          "prompt": "What attention, thoughts, or emotions are involved?",
-          "helperText": "Use nonjudgmental wording.",
+          "prompt": "In my mind, I notice…",
+          "helperText": "This might include attention, thoughts, emotions, worry, or meaning.",
           "isRequired": false
         },
         {
           "fieldId": "life_note",
           "type": "longText",
           "label": "Life",
-          "prompt": "Where is tinnitus showing up in daily life?",
-          "helperText": "Think routines, sleep, relationships, work, or activities.",
+          "prompt": "In my daily life, I notice…",
+          "helperText": "This might include sleep, routines, work, relationships, places, or activities.",
           "isRequired": false
         },
         {
-          "fieldId": "takeaway",
-          "type": "optionalText",
-          "label": "Optional takeaway",
-          "prompt": "One useful thing you noticed",
-          "helperText": "This can stay blank.",
+          "fieldId": "support_note",
+          "type": "longText",
+          "label": "Support",
+          "prompt": "One area I may want to support first is…",
+          "helperText": "Choose one area that feels useful to start with. You can change this later.",
           "isRequired": false
         }
       ]
@@ -154,8 +154,8 @@
       "exerciseId": "I-006",
       "screenId": "ST-007",
       "moduleId": "sound_therapy",
-      "title": "Enjoyable Music Speaker Exercise",
-      "purpose": "Create a controlled, comfortable sound-tolerance practice using enjoyable music on speakers.",
+      "title": "Sound Sensitivity Exercise",
+      "purpose": "Create a controlled, comfortable sound-sensitivity practice using enjoyable music on speakers.",
       "instructions": "This is not about pushing through pain. Keep sound comfortable, controlled, and below the sensitivity point.",
       "entryTitleFieldIds": [
         "music_choice",
@@ -629,7 +629,7 @@
           "type": "optionalText",
           "label": "Tinnitus label",
           "prompt": "How could you label tinnitus neutrally?",
-          "helperText": "Example: \u201cringing is here.\u201d Optional.",
+          "helperText": "Example: “ringing is here.” Optional.",
           "isRequired": false
         },
         {
@@ -707,7 +707,7 @@
       "exerciseId": "I-016",
       "screenId": "DT-002",
       "moduleId": "distress_tolerance",
-      "title": "STOP Practice",
+      "title": "STOP",
       "purpose": "Pause before reacting during a tinnitus fluctuation.",
       "instructions": "Distress tolerance tools are for cooling the moment down. They are not crisis care; if you are unsafe, seek immediate help.",
       "entryTitleFieldIds": [
@@ -777,7 +777,7 @@
       "exerciseId": "I-017",
       "screenId": "DT-003",
       "moduleId": "distress_tolerance",
-      "title": "Ice Cube Reset",
+      "title": "Temperature/Ice",
       "purpose": "Use temperature as a noticeable sensory reset, not pain.",
       "instructions": "The purpose is noticeable sensory input. Do not cause pain, injury, or unsafe discomfort.",
       "entryTitleFieldIds": [
@@ -837,7 +837,7 @@
       "exerciseId": "I-018",
       "screenId": "DT-004",
       "moduleId": "distress_tolerance",
-      "title": "TIPP / Using Your Body to Calm Your Mind",
+      "title": "TIPP",
       "purpose": "Use body-based tools to cool down a high-distress moment.",
       "instructions": "Choose only safe, appropriate options for your body and situation. This is not about pain or unsafe exercise.",
       "entryTitleFieldIds": [
@@ -907,7 +907,7 @@
       "exerciseId": "I-019",
       "screenId": "DT-005",
       "moduleId": "distress_tolerance",
-      "title": "Frozen Orange Grounding",
+      "title": "The Frozen Orange",
       "purpose": "Use temperature, texture, scent, and changing sensation as grounding.",
       "instructions": "Use a safe sensory object. The point is grounding through noticing, not pain.",
       "entryTitleFieldIds": [

@@ -8,18 +8,99 @@
 import Combine
 import SwiftUI
 
+struct BreathingPacerPattern: Hashable, Identifiable {
+    let id: String
+    let title: String
+    let inhale: Int
+    let holdAfterInhale: Int
+    let exhale: Int
+    let holdAfterExhale: Int
+    let description: String
+
+    var totalSeconds: Int {
+        max(1, inhale + holdAfterInhale + exhale + holdAfterExhale)
+    }
+
+    var rhythmDescription: String {
+        var parts = ["inhale \(inhale)"]
+        if holdAfterInhale > 0 {
+            parts.append("hold \(holdAfterInhale)")
+        }
+        parts.append("exhale \(exhale)")
+        if holdAfterExhale > 0 {
+            parts.append("pause \(holdAfterExhale)")
+        }
+        return parts.joined(separator: ", ")
+    }
+
+    static let defaultPattern = BreathingPacerPattern(
+        id: "4-2-6",
+        title: "4-2-6 Extended Exhale with Pause",
+        inhale: 4,
+        holdAfterInhale: 2,
+        exhale: 6,
+        holdAfterExhale: 0,
+        description: "A slower pattern with a short pause and a longer exhale."
+    )
+
+    static let mindfulnessPracticeOptions: [BreathingPacerPattern] = [
+        BreathingPacerPattern(
+            id: "4-4",
+            title: "4-4 Even Breathing",
+            inhale: 4,
+            holdAfterInhale: 0,
+            exhale: 4,
+            holdAfterExhale: 0,
+            description: "A simple inhale-and-exhale rhythm."
+        ),
+        BreathingPacerPattern(
+            id: "4-2-4",
+            title: "4-2-4 Balanced Breathing",
+            inhale: 4,
+            holdAfterInhale: 2,
+            exhale: 4,
+            holdAfterExhale: 0,
+            description: "A steady breathing pattern with a short pause after the inhale."
+        ),
+        BreathingPacerPattern(
+            id: "4-6",
+            title: "4-6 Extended Exhale",
+            inhale: 4,
+            holdAfterInhale: 0,
+            exhale: 6,
+            holdAfterExhale: 0,
+            description: "A gentle pattern with a longer exhale."
+        ),
+        .defaultPattern
+    ]
+}
+
 struct BreathingPacerVisualView: View {
     let visual: StaticVisualReference
     let module: StaticModule
+    let pattern: BreathingPacerPattern
 
     @State private var isRunning = true
     @State private var cycleSecond = 0
 
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    private let totalSeconds = 12
+
+    init(
+        visual: StaticVisualReference,
+        module: StaticModule,
+        pattern: BreathingPacerPattern = .defaultPattern
+    ) {
+        self.visual = visual
+        self.module = module
+        self.pattern = pattern
+    }
+
+    private var totalSeconds: Int {
+        pattern.totalSeconds
+    }
 
     private var phase: BreathPhase {
-        BreathPhase(second: cycleSecond)
+        BreathPhase(second: cycleSecond, pattern: pattern)
     }
 
     var body: some View {
@@ -87,10 +168,22 @@ struct BreathingPacerVisualView: View {
                 .buttonStyle(.bordered)
             }
 
-            Text("Default rhythm: inhale 4, hold 2, exhale 6. This is a visual guide only; adjust or stop if the pace does not fit.")
-                .font(.footnote)
-                .foregroundStyle(MPTTheme.secondaryText)
-                .fixedSize(horizontal: false, vertical: true)
+            VStack(alignment: .leading, spacing: 4) {
+                Text(pattern.title)
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(.primary)
+
+                Text("\(pattern.description) Rhythm: \(pattern.rhythmDescription).")
+                    .font(.footnote)
+                    .foregroundStyle(MPTTheme.secondaryText)
+                    .fixedSize(horizontal: false, vertical: true)
+
+                Text("Return to natural breathing or stop the practice if you feel uncomfortable, dizzy, short of breath, or more anxious.")
+                    .font(.footnote)
+                    .foregroundStyle(MPTTheme.secondaryText)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
         .padding(MPTTheme.Spacing.medium)
         .frame(maxWidth: .infinity)
@@ -100,9 +193,14 @@ struct BreathingPacerVisualView: View {
 
     private var phaseList: some View {
         VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
-            BreathPhaseRow(title: "Inhale", detail: "4 seconds", isActive: phase == .inhale)
-            BreathPhaseRow(title: "Hold", detail: "2 seconds", isActive: phase == .hold)
-            BreathPhaseRow(title: "Exhale", detail: "6 seconds", isActive: phase == .exhale)
+            BreathPhaseRow(title: "Inhale", detail: "\(pattern.inhale) seconds", isActive: phase == .inhale)
+            if pattern.holdAfterInhale > 0 {
+                BreathPhaseRow(title: "Hold", detail: "\(pattern.holdAfterInhale) seconds", isActive: phase == .holdAfterInhale)
+            }
+            BreathPhaseRow(title: "Exhale", detail: "\(pattern.exhale) seconds", isActive: phase == .exhale)
+            if pattern.holdAfterExhale > 0 {
+                BreathPhaseRow(title: "Pause", detail: "\(pattern.holdAfterExhale) seconds", isActive: phase == .holdAfterExhale)
+            }
         }
         .padding(MPTTheme.Spacing.medium)
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -111,40 +209,59 @@ struct BreathingPacerVisualView: View {
     }
 
     private var phaseRemainingCount: Int {
+        let remaining: Int
         switch phase {
         case .inhale:
-            4 - cycleSecond
-        case .hold:
-            6 - cycleSecond
+            remaining = pattern.inhale - cycleSecond
+        case .holdAfterInhale:
+            remaining = pattern.inhale + pattern.holdAfterInhale - cycleSecond
         case .exhale:
-            totalSeconds - cycleSecond
+            remaining = pattern.inhale + pattern.holdAfterInhale + pattern.exhale - cycleSecond
+        case .holdAfterExhale:
+            remaining = totalSeconds - cycleSecond
         }
+        return max(1, remaining)
     }
 }
 
 private enum BreathPhase: Equatable {
     case inhale
-    case hold
+    case holdAfterInhale
     case exhale
+    case holdAfterExhale
 
-    init(second: Int) {
-        if second < 4 {
+    init(second: Int, pattern: BreathingPacerPattern) {
+        var boundary = pattern.inhale
+        if second < boundary {
             self = .inhale
-        } else if second < 6 {
-            self = .hold
-        } else {
-            self = .exhale
+            return
         }
+
+        boundary += pattern.holdAfterInhale
+        if pattern.holdAfterInhale > 0, second < boundary {
+            self = .holdAfterInhale
+            return
+        }
+
+        boundary += pattern.exhale
+        if second < boundary {
+            self = .exhale
+            return
+        }
+
+        self = .holdAfterExhale
     }
 
     var title: String {
         switch self {
         case .inhale:
             "Inhale"
-        case .hold:
+        case .holdAfterInhale:
             "Hold"
         case .exhale:
             "Exhale"
+        case .holdAfterExhale:
+            "Pause"
         }
     }
 
@@ -152,7 +269,7 @@ private enum BreathPhase: Equatable {
         switch self {
         case .inhale:
             178
-        case .hold:
+        case .holdAfterInhale, .holdAfterExhale:
             192
         case .exhale:
             142

@@ -110,7 +110,7 @@
       "screenId": "ST-SS-002",
       "route": "/sound/sensitivity/music-exercise",
       "module": "Sound Therapy",
-      "title": "Enjoyable Music Speaker Exercise",
+      "title": "Sound Sensitivity Exercise",
       "role": "step_exercise"
     },
     {
@@ -257,14 +257,14 @@
       "screenId": "DT-006",
       "route": "/distress/ice-cube",
       "module": "Distress Tolerance",
-      "title": "Ice Cube Reset",
+      "title": "Temperature/Ice",
       "role": "mini_exercise"
     },
     {
       "screenId": "DT-007",
       "route": "/distress/frozen-orange",
       "module": "Distress Tolerance",
-      "title": "Frozen Orange Grounding",
+      "title": "The Frozen Orange",
       "role": "mini_exercise"
     },
     {

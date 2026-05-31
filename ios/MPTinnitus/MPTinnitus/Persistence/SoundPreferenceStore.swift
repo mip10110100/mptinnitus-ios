@@ -64,7 +64,7 @@ enum SoundPreferenceStore {
         preference.soundID = sample.id
         preference.soundTitle = sample.title
         preference.soundCategory = sample.category
-        preference.preferredVolumeNote = "Saved from Sound Therapy Annex at about \(Int((volumeLevel * 100).rounded()))% of the app's capped preview range."
+        preference.preferredVolumeNote = "Saved from Sound Therapy Player at about \(Int((volumeLevel * 100).rounded()))%."
         preference.contextNote = "Starter sound sample preference. This stays on this device."
         preference.isFavorite = true
         preference.updatedAt = now
