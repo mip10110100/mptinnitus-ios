@@ -38,12 +38,9 @@ struct SoundTherapyAnnexView: View {
                 header
                 guidanceCard
                 soundSamplesSection
+                customizedSoundTherapySection
                 favoritesSection
                 relatedToolsSection
-
-                #if DEBUG
-                debugPanel
-                #endif
             }
             .padding(MPTTheme.Spacing.screen)
             .padding(.bottom, MPTTheme.Spacing.bottomScrollContent)
@@ -150,6 +147,47 @@ struct SoundTherapyAnnexView: View {
         "st.noise.pink.loop_1min_128",
         "st.noise.white.loop_1min_128"
     ]
+
+    private var customizedSoundTherapySection: some View {
+        VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
+            SectionHeader("Customized sound therapy")
+
+            NavigationLink(value: AppRoute.tinnitusSoundEstimate) {
+                HStack(alignment: .center, spacing: MPTTheme.Spacing.medium) {
+                    Image(systemName: "waveform.and.magnifyingglass")
+                        .font(.title3.weight(.semibold))
+                        .foregroundStyle(MPTTheme.accentColor)
+                        .frame(width: 32)
+
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Tinnitus sound estimate")
+                            .font(.headline)
+                            .foregroundStyle(.primary)
+
+                        Text("Match your tinnitus pitch and save a local estimate. This can help personalize sound options later.")
+                            .font(.subheadline)
+                            .foregroundStyle(MPTTheme.secondaryText)
+                            .fixedSize(horizontal: false, vertical: true)
+
+                        Text("Start pitch match")
+                            .font(.subheadline.weight(.semibold))
+                            .foregroundStyle(MPTTheme.accentColor)
+                    }
+
+                    Spacer(minLength: MPTTheme.Spacing.small)
+
+                    Image(systemName: "chevron.right")
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(MPTTheme.secondaryText)
+                }
+                .padding(MPTTheme.Spacing.medium)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(MPTTheme.surfaceBackground)
+                .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+            }
+            .buttonStyle(.plain)
+        }
+    }
 
     private var favoritesSection: some View {
         VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
@@ -273,23 +311,4 @@ struct SoundTherapyAnnexView: View {
         }
         .buttonStyle(.plain)
     }
-
-    #if DEBUG
-    private var debugPanel: some View {
-        VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
-            SectionHeader("Sound Player Debug")
-
-            Text("Samples: \(samples.count)")
-            Text("Active favorites: \(activeFavorites.count)")
-            Text("Current sample: \(sampleController.currentSampleID ?? "none")")
-            Text("Current asset path: \(sampleController.currentAssetPath ?? "none")")
-        }
-        .font(.footnote.monospacedDigit())
-        .foregroundStyle(MPTTheme.secondaryText)
-        .padding(MPTTheme.Spacing.medium)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(MPTTheme.surfaceBackground)
-        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
-    }
-    #endif
 }

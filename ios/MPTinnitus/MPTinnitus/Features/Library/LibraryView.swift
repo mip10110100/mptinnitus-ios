@@ -31,9 +31,6 @@ struct LibraryView: View {
                     ModuleList(modules: moduleLibrary.modules)
                 }
 
-                #if DEBUG
-                debugPanels
-                #endif
             }
             .padding(MPTTheme.Spacing.screen)
             .padding(.bottom, MPTTheme.Spacing.bottomScrollContent)
@@ -79,35 +76,6 @@ struct LibraryView: View {
         .background(MPTTheme.surfaceBackground)
         .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
     }
-
-    #if DEBUG
-    private var debugPanels: some View {
-        VStack(alignment: .leading, spacing: MPTTheme.Spacing.large) {
-            VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
-                SectionHeader("Static Module Library")
-
-                Text("Modules: \(moduleLibrary.modules.count)")
-                Text("Cards: \(moduleLibrary.modules.reduce(0) { $0 + $1.cards.count })")
-                Text("Audio: \(moduleLibrary.modules.reduce(0) { $0 + $1.audio.count })")
-                Text("Exercises: \(moduleLibrary.modules.reduce(0) { $0 + $1.exercises.count })")
-
-                ForEach(moduleLibrary.issues) { issue in
-                    Label(issue.message, systemImage: issue.severity == .error ? "xmark.octagon" : "exclamationmark.triangle")
-                        .font(.footnote)
-                        .foregroundStyle(issue.severity == .error ? .red : .orange)
-                }
-            }
-            .font(.footnote.monospacedDigit())
-            .foregroundStyle(MPTTheme.secondaryText)
-            .padding(MPTTheme.Spacing.medium)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(MPTTheme.surfaceBackground)
-            .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
-
-            ManifestDebugStatusView(snapshot: manifestSnapshot)
-        }
-    }
-    #endif
 }
 
 #Preview {

@@ -29,6 +29,8 @@ struct AppRouteDestinationView: View {
                 moduleLibrary: moduleLibrary,
                 sampleController: soundSampleController
             )
+        case .tinnitusSoundEstimate:
+            TinnitusSoundEstimateView(sampleController: soundSampleController)
         case .safetyInformation:
             SafetyInformationView()
         case .settings:

@@ -113,7 +113,13 @@ struct RootShellView: View {
                 }
         }
         .safeAreaInset(edge: .bottom, spacing: 0) {
-            AudioMiniPlayerPlaceholderView(audioController: audioController)
+            VStack(spacing: MPTTheme.Spacing.small) {
+                if soundSampleController.isPlaying {
+                    SoundTherapyForegroundControlView(controller: soundSampleController)
+                }
+
+                AudioMiniPlayerPlaceholderView(audioController: audioController)
+            }
                 .padding(.horizontal, MPTTheme.Spacing.screen)
                 .padding(.vertical, MPTTheme.Spacing.small)
                 .background(.regularMaterial)

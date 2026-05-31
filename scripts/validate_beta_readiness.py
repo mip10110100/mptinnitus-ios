@@ -68,6 +68,17 @@ HIDDEN_SOUND_PLAYER_IDS = {
     "st.noise.white.fade_1min_128",
 }
 
+FORBIDDEN_TINNITUS_SOUND_ESTIMATE_CLAIMS = [
+    "coordinated reset",
+    "neuromodulation",
+    "desynchronization",
+    "anti-kindling",
+    "reset your brain",
+    "clinically proven",
+    "treats tinnitus",
+    "cures tinnitus",
+]
+
 EXPECTED_MINDFULNESS_IDS = {
     "mindfulness.long_bodyscan",
     "mindfulness.long_sleep",
@@ -307,6 +318,20 @@ PROHIBITED_SOURCE_TERMS = [
     "AVAudioSession",
 ]
 
+RELEASE_UI_FORBIDDEN_STRINGS = [
+    "Manifest Loader",
+    "Static Module Library",
+    "Sound Player Debug",
+    "Mindfulness Practice Debug",
+    "Local Data Status",
+    "Sound Therapy Annex",
+    "Mindfulness Annex",
+    "FAQs / Common Questions",
+    "Enjoyable Music",
+    "STOP card",
+    "TIPP card",
+]
+
 MEDIA_EXTENSIONS = {
     ".mp3",
     ".m4a",
@@ -531,6 +556,138 @@ def validate_sound_sample_foreground_continuity() -> None:
         add_failure("Sound sample foreground continuity", "Starting a sound sample should stop the prior sample before playing the next one.")
     if "audioPlayer.numberOfLoops = sample.loopCapable ? -1 : 0" not in controller_text:
         add_failure("Sound sample foreground continuity", "Loop-capable sound samples should continue looping in the foreground.")
+
+
+def validate_tinnitus_sound_estimate_feature(asset_placeholders: dict[str, Any]) -> None:
+    route_path = APP_ROOT / "Core/AppRoute.swift"
+    destination_path = APP_ROOT / "App/AppRouteDestinationView.swift"
+    player_path = APP_ROOT / "Features/SoundTherapy/SoundTherapyAnnexView.swift"
+    sample_controller_path = APP_ROOT / "Audio/SoundSampleController.swift"
+    feature_dir = APP_ROOT / "Features/SoundTherapy/Customized"
+    view_path = feature_dir / "TinnitusSoundEstimateView.swift"
+    profile_path = feature_dir / "TinnitusSoundProfile.swift"
+    store_path = feature_dir / "TinnitusSoundProfileStore.swift"
+    engine_path = feature_dir / "TinnitusPitchMatchAudioEngine.swift"
+
+    for path in [view_path, profile_path, store_path, engine_path]:
+        if not path.exists():
+            add_failure("Tinnitus sound estimate", f"Required feature file is missing: {path}")
+
+    route_text = route_path.read_text()
+    destination_text = destination_path.read_text()
+    player_text = player_path.read_text()
+    sample_controller_text = sample_controller_path.read_text()
+    feature_text = "\n".join(
+        path.read_text(errors="ignore")
+        for path in [view_path, profile_path, store_path, engine_path]
+        if path.exists()
+    )
+
+    required_snippets = {
+        "AppRoute route": "case tinnitusSoundEstimate" in route_text,
+        "AppRoute path": '"/sound/tinnitus-sound-estimate"' in route_text,
+        "Destination view": "TinnitusSoundEstimateView(sampleController: soundSampleController)" in destination_text,
+        "Player section": "Customized sound therapy" in player_text,
+        "Player card title": "Tinnitus sound estimate" in player_text,
+        "Player card CTA": "Start pitch match" in player_text,
+        "Pitch slider formula": "minFrequencyHz * pow(maxFrequencyHz / minFrequencyHz, clampedValue)" in feature_text,
+        "Pitch inverse formula": "log(clampedFrequency / minFrequencyHz) / log(maxFrequencyHz / minFrequencyHz)" in feature_text,
+        "Profile store": "tinnitus_sound_profile_v1.json" in feature_text,
+        "Pure tone engine": "AVAudioSourceNode" in feature_text and "sin(localPhase)" in feature_text,
+        "Stops samples before tone": "sampleController.stop()" in feature_text,
+        "Samples stop pitch callback": "onWillStartPlayback" in sample_controller_text and "onWillStartPlayback?()" in sample_controller_text,
+        "Foreground stop": "scenePhase" in feature_text and "newPhase != .active" in feature_text and "stopTone()" in feature_text,
+    }
+    for label, passed in required_snippets.items():
+        if not passed:
+            add_failure("Tinnitus sound estimate", f"Missing expected implementation detail: {label}")
+
+    for expected_text in [
+        "Estimate your tinnitus pitch and optional loudness. An exact match is not required.",
+        "Move the slider until the tone is close to your tinnitus. It does not need to be exact.",
+        "Headphones may help with pitch matching, especially for higher pitches.",
+        "Saved on this device. You can update it later.",
+    ]:
+        if expected_text not in feature_text:
+            add_failure("Tinnitus sound estimate", f"Expected user-facing copy is missing: {expected_text!r}")
+
+    combined_feature_text = f"{player_text}\n{feature_text}".lower()
+    for claim in FORBIDDEN_TINNITUS_SOUND_ESTIMATE_CLAIMS:
+        if claim in combined_feature_text:
+            add_failure("Tinnitus sound estimate", f"Forbidden claim appears in feature source: {claim!r}")
+
+    sound_samples = asset_placeholders.get("soundSamples", [])
+    visible_ids_in_registry = {
+        sample.get("id")
+        for sample in sound_samples
+        if sample.get("id") in EXPECTED_SOUND_PLAYER_IDS
+    }
+    if visible_ids_in_registry != EXPECTED_SOUND_PLAYER_IDS:
+        add_failure("Tinnitus sound estimate", "Sound Therapy demo sample registry changed while adding sound estimate.")
+
+    for path in APP_RESOURCES.rglob("*"):
+        if not path.is_file():
+            continue
+        lower_name = path.name.lower()
+        if "generated" in lower_name or "personalized" in lower_name or "notched" in lower_name:
+            add_failure("Tinnitus sound estimate", f"Generated/personalized audio resource should not be added in this stage: {path}")
+
+    plist_candidates = list(APP_ROOT.rglob("*.plist"))
+    for plist in plist_candidates:
+        text = plist.read_text(errors="ignore")
+        if "UIBackgroundModes" in text and "audio" in text:
+            add_failure("Tinnitus sound estimate", f"Background audio mode should not be present: {plist}")
+
+
+def validate_stage_24b_release_ui_cleanup() -> None:
+    ui_paths = [
+        APP_ROOT / "App/RootShellView.swift",
+        APP_ROOT / "Core/AppTab.swift",
+        APP_ROOT / "Features/Library/LibraryView.swift",
+        APP_ROOT / "Features/Library/LibraryPlaceholderView.swift",
+        APP_ROOT / "Features/SoundTherapy/SoundTherapyAnnexView.swift",
+        APP_ROOT / "Features/Mindfulness/MindfulnessAnnexView.swift",
+        APP_ROOT / "Features/MyPlan/MyPlanView.swift",
+        APP_ROOT / "Features/Settings/SettingsPlaceholderView.swift",
+        APP_ROOT / "Features/SoundTherapy/Customized/TinnitusSoundEstimateView.swift",
+    ]
+    for path in ui_paths:
+        text = path.read_text(errors="ignore")
+        for forbidden in RELEASE_UI_FORBIDDEN_STRINGS:
+            if forbidden in text:
+                add_failure("Stage 24B release UI cleanup", f"{path} contains release-facing internal/debug wording: {forbidden!r}")
+
+    root_shell_text = (APP_ROOT / "App/RootShellView.swift").read_text()
+    foreground_control_path = APP_ROOT / "Audio/SoundTherapyForegroundControlView.swift"
+    if not foreground_control_path.exists():
+        add_failure("Stage 24B release UI cleanup", f"Global Sound Therapy foreground control is missing: {foreground_control_path}")
+    else:
+        foreground_control_text = foreground_control_path.read_text()
+        for snippet in [
+            "Sound Therapy",
+            "controller.currentSampleTitle",
+            "controller.stop()",
+            "accessibilityLabel(\"Stop Sound Therapy\")",
+        ]:
+            if snippet not in foreground_control_text:
+                add_failure("Stage 24B release UI cleanup", f"Foreground control is missing expected snippet: {snippet}")
+
+    if "SoundTherapyForegroundControlView(controller: soundSampleController)" not in root_shell_text:
+        add_failure("Stage 24B release UI cleanup", "RootShellView should show the global Sound Therapy foreground control.")
+    if "if soundSampleController.isPlaying" not in root_shell_text:
+        add_failure("Stage 24B release UI cleanup", "Global Sound Therapy foreground control should be hidden when no sample is playing.")
+
+    settings_text = (APP_ROOT / "Features/Settings/SettingsPlaceholderView.swift").read_text()
+    if "case tinnitusSoundEstimate" not in settings_text:
+        add_failure("Stage 24B release UI cleanup", "Settings should expose a reset action for the tinnitus sound estimate.")
+    if "TinnitusSoundProfileStore.deleteSavedProfile()" not in settings_text:
+        add_failure("Stage 24B release UI cleanup", "Reset all local data should delete tinnitus_sound_profile_v1.json.")
+    if "Clear tinnitus sound estimate" not in settings_text:
+        add_failure("Stage 24B release UI cleanup", "Settings should show clear copy for clearing the tinnitus sound estimate.")
+
+    estimate_view_text = (APP_ROOT / "Features/SoundTherapy/Customized/TinnitusSoundEstimateView.swift").read_text()
+    if "No estimate saved yet" not in estimate_view_text:
+        add_failure("Stage 24B release UI cleanup", "Tinnitus sound estimate should have a product-like empty state before save.")
 
 
 def validate_mindfulness_practice_ui(module_library: dict[str, Any], exercise_definitions: dict[str, Any]) -> None:
@@ -1362,6 +1519,8 @@ def main() -> int:
     validate_mvp_audio(audio_assets, asset_placeholders, module_library)
     validate_sound_therapy_player(asset_placeholders)
     validate_sound_sample_foreground_continuity()
+    validate_tinnitus_sound_estimate_feature(asset_placeholders)
+    validate_stage_24b_release_ui_cleanup()
     validate_mindfulness_practice_ui(module_library, exercise_definitions)
     validate_stage_23k_copy_cleanup(module_library, exercise_definitions)
     validate_mvp_visuals_and_deferred_videos(visual_manifest)

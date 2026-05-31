@@ -19,11 +19,7 @@ struct LibraryPlaceholderView: View {
             title: AppTab.library.fullTitle,
             subtitle: "The table of contents is not available right now.",
             systemImage: AppTab.library.systemImage
-        ) {
-            #if DEBUG
-            ManifestDebugStatusView(snapshot: manifestSnapshot)
-            #endif
-        }
+        )
     }
 }
 

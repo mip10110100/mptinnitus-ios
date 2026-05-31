@@ -60,6 +60,8 @@ struct SoundSampleCard: View {
                     Label(playButtonTitle, systemImage: playButtonIcon)
                 }
                 .buttonStyle(.borderedProminent)
+                .accessibilityLabel("\(playButtonTitle) \(sample.title)")
+                .accessibilityHint("Plays or pauses this foreground Sound Therapy sample.")
 
                 Button {
                     toggleFavorite()
@@ -68,6 +70,7 @@ struct SoundSampleCard: View {
                 }
                 .buttonStyle(.bordered)
                 .tint(isFavorite ? .yellow : MPTTheme.accentColor)
+                .accessibilityLabel(isFavorite ? "Remove \(sample.title) from saved preferred sounds" : "Save \(sample.title) as a preferred sound")
             }
 
             if isCurrentSample {
@@ -121,6 +124,7 @@ struct SoundSampleCard: View {
                     .font(.caption)
             }
             .disabled(!controller.isPlayable)
+            .accessibilityHint("Adjusts the capped preview volume for this sample.")
         }
     }
 

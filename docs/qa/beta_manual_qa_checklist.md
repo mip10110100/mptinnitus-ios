@@ -10,6 +10,7 @@ Use this checklist for a 30 to 60 minute simulator smoke pass before a beta buil
 - [ ] Confirm the app remains usable after force quit and relaunch.
 - [ ] Confirm airplane mode does not affect core app usage.
 - [ ] Confirm no sign-in, account, network, cloud, analytics, notification, or download prompt appears.
+- [ ] Confirm no debug/internal IDs, manifest-loader text, source IDs, or route strings appear in normal app UI.
 
 ## 2. First Launch And Safety/Scope
 
@@ -29,6 +30,7 @@ Use this checklist for a 30 to 60 minute simulator smoke pass before a beta buil
 - [ ] Open My Plan.
 - [ ] Confirm switching tabs does not crash or lose normal navigation state unexpectedly.
 - [ ] Confirm the audio mini-player, when visible, does not block tab selection.
+- [ ] Confirm no visible debug panels appear on Library, Sound, Mindfulness, My Plan, or Settings.
 
 ## 4. Module Content
 
@@ -111,10 +113,31 @@ Use this checklist for a 30 to 60 minute simulator smoke pass before a beta buil
 - [ ] Favorite a sample and confirm favorite state appears.
 - [ ] Remove the favorite and confirm state clears.
 - [ ] Leave the Sound tab while the app remains in the foreground and confirm the active sample continues.
+- [ ] Confirm a compact Sound Therapy control appears outside Sound Therapy Player while the sample is active.
+- [ ] Confirm the global Sound Therapy control shows the active sample title.
+- [ ] Tap Stop in the global Sound Therapy control and confirm sample playback stops.
+- [ ] Start another sample and confirm the global Sound Therapy control updates to the new title.
 - [ ] Return to Sound Therapy Player and pause the active sample.
 - [ ] Play Rain, then select Brown Noise, and confirm Rain stops while Brown Noise starts.
 - [ ] Confirm samples switch rather than layer on top of each other.
 - [ ] Send the app to the background or lock the simulator and confirm sound sample playback stops or is released safely.
+- [ ] Return to the app and confirm the global Sound Therapy control disappears after foreground playback stops.
+- [ ] Confirm the Customized sound therapy section appears below Sound Therapy Samples.
+- [ ] Open Tinnitus sound estimate.
+- [ ] Confirm a new estimate screen shows “No estimate saved yet” before saving.
+- [ ] Move the pitch slider and confirm the frequency display updates in Hz/kHz.
+- [ ] Use the down/up fine nudge buttons and confirm pitch changes by small steps.
+- [ ] Play and pause the pitch tone.
+- [ ] Confirm the tone starts softly and stops cleanly.
+- [ ] Move the pitch slider while the tone is playing and confirm there are no clicks or abrupt zipper sounds.
+- [ ] Confirm the loudness slider starts at the bottom for a new estimate.
+- [ ] Raise loudness gently and play at that loudness.
+- [ ] Save estimate and confirm “Saved on this device. You can update it later.” appears.
+- [ ] Leave and return to Tinnitus sound estimate; confirm the saved pitch, confidence, laterality, and loudness summary persists.
+- [ ] Start Rain, then start the pitch tone; confirm Rain stops.
+- [ ] Start the pitch tone, return to Sound Therapy Player, then start Brown Noise; confirm the pitch tone stops and Brown Noise starts.
+- [ ] Send the app to the background while the pitch tone is playing and confirm the tone stops or safely pauses.
+- [ ] Confirm no treatment, reset, neuromodulation, or clinical-protocol language appears in Tinnitus sound estimate.
 - [ ] From the Sound Therapy module, confirm Sound Therapy samples or links are reachable where expected.
 - [ ] In the Sound Therapy module, confirm the Sound Therapy Thermometer visual appears only at the first useful sweet-spot instructional point.
 - [ ] Confirm later volume-zone and volume-setting references link to the Sound Therapy Player instead of repeating the thermometer image.
@@ -236,9 +259,12 @@ Use this checklist for a 30 to 60 minute simulator smoke pass before a beta buil
 - [ ] Confirm transcript/audio preferences appear if implemented.
 - [ ] Confirm autoplay next education section setting exists and defaults OFF.
 - [ ] Confirm destructive local reset controls use confirmation dialogs.
+- [ ] Save a tinnitus sound estimate, then clear it from Settings if that control is present.
+- [ ] Save a tinnitus sound estimate, use Reset all local app data on disposable simulator data, and confirm the estimate is cleared.
 - [ ] Test one narrow reset action on disposable simulator data.
 - [ ] Confirm Reset all local data uses a clear confirmation dialog.
 - [ ] Confirm no notification permission prompt appears.
+- [ ] Confirm Settings empty/count states use patient-facing copy, not technical debug copy.
 
 ## 13. Visuals/Layout
 
@@ -279,6 +305,7 @@ Use this checklist for a 30 to 60 minute simulator smoke pass before a beta buil
 - [ ] Confirm the app remains responsive after repeated audio start/stop actions.
 - [ ] Confirm no crash occurs after several tab switches.
 - [ ] Confirm no network, account, notification, analytics, or download prompt appears.
+- [ ] Confirm major audio buttons and sliders have sensible VoiceOver labels if VoiceOver testing is practical.
 
 ## Issue Log
 

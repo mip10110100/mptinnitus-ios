@@ -13,6 +13,7 @@ enum AppRoute: Hashable, Identifiable {
     case exercise(String)
     case visual(String)
     case soundTherapyPlayer
+    case tinnitusSoundEstimate
     case safetyInformation
     case settings
 
@@ -32,6 +33,8 @@ enum AppRoute: Hashable, Identifiable {
             "/visual/\(visualId)"
         case .soundTherapyPlayer:
             AppTab.soundAnnex.route
+        case .tinnitusSoundEstimate:
+            "/sound/tinnitus-sound-estimate"
         case .safetyInformation:
             "/safety"
         case .settings:
@@ -51,6 +54,8 @@ enum AppRoute: Hashable, Identifiable {
             "Visual Tool"
         case .soundTherapyPlayer:
             AppTab.soundAnnex.fullTitle
+        case .tinnitusSoundEstimate:
+            "Tinnitus sound estimate"
         case .safetyInformation:
             "Safety Information"
         case .settings:

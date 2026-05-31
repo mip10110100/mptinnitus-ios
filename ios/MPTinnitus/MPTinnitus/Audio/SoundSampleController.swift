@@ -25,6 +25,8 @@ final class SoundSampleController: ObservableObject {
         }
     }
 
+    var onWillStartPlayback: (() -> Void)?
+
     private let bundle: Bundle
     private var player: AVAudioPlayer?
 
@@ -49,6 +51,7 @@ final class SoundSampleController: ObservableObject {
     }
 
     func play(sample: SoundSampleItem) {
+        onWillStartPlayback?()
         stopCurrentPlayback(clearSelection: false)
 
         currentSampleID = sample.id

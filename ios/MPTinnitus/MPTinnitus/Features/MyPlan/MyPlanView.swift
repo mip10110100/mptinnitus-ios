@@ -58,10 +58,6 @@ struct MyPlanView: View {
                 }
 
                 otherExercisesSection
-
-                #if DEBUG
-                localDataDebugPanel
-                #endif
             }
             .padding(MPTTheme.Spacing.screen)
             .padding(.bottom, MPTTheme.Spacing.bottomScrollContent)
@@ -197,23 +193,4 @@ struct MyPlanView: View {
             exerciseDefinitionLibrary.definition(id: reference.exercise.exerciseId) != nil
         }
     }
-
-    #if DEBUG
-    private var localDataDebugPanel: some View {
-        VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
-            SectionHeader("Local Data Status")
-
-            Text("Active My Plan items: \(activeItems.count)")
-            Text("Archived My Plan items: \(myPlanItems.filter { $0.isArchived }.count)")
-            Text("Active journal entries: \(journalEntries.filter { !$0.isArchived }.count)")
-            Text("Storage: SwiftData local device store")
-        }
-        .font(.footnote.monospacedDigit())
-        .foregroundStyle(MPTTheme.secondaryText)
-        .padding(MPTTheme.Spacing.medium)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(MPTTheme.surfaceBackground)
-        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
-    }
-    #endif
 }

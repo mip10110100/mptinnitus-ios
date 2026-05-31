@@ -29,6 +29,7 @@ struct SettingsPlaceholderView: View {
     @State private var pendingResetAction: SettingsResetAction?
     @State private var statusMessage: String?
     @State private var errorMessage: String?
+    @State private var hasTinnitusSoundEstimate = TinnitusSoundProfileStore.savedProfileExists()
 
     private var isShowingResetConfirmation: Binding<Bool> {
         Binding(
@@ -51,10 +52,6 @@ struct SettingsPlaceholderView: View {
                 audioTranscriptSection
                 welcomeSection
                 localDataSection
-
-                #if DEBUG
-                localDataStatusSection
-                #endif
             }
             .padding(MPTTheme.Spacing.screen)
             .padding(.bottom, MPTTheme.Spacing.bottomScrollContent)
@@ -62,6 +59,7 @@ struct SettingsPlaceholderView: View {
         .background(MPTTheme.screenBackground)
         .navigationTitle(AppRoute.settings.title)
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear(perform: refreshTinnitusSoundEstimateStatus)
         .confirmationDialog(
             pendingResetAction?.confirmationTitle ?? "Confirm local reset",
             isPresented: isShowingResetConfirmation,
@@ -204,6 +202,12 @@ struct SettingsPlaceholderView: View {
             )
 
             resetRow(
+                title: "Clear tinnitus sound estimate",
+                subtitle: hasTinnitusSoundEstimate ? "1 saved local estimate" : "No estimate saved yet",
+                action: .tinnitusSoundEstimate
+            )
+
+            resetRow(
                 title: "Clear reminder settings",
                 subtitle: "\(reminderSettings.count) local reminder setting record\(reminderSettings.count == 1 ? "" : "s"). No reminders are scheduled in this stage.",
                 action: .reminderSettings
@@ -219,7 +223,7 @@ struct SettingsPlaceholderView: View {
 
             resetRow(
                 title: "Reset all local app data",
-                subtitle: "Deletes local records and resets welcome/audio/transcript preferences. Bundled education content stays installed.",
+                subtitle: "Deletes local records, clears the saved sound estimate, and resets welcome/audio/transcript preferences. Bundled education content stays installed.",
                 action: .allLocalData
             )
 
@@ -239,25 +243,6 @@ struct SettingsPlaceholderView: View {
         }
         .settingsCardPadding()
     }
-
-    #if DEBUG
-    private var localDataStatusSection: some View {
-        VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
-            SectionHeader("Local Data Status")
-            Text("Schema records: \(schemaRecords.count)")
-            Text("User preferences: \(userPreferences.count)")
-            Text("My Plan items: \(myPlanItems.count)")
-            Text("Exercise entries: \(exerciseEntries.count)")
-            Text("Three Lines entries: \(journalEntries.count)")
-            Text("Sound preferences: \(soundPreferences.count)")
-            Text("Reminder settings: \(reminderSettings.count)")
-            Text("Safety flags: \(safetyFlags.count)")
-        }
-        .font(.footnote.monospacedDigit())
-        .foregroundStyle(MPTTheme.secondaryText)
-        .settingsCardPadding()
-    }
-    #endif
 
     private func resetRow(title: String, subtitle: String, action: SettingsResetAction) -> some View {
         VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
@@ -328,16 +313,20 @@ struct SettingsPlaceholderView: View {
                 resetWelcomePrompt()
             case .allLocalData:
                 try LocalDataResetService(modelContext: modelContext).reset(.allLocalData)
+                try TinnitusSoundProfileStore.deleteSavedProfile()
                 resetWelcomePrompt()
                 transcriptsExpandedByDefault = false
                 automaticallyPlayNextEducationSection = false
             default:
-                if let scope = action.resetScope {
+                if action == .tinnitusSoundEstimate {
+                    try TinnitusSoundProfileStore.deleteSavedProfile()
+                } else if let scope = action.resetScope {
                     try LocalDataResetService(modelContext: modelContext).reset(scope)
                 }
             }
 
             statusMessage = action.successMessage
+            refreshTinnitusSoundEstimateStatus()
         } catch {
             errorMessage = "Could not complete this local reset."
 
@@ -352,6 +341,10 @@ struct SettingsPlaceholderView: View {
     private func resetWelcomePrompt() {
         firstLaunchDecisionRaw = FirstLaunchDecision.pending.rawValue
     }
+
+    private func refreshTinnitusSoundEstimateStatus() {
+        hasTinnitusSoundEstimate = TinnitusSoundProfileStore.savedProfileExists()
+    }
 }
 
 private enum SettingsResetAction: String {
@@ -359,6 +352,7 @@ private enum SettingsResetAction: String {
     case exerciseEntries
     case threeLinesJournalEntries
     case soundPreferences
+    case tinnitusSoundEstimate
     case reminderSettings
     case safetyScopeFlags
     case allLocalData
@@ -374,6 +368,8 @@ private enum SettingsResetAction: String {
             .threeLinesJournalEntries
         case .soundPreferences:
             .soundPreferences
+        case .tinnitusSoundEstimate:
+            nil
         case .reminderSettings:
             .reminderSettings
         case .safetyScopeFlags:
@@ -417,6 +413,8 @@ private enum SettingsResetAction: String {
             "Delete Three Lines Journal entries?"
         case .soundPreferences:
             "Clear sound favorites and preferences?"
+        case .tinnitusSoundEstimate:
+            "Clear tinnitus sound estimate?"
         case .reminderSettings:
             "Clear reminder settings?"
         case .safetyScopeFlags:
@@ -438,12 +436,14 @@ private enum SettingsResetAction: String {
             "This deletes all Three Lines Journal entries from this device."
         case .soundPreferences:
             "This clears saved sound favorites and preference records from this device."
+        case .tinnitusSoundEstimate:
+            "This clears the saved local tinnitus pitch and loudness estimate. Other sound preferences remain."
         case .reminderSettings:
             "This clears local reminder setting records. This stage does not schedule notifications."
         case .safetyScopeFlags:
             "This clears local safety/scope acknowledgement flags. Safety content remains available."
         case .allLocalData:
-            "This deletes My Plan items, exercise entries, journal entries, sound preferences, reminder settings, safety flags, and local schema/preference records. It also resets the welcome prompt, audio preference, and transcript preference. This cannot be undone."
+            "This deletes My Plan items, exercise entries, journal entries, sound preferences, the saved tinnitus sound estimate, reminder settings, safety flags, and local schema/preference records. It also resets the welcome prompt, audio preference, and transcript preference. This cannot be undone."
         case .welcomePrompt:
             "The welcome sheet will appear again on a future app launch. No saved data will be deleted."
         }
@@ -459,6 +459,8 @@ private enum SettingsResetAction: String {
             "Delete Journal Entries"
         case .soundPreferences:
             "Clear Sound Preferences"
+        case .tinnitusSoundEstimate:
+            "Clear Sound Estimate"
         case .reminderSettings:
             "Clear Reminder Settings"
         case .safetyScopeFlags:
@@ -480,6 +482,8 @@ private enum SettingsResetAction: String {
             "Three Lines Journal entries were deleted locally."
         case .soundPreferences:
             "Sound preferences were cleared locally."
+        case .tinnitusSoundEstimate:
+            "Tinnitus sound estimate was cleared locally."
         case .reminderSettings:
             "Reminder settings were cleared locally."
         case .safetyScopeFlags:

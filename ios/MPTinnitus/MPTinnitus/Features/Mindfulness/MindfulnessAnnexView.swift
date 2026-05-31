@@ -69,10 +69,6 @@ struct MindfulnessAnnexView: View {
                 header
                 practiceSections(module: module)
                 supportAndLearnSection
-
-                #if DEBUG
-                debugPanel
-                #endif
             }
             .padding(MPTTheme.Spacing.screen)
             .padding(.bottom, MPTTheme.Spacing.bottomScrollContent)
@@ -419,28 +415,6 @@ struct MindfulnessAnnexView: View {
             return nil
         }
     }
-
-    #if DEBUG
-    private var debugPanel: some View {
-        VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
-            SectionHeader("Mindfulness Practice Debug")
-            Text("Short practices: \(audioReferences(for: shortGuidedPracticeAudioOrder).count)")
-            Text("Medium practices: \(audioReferences(for: mediumGuidedPracticeAudioOrder).count)")
-            Text("Long practices: \(audioReferences(for: longGuidedPracticeAudioOrder).count)")
-            Text("Sleep-oriented practices: \(audioReferences(for: sleepGuidedPracticeAudioOrder).count)")
-            Text("Breathing pacer options: \(BreathingPacerPattern.mindfulnessPracticeOptions.count)")
-            if let module = mindfulnessModule {
-                Text("Reflection exercises: \(reflectionExercises(module: module).count)")
-            }
-        }
-        .font(.footnote.monospacedDigit())
-        .foregroundStyle(MPTTheme.secondaryText)
-        .padding(MPTTheme.Spacing.medium)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(MPTTheme.surfaceBackground)
-        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
-    }
-    #endif
 }
 
 private enum MindfulnessPracticeSectionID: Hashable {
