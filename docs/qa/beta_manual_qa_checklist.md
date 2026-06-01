@@ -90,8 +90,11 @@ Use this checklist for a 30 to 60 minute simulator smoke pass before a beta buil
 - [ ] Confirm Sound Therapy sample groups are visible:
   - [ ] Nature / Environmental
   - [ ] Household / Environmental
+  - [ ] Urban / Environmental
   - [ ] Static / Artificial
-- [ ] Confirm the 7 visible Sound Therapy demo cards are present:
+  - [ ] Focused / Filtered
+- [ ] Confirm the expanded grouped Sound Therapy sample set is visible.
+- [ ] Confirm the original 7 visible Sound Therapy demo cards are still present:
   - [ ] Rain
   - [ ] Stream / Flowing Water
   - [ ] Crickets
@@ -99,18 +102,37 @@ Use this checklist for a 30 to 60 minute simulator smoke pass before a beta buil
   - [ ] Brown Noise
   - [ ] Pink Noise
   - [ ] White Noise
+- [ ] Confirm the 15 add-on Sound Therapy sample cards are present:
+  - [ ] Ocean Waves
+  - [ ] Rolling Waves
+  - [ ] Waterfall
+  - [ ] Rain on Window
+  - [ ] Wind in Trees
+  - [ ] Woods and Campfire
+  - [ ] Shower
+  - [ ] Cityscape
+  - [ ] Grey Noise
+  - [ ] Blue Noise
+  - [ ] Low Rumble
+  - [ ] High Hiss
+  - [ ] Focused Hiss — Low
+  - [ ] Focused Hiss — Mid
+  - [ ] Focused Hiss — High
 - [ ] Confirm Brown Noise, 1-Minute Sample; Pink Noise, 1-Minute Sample; and White Noise, 1-Minute Sample are not visible in the player.
 - [ ] Confirm Fan Noise is tagged Household / Environmental.
 - [ ] Confirm Brown Noise, Pink Noise, and White Noise are tagged Static / Artificial.
+- [ ] Confirm no ZIP/source/manifest/README artifacts appear as sound cards.
 - [ ] Confirm sample cards do not repeat long instructions already covered in Guidance.
 - [ ] Confirm sample volume shows a simple percentage such as 35%, 50%, or 65%.
 - [ ] Confirm Saved Preferred Sounds appears without the “Favorites stay on this device” sublabel.
 - [ ] Confirm no incomplete secondary resource cards such as hearing care/amplification appear unless finalized.
 - [ ] Play each of the 7 visible Sound Therapy demo samples and confirm each starts without a crash.
+- [ ] Play at least one sample from each visible Sound Therapy group.
 - [ ] Play Rain and confirm it starts.
 - [ ] Switch from Rain to White Noise and confirm only the new sample remains active.
+- [ ] Switch between an original sample and an add-on sample and confirm the previous sample stops.
 - [ ] Adjust the volume slider and confirm volume changes without jumping to an unsafe level.
-- [ ] Favorite a sample and confirm favorite state appears.
+- [ ] Favorite an add-on sample and confirm favorite state appears.
 - [ ] Remove the favorite and confirm state clears.
 - [ ] Leave the Sound tab while the app remains in the foreground and confirm the active sample continues.
 - [ ] Confirm a compact Sound Therapy control appears outside Sound Therapy Player while the sample is active.
@@ -125,15 +147,23 @@ Use this checklist for a 30 to 60 minute simulator smoke pass before a beta buil
 - [ ] Confirm the Customized sound therapy section appears below Sound Therapy Samples.
 - [ ] Open Tinnitus sound estimate.
 - [ ] Confirm a new estimate screen shows “No estimate saved yet” before saving.
+- [ ] Confirm the pitch range goes up to 14,000 Hz.
+- [ ] Confirm Tone volume starts at zero.
+- [ ] Tap Play Tone while Tone volume is zero.
+- [ ] Confirm no audible tone plays until Tone volume is raised.
+- [ ] Raise Tone volume slowly and confirm the tone becomes audible.
 - [ ] Move the pitch slider and confirm the frequency display updates in Hz/kHz.
 - [ ] Use the down/up fine nudge buttons and confirm pitch changes by small steps.
 - [ ] Play and pause the pitch tone.
 - [ ] Confirm the tone starts softly and stops cleanly.
 - [ ] Move the pitch slider while the tone is playing and confirm there are no clicks or abrupt zipper sounds.
+- [ ] Confirm the high-frequency note mentions headphones and phone speaker limitations.
 - [ ] Confirm the loudness slider starts at the bottom for a new estimate.
 - [ ] Raise loudness gently and play at that loudness.
 - [ ] Save estimate and confirm “Saved on this device. You can update it later.” appears.
 - [ ] Leave and return to Tinnitus sound estimate; confirm the saved pitch, confidence, laterality, and loudness summary persists.
+- [ ] Leave and return to Tinnitus sound estimate; confirm live Tone volume starts at zero again.
+- [ ] Confirm a saved loudness estimate does not automatically make Play Tone audible.
 - [ ] Start Rain, then start the pitch tone; confirm Rain stops.
 - [ ] Start the pitch tone, return to Sound Therapy Player, then start Brown Noise; confirm the pitch tone stops and Brown Noise starts.
 - [ ] Send the app to the background while the pitch tone is playing and confirm the tone stops or safely pauses.

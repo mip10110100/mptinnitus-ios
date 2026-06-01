@@ -56,17 +56,45 @@ struct SoundSampleLibraryLoader {
     }
 
     func loadSamples() -> [SoundSampleItem] {
-        guard let url = bundle.url(forResource: "asset_placeholders_v1", withExtension: "json"),
+        var samples: [SoundSampleItem]
+
+        if let document = loadSoundSampleDocument(named: "asset_placeholders_v1") {
+            samples = document.soundSamples.map { placeholder in
+                makeSample(from: placeholder)
+            }
+        } else {
+            samples = Self.fallbackSamples
+        }
+
+        if let addonDocument = loadSoundSampleDocument(named: "sound_therapy_addon_assets_v1") {
+            samples.append(contentsOf: addonDocument.soundSamples.map { placeholder in
+                makeSample(from: placeholder)
+            })
+        }
+
+        let deduplicatedSamples = samples.reduce(into: [SoundSampleItem]()) { uniqueSamples, sample in
+            guard !uniqueSamples.contains(where: { $0.id == sample.id }) else {
+                return
+            }
+
+            uniqueSamples.append(sample)
+        }
+
+        return deduplicatedSamples.isEmpty ? Self.fallbackSamples : deduplicatedSamples
+    }
+
+    private func loadSoundSampleDocument(named resourceName: String) -> SoundSampleDocument? {
+        guard let url = bundle.url(forResource: resourceName, withExtension: "json"),
               let data = try? Data(contentsOf: url),
-              let document = try? decoder.decode(AssetPlaceholderDocument.self, from: data) else {
-            return Self.fallbackSamples
+              let document = try? decoder.decode(SoundSampleDocument.self, from: data) else {
+            return nil
         }
 
-        let samples = document.soundSamples.map { placeholder in
-            makeSample(from: placeholder)
-        }
+        return document
+    }
 
-        return samples.isEmpty ? Self.fallbackSamples : samples
+    private struct SoundSampleDocument: Decodable {
+        let soundSamples: [SoundSamplePlaceholder]
     }
 
     private func makeSample(from placeholder: SoundSamplePlaceholder) -> SoundSampleItem {

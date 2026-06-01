@@ -115,7 +115,9 @@ struct SoundTherapyAnnexView: View {
         let groupOrder = [
             "Nature / Environmental",
             "Household / Environmental",
-            "Static / Artificial"
+            "Urban / Environmental",
+            "Static / Artificial",
+            "Focused / Filtered"
         ]
         let visibleSamples = samples.filter { sample in
             Self.visibleBetaSampleIDs.contains(sample.id)
@@ -142,10 +144,25 @@ struct SoundTherapyAnnexView: View {
         "st.noise.rain",
         "st.noise.stream_flowing_water",
         "st.noise.crickets",
+        "st.noise.ocean_waves",
+        "st.noise.rolling_waves",
+        "st.noise.waterfall",
+        "st.noise.rain_on_window",
+        "st.noise.wind_in_trees",
+        "st.noise.woods_campfire",
         "st.noise.fan",
+        "st.noise.shower",
+        "st.noise.cityscape",
         "st.noise.brown.loop_1min_128",
         "st.noise.pink.loop_1min_128",
-        "st.noise.white.loop_1min_128"
+        "st.noise.white.loop_1min_128",
+        "st.noise.grey_noise_soft",
+        "st.noise.blue_noise_soft",
+        "st.noise.low_rumble_soft",
+        "st.noise.high_hiss_soft",
+        "st.noise.focused_hiss_low",
+        "st.noise.focused_hiss_mid",
+        "st.noise.focused_hiss_high"
     ]
 
     private var customizedSoundTherapySection: some View {

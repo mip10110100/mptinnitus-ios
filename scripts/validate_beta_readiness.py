@@ -23,6 +23,7 @@ APP_RESOURCES = APP_ROOT / "Resources"
 MODULE_LIBRARY_PATH = APP_RESOURCES / "module_library_v1.json"
 ASSET_PLACEHOLDERS_PATH = APP_RESOURCES / "asset_placeholders_v1.json"
 AUDIO_ASSETS_PATH = APP_RESOURCES / "audio_assets_mvp_2026_05_29.json"
+SOUND_THERAPY_ADDONS_PATH = APP_RESOURCES / "sound_therapy_addon_assets_v1.json"
 VIDEO_ASSETS_PATH = APP_RESOURCES / "video_assets_v1.json"
 MINDFULNESS_TRANSCRIPTS_PATH = APP_RESOURCES / "mindfulness_transcripts_v1.json"
 EXERCISE_DEFINITIONS_PATH = APP_RESOURCES / "exercise_definitions_v1.json"
@@ -66,6 +67,34 @@ HIDDEN_SOUND_PLAYER_IDS = {
     "st.noise.brown.fade_1min_128",
     "st.noise.pink.fade_1min_128",
     "st.noise.white.fade_1min_128",
+}
+
+EXPECTED_SOUND_ADDON_LABELS = {
+    "st.noise.ocean_waves": ("Ocean Waves", "Nature / Environmental", "waves.mp3"),
+    "st.noise.rolling_waves": ("Rolling Waves", "Nature / Environmental", "waves2.mp3"),
+    "st.noise.waterfall": ("Waterfall", "Nature / Environmental", "waterfall.mp3"),
+    "st.noise.rain_on_window": ("Rain on Window", "Nature / Environmental", "rain_on_window.mp3"),
+    "st.noise.wind_in_trees": ("Wind in Trees", "Nature / Environmental", "wind_in_trees.mp3"),
+    "st.noise.woods_campfire": ("Woods and Campfire", "Nature / Environmental", "woods_campfire.mp3"),
+    "st.noise.shower": ("Shower", "Household / Environmental", "shower.mp3"),
+    "st.noise.cityscape": ("Cityscape", "Urban / Environmental", "cityscape.mp3"),
+    "st.noise.grey_noise_soft": ("Grey Noise", "Static / Artificial", "grey_noise_soft.mp3"),
+    "st.noise.blue_noise_soft": ("Blue Noise", "Static / Artificial", "blue_noise_soft.mp3"),
+    "st.noise.low_rumble_soft": ("Low Rumble", "Static / Artificial", "low_rumble_soft.mp3"),
+    "st.noise.high_hiss_soft": ("High Hiss", "Static / Artificial", "high_hiss_soft.mp3"),
+    "st.noise.focused_hiss_low": ("Focused Hiss — Low", "Focused / Filtered", "focused_hiss_low.mp3"),
+    "st.noise.focused_hiss_mid": ("Focused Hiss — Mid", "Focused / Filtered", "focused_hiss_mid.mp3"),
+    "st.noise.focused_hiss_high": ("Focused Hiss — High", "Focused / Filtered", "focused_hiss_high.mp3"),
+}
+
+EXPECTED_SOUND_ADDON_IDS = set(EXPECTED_SOUND_ADDON_LABELS)
+EXPECTED_VISIBLE_SOUND_PLAYER_IDS = EXPECTED_SOUND_PLAYER_IDS | EXPECTED_SOUND_ADDON_IDS
+EXPECTED_SOUND_PLAYER_GROUPS = {
+    "Nature / Environmental",
+    "Household / Environmental",
+    "Urban / Environmental",
+    "Static / Artificial",
+    "Focused / Filtered",
 }
 
 FORBIDDEN_TINNITUS_SOUND_ESTIMATE_CLAIMS = [
@@ -473,11 +502,70 @@ def validate_mvp_audio(audio_assets: dict[str, Any], asset_placeholders: dict[st
             add_failure("MVP audio", f"Removed mindfulness file is exposed or required: {filename}")
 
 
-def validate_sound_therapy_player(asset_placeholders: dict[str, Any]) -> None:
-    sound_samples = asset_placeholders.get("soundSamples", [])
+def validate_sound_therapy_player(asset_placeholders: dict[str, Any], sound_therapy_addons: dict[str, Any]) -> None:
+    addon_samples = sound_therapy_addons.get("soundSamples", [])
+    addon_ids = {sample.get("id") for sample in addon_samples}
+    if sound_therapy_addons.get("assetCount") != 15:
+        add_failure("Sound Therapy add-ons", f"Expected 15 add-on sound assets, found {sound_therapy_addons.get('assetCount')!r}")
+    if addon_ids != EXPECTED_SOUND_ADDON_IDS:
+        missing = sorted(EXPECTED_SOUND_ADDON_IDS - addon_ids)
+        extra = sorted(addon_ids - EXPECTED_SOUND_ADDON_IDS)
+        add_failure("Sound Therapy add-ons", f"Add-on sound IDs mismatch. Missing={missing}; extra={extra}")
+
+    for sample in addon_samples:
+        sample_id = sample.get("id", "<missing id>")
+        expected = EXPECTED_SOUND_ADDON_LABELS.get(sample_id)
+        if not expected:
+            continue
+
+        expected_title, expected_group, expected_filename = expected
+        if sample.get("title") != expected_title:
+            add_failure("Sound Therapy add-ons", f"{sample_id} title should be {expected_title!r}, found {sample.get('title')!r}")
+        if sample.get("category") != expected_group:
+            add_failure("Sound Therapy add-ons", f"{sample_id} category should be {expected_group!r}, found {sample.get('category')!r}")
+        if sample.get("displayGroup") != expected_group:
+            add_failure("Sound Therapy add-ons", f"{sample_id} displayGroup should be {expected_group!r}, found {sample.get('displayGroup')!r}")
+        if sample.get("sourceFilename") != expected_filename:
+            add_failure("Sound Therapy add-ons", f"{sample_id} sourceFilename should be {expected_filename!r}, found {sample.get('sourceFilename')!r}")
+        if sample.get("assetPath") != f"audio/sound_samples/{expected_filename}":
+            add_failure("Sound Therapy add-ons", f"{sample_id} assetPath should point to audio/sound_samples/{expected_filename}")
+        if sample.get("status") != "packaged":
+            add_failure("Sound Therapy add-ons", f"{sample_id} should be packaged")
+        if sample.get("playbackMode") != "sound_therapy_loop":
+            add_failure("Sound Therapy add-ons", f"{sample_id} should use sound_therapy_loop playback")
+        if sample.get("loopCapable") is not True:
+            add_failure("Sound Therapy add-ons", f"{sample_id} should be loop-capable")
+        if sample.get("visibleInSoundTherapyPlayer") is not True:
+            add_failure("Sound Therapy add-ons", f"{sample_id} should be visible in Sound Therapy Player")
+        if not sample.get("sourceZip"):
+            add_failure("Sound Therapy add-ons", f"{sample_id} missing sourceZip")
+        if not sample.get("sourceZipPath"):
+            add_failure("Sound Therapy add-ons", f"{sample_id} missing sourceZipPath")
+        if not sample.get("fileSizeBytes"):
+            add_failure("Sound Therapy add-ons", f"{sample_id} missing fileSizeBytes")
+        if not sample.get("sha256"):
+            add_failure("Sound Therapy add-ons", f"{sample_id} missing sha256")
+        if not resource_exists(sample.get("assetPath", "")):
+            add_failure("Sound Therapy add-ons", f"{sample_id} does not resolve to bundled resource path {sample.get('assetPath')!r}")
+
+    for path in APP_RESOURCES.rglob("*"):
+        if not path.is_file():
+            continue
+        if path.name in {"README.txt", "manifest.json", ".DS_Store"} or path.name.startswith("._") or "__MACOSX" in path.parts:
+            add_failure("Sound Therapy add-ons", f"Source/system artifact should not be bundled in app resources: {path}")
+
+    sound_samples = asset_placeholders.get("soundSamples", []) + addon_samples
     samples_by_id = {sample.get("id"): sample for sample in sound_samples}
 
-    for sample_id, (expected_title, expected_category) in EXPECTED_SOUND_PLAYER_LABELS.items():
+    expected_visible_labels = {
+        **EXPECTED_SOUND_PLAYER_LABELS,
+        **{
+            sample_id: (title, category)
+            for sample_id, (title, category, _) in EXPECTED_SOUND_ADDON_LABELS.items()
+        },
+    }
+
+    for sample_id, (expected_title, expected_category) in expected_visible_labels.items():
         sample = samples_by_id.get(sample_id)
         if not sample:
             add_failure("Sound Therapy Player", f"Visible player sample is missing from sound sample registry: {sample_id}")
@@ -507,6 +595,14 @@ def validate_sound_therapy_player(asset_placeholders: dict[str, Any]) -> None:
         if expected_text not in view_text and expected_text not in app_tab_text:
             add_failure("Sound Therapy Player", f"Expected player UI text is missing: {expected_text!r}")
 
+    for group_title in EXPECTED_SOUND_PLAYER_GROUPS:
+        if group_title not in view_text:
+            add_failure("Sound Therapy Player", f"Expected player group is missing: {group_title!r}")
+
+    for expected_title, _, _ in EXPECTED_SOUND_ADDON_LABELS.values():
+        if expected_title not in json.dumps(sound_therapy_addons, ensure_ascii=False):
+            add_failure("Sound Therapy add-ons", f"Expected add-on label is missing from registry: {expected_title!r}")
+
     for old_text in [
         "Sound Therapy Annex",
         "support this annex",
@@ -525,7 +621,7 @@ def validate_sound_therapy_player(asset_placeholders: dict[str, Any]) -> None:
         if old_text in card_text:
             add_failure("Sound Therapy Player", f"Repeated per-card instruction text remains: {old_text!r}")
 
-    for sample_id in EXPECTED_SOUND_PLAYER_IDS:
+    for sample_id in EXPECTED_VISIBLE_SOUND_PLAYER_IDS:
         if sample_id not in view_text:
             add_failure("Sound Therapy Player", f"Visible player sample ID is not included in the beta display filter: {sample_id}")
     for sample_id in HIDDEN_SOUND_PLAYER_IDS:
@@ -590,8 +686,12 @@ def validate_tinnitus_sound_estimate_feature(asset_placeholders: dict[str, Any])
         "Player section": "Customized sound therapy" in player_text,
         "Player card title": "Tinnitus sound estimate" in player_text,
         "Player card CTA": "Start pitch match" in player_text,
+        "Pitch max 14 kHz": "static let maxFrequencyHz = 14_000.0" in feature_text,
         "Pitch slider formula": "minFrequencyHz * pow(maxFrequencyHz / minFrequencyHz, clampedValue)" in feature_text,
         "Pitch inverse formula": "log(clampedFrequency / minFrequencyHz) / log(maxFrequencyHz / minFrequencyHz)" in feature_text,
+        "Pitch live tone volume defaults zero": "@State private var toneVolume = 0.0" in feature_text,
+        "Pitch live tone volume control": "Text(\"Tone volume\")" in feature_text,
+        "Pitch live tone volume copy": "Start at zero, then raise the tone volume slowly until it is comfortably audible." in feature_text,
         "Profile store": "tinnitus_sound_profile_v1.json" in feature_text,
         "Pure tone engine": "AVAudioSourceNode" in feature_text and "sin(localPhase)" in feature_text,
         "Stops samples before tone": "sampleController.stop()" in feature_text,
@@ -605,11 +705,18 @@ def validate_tinnitus_sound_estimate_feature(asset_placeholders: dict[str, Any])
     for expected_text in [
         "Estimate your tinnitus pitch and optional loudness. An exact match is not required.",
         "Move the slider until the tone is close to your tinnitus. It does not need to be exact.",
-        "Headphones may help with pitch matching, especially for higher pitches.",
+        "Headphones may help with pitch matching, especially for higher pitches. Phone speakers may not reproduce very high pitches accurately.",
         "Saved on this device. You can update it later.",
     ]:
         if expected_text not in feature_text:
             add_failure("Tinnitus sound estimate", f"Expected user-facing copy is missing: {expected_text!r}")
+
+    if "max(loudnessEstimate, 0.16)" in feature_text:
+        add_failure("Tinnitus sound estimate", "Play Tone should not auto-raise output volume with max(loudnessEstimate, 0.16).")
+    if "loudnessEstimate = profile.loudnessEstimate ??" in feature_text:
+        add_failure("Tinnitus sound estimate", "Saved loudness estimate should not restore into the live loudness slider automatically.")
+    if "14 kHz" not in feature_text:
+        add_failure("Tinnitus sound estimate", "Pitch slider UI should show the 14 kHz maximum.")
 
     combined_feature_text = f"{player_text}\n{feature_text}".lower()
     for claim in FORBIDDEN_TINNITUS_SOUND_ESTIMATE_CLAIMS:
@@ -1508,16 +1615,17 @@ def main() -> int:
     module_library = load_json(MODULE_LIBRARY_PATH)
     asset_placeholders = load_json(ASSET_PLACEHOLDERS_PATH)
     audio_assets = load_json(AUDIO_ASSETS_PATH)
+    sound_therapy_addons = load_json(SOUND_THERAPY_ADDONS_PATH)
     mindfulness_transcripts = load_json(MINDFULNESS_TRANSCRIPTS_PATH)
     visual_manifest = load_json(VISUAL_ASSET_MANIFEST_PATH)
     exercise_definitions = load_json(EXERCISE_DEFINITIONS_PATH)
 
-    if not all(isinstance(doc, dict) for doc in [module_library, asset_placeholders, audio_assets, mindfulness_transcripts, visual_manifest, exercise_definitions]):
+    if not all(isinstance(doc, dict) for doc in [module_library, asset_placeholders, audio_assets, sound_therapy_addons, mindfulness_transcripts, visual_manifest, exercise_definitions]):
         print_results()
         return 1
 
     validate_mvp_audio(audio_assets, asset_placeholders, module_library)
-    validate_sound_therapy_player(asset_placeholders)
+    validate_sound_therapy_player(asset_placeholders, sound_therapy_addons)
     validate_sound_sample_foreground_continuity()
     validate_tinnitus_sound_estimate_feature(asset_placeholders)
     validate_stage_24b_release_ui_cleanup()

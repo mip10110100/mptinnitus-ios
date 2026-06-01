@@ -150,13 +150,21 @@ struct SoundSampleCard: View {
 
         if id.contains("rain") || title.contains("rain") {
             return "cloud.rain"
-        } else if id.contains("stream") || title.contains("stream") || title.contains("water") {
+        } else if id.contains("stream") || title.contains("stream") || title.contains("water") || title.contains("waves") {
             return "water.waves"
         } else if id.contains("fan") || title.contains("fan") {
             return "fan"
+        } else if id.contains("shower") || title.contains("shower") {
+            return "drop"
+        } else if id.contains("cityscape") || title.contains("city") {
+            return "building.2"
+        } else if id.contains("wind") || title.contains("wind") {
+            return "wind"
+        } else if id.contains("campfire") || title.contains("campfire") {
+            return "flame"
         } else if id.contains("crickets") || title.contains("crickets") {
             return "moon.stars"
-        } else if id.contains("noise") || title.contains("noise") {
+        } else if id.contains("noise") || title.contains("noise") || title.contains("hiss") || title.contains("rumble") {
             return "waveform"
         } else {
             return "speaker.wave.2"
