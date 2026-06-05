@@ -27,6 +27,7 @@ struct ThreeLinesJournalView: View {
     @State private var errorMessage: String?
     @State private var entryPendingArchive: ThreeLinesJournalEntryRecord?
     @State private var isShowingArchiveConfirmation = false
+    @StateObject private var reminderManager = ThreeLinesJournalReminderManager()
 
     private var activeEntries: [ThreeLinesJournalEntryRecord] {
         ThreeLinesJournalStore.activeEntries(from: journalEntries)
@@ -41,6 +42,7 @@ struct ThreeLinesJournalView: View {
             VStack(alignment: .leading, spacing: MPTTheme.Spacing.large) {
                 header
                 helpCard
+                reminderSection
                 entryForm
                 pastEntriesSection
             }
@@ -145,6 +147,14 @@ struct ThreeLinesJournalView: View {
             }
             .buttonStyle(.bordered)
         }
+    }
+
+    private var reminderSection: some View {
+        ThreeLinesJournalReminderControls(manager: reminderManager)
+            .padding(MPTTheme.Spacing.medium)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(MPTTheme.surfaceBackground)
+            .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
     }
 
     private var entryForm: some View {

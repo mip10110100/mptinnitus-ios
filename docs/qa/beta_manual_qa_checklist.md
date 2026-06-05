@@ -17,6 +17,13 @@ Use this checklist for a 30 to 60 minute simulator smoke pass before a beta buil
 - [ ] On first launch, confirm the welcome flow appears when expected.
 - [ ] Confirm safety/scope language is readable and not hidden behind the tab bar or mini-player.
 - [ ] Confirm crisis, urgent medical, hearing-health, sleep, and sound-sensitivity guidance is visible where expected.
+- [ ] Confirm the welcome flow introduces tinnitus as shaped by body, mind, and daily life.
+- [ ] Confirm the optional Tinnitus Check-In offer appears after the intro and before the main starting choices.
+- [ ] Confirm the check-in offer includes the “not a diagnosis or a standardized clinical score” language.
+- [ ] Confirm Skip for Now moves to the normal starting choices without saving a check-in.
+- [ ] Start the Tinnitus Check-In from welcome, answer with a mix of N/A and 0–5 dot values, and confirm a starting plan appears without a total score or severity label.
+- [ ] Confirm N/A is visibly distinct from 0 Not at all and is not treated as a zero response in the user flow.
+- [ ] Complete the welcome flow after the check-in and confirm the app opens normally.
 - [ ] Confirm the user can continue from welcome/safety into the app.
 - [ ] Open Settings and confirm Safety Information remains reachable from Settings.
 - [ ] Use Settings to reset/show the welcome prompt again, if present, then confirm the welcome prompt returns.
@@ -266,6 +273,12 @@ Use this checklist for a 30 to 60 minute simulator smoke pass before a beta buil
 
 ## 10. My Plan
 
+- [ ] Open Tinnitus Check-In from My Plan.
+- [ ] Complete a check-in and confirm My Plan shows “Your starting plan.”
+- [ ] Confirm My Plan shows baseline recommendations plus up to 3 suggested next modules.
+- [ ] Complete a second check-in and confirm My Plan shows a simple comparison with the previous check-in.
+- [ ] Confirm check-in recommendations navigate to module pages from My Plan.
+- [ ] Confirm check-in copy says answers are stored on this device.
 - [ ] Add an exercise/practice tool to My Plan from a module.
 - [ ] Open My Plan and confirm the item appears.
 - [ ] Remove the item and confirm it disappears.
@@ -275,6 +288,15 @@ Use this checklist for a 30 to 60 minute simulator smoke pass before a beta buil
 ## 11. Three Lines Journal
 
 - [ ] Open Three Lines Journal from My Plan or the expected route.
+- [ ] Confirm the Three Lines Journal daily reminder is off by default.
+- [ ] Turn the daily reminder on.
+- [ ] Confirm the iOS notification permission prompt appears only after opting in.
+- [ ] Choose a reminder time.
+- [ ] Confirm status text shows the selected time.
+- [ ] Turn the daily reminder off.
+- [ ] Confirm status text says reminders are off.
+- [ ] If notification permission is denied, confirm the app explains notifications can be changed in iOS Settings.
+- [ ] Confirm no streak, guilt, daily requirement, symptom tracking, clinical, assessment, or treatment language appears in the reminder UI.
 - [ ] Create a journal entry.
 - [ ] Confirm the entry saves locally.
 - [ ] Relaunch the app and confirm the entry remains.
@@ -288,12 +310,20 @@ Use this checklist for a 30 to 60 minute simulator smoke pass before a beta buil
 - [ ] Confirm safety/scope information is visible or linked.
 - [ ] Confirm transcript/audio preferences appear if implemented.
 - [ ] Confirm autoplay next education section setting exists and defaults OFF.
+- [ ] Confirm Tinnitus Check-In can be retaken from Settings.
+- [ ] Confirm the weekly check-in reminder toggle defaults OFF.
+- [ ] Turn on the weekly check-in reminder and confirm notification permission is requested only after this opt-in action.
+- [ ] Turn off the weekly check-in reminder and confirm the setting returns to OFF.
+- [ ] Clear Tinnitus Check-In history from Settings and confirm a confirmation dialog appears.
+- [ ] Confirm Settings includes Three Lines Journal Reminder controls or a clear reminder summary.
+- [ ] Confirm Reset all local app data clears Tinnitus Check-In history and turns off the weekly check-in and daily journal reminders.
+- [ ] Confirm no scheduled Three Lines Journal reminder remains after reset, if practical to verify in simulator settings.
 - [ ] Confirm destructive local reset controls use confirmation dialogs.
 - [ ] Save a tinnitus sound estimate, then clear it from Settings if that control is present.
 - [ ] Save a tinnitus sound estimate, use Reset all local app data on disposable simulator data, and confirm the estimate is cleared.
 - [ ] Test one narrow reset action on disposable simulator data.
 - [ ] Confirm Reset all local data uses a clear confirmation dialog.
-- [ ] Confirm no notification permission prompt appears.
+- [ ] Confirm no notification permission prompt appears unless the weekly check-in reminder or daily journal reminder is explicitly turned on.
 - [ ] Confirm Settings empty/count states use patient-facing copy, not technical debug copy.
 
 ## 13. Visuals/Layout

@@ -30,6 +30,10 @@ struct SettingsPlaceholderView: View {
     @State private var statusMessage: String?
     @State private var errorMessage: String?
     @State private var hasTinnitusSoundEstimate = TinnitusSoundProfileStore.savedProfileExists()
+    @State private var isUpdatingCheckInReminder = false
+    @StateObject private var checkInStore = CheckInStore()
+    @StateObject private var checkInReminderManager = CheckInReminderManager()
+    @StateObject private var journalReminderManager = ThreeLinesJournalReminderManager()
 
     private var isShowingResetConfirmation: Binding<Bool> {
         Binding(
@@ -50,6 +54,8 @@ struct SettingsPlaceholderView: View {
                 privacySection
                 safetySection
                 audioTranscriptSection
+                checkInSection
+                journalReminderSection
                 welcomeSection
                 localDataSection
             }
@@ -59,7 +65,12 @@ struct SettingsPlaceholderView: View {
         .background(MPTTheme.screenBackground)
         .navigationTitle(AppRoute.settings.title)
         .navigationBarTitleDisplayMode(.inline)
-        .onAppear(perform: refreshTinnitusSoundEstimateStatus)
+        .onAppear {
+            refreshTinnitusSoundEstimateStatus()
+            checkInStore.load()
+            checkInReminderManager.load()
+            journalReminderManager.load()
+        }
         .confirmationDialog(
             pendingResetAction?.confirmationTitle ?? "Confirm local reset",
             isPresented: isShowingResetConfirmation,
@@ -163,6 +174,64 @@ struct SettingsPlaceholderView: View {
         .settingsCardPadding()
     }
 
+    private var checkInSection: some View {
+        VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
+            SectionHeader("Tinnitus Check-In")
+            settingsText("Your check-in answers are stored on this device.")
+            settingsText("This is not a diagnostic test or a standardized clinical measure. It is a private check-in to help you notice patterns and choose a starting plan.")
+
+            NavigationLink(value: AppRoute.tinnitusCheckIn) {
+                settingsLinkLabel("Retake Tinnitus Check-In", systemImage: "checklist")
+            }
+            .buttonStyle(.plain)
+
+            Toggle(
+                isOn: Binding(
+                    get: { checkInReminderManager.preference.isEnabled },
+                    set: { newValue in
+                        updateCheckInReminder(newValue)
+                    }
+                )
+            ) {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Weekly check-in reminder")
+                        .font(.headline)
+
+                    Text("Would you like a weekly reminder to redo your Tinnitus Check-In? This can help you notice what is changing over time and adjust your plan. You can turn reminders off anytime.")
+                        .font(.subheadline)
+                        .foregroundStyle(MPTTheme.secondaryText)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
+            .toggleStyle(.switch)
+            .disabled(isUpdatingCheckInReminder)
+
+            if isUpdatingCheckInReminder {
+                Label("Updating reminder setting…", systemImage: "clock")
+                    .font(.footnote)
+                    .foregroundStyle(MPTTheme.secondaryText)
+            }
+
+            if let reminderError = checkInReminderManager.errorMessage {
+                Label(reminderError, systemImage: "exclamationmark.triangle")
+                    .font(.footnote)
+                    .foregroundStyle(.red)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+
+            resetButton(.checkInHistory)
+        }
+        .settingsCardPadding()
+    }
+
+    private var journalReminderSection: some View {
+        VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
+            SectionHeader("Three Lines Journal Reminder")
+            ThreeLinesJournalReminderControls(manager: journalReminderManager)
+        }
+        .settingsCardPadding()
+    }
+
     private var welcomeSection: some View {
         VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
             SectionHeader("Welcome Prompt")
@@ -208,8 +277,14 @@ struct SettingsPlaceholderView: View {
             )
 
             resetRow(
+                title: "Clear Tinnitus Check-In history",
+                subtitle: "\(checkInStore.sessions.count) check-in\(checkInStore.sessions.count == 1 ? "" : "s")",
+                action: .checkInHistory
+            )
+
+            resetRow(
                 title: "Clear reminder settings",
-                subtitle: "\(reminderSettings.count) local reminder setting record\(reminderSettings.count == 1 ? "" : "s"). No reminders are scheduled in this stage.",
+                subtitle: "\(reminderSettings.count) local reminder setting record\(reminderSettings.count == 1 ? "" : "s") plus optional check-in and journal reminder preferences.",
                 action: .reminderSettings
             )
 
@@ -223,7 +298,7 @@ struct SettingsPlaceholderView: View {
 
             resetRow(
                 title: "Reset all local app data",
-                subtitle: "Deletes local records, clears the saved sound estimate, and resets welcome/audio/transcript preferences. Bundled education content stays installed.",
+                subtitle: "Deletes local records, check-in history, clears the saved sound estimate, turns off check-in and journal reminders, and resets welcome/audio/transcript preferences. Bundled education content stays installed.",
                 action: .allLocalData
             )
 
@@ -303,6 +378,14 @@ struct SettingsPlaceholderView: View {
         .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
     }
 
+    private func updateCheckInReminder(_ isEnabled: Bool) {
+        isUpdatingCheckInReminder = true
+        Task {
+            await checkInReminderManager.setEnabled(isEnabled)
+            isUpdatingCheckInReminder = false
+        }
+    }
+
     private func performReset(_ action: SettingsResetAction) {
         statusMessage = nil
         errorMessage = nil
@@ -314,12 +397,25 @@ struct SettingsPlaceholderView: View {
             case .allLocalData:
                 try LocalDataResetService(modelContext: modelContext).reset(.allLocalData)
                 try TinnitusSoundProfileStore.deleteSavedProfile()
+                try CheckInStore.deleteAllSessions()
+                try CheckInReminderManager.resetReminderPreference()
+                try ThreeLinesJournalReminderManager.resetReminderPreference()
                 resetWelcomePrompt()
                 transcriptsExpandedByDefault = false
                 automaticallyPlayNextEducationSection = false
             default:
                 if action == .tinnitusSoundEstimate {
                     try TinnitusSoundProfileStore.deleteSavedProfile()
+                } else if action == .checkInHistory {
+                    try checkInStore.deleteAllSessions()
+                } else if action == .reminderSettings {
+                    if let scope = action.resetScope {
+                        try LocalDataResetService(modelContext: modelContext).reset(scope)
+                    }
+                    try CheckInReminderManager.resetReminderPreference()
+                    try ThreeLinesJournalReminderManager.resetReminderPreference()
+                    checkInReminderManager.load()
+                    journalReminderManager.load()
                 } else if let scope = action.resetScope {
                     try LocalDataResetService(modelContext: modelContext).reset(scope)
                 }
@@ -327,6 +423,9 @@ struct SettingsPlaceholderView: View {
 
             statusMessage = action.successMessage
             refreshTinnitusSoundEstimateStatus()
+            checkInStore.load()
+            checkInReminderManager.load()
+            journalReminderManager.load()
         } catch {
             errorMessage = "Could not complete this local reset."
 
@@ -353,6 +452,7 @@ private enum SettingsResetAction: String {
     case threeLinesJournalEntries
     case soundPreferences
     case tinnitusSoundEstimate
+    case checkInHistory
     case reminderSettings
     case safetyScopeFlags
     case allLocalData
@@ -369,6 +469,8 @@ private enum SettingsResetAction: String {
         case .soundPreferences:
             .soundPreferences
         case .tinnitusSoundEstimate:
+            nil
+        case .checkInHistory:
             nil
         case .reminderSettings:
             .reminderSettings
@@ -415,6 +517,8 @@ private enum SettingsResetAction: String {
             "Clear sound favorites and preferences?"
         case .tinnitusSoundEstimate:
             "Clear tinnitus sound estimate?"
+        case .checkInHistory:
+            "Clear Tinnitus Check-In history?"
         case .reminderSettings:
             "Clear reminder settings?"
         case .safetyScopeFlags:
@@ -438,12 +542,14 @@ private enum SettingsResetAction: String {
             "This clears saved sound favorites and preference records from this device."
         case .tinnitusSoundEstimate:
             "This clears the saved local tinnitus pitch and loudness estimate. Other sound preferences remain."
+        case .checkInHistory:
+            "This deletes saved Tinnitus Check-In sessions from this device. Other app data remains."
         case .reminderSettings:
-            "This clears local reminder setting records. This stage does not schedule notifications."
+            "This clears local reminder setting records and turns off the optional weekly check-in and daily journal reminders."
         case .safetyScopeFlags:
             "This clears local safety/scope acknowledgement flags. Safety content remains available."
         case .allLocalData:
-            "This deletes My Plan items, exercise entries, journal entries, sound preferences, the saved tinnitus sound estimate, reminder settings, safety flags, and local schema/preference records. It also resets the welcome prompt, audio preference, and transcript preference. This cannot be undone."
+            "This deletes My Plan items, exercise entries, journal entries, sound preferences, Tinnitus Check-In history, the saved tinnitus sound estimate, reminder settings, safety flags, and local schema/preference records. It also turns off the optional weekly check-in and daily journal reminders and resets the welcome prompt, audio preference, and transcript preference. This cannot be undone."
         case .welcomePrompt:
             "The welcome sheet will appear again on a future app launch. No saved data will be deleted."
         }
@@ -461,6 +567,8 @@ private enum SettingsResetAction: String {
             "Clear Sound Preferences"
         case .tinnitusSoundEstimate:
             "Clear Sound Estimate"
+        case .checkInHistory:
+            "Clear Check-In History"
         case .reminderSettings:
             "Clear Reminder Settings"
         case .safetyScopeFlags:
@@ -484,6 +592,8 @@ private enum SettingsResetAction: String {
             "Sound preferences were cleared locally."
         case .tinnitusSoundEstimate:
             "Tinnitus sound estimate was cleared locally."
+        case .checkInHistory:
+            "Tinnitus Check-In history was cleared locally."
         case .reminderSettings:
             "Reminder settings were cleared locally."
         case .safetyScopeFlags:

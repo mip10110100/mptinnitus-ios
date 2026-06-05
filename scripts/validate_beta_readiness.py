@@ -27,6 +27,7 @@ SOUND_THERAPY_ADDONS_PATH = APP_RESOURCES / "sound_therapy_addon_assets_v1.json"
 VIDEO_ASSETS_PATH = APP_RESOURCES / "video_assets_v1.json"
 MINDFULNESS_TRANSCRIPTS_PATH = APP_RESOURCES / "mindfulness_transcripts_v1.json"
 EXERCISE_DEFINITIONS_PATH = APP_RESOURCES / "exercise_definitions_v1.json"
+CHECKIN_QUESTIONS_PATH = APP_RESOURCES / "onboarding_checkin_v1.json"
 APP_ICON_CONTENTS_PATH = APP_ROOT / "Assets.xcassets/AppIcon.appiconset/Contents.json"
 VISUAL_ASSET_MANIFEST_PATH = ROOT / "docs/visual_assets/visual_asset_manifest_v1.json"
 
@@ -346,6 +347,50 @@ PROHIBITED_SOURCE_TERMS = [
     "AVQueuePlayer",
     "AVAudioSession",
 ]
+
+LOCAL_NOTIFICATION_TERMS = {
+    "UserNotifications",
+    "UNUserNotificationCenter",
+    "requestAuthorization",
+    "UNNotificationRequest",
+    "UNCalendarNotificationTrigger",
+    "UNMutableNotificationContent",
+}
+
+ALLOWED_LOCAL_NOTIFICATION_PATHS = {
+    APP_ROOT / "Features/CheckIn/CheckInReminderManager.swift",
+    APP_ROOT / "Features/MyPlan/ThreeLinesJournalReminderManager.swift",
+}
+
+EXPECTED_CHECKIN_ITEM_IDS = {
+    "checkin.attention.1",
+    "checkin.intrusiveness.1",
+    "checkin.quiet.1",
+    "checkin.sound_sensitivity.1",
+    "checkin.avoidance.1",
+    "checkin.sleep_onset.1",
+    "checkin.sleep_maintenance.1",
+    "checkin.emotional_distress.1",
+    "checkin.cognitive_loop.1",
+    "checkin.function.1",
+    "checkin.quality_of_life.1",
+    "checkin.support_validation.1",
+    "checkin.coping_confidence.1",
+    "checkin.hope_confidence.1",
+    "checkin.self_kindness.1",
+    "checkin.readiness.1",
+}
+
+EXPECTED_CHECKIN_DOMAINS = {
+    "attention_intrusiveness",
+    "sound_quiet",
+    "sleep",
+    "emotional_distress",
+    "cognitive_loop",
+    "daily_function",
+    "support_validation",
+    "confidence_self_compassion",
+}
 
 RELEASE_UI_FORBIDDEN_STRINGS = [
     "Manifest Loader",
@@ -1532,6 +1577,215 @@ def validate_exercise_references(module_library: dict[str, Any], exercise_defini
         add_failure("Exercise references", f"Unsupported exercise refs may not be filtered in {renderer_path}")
 
 
+def validate_tinnitus_checkin(checkin_questions: dict[str, Any], module_library: dict[str, Any]) -> None:
+    if checkin_questions.get("schemaVersion") != "onboarding_checkin_v1":
+        add_failure("Tinnitus Check-In", f"{CHECKIN_QUESTIONS_PATH} should use schemaVersion onboarding_checkin_v1.")
+
+    if checkin_questions.get("timeWindow") != "Over the past week":
+        add_failure("Tinnitus Check-In", f"{CHECKIN_QUESTIONS_PATH} should use the Over the past week time window.")
+
+    scale = checkin_questions.get("scale", [])
+    scale_labels = {(option.get("value"), option.get("label")) for option in scale if isinstance(option, dict)}
+    expected_scale = {
+        (None, "N/A"),
+        (0, "Not at all"),
+        (1, "A little"),
+        (2, "Mild"),
+        (3, "Moderate"),
+        (4, "Strong"),
+        (5, "Very strong"),
+    }
+    if scale_labels != expected_scale:
+        add_failure("Tinnitus Check-In", f"{CHECKIN_QUESTIONS_PATH} scale labels do not match the required N/A plus 0-5 labels.")
+
+    items = checkin_questions.get("items", [])
+    if len(items) != 16:
+        add_failure("Tinnitus Check-In", f"{CHECKIN_QUESTIONS_PATH} should contain exactly 16 items, found {len(items)}.")
+
+    ids = {item.get("id") for item in items if isinstance(item, dict)}
+    if ids != EXPECTED_CHECKIN_ITEM_IDS:
+        add_failure("Tinnitus Check-In", f"Check-in item IDs differ from expected set. Missing={sorted(EXPECTED_CHECKIN_ITEM_IDS - ids)} extra={sorted(ids - EXPECTED_CHECKIN_ITEM_IDS)}")
+
+    module_ids = {module.get("moduleId") for module in module_library.get("modules", [])}
+    for item in items:
+        if not isinstance(item, dict):
+            add_failure("Tinnitus Check-In", f"Invalid check-in item: {item!r}")
+            continue
+        item_id = item.get("id", "<missing id>")
+        for field in ["prompt", "domain", "isReverseScored", "recommendedModuleIds", "reasonText"]:
+            if field not in item:
+                add_failure("Tinnitus Check-In", f"{item_id} is missing required field {field}.")
+        if item.get("domain") not in EXPECTED_CHECKIN_DOMAINS:
+            add_failure("Tinnitus Check-In", f"{item_id} uses unknown domain {item.get('domain')!r}.")
+        if item_id in {
+            "checkin.coping_confidence.1",
+            "checkin.hope_confidence.1",
+            "checkin.self_kindness.1",
+            "checkin.readiness.1",
+        } and item.get("isReverseScored") is not True:
+            add_failure("Tinnitus Check-In", f"{item_id} should be reverse-scored as support need.")
+        for module_id in item.get("recommendedModuleIds", []):
+            if module_id not in module_ids:
+                add_failure("Tinnitus Check-In", f"{item_id} recommends missing module {module_id!r}.")
+
+    checkin_text = json.dumps(checkin_questions, ensure_ascii=False)
+    forbidden_claims = [
+        "THI",
+        "TFI",
+        "Tinnitus Handicap Inventory",
+        "Tinnitus Functional Index",
+        "clinical score",
+        "severity score",
+        "cutoff",
+        "diagnose",
+        "diagnosis score",
+    ]
+    for claim in forbidden_claims:
+        if claim in checkin_text:
+            add_failure("Tinnitus Check-In", f"{CHECKIN_QUESTIONS_PATH} contains unsupported clinical/scoring language: {claim!r}")
+
+    route_text = (APP_ROOT / "Core/AppRoute.swift").read_text()
+    destination_text = (APP_ROOT / "App/AppRouteDestinationView.swift").read_text()
+    welcome_text = (APP_ROOT / "Features/Welcome/FirstLaunchWelcomeView.swift").read_text()
+    my_plan_text = (APP_ROOT / "Features/MyPlan/MyPlanView.swift").read_text()
+    settings_text = (APP_ROOT / "Features/Settings/SettingsPlaceholderView.swift").read_text()
+    checkin_view_text = (APP_ROOT / "Features/CheckIn/TinnitusCheckInView.swift").read_text()
+    checkin_models_text = (APP_ROOT / "Features/CheckIn/CheckInModels.swift").read_text()
+    checkin_dot_scale_text = (APP_ROOT / "Features/CheckIn/CheckInDotScaleView.swift").read_text()
+    checkin_store_text = (APP_ROOT / "Features/CheckIn/CheckInStore.swift").read_text()
+    checkin_scoring_text = (APP_ROOT / "Features/CheckIn/CheckInScoring.swift").read_text()
+    reminder_text = (APP_ROOT / "Features/CheckIn/CheckInReminderManager.swift").read_text()
+
+    required_snippets = [
+        (route_text, "case tinnitusCheckIn", "AppRoute should expose Tinnitus Check-In."),
+        (destination_text, "TinnitusCheckInView(", "AppRouteDestinationView should route to TinnitusCheckInView."),
+        (welcome_text, "TinnitusCheckInView(", "First-launch welcome should offer the check-in."),
+        (welcome_text, "This is not a diagnosis or a standardized clinical score.", "Welcome should include the required check-in scope copy."),
+        (my_plan_text, "Your starting plan", "My Plan should surface the check-in starting plan."),
+        (my_plan_text, "AppRoute.tinnitusCheckIn", "My Plan should link to the check-in route."),
+        (settings_text, "Weekly check-in reminder", "Settings should expose the optional weekly check-in reminder."),
+        (settings_text, "Would you like a weekly reminder to redo your Tinnitus Check-In?", "Settings should use the required opt-in reminder copy."),
+        (settings_text, "CheckInReminderManager.resetReminderPreference", "Settings reset should clear the check-in reminder."),
+        (checkin_view_text, "This is not a diagnostic test or a standardized clinical measure.", "Check-in view should include the required disclaimer."),
+        (checkin_view_text, "Your check-in answers are stored on this device.", "Check-in view should include local-only privacy copy."),
+        (checkin_models_text, "let value: Int?", "Check-in response model should store nil for N/A rather than zero."),
+        (checkin_models_text, "case notApplicable", "Check-in response selection should support N/A."),
+        (checkin_dot_scale_text, "selection = .notApplicable", "Dot scale should map the N/A control to notApplicable."),
+        (checkin_store_text, "tinnitus_checkins_v1.json", "Check-in store should persist to the required local JSON filename."),
+        (checkin_scoring_text, "5 - value", "Check-in scoring should reverse-score confidence/self-compassion items."),
+        (reminder_text, "requestAuthorization", "Reminder manager should request permission only when enabling the opt-in reminder."),
+        (reminder_text, "mptinnitus.weekly_checkin_reminder", "Reminder manager should use a stable reminder identifier."),
+    ]
+    for text, snippet, message in required_snippets:
+        if snippet not in text:
+            add_failure("Tinnitus Check-In", message)
+
+    forbidden_checkin_source = [
+        "totalScore",
+        "severityLabel",
+        "clinicalMeasure",
+        "standardizedScore",
+        "diagnosticScore",
+    ]
+    for path in (APP_ROOT / "Features/CheckIn").rglob("*.swift"):
+        text = path.read_text(errors="ignore")
+        for term in forbidden_checkin_source:
+            if term in text:
+                add_failure("Tinnitus Check-In", f"{path} contains unsupported score/severity term {term!r}.")
+        for remote_term in ["UNRemoteNotification", "registerForRemoteNotifications", "remoteNotification"]:
+            if remote_term in text:
+                add_failure("Tinnitus Check-In", f"{path} contains remote notification term {remote_term!r}.")
+
+
+def validate_three_lines_journal_reminder() -> None:
+    preference_path = APP_ROOT / "Features/MyPlan/ThreeLinesJournalReminderPreference.swift"
+    store_path = APP_ROOT / "Features/MyPlan/ThreeLinesJournalReminderStore.swift"
+    manager_path = APP_ROOT / "Features/MyPlan/ThreeLinesJournalReminderManager.swift"
+    controls_path = APP_ROOT / "Features/MyPlan/ThreeLinesJournalReminderControls.swift"
+    journal_path = APP_ROOT / "Features/MyPlan/ThreeLinesJournalView.swift"
+    settings_path = APP_ROOT / "Features/Settings/SettingsPlaceholderView.swift"
+    root_path = APP_ROOT / "App/RootShellView.swift"
+
+    required_paths = [
+        preference_path,
+        store_path,
+        manager_path,
+        controls_path,
+        journal_path,
+        settings_path,
+        root_path,
+    ]
+    for path in required_paths:
+        if not path.exists():
+            add_failure("Three Lines Journal reminder", f"Required file is missing: {path}")
+            return
+
+    preference_text = preference_path.read_text()
+    store_text = store_path.read_text()
+    manager_text = manager_path.read_text()
+    controls_text = controls_path.read_text()
+    journal_text = journal_path.read_text()
+    settings_text = settings_path.read_text()
+    root_text = root_path.read_text()
+
+    required_snippets = [
+        (preference_text, "schemaVersion: \"three_lines_journal_reminder_v1\"", "Journal reminder preference should be versioned."),
+        (preference_text, "isEnabled: false", "Journal reminder should default off."),
+        (preference_text, "hour: 20", "Journal reminder should default to 8:00 PM."),
+        (preference_text, "minute: 0", "Journal reminder default minute should be 0."),
+        (store_text, "three_lines_journal_reminder_v1.json", "Journal reminder should persist to the required local JSON filename."),
+        (manager_text, "three_lines_journal_daily_reminder", "Journal reminder should use the stable daily notification identifier."),
+        (manager_text, "requestAuthorization", "Journal reminder should request permission only when enabling."),
+        (manager_text, "UNCalendarNotificationTrigger", "Journal reminder should use a local calendar trigger."),
+        (manager_text, "repeats: true", "Journal reminder should repeat daily."),
+        (manager_text, "Three Lines Journal", "Journal notification should use the expected title."),
+        (manager_text, "Take a minute for Three Lines Journal.", "Journal notification should use the expected calm body text."),
+        (manager_text, "removePendingNotificationRequests", "Journal reminder should cancel pending local notifications."),
+        (controls_text, "Would you like a daily reminder for Three Lines Journal?", "Journal reminder UI should include opt-in permission copy."),
+        (controls_text, "DatePicker", "Journal reminder UI should let users choose a time."),
+        (controls_text, "Notifications are not allowed. You can update this in iOS Settings.", "Journal reminder UI should handle denied permission."),
+        (journal_text, "ThreeLinesJournalReminderControls", "Three Lines Journal screen should expose reminder controls."),
+        (settings_text, "Three Lines Journal Reminder", "Settings should expose the journal reminder."),
+        (settings_text, "ThreeLinesJournalReminderManager.resetReminderPreference", "Settings reset should clear the journal reminder."),
+    ]
+    for text, snippet, message in required_snippets:
+        if snippet not in text:
+            add_failure("Three Lines Journal reminder", message)
+
+    if "content.badge" in manager_text or ".badge" in manager_text:
+        add_failure("Three Lines Journal reminder", "Journal reminder should not set a badge count.")
+
+    forbidden_terms = [
+        "You missed your journal",
+        "Keep your streak",
+        "Complete your daily requirement",
+        "Track your symptoms",
+        "streak",
+    ]
+    reminder_ui_text = "\n".join([manager_text, controls_text, journal_text])
+    for term in forbidden_terms:
+        if term in reminder_ui_text:
+            add_failure("Three Lines Journal reminder", f"Reminder UI/source contains pressure or streak language: {term!r}")
+
+    for remote_term in ["UNRemoteNotification", "registerForRemoteNotifications", "remoteNotification"]:
+        if remote_term in manager_text:
+            add_failure("Three Lines Journal reminder", f"Journal reminder manager contains remote notification term {remote_term!r}.")
+
+    for startup_term in ["requestAuthorization", "UserNotifications", "UNNotificationRequest"]:
+        if startup_term in root_text:
+            add_failure("Three Lines Journal reminder", f"RootShellView should not request or configure notification permission at launch: {startup_term!r}")
+
+    source_plists = [
+        path
+        for path in APP_ROOT.rglob("*")
+        if path.is_file() and path.suffix in {".plist", ".entitlements"}
+    ]
+    for path in source_plists:
+        text = path.read_text(errors="ignore")
+        if "UIBackgroundModes" in text or "remote-notification" in text:
+            add_failure("Three Lines Journal reminder", f"{path} should not declare background or remote-notification modes.")
+
+
 def validate_duplicate_flattened_resource_names() -> None:
     media_files = [path for path in APP_RESOURCES.rglob("*") if path.is_file() and path.suffix.lower() in MEDIA_EXTENSIONS]
     counts = Counter(path.name for path in media_files)
@@ -1551,7 +1805,15 @@ def validate_prohibited_source_terms() -> None:
         text = path.read_text(errors="ignore")
         for term in PROHIBITED_SOURCE_TERMS:
             if term in text:
+                if term in LOCAL_NOTIFICATION_TERMS and path in ALLOWED_LOCAL_NOTIFICATION_PATHS:
+                    continue
                 add_failure("Prohibited app source/API terms", f"{path} contains {term!r}")
+        for term in LOCAL_NOTIFICATION_TERMS:
+            if term in text and path not in ALLOWED_LOCAL_NOTIFICATION_PATHS:
+                add_failure(
+                    "Local notification scope",
+                    f"{path} contains {term!r}; local notification APIs are allowed only in approved local reminder managers",
+                )
 
 
 def validate_app_icon() -> None:
@@ -1619,8 +1881,9 @@ def main() -> int:
     mindfulness_transcripts = load_json(MINDFULNESS_TRANSCRIPTS_PATH)
     visual_manifest = load_json(VISUAL_ASSET_MANIFEST_PATH)
     exercise_definitions = load_json(EXERCISE_DEFINITIONS_PATH)
+    checkin_questions = load_json(CHECKIN_QUESTIONS_PATH)
 
-    if not all(isinstance(doc, dict) for doc in [module_library, asset_placeholders, audio_assets, sound_therapy_addons, mindfulness_transcripts, visual_manifest, exercise_definitions]):
+    if not all(isinstance(doc, dict) for doc in [module_library, asset_placeholders, audio_assets, sound_therapy_addons, mindfulness_transcripts, visual_manifest, exercise_definitions, checkin_questions]):
         print_results()
         return 1
 
@@ -1640,6 +1903,8 @@ def main() -> int:
     validate_sound_therapy_beta_visuals_and_labels(module_library, exercise_definitions, visual_manifest)
     validate_self_compassion_visual_deduplication(module_library, visual_manifest)
     validate_exercise_references(module_library, exercise_definitions)
+    validate_tinnitus_checkin(checkin_questions, module_library)
+    validate_three_lines_journal_reminder()
     validate_duplicate_flattened_resource_names()
     validate_prohibited_source_terms()
     validate_app_icon()
