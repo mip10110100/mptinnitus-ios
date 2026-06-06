@@ -115,7 +115,7 @@ final class TinnitusSoundProfileStore: ObservableObject {
 
 enum TinnitusPitchScale {
     static let minFrequencyHz = 100.0
-    static let maxFrequencyHz = 10_000.0
+    static let maxFrequencyHz = 14_000.0
 
     static func frequencyHz(for sliderValue: Double) -> Double {
         let clampedValue = min(max(sliderValue, 0), 1)

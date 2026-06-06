@@ -31,6 +31,11 @@ struct AppRouteDestinationView: View {
             )
         case .tinnitusSoundEstimate:
             TinnitusSoundEstimateView(sampleController: soundSampleController)
+        case .tinnitusCheckIn:
+            TinnitusCheckInView(
+                source: .myPlan,
+                moduleLibrary: moduleLibrary
+            )
         case .safetyInformation:
             SafetyInformationView()
         case .settings:

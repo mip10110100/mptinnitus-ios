@@ -15,6 +15,7 @@ struct TinnitusSoundEstimateView: View {
     @StateObject private var pitchEngine = TinnitusPitchMatchAudioEngine()
 
     @State private var pitchSliderValue = TinnitusPitchScale.sliderValue(for: 1_000)
+    @State private var toneVolume = 0.0
     @State private var loudnessEstimate = 0.0
     @State private var matchConfidence: TinnitusMatchConfidence = .closeEnough
     @State private var laterality: TinnitusLaterality = .notSure
@@ -59,14 +60,19 @@ struct TinnitusSoundEstimateView: View {
         }
         .onDisappear {
             stopTone()
+            resetLiveToneControls()
             sampleController.onWillStartPlayback = nil
         }
         .onChange(of: scenePhase) { _, newPhase in
             if newPhase != .active {
                 stopTone()
+                resetLiveToneControls()
             }
         }
         .onChange(of: pitchSliderValue) { _, _ in
+            updateToneIfNeeded()
+        }
+        .onChange(of: toneVolume) { _, _ in
             updateToneIfNeeded()
         }
         .onChange(of: loudnessEstimate) { _, _ in
@@ -126,12 +132,44 @@ struct TinnitusSoundEstimateView: View {
                     Text("100 Hz")
                         .font(.caption2)
                 } maximumValueLabel: {
-                    Text("10 kHz")
+                    Text("14 kHz")
                         .font(.caption2)
                 }
                 .accessibilityLabel("Tinnitus pitch estimate")
                 .accessibilityValue(formattedFrequency(frequencyHz))
                 .accessibilityHint("Adjusts the pitch of the comparison tone.")
+
+                VStack(alignment: .leading, spacing: MPTTheme.Spacing.small) {
+                    HStack {
+                        Text("Tone volume")
+                            .font(.subheadline.weight(.semibold))
+                        Spacer()
+                        Text(toneVolumeLabel)
+                            .font(.caption.monospacedDigit())
+                            .foregroundStyle(MPTTheme.secondaryText)
+                    }
+
+                    Slider(
+                        value: $toneVolume,
+                        in: 0...1
+                    ) {
+                        Text("Tone volume")
+                    } minimumValueLabel: {
+                        Image(systemName: "speaker.slash")
+                            .font(.caption)
+                    } maximumValueLabel: {
+                        Image(systemName: "speaker.wave.2")
+                            .font(.caption)
+                    }
+                    .accessibilityLabel("Tone volume")
+                    .accessibilityValue(toneVolumeLabel)
+                    .accessibilityHint("Starts at zero. Raise slowly until the pitch tone is comfortably audible.")
+
+                    Text("Start at zero, then raise the tone volume slowly until it is comfortably audible.")
+                        .font(.footnote)
+                        .foregroundStyle(MPTTheme.secondaryText)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
 
                 HStack(spacing: MPTTheme.Spacing.small) {
                     Button {
@@ -160,7 +198,7 @@ struct TinnitusSoundEstimateView: View {
                     .accessibilityHint("Raises the pitch by one small step.")
                 }
 
-                Text("Headphones may help with pitch matching, especially for higher pitches.")
+                Text("Headphones may help with pitch matching, especially for higher pitches. Phone speakers may not reproduce very high pitches accurately.")
                     .font(.footnote)
                     .foregroundStyle(MPTTheme.secondaryText)
                     .fixedSize(horizontal: false, vertical: true)
@@ -328,6 +366,10 @@ struct TinnitusSoundEstimateView: View {
         "\(Int((loudnessEstimate * 100).rounded()))% of capped range"
     }
 
+    private var toneVolumeLabel: String {
+        "\(Int((toneVolume * 100).rounded()))%"
+    }
+
     private func loadProfileIfNeeded() {
         guard !didLoadProfile else {
             return
@@ -335,7 +377,6 @@ struct TinnitusSoundEstimateView: View {
 
         if let profile = profileStore.profile {
             pitchSliderValue = TinnitusPitchScale.sliderValue(for: profile.matchedFrequencyHz)
-            loudnessEstimate = profile.loudnessEstimate ?? 0
             matchConfidence = profile.matchConfidence
             laterality = profile.laterality
         }
@@ -379,10 +420,15 @@ struct TinnitusSoundEstimateView: View {
     private func playbackLevel(for mode: PitchEstimatePlaybackMode) -> Double {
         switch mode {
         case .pitchPreview:
-            max(loudnessEstimate, 0.16)
+            toneVolume
         case .loudnessEstimate:
             loudnessEstimate
         }
+    }
+
+    private func resetLiveToneControls() {
+        toneVolume = 0
+        loudnessEstimate = 0
     }
 
     private func nudgePitch(octaveSteps: Int) {

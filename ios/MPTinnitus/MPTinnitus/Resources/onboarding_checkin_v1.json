@@ -1,0 +1,206 @@
+{
+  "schemaVersion": "onboarding_checkin_v1",
+  "timeWindow": "Over the past week",
+  "scale": [
+    {
+      "value": null,
+      "label": "N/A"
+    },
+    {
+      "value": 0,
+      "label": "Not at all"
+    },
+    {
+      "value": 1,
+      "label": "A little"
+    },
+    {
+      "value": 2,
+      "label": "Mild"
+    },
+    {
+      "value": 3,
+      "label": "Moderate"
+    },
+    {
+      "value": 4,
+      "label": "Strong"
+    },
+    {
+      "value": 5,
+      "label": "Very strong"
+    }
+  ],
+  "items": [
+    {
+      "id": "checkin.attention.1",
+      "prompt": "How often did tinnitus pull your attention away from what you were trying to do?",
+      "domain": "attention_intrusiveness",
+      "isReverseScored": false,
+      "recommendedModuleIds": [
+        "mindfulness"
+      ],
+      "reasonText": "You mentioned that tinnitus is pulling attention."
+    },
+    {
+      "id": "checkin.intrusiveness.1",
+      "prompt": "How much did tinnitus feel hard to set aside once you noticed it?",
+      "domain": "attention_intrusiveness",
+      "isReverseScored": false,
+      "recommendedModuleIds": [
+        "mindfulness"
+      ],
+      "reasonText": "You mentioned that tinnitus is pulling attention."
+    },
+    {
+      "id": "checkin.quiet.1",
+      "prompt": "How much did tinnitus make quiet places feel tense, uncomfortable, or unsafe?",
+      "domain": "sound_quiet",
+      "isReverseScored": false,
+      "recommendedModuleIds": [
+        "sound_therapy",
+        "distress_tolerance"
+      ],
+      "reasonText": "You mentioned difficulty with quiet, sound, or avoidance."
+    },
+    {
+      "id": "checkin.sound_sensitivity.1",
+      "prompt": "How much did everyday sound feel too sharp, intense, or draining?",
+      "domain": "sound_quiet",
+      "isReverseScored": false,
+      "recommendedModuleIds": [
+        "sound_therapy",
+        "distress_tolerance"
+      ],
+      "reasonText": "You mentioned difficulty with quiet, sound, or avoidance."
+    },
+    {
+      "id": "checkin.avoidance.1",
+      "prompt": "How much did you avoid places, activities, or sounds because of tinnitus or sound sensitivity?",
+      "domain": "sound_quiet",
+      "isReverseScored": false,
+      "recommendedModuleIds": [
+        "sound_therapy",
+        "distress_tolerance"
+      ],
+      "reasonText": "You mentioned difficulty with quiet, sound, or avoidance."
+    },
+    {
+      "id": "checkin.sleep_onset.1",
+      "prompt": "How much did tinnitus make it harder to fall asleep?",
+      "domain": "sleep",
+      "isReverseScored": false,
+      "recommendedModuleIds": [
+        "sleep"
+      ],
+      "reasonText": "You mentioned that tinnitus is affecting sleep."
+    },
+    {
+      "id": "checkin.sleep_maintenance.1",
+      "prompt": "How much did tinnitus make it harder to return to sleep after waking?",
+      "domain": "sleep",
+      "isReverseScored": false,
+      "recommendedModuleIds": [
+        "sleep"
+      ],
+      "reasonText": "You mentioned that tinnitus is affecting sleep."
+    },
+    {
+      "id": "checkin.emotional_distress.1",
+      "prompt": "How much did tinnitus increase stress, fear, frustration, sadness, or irritability?",
+      "domain": "emotional_distress",
+      "isReverseScored": false,
+      "recommendedModuleIds": [
+        "distress_tolerance",
+        "confidence_communication"
+      ],
+      "reasonText": "You mentioned strong emotional reactions."
+    },
+    {
+      "id": "checkin.cognitive_loop.1",
+      "prompt": "How often did your mind get stuck trying to monitor, solve, or explain tinnitus?",
+      "domain": "cognitive_loop",
+      "isReverseScored": false,
+      "recommendedModuleIds": [
+        "cognitive_reframing"
+      ],
+      "reasonText": "You mentioned getting stuck in monitoring or problem-solving loops."
+    },
+    {
+      "id": "checkin.function.1",
+      "prompt": "How much did tinnitus interfere with work, study, chores, caregiving, or daily responsibilities?",
+      "domain": "daily_function",
+      "isReverseScored": false,
+      "recommendedModuleIds": [
+        "acceptance_and_change",
+        "cognitive_reframing"
+      ],
+      "reasonText": "You mentioned tinnitus getting in the way of daily life."
+    },
+    {
+      "id": "checkin.quality_of_life.1",
+      "prompt": "How much did tinnitus get in the way of rest, enjoyment, hobbies, or connection with others?",
+      "domain": "daily_function",
+      "isReverseScored": false,
+      "recommendedModuleIds": [
+        "acceptance_and_change",
+        "cognitive_reframing"
+      ],
+      "reasonText": "You mentioned tinnitus getting in the way of daily life."
+    },
+    {
+      "id": "checkin.support_validation.1",
+      "prompt": "How much did you feel alone, misunderstood, or unsure how to explain tinnitus to others?",
+      "domain": "support_validation",
+      "isReverseScored": false,
+      "recommendedModuleIds": [
+        "confidence_communication"
+      ],
+      "reasonText": "You mentioned feeling alone, misunderstood, or unsure how to explain tinnitus."
+    },
+    {
+      "id": "checkin.coping_confidence.1",
+      "prompt": "How confident did you feel that you could get through a difficult tinnitus moment?",
+      "domain": "confidence_self_compassion",
+      "isReverseScored": true,
+      "recommendedModuleIds": [
+        "my_plan",
+        "confidence_communication"
+      ],
+      "reasonText": "You mentioned wanting more confidence in how to respond."
+    },
+    {
+      "id": "checkin.hope_confidence.1",
+      "prompt": "How confident did you feel that improvement is possible, even if tinnitus does not fully disappear?",
+      "domain": "confidence_self_compassion",
+      "isReverseScored": true,
+      "recommendedModuleIds": [
+        "my_plan",
+        "confidence_communication"
+      ],
+      "reasonText": "You mentioned wanting more confidence in how to respond."
+    },
+    {
+      "id": "checkin.self_kindness.1",
+      "prompt": "How kind or understanding were you able to be with yourself when tinnitus was difficult?",
+      "domain": "confidence_self_compassion",
+      "isReverseScored": true,
+      "recommendedModuleIds": [
+        "my_plan",
+        "confidence_communication"
+      ],
+      "reasonText": "You mentioned wanting more confidence in how to respond."
+    },
+    {
+      "id": "checkin.readiness.1",
+      "prompt": "How willing did you feel to try one small helpful step, even on a difficult day?",
+      "domain": "confidence_self_compassion",
+      "isReverseScored": true,
+      "recommendedModuleIds": [
+        "my_plan",
+        "confidence_communication"
+      ],
+      "reasonText": "You mentioned wanting more confidence in how to respond."
+    }
+  ]
+}
